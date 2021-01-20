@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="kairaLabel">#2d393b</color>
+    <color name="kairaSecLabel">#3c8999</color>
+    <color name="kairaAccent">#45b8d1</color>
+    <color name="kairaFill">#dbf4f9</color>
+    <color name="kairaSecFill">#c0e6e5</color>
+    <color name="kairaThirdFillA">#ff6161</color>
+    <color name="kairaThirdFillB">#ffe3e3</color>
+    <color name="kairaFourthFillA">#ffa652</color>
+    <color name="kairaFourthFillB">#ffeddc</color>
+
+
+    <color name="lightPeach">#ffd8b3</color>
+    <color name="financialProfileBad">#ff7800</color>
+    <color name="financialProfileOk">#46d9e7</color>
+    <color name="financialProfileGood">#2ac261</color>
+    <color name="kairaDisabled">#d5cdc7</color>
+
+    <!-- Primary brand color. -->
+    <color name="colorPrimary">@color/kairaAccent</color>
+    <color name="colorPrimaryVariant">@color/kairaSecLabel</color>
+    <color name="colorOnPrimary">@color/kairaLabel</color>
+    <!-- Secondary brand color. -->
+    <color name="colorSecondary">@color/kairaAccent</color>
+    <color name="colorSecondaryVariant">@color/kairaSecLabel</color>
+    <color name="colorOnSecondary">@color/kairaLabel</color>
+
+</resources>
