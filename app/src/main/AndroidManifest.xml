@@ -7,7 +7,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="${appName}"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Kairaandroid">
+        android:theme="@style/Theme.Kaira">
         <activity android:name=".SplashActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>

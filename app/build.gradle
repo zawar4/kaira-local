@@ -43,12 +43,14 @@ android {
             manifestPlaceholders = [
                     appName: "@string/app_name_staging"
             ]
+            applicationIdSuffix  ".staging"
         }
         local {
             dimension "branding"
             manifestPlaceholders = [
                     appName: "@string/app_name_local"
             ]
+            applicationIdSuffix  ".local"
         }
     }
     compileOptions {
