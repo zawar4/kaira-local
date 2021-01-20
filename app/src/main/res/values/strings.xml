@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Kaira</string>
-    <string name="app_name_staging">Kaira-Staging</string>
-    <string name="app_name_local">Kaira-Local</string>
+    <string name="app_name_staging">(S) Kaira</string>
+    <string name="app_name_local">(L) Kaira-Local</string>
 </resources>
