@@ -26,13 +26,13 @@ class SlidingDotAnimator constructor(val context: Context, val loadingDotViewOne
         if(currentOnboardingPageNum == 2 && swipeType == SwipeDetector.SwipeTypeEnum.RIGHT_TO_LEFT){
             loadingDotViewTwo.setImageDrawable(context.getDrawable(R.drawable.rectangle_filled))
             loadingDotViewOne.setImageDrawable(context.getDrawable(R.drawable.rectangle_empty))
-            slideAnimator.addUpdateListener { animation1: ValueAnimator ->
+            slideAnimator2.addUpdateListener { animation1: ValueAnimator ->
                 val value = animation1.animatedValue as Int
                 loadingDotViewTwo.getLayoutParams().width = value
                 loadingDotViewTwo.requestLayout()
 
             }
-            slideAnimator2.addUpdateListener { animation1: ValueAnimator ->
+            slideAnimator.addUpdateListener { animation1: ValueAnimator ->
                 val value = animation1.animatedValue as Int
                 loadingDotViewOne.getLayoutParams().width = value
                 loadingDotViewOne.requestLayout()
@@ -41,13 +41,13 @@ class SlidingDotAnimator constructor(val context: Context, val loadingDotViewOne
         }else if(currentOnboardingPageNum == 3 && swipeType == SwipeDetector.SwipeTypeEnum.RIGHT_TO_LEFT){
             loadingDotViewThree.setImageDrawable(context.getDrawable(R.drawable.rectangle_filled))
             loadingDotViewTwo.setImageDrawable(context.getDrawable(R.drawable.rectangle_empty))
-            slideAnimator.addUpdateListener { animation1: ValueAnimator ->
+            slideAnimator2.addUpdateListener { animation1: ValueAnimator ->
                 val value = animation1.animatedValue as Int
                 loadingDotViewThree.getLayoutParams().width = value
                 loadingDotViewThree.requestLayout()
 
             }
-            slideAnimator2.addUpdateListener { animation1: ValueAnimator ->
+            slideAnimator.addUpdateListener { animation1: ValueAnimator ->
                 val value = animation1.animatedValue as Int
                 loadingDotViewTwo.getLayoutParams().width = value
                 loadingDotViewTwo.requestLayout()
@@ -57,13 +57,13 @@ class SlidingDotAnimator constructor(val context: Context, val loadingDotViewOne
         if(currentOnboardingPageNum == 1 && swipeType == SwipeDetector.SwipeTypeEnum.LEFT_TO_RIGHT){
             loadingDotViewOne.setImageDrawable(context.getDrawable(R.drawable.rectangle_filled))
             loadingDotViewTwo.setImageDrawable(context.getDrawable(R.drawable.rectangle_empty))
-            slideAnimator.addUpdateListener { animation1: ValueAnimator ->
+            slideAnimator2.addUpdateListener { animation1: ValueAnimator ->
                 val value = animation1.animatedValue as Int
                 loadingDotViewOne.getLayoutParams().width = value
                 loadingDotViewOne.requestLayout()
 
             }
-            slideAnimator2.addUpdateListener { animation1: ValueAnimator ->
+            slideAnimator.addUpdateListener { animation1: ValueAnimator ->
                 val value = animation1.animatedValue as Int
                 loadingDotViewTwo.getLayoutParams().width = value
                 loadingDotViewTwo.requestLayout()
@@ -72,13 +72,13 @@ class SlidingDotAnimator constructor(val context: Context, val loadingDotViewOne
         }else if(currentOnboardingPageNum == 2 && swipeType == SwipeDetector.SwipeTypeEnum.LEFT_TO_RIGHT){
             loadingDotViewTwo.setImageDrawable(context.getDrawable(R.drawable.rectangle_filled))
             loadingDotViewThree.setImageDrawable(context.getDrawable(R.drawable.rectangle_empty))
-            slideAnimator.addUpdateListener { animation1: ValueAnimator ->
+            slideAnimator2.addUpdateListener { animation1: ValueAnimator ->
                 val value = animation1.animatedValue as Int
                 loadingDotViewTwo.getLayoutParams().width = value
                 loadingDotViewTwo.requestLayout()
 
             }
-            slideAnimator2.addUpdateListener { animation1: ValueAnimator ->
+            slideAnimator.addUpdateListener { animation1: ValueAnimator ->
                 val value = animation1.animatedValue as Int
                 loadingDotViewThree.getLayoutParams().width = value
                 loadingDotViewThree.requestLayout()
