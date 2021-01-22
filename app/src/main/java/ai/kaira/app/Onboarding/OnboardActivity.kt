@@ -13,7 +13,6 @@ import androidx.databinding.DataBindingUtil
 class OnboardActivity : AppCompatActivity() {
 
     lateinit var onboardingLayoutBinding: ActivityOnboardingBinding
-    var currentPage = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,27 +24,13 @@ class OnboardActivity : AppCompatActivity() {
 
     fun initializeSwipeDetector(onboardSlidingDotAnimator : OnboardSlidingDotAnimator){
         SwipeDetector(onboardingLayoutBinding.root).setOnSwipeListener(object : SwipeDetector.onSwipeEvent {
-            override fun SwipeEventDetected(v: View?, swipeType: SwipeDetector.SwipeTypeEnum?) {
+            override fun SwipeEventDetected(v: View?, swipeType: SwipeDetector.SwipeTypeEnum?, pageNum : Int) {
                 if(SwipeDetector.SwipeTypeEnum.RIGHT_TO_LEFT == swipeType){
-                    if(currentPage == 1){
-                        currentPage++
-                        loadPage(currentPage)
-                        onboardSlidingDotAnimator.changeLoadingDot(currentPage, SwipeDetector.SwipeTypeEnum.RIGHT_TO_LEFT)
-                    }else if(currentPage == 2){
-                        currentPage++
-                        loadPage(currentPage)
-                        onboardSlidingDotAnimator.changeLoadingDot(currentPage, SwipeDetector.SwipeTypeEnum.RIGHT_TO_LEFT)
-                    }
+                    loadPage(pageNum)
+                    onboardSlidingDotAnimator.changeLoadingDot(pageNum, SwipeDetector.SwipeTypeEnum.RIGHT_TO_LEFT)
                 }else if(SwipeDetector.SwipeTypeEnum.LEFT_TO_RIGHT == swipeType){
-                    if(currentPage == 2){
-                        currentPage--
-                        loadPage(currentPage)
-                        onboardSlidingDotAnimator.changeLoadingDot(currentPage, SwipeDetector.SwipeTypeEnum.LEFT_TO_RIGHT)
-                    }else if(currentPage == 3){
-                        currentPage--
-                        loadPage(currentPage)
-                        onboardSlidingDotAnimator.changeLoadingDot(currentPage, SwipeDetector.SwipeTypeEnum.LEFT_TO_RIGHT)
-                    }
+                    loadPage(pageNum)
+                    onboardSlidingDotAnimator.changeLoadingDot(pageNum, SwipeDetector.SwipeTypeEnum.LEFT_TO_RIGHT)
                 }
             }
         })

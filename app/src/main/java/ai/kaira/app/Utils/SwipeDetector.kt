@@ -12,6 +12,8 @@ class SwipeDetector(private val v: View) : OnTouchListener {
     private var upX = 0f
     private var upY = 0f
     private var swipeEventListener: onSwipeEvent? = null
+    private var pageNum :Int = 1
+    private var maxPages : Int = 3
     fun setOnSwipeListener(listener: onSwipeEvent?) {
         try {
             swipeEventListener = listener
@@ -21,19 +23,27 @@ class SwipeDetector(private val v: View) : OnTouchListener {
     }
 
     fun onRightToLeftSwipe() {
-        if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.RIGHT_TO_LEFT)
+        if(pageNum < maxPages){
+            pageNum++;
+            if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.RIGHT_TO_LEFT,pageNum)
+        }
+
     }
 
     fun onLeftToRightSwipe() {
-        if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.LEFT_TO_RIGHT)
+        if(pageNum > 1){
+            pageNum--;
+            if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.LEFT_TO_RIGHT,pageNum)
+        }
+
     }
 
     fun onTopToBottomSwipe() {
-        if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.TOP_TO_BOTTOM)
+        if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.TOP_TO_BOTTOM,pageNum)
     }
 
     fun onBottomToTopSwipe() {
-        if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.BOTTOM_TO_TOP)
+        if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.BOTTOM_TO_TOP,pageNum)
     }
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
@@ -88,7 +98,7 @@ class SwipeDetector(private val v: View) : OnTouchListener {
     }
 
     interface onSwipeEvent {
-        fun SwipeEventDetected(v: View?, SwipeType: SwipeTypeEnum?)
+        fun SwipeEventDetected(v: View?, SwipeType: SwipeTypeEnum?,currentPageNum : Int)
     }
 
     fun setMinDistanceInPixels(min_distance: Int): SwipeDetector {
