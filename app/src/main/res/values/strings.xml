@@ -2,4 +2,32 @@
     <string name="app_name" translatable="false">Kaira</string>
     <string name="app_name_staging" translatable="false">(S) Kaira</string>
     <string name="app_name_local" translatable="false">(L) Kaira</string>
+
+
+    <!-- Basic Actions -->
+    <string name="action_login">Login</string>
+    <string name="action_create_account">Create an account</string>
+    <string name="action_skip">Skip</string>
+    <string name="action_validate">Validate</string>
+    <string name="action_start">Start</string>
+    <string name="action_next">Next</string>
+    <string name="action_continue">To pursue</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_send">Send</string>
+    <string name="action_resend">Resend</string>
+    <string name="action_reset">Reset</string>
+    <string name="action_email_send_again">Send another email</string>
+    <string name="action_confirm">Confirm</string>
+    <string name="action_details">Details</string>
+    <string name="action_finish">Finish</string>
+    <string name="action_information">More information</string>
+
+    <!-- Onboarding-->
+    <string name="onboarding_title_1">The app to achieve your financial well-being</string>
+    <string name="onboarding_description_1">I\'m Kaira, your personal financial coach. I am first interested in you, your emotions, your behaviors and your motivations.</string>
+    <string name="onboarding_title_2">A personalized experience</string>
+    <string name="onboarding_description_2">Taking into account what money means to you, I support you in becoming aware of your financial behaviors.</string>
+    <string name="onboarding_title_3">Concrete results</string>
+    <string name="onboarding_description_3">Together, we will achieve your financial well-being:\n\n \u2022 Be in good financial health.\n \u2022 Live more serenely with your money.\n \u2022 Develop your knowledge.</string>
+
 </resources>

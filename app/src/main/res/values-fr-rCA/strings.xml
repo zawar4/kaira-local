@@ -1,2 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <!-- Basic Actions -->
+    <string name="action_login">Se connecter</string>
+    <string name="action_create_account">Créer un compte</string>
+    <string name="action_skip">Passer</string>
+    <string name="action_validate">Valider</string>
+    <string name="action_start">Commencer</string>
+    <string name="action_next">Suivant</string>
+    <string name="action_continue">Poursuivre</string>
+    <string name="action_cancel">Annuler</string>
+    <string name="action_send">Envoyer</string>
+    <string name="action_resend">Renvoyer</string>
+    <string name="action_reset">Réinitialiser</string>
+    <string name="action_email_send_again">Envoyer un autre courriel</string>
+    <string name="action_confirm">Confirmer</string>
+    <string name="action_details">Détails</string>
+    <string name="action_finish">Terminer</string>
+    <string name="action_information">Plus d\'info</string>
+
+    <!-- Onboarding-->
+    <string name="onboarding_title_1">L’appli pour atteindre ton bien-être financier</string>
+    <string name="onboarding_description_1">Je suis Kaira, ton coach financier personnel. Je m’intéresse d’abord à toi, tes émotions, tes comportements et tes motivations.</string>
+    <string name="onboarding_title_2">Une expérience personnalisée</string>
+    <string name="onboarding_description_2">Je t’aide à prendre conscience de tes comportements financiers en tenant compte de ce que l’argent représente pour toi.</string>
+    <string name="onboarding_title_3">Des résultats concrets</string>
+    <string name="onboarding_description_3">Ensemble, nous atteindrons ton bien-être financier:\n\n \u2022 Être en bonne santé financière.\n \u2022 Vivre plus sereinement avec ton argent.\n \u2022 Développer tes connaissances.</string>
+</resources>
