@@ -1,7 +1,6 @@
 package ai.kaira.app.Onboarding
 
 import ai.kaira.app.R
-import ai.kaira.app.Utils.OnboardSlidingDotAnimator
 import ai.kaira.app.Utils.SwipeDetector
 import ai.kaira.app.databinding.ActivityOnboardingBinding
 import android.os.Bundle

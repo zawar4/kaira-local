@@ -1,6 +1,7 @@
-package ai.kaira.app.Utils
+package ai.kaira.app.Onboarding
 
 import ai.kaira.app.R
+import ai.kaira.app.Utils.SwipeDetector
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
 import android.content.Context
