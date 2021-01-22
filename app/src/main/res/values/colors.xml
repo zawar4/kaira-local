@@ -19,6 +19,7 @@
 
     <!-- Primary brand color. -->
     <color name="colorPrimary">@color/kairaAccent</color>
+    <color name="colorPrimaryDark">@color/kairaAccent</color>
     <color name="colorPrimaryVariant">@color/kairaSecLabel</color>
     <color name="colorOnPrimary">@color/kairaLabel</color>
     <!-- Secondary brand color. -->

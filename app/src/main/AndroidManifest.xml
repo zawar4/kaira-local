@@ -8,9 +8,13 @@
         android:label="${appName}"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaira">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Onboarding.OnboardActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Splash.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
