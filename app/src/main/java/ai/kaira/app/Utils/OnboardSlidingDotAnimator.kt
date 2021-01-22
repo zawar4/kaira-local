@@ -9,7 +9,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ImageView
 
 
-class SlidingDotAnimator constructor(val context: Context, val loadingDotViewOne: ImageView,
+class OnboardSlidingDotAnimator constructor(val context: Context, val loadingDotViewOne: ImageView,
                                      val loadingDotViewTwo: ImageView,
                                      val loadingDotViewThree: ImageView) {
 

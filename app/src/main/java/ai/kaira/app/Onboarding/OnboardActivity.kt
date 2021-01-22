@@ -1,7 +1,7 @@
 package ai.kaira.app.Onboarding
 
 import ai.kaira.app.R
-import ai.kaira.app.Utils.SlidingDotAnimator
+import ai.kaira.app.Utils.OnboardSlidingDotAnimator
 import ai.kaira.app.Utils.SwipeDetector
 import ai.kaira.app.databinding.ActivityOnboardingBinding
 import android.os.Bundle
@@ -19,32 +19,32 @@ class OnboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         onboardingLayoutBinding = DataBindingUtil.setContentView(this, R.layout.activity_onboarding)
 
-        val slidingDotAnimator = SlidingDotAnimator(applicationContext,onboardingLayoutBinding.loadingDotOne,onboardingLayoutBinding.loadingDotTwo,onboardingLayoutBinding.loadingDotThree)
-        initializeSwipeDetector(slidingDotAnimator)
+        val onboardSlidingDotAnimator = OnboardSlidingDotAnimator(applicationContext,onboardingLayoutBinding.loadingDotOne,onboardingLayoutBinding.loadingDotTwo,onboardingLayoutBinding.loadingDotThree)
+        initializeSwipeDetector(onboardSlidingDotAnimator)
     }
 
-    fun initializeSwipeDetector(slidingDotAnimator : SlidingDotAnimator){
+    fun initializeSwipeDetector(onboardSlidingDotAnimator : OnboardSlidingDotAnimator){
         SwipeDetector(onboardingLayoutBinding.root).setOnSwipeListener(object : SwipeDetector.onSwipeEvent {
             override fun SwipeEventDetected(v: View?, swipeType: SwipeDetector.SwipeTypeEnum?) {
                 if(SwipeDetector.SwipeTypeEnum.RIGHT_TO_LEFT == swipeType){
                     if(currentPage == 1){
                         currentPage++
                         loadPage(currentPage)
-                        slidingDotAnimator.changeLoadingDot(currentPage, SwipeDetector.SwipeTypeEnum.RIGHT_TO_LEFT)
+                        onboardSlidingDotAnimator.changeLoadingDot(currentPage, SwipeDetector.SwipeTypeEnum.RIGHT_TO_LEFT)
                     }else if(currentPage == 2){
                         currentPage++
                         loadPage(currentPage)
-                        slidingDotAnimator.changeLoadingDot(currentPage, SwipeDetector.SwipeTypeEnum.RIGHT_TO_LEFT)
+                        onboardSlidingDotAnimator.changeLoadingDot(currentPage, SwipeDetector.SwipeTypeEnum.RIGHT_TO_LEFT)
                     }
                 }else if(SwipeDetector.SwipeTypeEnum.LEFT_TO_RIGHT == swipeType){
                     if(currentPage == 2){
                         currentPage--
                         loadPage(currentPage)
-                        slidingDotAnimator.changeLoadingDot(currentPage, SwipeDetector.SwipeTypeEnum.LEFT_TO_RIGHT)
+                        onboardSlidingDotAnimator.changeLoadingDot(currentPage, SwipeDetector.SwipeTypeEnum.LEFT_TO_RIGHT)
                     }else if(currentPage == 3){
                         currentPage--
                         loadPage(currentPage)
-                        slidingDotAnimator.changeLoadingDot(currentPage, SwipeDetector.SwipeTypeEnum.LEFT_TO_RIGHT)
+                        onboardSlidingDotAnimator.changeLoadingDot(currentPage, SwipeDetector.SwipeTypeEnum.LEFT_TO_RIGHT)
                     }
                 }
             }
