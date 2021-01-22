@@ -1,7 +1,7 @@
 package ai.kaira.app.Onboarding
 
 import ai.kaira.app.R
-import ai.kaira.app.Utils.LoadingDotAnimator
+import ai.kaira.app.Utils.SlidingDotAnimator
 import ai.kaira.app.Utils.SwipeDetector
 import ai.kaira.app.databinding.ActivityOnboardingBinding
 import android.os.Bundle
@@ -14,34 +14,37 @@ class OnboardActivity : AppCompatActivity() {
 
     lateinit var onboardingLayoutBinding: ActivityOnboardingBinding
     var currentPage = 1
-    val loadingDotAnimator : LoadingDotAnimator by lazy {
-        LoadingDotAnimator(applicationContext)
-    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         onboardingLayoutBinding = DataBindingUtil.setContentView(this, R.layout.activity_onboarding)
 
+        val slidingDotAnimator = SlidingDotAnimator(applicationContext,onboardingLayoutBinding.loadingDotOne,onboardingLayoutBinding.loadingDotTwo,onboardingLayoutBinding.loadingDotThree)
+        initializeSwipeDetector(slidingDotAnimator)
+    }
+
+    fun initializeSwipeDetector(slidingDotAnimator : SlidingDotAnimator){
         SwipeDetector(onboardingLayoutBinding.root).setOnSwipeListener(object : SwipeDetector.onSwipeEvent {
             override fun SwipeEventDetected(v: View?, swipeType: SwipeDetector.SwipeTypeEnum?) {
                 if(SwipeDetector.SwipeTypeEnum.RIGHT_TO_LEFT == swipeType){
                     if(currentPage == 1){
                         currentPage++
                         loadPage(currentPage)
-                        loadingDotAnimator.changeLoadingDot(currentPage,1,onboardingLayoutBinding.loadingDotOne,onboardingLayoutBinding.loadingDotTwo,onboardingLayoutBinding.loadingDotThree)
+                        slidingDotAnimator.changeLoadingDot(currentPage, SwipeDetector.SwipeTypeEnum.RIGHT_TO_LEFT)
                     }else if(currentPage == 2){
                         currentPage++
                         loadPage(currentPage)
-                        loadingDotAnimator.changeLoadingDot(currentPage,2,onboardingLayoutBinding.loadingDotOne,onboardingLayoutBinding.loadingDotTwo,onboardingLayoutBinding.loadingDotThree)
+                        slidingDotAnimator.changeLoadingDot(currentPage, SwipeDetector.SwipeTypeEnum.RIGHT_TO_LEFT)
                     }
                 }else if(SwipeDetector.SwipeTypeEnum.LEFT_TO_RIGHT == swipeType){
                     if(currentPage == 2){
                         currentPage--
                         loadPage(currentPage)
-                        loadingDotAnimator.changeLoadingDot(currentPage,2,onboardingLayoutBinding.loadingDotOne,onboardingLayoutBinding.loadingDotTwo,onboardingLayoutBinding.loadingDotThree)
+                        slidingDotAnimator.changeLoadingDot(currentPage, SwipeDetector.SwipeTypeEnum.LEFT_TO_RIGHT)
                     }else if(currentPage == 3){
                         currentPage--
                         loadPage(currentPage)
-                        loadingDotAnimator.changeLoadingDot(currentPage,3,onboardingLayoutBinding.loadingDotOne,onboardingLayoutBinding.loadingDotTwo,onboardingLayoutBinding.loadingDotThree)
+                        slidingDotAnimator.changeLoadingDot(currentPage, SwipeDetector.SwipeTypeEnum.LEFT_TO_RIGHT)
                     }
                 }
             }
@@ -68,6 +71,7 @@ class OnboardActivity : AppCompatActivity() {
                 onboardDrawableImage = R.drawable.onboarding_image_three
             }
         }
+
         onboardingLayoutBinding.onboardingTitle.setText(getString(onboardTitle))
         onboardingLayoutBinding.onboardingDescription.setText(getString(onboardDescription))
         onboardDrawableImage?.let {

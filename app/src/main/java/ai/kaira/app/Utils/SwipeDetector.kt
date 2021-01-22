@@ -16,24 +16,24 @@ class SwipeDetector(private val v: View) : OnTouchListener {
         try {
             swipeEventListener = listener
         } catch (e: ClassCastException) {
-            Log.e("ClassCastException", "please pass ai.kaira.app.Utils.SwipeDetector.onSwipeEvent Interface instance", e)
+            e.printStackTrace()
         }
     }
 
     fun onRightToLeftSwipe() {
-        if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.RIGHT_TO_LEFT) else Log.e("ai.kaira.app.Utils.SwipeDetector error", "please pass ai.kaira.app.Utils.SwipeDetector.onSwipeEvent Interface instance")
+        if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.RIGHT_TO_LEFT)
     }
 
     fun onLeftToRightSwipe() {
-        if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.LEFT_TO_RIGHT) else Log.e("ai.kaira.app.Utils.SwipeDetector error", "please pass ai.kaira.app.Utils.SwipeDetector.onSwipeEvent Interface instance")
+        if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.LEFT_TO_RIGHT)
     }
 
     fun onTopToBottomSwipe() {
-        if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.TOP_TO_BOTTOM) else Log.e("ai.kaira.app.Utils.SwipeDetector error", "please pass ai.kaira.app.Utils.SwipeDetector.onSwipeEvent Interface instance")
+        if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.TOP_TO_BOTTOM)
     }
 
     fun onBottomToTopSwipe() {
-        if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.BOTTOM_TO_TOP) else Log.e("ai.kaira.app.Utils.SwipeDetector error", "please pass ai.kaira.app.Utils.SwipeDetector.onSwipeEvent Interface instance")
+        if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.BOTTOM_TO_TOP)
     }
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
