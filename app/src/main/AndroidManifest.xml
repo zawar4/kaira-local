@@ -8,8 +8,10 @@
         android:label="${appName}"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaira">
-        <activity android:name=".Onboarding.OnboardActivity" />
-        <activity android:name=".Splash.SplashActivity">
+        <activity android:name=".Onboarding.OnboardActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Splash.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
