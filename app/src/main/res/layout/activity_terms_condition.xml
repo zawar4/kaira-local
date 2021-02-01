@@ -2,87 +2,98 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".TermsConditions.TermsConditionActivity">
-
-
-        <TextView
-            android:id="@+id/textView4"
-            style="@style/Heading01"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="72dp"
-            android:text="@string/terms_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView3"
-            style="@style/Text01"
-            android:gravity="left"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
-            android:text="@string/terms_message" />
+            android:layout_height="match_parent"
+            tools:context=".TermsConditions.TermsConditionActivity">
 
 
-        <TextView
-            android:id="@+id/terms_of_use_btn"
-            style="@style/Text02_button"
-            android:background="@drawable/button_border"
-            android:layout_width="210dp"
-            android:layout_height="45dp"
-            android:gravity="center"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="64dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
-            android:text="@string/terms_use" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.15" />
+
+            <TextView
+                android:id="@+id/textView4"
+                style="@style/Heading01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="@string/terms_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/guideline" />
+
+            <TextView
+                android:id="@+id/textView3"
+                style="@style/Text01"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                android:text="@string/terms_message" />
 
 
-        <TextView
-            android:id="@+id/privacy_policy_btn"
-            style="@style/Text02_button"
-            android:background="@drawable/button_border"
-            android:layout_width="210dp"
-            android:layout_height="45dp"
-            android:gravity="center"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/terms_of_use_btn"
-            android:text="@string/terms_privacy" />
-
-        <CheckBox
-            android:id="@+id/policy_checkbox"
-            style="@style/Text04"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="60dp"
-            android:text="@string/terms_approve"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/privacy_policy_btn" />
-
-        <Button
-            android:id="@+id/confirm_btn"
-            style="@style/Text03_button"
-            android:layout_width="175dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="56dp"
-            android:text="@string/action_confirm"
-            android:enabled="false"
-            android:textColor="@android:color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/policy_checkbox" />
+            <TextView
+                android:id="@+id/terms_of_use_btn"
+                style="@style/Text02_button"
+                android:background="@drawable/button_border"
+                android:layout_width="210dp"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="64dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                android:text="@string/terms_use" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/privacy_policy_btn"
+                style="@style/Text02_button"
+                android:background="@drawable/button_border"
+                android:layout_width="210dp"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/terms_of_use_btn"
+                android:text="@string/terms_privacy" />
+
+            <CheckBox
+                android:id="@+id/policy_checkbox"
+                style="@style/Text04"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="60dp"
+                android:text="@string/terms_approve"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/privacy_policy_btn" />
+
+            <Button
+                android:id="@+id/confirm_btn"
+                style="@style/Text03_button"
+                android:layout_width="175dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="56dp"
+                android:text="@string/action_confirm"
+                android:enabled="false"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/policy_checkbox" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </layout>
