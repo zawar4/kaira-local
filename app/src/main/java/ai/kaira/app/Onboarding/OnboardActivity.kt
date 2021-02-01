@@ -13,23 +13,23 @@ import androidx.databinding.DataBindingUtil
 
 class OnboardActivity : AppCompatActivity() {
 
-    lateinit var onboardingLayoutBinding: ActivityOnboardingBinding
+    lateinit var onboardingBinding: ActivityOnboardingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        onboardingLayoutBinding = DataBindingUtil.setContentView(this, R.layout.activity_onboarding)
+        onboardingBinding = DataBindingUtil.setContentView(this, R.layout.activity_onboarding)
 
-        val onboardSlidingDotAnimator = OnboardSlidingDotAnimator(applicationContext,onboardingLayoutBinding.loadingDotOne,onboardingLayoutBinding.loadingDotTwo,onboardingLayoutBinding.loadingDotThree)
+        val onboardSlidingDotAnimator = OnboardSlidingDotAnimator(applicationContext,onboardingBinding.loadingDotOne,onboardingBinding.loadingDotTwo,onboardingBinding.loadingDotThree)
         initializeSwipeDetector(onboardSlidingDotAnimator)
 
-        onboardingLayoutBinding?.skipBtn?.setOnClickListener {
+        onboardingBinding?.skipBtn?.setOnClickListener {
             startActivity(Intent(this,TermsConditionActivity::class.java))
         }
     }
 
-    fun initializeSwipeDetector(onboardSlidingDotAnimator : OnboardSlidingDotAnimator){
-        SwipeDetector(onboardingLayoutBinding.root).setOnSwipeListener(object : SwipeDetector.onSwipeEvent {
-            override fun SwipeEventDetected(v: View?, swipeType: SwipeDetector.SwipeTypeEnum?, pageNum : Int) {
+    private fun initializeSwipeDetector(onboardSlidingDotAnimator : OnboardSlidingDotAnimator){
+        SwipeDetector(onboardingBinding.root).setOnSwipeListener(object : SwipeDetector.onSwipeEvent {
+            override fun onSwipeDetected(v: View?, swipeType: SwipeDetector.SwipeTypeEnum?, pageNum : Int) {
                 if(SwipeDetector.SwipeTypeEnum.RIGHT_TO_LEFT == swipeType){
                     loadPage(pageNum)
                     onboardSlidingDotAnimator.changeLoadingDot(pageNum, SwipeDetector.SwipeTypeEnum.RIGHT_TO_LEFT)
@@ -37,6 +37,10 @@ class OnboardActivity : AppCompatActivity() {
                     loadPage(pageNum)
                     onboardSlidingDotAnimator.changeLoadingDot(pageNum, SwipeDetector.SwipeTypeEnum.LEFT_TO_RIGHT)
                 }
+            }
+
+            override fun onStartActivity() {
+                startActivity(Intent(this@OnboardActivity,TermsConditionActivity::class.java))
             }
         })
     }
@@ -62,10 +66,10 @@ class OnboardActivity : AppCompatActivity() {
             }
         }
 
-        onboardingLayoutBinding.onboardingTitle.setText(getString(onboardTitle))
-        onboardingLayoutBinding.onboardingDescription.setText(getString(onboardDescription))
+        onboardingBinding.onboardingTitle.setText(getString(onboardTitle))
+        onboardingBinding.onboardingDescription.setText(getString(onboardDescription))
         onboardDrawableImage?.let {
-            onboardingLayoutBinding.onboardingImage.setImageDrawable(getDrawable(onboardDrawableImage))
+            onboardingBinding.onboardingImage.setImageDrawable(getDrawable(onboardDrawableImage))
         }
     }
 

@@ -22,5 +22,15 @@ class TermsConditionActivity : AppCompatActivity() {
             startActivity(Intent(this, TermsOfUseActivity::class.java))
         }
 
+        termsConditionBinding?.policyCheckbox?.setOnCheckedChangeListener { _, isChecked ->
+            termsConditionBinding?.confirmBtn?.isEnabled = isChecked
+        }
+
+        termsConditionBinding?.confirmBtn?.setOnClickListener {
+            if( termsConditionBinding?.confirmBtn?.isEnabled){
+                //TODO start Assessment Activity
+            }
+        }
+
     }
 }

@@ -25,7 +25,9 @@ class SwipeDetector(private val v: View) : OnTouchListener {
     fun onRightToLeftSwipe() {
         if(pageNum < maxPages){
             pageNum++;
-            if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.RIGHT_TO_LEFT,pageNum)
+            swipeEventListener?.onSwipeDetected(v, SwipeTypeEnum.RIGHT_TO_LEFT,pageNum)
+        }else{
+            swipeEventListener?.onStartActivity()
         }
 
     }
@@ -33,17 +35,17 @@ class SwipeDetector(private val v: View) : OnTouchListener {
     fun onLeftToRightSwipe() {
         if(pageNum > 1){
             pageNum--;
-            if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.LEFT_TO_RIGHT,pageNum)
+            swipeEventListener?.onSwipeDetected(v, SwipeTypeEnum.LEFT_TO_RIGHT,pageNum)
         }
 
     }
 
     fun onTopToBottomSwipe() {
-        if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.TOP_TO_BOTTOM,pageNum)
+        swipeEventListener?.onSwipeDetected(v, SwipeTypeEnum.TOP_TO_BOTTOM,pageNum)
     }
 
     fun onBottomToTopSwipe() {
-        if (swipeEventListener != null) swipeEventListener!!.SwipeEventDetected(v, SwipeTypeEnum.BOTTOM_TO_TOP,pageNum)
+        swipeEventListener?.onSwipeDetected(v, SwipeTypeEnum.BOTTOM_TO_TOP,pageNum)
     }
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
@@ -98,7 +100,8 @@ class SwipeDetector(private val v: View) : OnTouchListener {
     }
 
     interface onSwipeEvent {
-        fun SwipeEventDetected(v: View?, SwipeType: SwipeTypeEnum?,currentPageNum : Int)
+        fun onSwipeDetected(v: View?, SwipeType: SwipeTypeEnum?,currentPageNum : Int)
+        fun onStartActivity()
     }
 
     fun setMinDistanceInPixels(min_distance: Int): SwipeDetector {
