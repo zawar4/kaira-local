@@ -25,6 +25,10 @@ class OnboardActivity : AppCompatActivity() {
         onboardingBinding?.skipBtn?.setOnClickListener {
             startActivity(Intent(this,TermsConditionActivity::class.java))
         }
+
+        onboardingBinding?.loginBtn?.setOnClickListener({
+            //TODO start Login Activity
+        })
     }
 
     private fun initializeSwipeDetector(onboardSlidingDotAnimator : OnboardSlidingDotAnimator){
