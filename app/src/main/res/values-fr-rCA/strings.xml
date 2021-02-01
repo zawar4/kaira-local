@@ -25,4 +25,11 @@
     <string name="onboarding_description_2">Je t’aide à prendre conscience de tes comportements financiers en tenant compte de ce que l’argent représente pour toi.</string>
     <string name="onboarding_title_3">Des résultats concrets</string>
     <string name="onboarding_description_3">Ensemble, nous atteindrons ton bien-être financier:\n\n \u2022 Être en bonne santé financière.\n \u2022 Vivre plus sereinement avec ton argent.\n \u2022 Développer tes connaissances.</string>
+
+    <!-- Terms and Condition -->
+    <string name="terms_title">Conditions d’utilisation et Politique de confidentialité</string>
+    <string name="terms_message">Avant de commencer, lis les conditions d’utilisation et notre politique de confidentialité.</string>
+    <string name="terms_approve">J’ai lu et j’accepte les conditions d’utilisation et la politique de confidentialité de Kaira.</string>
+    <string name="terms_use">Conditions d’utilisation</string>
+    <string name="terms_privacy">Politique de confidentialité</string>
 </resources>

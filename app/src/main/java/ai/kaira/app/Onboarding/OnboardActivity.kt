@@ -1,8 +1,10 @@
 package ai.kaira.app.Onboarding
 
 import ai.kaira.app.R
+import ai.kaira.app.TermsConditions.TermsConditionActivity
 import ai.kaira.app.Utils.SwipeDetector
 import ai.kaira.app.databinding.ActivityOnboardingBinding
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +21,10 @@ class OnboardActivity : AppCompatActivity() {
 
         val onboardSlidingDotAnimator = OnboardSlidingDotAnimator(applicationContext,onboardingLayoutBinding.loadingDotOne,onboardingLayoutBinding.loadingDotTwo,onboardingLayoutBinding.loadingDotThree)
         initializeSwipeDetector(onboardSlidingDotAnimator)
+
+        onboardingLayoutBinding?.skipBtn?.setOnClickListener {
+            startActivity(Intent(this,TermsConditionActivity::class.java))
+        }
     }
 
     fun initializeSwipeDetector(onboardSlidingDotAnimator : OnboardSlidingDotAnimator){

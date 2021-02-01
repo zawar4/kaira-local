@@ -9,7 +9,7 @@
         android:layout_marginLeft="10dp">
 
         <TextView
-            android:id="@+id/login_tv"
+            android:id="@+id/login_btn"
             style="@style/Text02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
             app:layout_constraintTop_toBottomOf="@+id/onboarding_title" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/skip_btn"
             style="@style/Text02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
