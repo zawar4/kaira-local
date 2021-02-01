@@ -12,5 +12,6 @@ class TermsOfUseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         termsOfUseBinding = DataBindingUtil.setContentView(this,R.layout.activity_terms_of_use)
+        termsOfUseBinding.termsOfUseWebview.loadUrl("file:///android_asset/terms_of_use_en_ca.html")
     }
 }

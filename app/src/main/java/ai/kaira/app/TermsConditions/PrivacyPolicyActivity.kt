@@ -13,5 +13,6 @@ class PrivacyPolicyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         privacyPolicyBinding = DataBindingUtil.setContentView(this,R.layout.activity_privacy_policy)
+        privacyPolicyBinding.privacyPolicyWebview.loadUrl("file:///android_asset/privacy_policy_en_ca.html")
     }
 }
