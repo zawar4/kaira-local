@@ -8,7 +8,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".TermsConditions.TermsConditionActivity">
+            tools:context=".TermsConditions.TermsConditionActivity"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp">
 
 
             <androidx.constraintlayout.widget.Guideline
@@ -18,76 +20,71 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.15" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textView4"
                 style="@style/Heading01"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:text="@string/terms_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textView3"
                 style="@style/Text01"
                 android:gravity="left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4"
                 android:text="@string/terms_message" />
 
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/terms_of_use_btn"
                 style="@style/Text02_button"
-                android:background="@drawable/button_border"
                 android:layout_width="250dp"
                 android:layout_height="45dp"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/blue_button_border"
                 android:gravity="center"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="64dp"
+                android:text="@string/terms_use"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"
-                android:text="@string/terms_use" />
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/privacy_policy_btn"
                 style="@style/Text02_button"
-                android:background="@drawable/button_border"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/blue_button_border"
                 android:gravity="center"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
+                android:text="@string/terms_privacy"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/terms_of_use_btn"
-                android:text="@string/terms_privacy" />
+                app:layout_constraintTop_toBottomOf="@+id/terms_of_use_btn" />
 
-            <CheckBox
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/policy_checkbox"
                 style="@style/Text04"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="104dp"
                 android:text="@string/terms_approve"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/privacy_policy_btn" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/confirm_btn"
                 style="@style/Text03_button"
                 android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="56dp"
-                android:text="@string/action_confirm"
+                android:layout_height="55dp"
+                android:layout_marginTop="12dp"
+                app:cornerRadius="8dp"
                 android:enabled="false"
+                android:text="@string/action_confirm"
                 android:textColor="@android:color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/policy_checkbox" />
