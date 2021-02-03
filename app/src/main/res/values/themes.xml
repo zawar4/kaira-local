@@ -64,7 +64,7 @@
         <!-- Font Demi Bold -->
         <!-- Center -->
         <item name="android:fontFamily">@font/avenir_next_demi_bold_font</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 
