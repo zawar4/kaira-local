@@ -2,7 +2,7 @@ package ai.kaira.app.Onboarding
 
 import ai.kaira.app.R
 import ai.kaira.app.TermsConditions.TermsConditionActivity
-import ai.kaira.app.Utils.SwipeDetector
+import ai.kaira.app.utils.SwipeDetector
 import ai.kaira.app.databinding.ActivityOnboardingBinding
 import android.content.Intent
 import android.os.Bundle
@@ -27,9 +27,9 @@ class OnboardActivity : AppCompatActivity() {
             startActivity(Intent(this,TermsConditionActivity::class.java))
         }
 
-        onboardingBinding?.loginBtn?.setOnClickListener({
+        onboardingBinding?.loginBtn?.setOnClickListener {
             //TODO start Login Activity
-        })
+        }
     }
 
     private fun initializeSwipeDetector(onboardSlidingDotAnimator : OnboardSlidingDotAnimator){
@@ -45,6 +45,7 @@ class OnboardActivity : AppCompatActivity() {
             }
 
             override fun onStartActivity() {
+                finish()
                 startActivity(Intent(this@OnboardActivity,TermsConditionActivity::class.java))
             }
         })

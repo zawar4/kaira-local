@@ -24,7 +24,7 @@
         <!-- Font Bold -->
         <!-- Line Height 28pt -->
         <item name="android:fontFamily">@font/avenir_next_bold</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/kairaLabel</item>
     </style>
 
@@ -32,7 +32,7 @@
         <!-- Font Medium -->
         <!-- Line Height 24pt -->
         <item name="android:fontFamily">@font/avenir_next_medium_font</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/kairaSecLabel</item>
     </style>
 

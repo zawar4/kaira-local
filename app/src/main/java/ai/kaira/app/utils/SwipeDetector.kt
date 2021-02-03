@@ -1,6 +1,5 @@
-package ai.kaira.app.Utils
+package ai.kaira.app.utils
 
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener

@@ -103,6 +103,14 @@ dependencies {
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
 
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation "com.squareup.retrofit2:converter-gson:2.6.1"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.4.1"))
+    implementation("com.squareup.okhttp3:okhttp")              // No version!
+    implementation("com.squareup.okhttp3:okhttp-urlconnection") // No version!
+
     implementation project(path: ':data')
     implementation project(path: ':domain')
 }
