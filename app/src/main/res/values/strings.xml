@@ -38,4 +38,16 @@
     <string name="terms_privacy">Privacy Policy</string>
 
 
+    <!-- Introduction -->
+    <string name="introduction_welcome_title">We\'re almost there!</string>
+    <string name="introduction_welcome_description">I am your front-line partner through the whole app\'s experience. What\'s your first name?</string>
+    <string name="introduction_welcome_next">Let\'s get started! \u2192</string>
+
+    <string name="introduction_assessment_title_1">It\'s your turn now !</string>
+    <string name="introduction_assessment_title_2">The first evaluation is completed!</string>
+    <string name="introduction_assessment_detail_1">Help me optimize your experience and personalize my coaching. Respond to the evaluations below:</string>
+    <string name="introduction_assessment_detail_2">Now please click and respond to the 2nd one!</string>
+
+
+
 </resources>

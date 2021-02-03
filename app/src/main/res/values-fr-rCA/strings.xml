@@ -32,4 +32,14 @@
     <string name="terms_approve">J’ai lu et j’accepte les conditions d’utilisation et la politique de confidentialité de Kaira.</string>
     <string name="terms_use">Conditions d’utilisation</string>
     <string name="terms_privacy">Politique de confidentialité</string>
+
+    <!-- Introduction -->
+    <string name="introduction_welcome_title">On y est presque !</string>
+    <string name="introduction_welcome_description">Je suis ton partenaire de première ligne tout au long de l’expérience que t’offre l’appli. Quel est ton prénom ?</string>
+    <string name="introduction_welcome_next">On commence !</string>
+
+    <string name="introduction_assessment_title_1">À toi de jouer maintenant !</string>
+    <string name="introduction_assessment_title_2">La première évaluation est complétée!</string>
+    <string name="introduction_assessment_detail_1">Pour m’aider à optimiser ton expérience et personnaliser mon coaching, réponds aux évaluations ci-dessous :</string>
+    <string name="introduction_assessment_detail_2">Maintenant, clique et réponds à la 2e !</string>
 </resources>

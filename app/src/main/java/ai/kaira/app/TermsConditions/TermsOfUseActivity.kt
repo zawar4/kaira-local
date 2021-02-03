@@ -14,7 +14,7 @@ class TermsOfUseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         termsOfUseBinding = DataBindingUtil.setContentView(this,R.layout.activity_terms_of_use)
         val currentLocale = ConfigurationCompat.getLocales(resources.configuration)[0].toLanguageTag()
-        if(currentLocale.equals("fr-CA")){
+        if(currentLocale.equals("fr-CA") || currentLocale.equals("fr-FR")){
             termsOfUseBinding.termsOfUseWebview.loadUrl("file:///android_asset/terms_of_use_fr_ca.html")
         }else if(currentLocale.equals("en-CA")){
             termsOfUseBinding.termsOfUseWebview.loadUrl("file:///android_asset/terms_of_use_en_ca.html")

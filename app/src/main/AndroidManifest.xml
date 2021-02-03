@@ -8,12 +8,16 @@
         android:label="${appName}"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaira">
-        <activity android:name=".TermsConditions.PrivacyPolicyActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".TermsConditions.TermsConditionActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".TermsConditions.TermsOfUseActivity"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".Introduction.IntroductionActivity"></activity>
+        <activity
+            android:name=".TermsConditions.PrivacyPolicyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TermsConditions.TermsConditionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TermsConditions.TermsOfUseActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Onboarding.OnboardActivity"
             android:screenOrientation="portrait" />

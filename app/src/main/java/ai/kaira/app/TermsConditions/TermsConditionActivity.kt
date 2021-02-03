@@ -1,5 +1,6 @@
 package ai.kaira.app.TermsConditions
 
+import ai.kaira.app.Introduction.IntroductionActivity
 import ai.kaira.app.R
 import ai.kaira.app.databinding.ActivityTermsConditionBinding
 import ai.kaira.app.databinding.ActivityTermsOfUseBinding
@@ -28,7 +29,8 @@ class TermsConditionActivity : AppCompatActivity() {
 
         termsConditionBinding?.confirmBtn?.setOnClickListener {
             if( termsConditionBinding?.confirmBtn?.isEnabled){
-                //TODO start Assessment Activity
+                finish()
+                startActivity(Intent(applicationContext,IntroductionActivity::class.java))
             }
         }
 

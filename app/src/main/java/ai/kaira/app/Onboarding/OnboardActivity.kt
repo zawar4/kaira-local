@@ -23,6 +23,7 @@ class OnboardActivity : AppCompatActivity() {
         initializeSwipeDetector(onboardSlidingDotAnimator)
 
         onboardingBinding?.skipBtn?.setOnClickListener {
+            finish()
             startActivity(Intent(this,TermsConditionActivity::class.java))
         }
 
