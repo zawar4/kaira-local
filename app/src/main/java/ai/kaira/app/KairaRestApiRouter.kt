@@ -44,7 +44,7 @@ interface KairaRestApiRouter {
             override fun intercept(chain: Interceptor.Chain): Response {
                 val apiKey = APIConfig.getAPIKey()
                 val newRequest: Request = chain.request().newBuilder()
-                        .addHeader("Authorization", "Bearer $apiKey")
+                        .addHeader("api-key", apiKey)
                         .build()
                 return chain.proceed(newRequest)
             }
