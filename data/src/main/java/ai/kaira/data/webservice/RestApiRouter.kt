@@ -42,7 +42,7 @@ interface RestApiRouter {
 
         class AuthorizationInterceptor : Interceptor {
             override fun intercept(chain: Interceptor.Chain): Response {
-                val apiKey = APIConfig.getAPIKey()
+                val apiKey = "APIConfig.getAPIKey()"
                 val newRequest: Request = chain.request().newBuilder()
                         .addHeader("api-key", apiKey)
                         .build()

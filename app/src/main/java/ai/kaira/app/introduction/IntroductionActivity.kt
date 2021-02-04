@@ -7,8 +7,10 @@ import ai.kaira.app.utils.LanguageConfig.Companion.getLanguageLocale
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -49,10 +51,18 @@ class IntroductionActivity : AppCompatActivity() {
         introductionBinding?.submitButton?.setOnClickListener {
             val firstName: String = introductionBinding.firstNameEt.text.toString()
             val languageLocale: String = getLanguageLocale(applicationContext)
-            introductionViewModel.createUser(firstName,languageLocale).observeForever {
-
-            }
+            introductionViewModel.createUser(firstName,languageLocale).observe(this,{
+                Log.v("User",it.toString())
+            })
         }
+
+        introductionViewModel.onErrorLiveData?.observe(this, {
+            Toast.makeText(applicationContext,it,Toast.LENGTH_SHORT).show()
+        })
+
+        introductionViewModel.onLoadLiveData?.observe(this,{
+            Toast.makeText(applicationContext,"Loading "+ it,Toast.LENGTH_SHORT).show()
+        })
     }
 
 }
