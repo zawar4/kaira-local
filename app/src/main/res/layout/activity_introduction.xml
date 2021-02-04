@@ -10,7 +10,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            tools:context=".Introduction.IntroductionActivity">
+            tools:context=".introduction.IntroductionActivity">
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_top"

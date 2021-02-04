@@ -1,7 +1,7 @@
-package ai.kaira.app
+package ai.kaira.data.webservice
 
-import ai.kaira.app.utils.APIConfig
-import ai.kaira.data.Introduction.dto.User
+import ai.kaira.data.introduction.dto.User
+import ai.kaira.data.utils.APIConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -15,7 +15,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
 
-interface KairaRestApiRouter {
+interface RestApiRouter {
 
 
     @FormUrlEncoded
@@ -24,7 +24,7 @@ interface KairaRestApiRouter {
 
 
     companion object {
-        fun create(): KairaRestApiRouter {
+        private fun create(): RestApiRouter {
             val baseUrl = APIConfig.getBaseUrl()
             val version = APIConfig.getAPIVersion()
             val url = "$baseUrl$version/"
@@ -37,7 +37,7 @@ interface KairaRestApiRouter {
                 .baseUrl(url)
                 .build()
 
-            return retrofit.create(KairaRestApiRouter::class.java)
+            return retrofit.create(RestApiRouter::class.java)
         }
 
         class AuthorizationInterceptor : Interceptor {
@@ -50,7 +50,7 @@ interface KairaRestApiRouter {
             }
         }
 
-        fun getRouter() : KairaRestApiRouter{
+        fun getRouter() : RestApiRouter {
             return create()
         }
     }

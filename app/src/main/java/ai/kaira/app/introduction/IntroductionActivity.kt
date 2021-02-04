@@ -1,27 +1,35 @@
-package ai.kaira.app.Introduction
+package ai.kaira.app.introduction
 
-import ai.kaira.app.KairaRestApiRouter
-import ai.kaira.app.KairaRestApiRouter.Companion.getRouter
 import ai.kaira.app.R
+import ai.kaira.app.ViewModelFactory
 import ai.kaira.app.databinding.ActivityIntroductionBinding
 import ai.kaira.app.utils.LanguageConfig.Companion.getLanguageLocale
-import ai.kaira.data.Introduction.dto.User
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class IntroductionActivity : AppCompatActivity() {
+
     lateinit var introductionBinding: ActivityIntroductionBinding
+    lateinit var introductionViewModel: IntroductionViewModel
+
+    @Inject
+    lateinit var viewModelFactory : ViewModelFactory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         introductionBinding = DataBindingUtil.setContentView(this, R.layout.activity_introduction)
+
+
+        introductionViewModel = ViewModelProvider(this,viewModelFactory).get(IntroductionViewModel::class.java)
+
         introductionBinding?.firstNameEt?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -39,18 +47,11 @@ class IntroductionActivity : AppCompatActivity() {
         })
 
         introductionBinding?.submitButton?.setOnClickListener {
-            val userFirstName: String = introductionBinding.firstNameEt.text.toString()
-            getRouter().createUser(userFirstName, getLanguageLocale(applicationContext)).enqueue(object : Callback<User> {
-                override fun onResponse(call: Call<User>, response: Response<User>) {
-                    if (response?.isSuccessful) {
-                        val user: User? = response.body()
-                    }
-                }
+            val firstName: String = introductionBinding.firstNameEt.text.toString()
+            val languageLocale: String = getLanguageLocale(applicationContext)
+            introductionViewModel.createUser(firstName,languageLocale).observeForever {
 
-                override fun onFailure(call: Call<User>, t: Throwable) {
-
-                }
-            })
+            }
         }
     }
 

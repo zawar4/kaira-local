@@ -1,6 +1,6 @@
 package ai.kaira.app.TermsConditions
 
-import ai.kaira.app.Introduction.IntroductionActivity
+import ai.kaira.app.introduction.IntroductionActivity
 import ai.kaira.app.R
 import ai.kaira.app.databinding.ActivityTermsConditionBinding
 import android.content.Intent
