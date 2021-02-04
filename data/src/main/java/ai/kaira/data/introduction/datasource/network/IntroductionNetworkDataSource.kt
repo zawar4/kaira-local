@@ -1,4 +1,4 @@
-package ai.kaira.data.introduction.datasource
+package ai.kaira.data.introduction.datasource.network
 
 import ai.kaira.domain.Result
 import ai.kaira.data.introduction.dto.User

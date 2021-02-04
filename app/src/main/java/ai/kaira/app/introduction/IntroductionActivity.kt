@@ -52,7 +52,7 @@ class IntroductionActivity : AppCompatActivity() {
             val firstName: String = introductionBinding.firstNameEt.text.toString()
             val languageLocale: String = getLanguageLocale(applicationContext)
             introductionViewModel.createUser(firstName,languageLocale).observe(this,{
-                Log.v("User",it.toString())
+
             })
         }
 

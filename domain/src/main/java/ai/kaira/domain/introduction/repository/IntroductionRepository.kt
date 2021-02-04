@@ -7,5 +7,5 @@ import androidx.lifecycle.MutableLiveData
 
 interface IntroductionRepository {
     fun createUser(firstName:String,languageLocale:String): MutableLiveData<Result<User>>
-    fun saveUser(user: User):MutableLiveData<Boolean>
+    fun saveUser(user: User)
 }

@@ -27,7 +27,7 @@ class IntroductionViewModel(private val createUserUsecase: CreateUserUsecase) : 
                 }
                 ResultState.ERROR -> {
                     onLoadLiveData.value = false
-                    onErrorLiveData.value = result?.error
+                    onErrorLiveData.value = result.error
                 }
             }
         }

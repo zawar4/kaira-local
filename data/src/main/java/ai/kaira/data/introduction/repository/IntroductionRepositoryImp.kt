@@ -1,6 +1,8 @@
 package ai.kaira.data.introduction.repository
 
-import ai.kaira.data.introduction.datasource.IntroductionNetworkDataSource
+import ai.kaira.data.introduction.datasource.database.entity.UserEntity
+import ai.kaira.data.introduction.datasource.database.source.IntroductionLocalDataSource
+import ai.kaira.data.introduction.datasource.network.IntroductionNetworkDataSource
 import ai.kaira.domain.Result
 import ai.kaira.domain.ResultState
 import ai.kaira.domain.introduction.model.User
@@ -8,7 +10,7 @@ import ai.kaira.domain.introduction.repository.IntroductionRepository
 import androidx.lifecycle.MutableLiveData
 import javax.inject.Inject
 
-class IntroductionRepositoryImp @Inject constructor(private val introductionNetworkDataSource: IntroductionNetworkDataSource) : IntroductionRepository {
+class IntroductionRepositoryImp @Inject constructor(private val introductionNetworkDataSource: IntroductionNetworkDataSource, private val introductionLocalDataSource: IntroductionLocalDataSource) : IntroductionRepository {
 
     private val createUserLiveData: MutableLiveData<Result<User>> = MutableLiveData()
     override fun createUser(firstName: String, languageLocale: String): MutableLiveData<Result<User>> {
@@ -19,6 +21,7 @@ class IntroductionRepositoryImp @Inject constructor(private val introductionNetw
                     val userModel = User(user.id,user.firstName,user.language,user.createdAt,user.verified,user.validGroupCode)
                     val result : Result<User> = Result(data = userModel,resultState = it.resultState)
                     createUserLiveData.value = result
+                    saveUser(userModel)
                     // TODO SAVE USER
                 }
                 ResultState.LOADING->{
@@ -34,7 +37,7 @@ class IntroductionRepositoryImp @Inject constructor(private val introductionNetw
         return createUserLiveData
     }
 
-    override fun saveUser(user: User): MutableLiveData<Boolean> {
-        TODO("Not yet implemented")
+    override fun saveUser(user: User) {
+        introductionLocalDataSource.insertUser(UserEntity(user.id,user.firstName,user.language,user.createdAt,user.verified,user.validGroupCode))
     }
 }
