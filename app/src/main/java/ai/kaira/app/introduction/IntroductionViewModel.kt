@@ -13,7 +13,7 @@ class IntroductionViewModel(private val createUserUsecase: CreateUserUsecase) : 
     private val userLiveData : MutableLiveData<User> = MutableLiveData()
 
     fun createUser(firstName:String, languageLocale: String) : MutableLiveData<User>{
-        createUserUsecase.createUser(firstName,languageLocale)?.observeForever {
+        createUserUsecase.createUser(firstName,languageLocale).observeForever {
             val result : Result<User>? = it
             when(result?.resultState){
                 ResultState.SUCCESS -> {

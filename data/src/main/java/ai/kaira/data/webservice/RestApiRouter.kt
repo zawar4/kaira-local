@@ -2,11 +2,10 @@ package ai.kaira.data.webservice
 
 import ai.kaira.data.introduction.dto.User
 import ai.kaira.data.utils.APIConfig
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
+import com.google.gson.annotations.SerializedName
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -20,10 +19,12 @@ interface RestApiRouter {
 
     @FormUrlEncoded
     @POST("users")
-    fun createUser(@Field("firstName") firstName :String,@Field("language") language :String): Call<User>
+    fun createUser(@Field("firstName") firstName: String, @Field("language") language: String): Call<User>
 
 
     companion object {
+
+        lateinit var retrofit: Retrofit
         private fun create(): RestApiRouter {
             val baseUrl = APIConfig.getBaseUrl()
             val version = APIConfig.getAPIVersion()
@@ -31,7 +32,7 @@ interface RestApiRouter {
             var interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
             val client = OkHttpClient.Builder().addInterceptor(interceptor).addInterceptor(AuthorizationInterceptor()).build()
-            val retrofit = Retrofit.Builder().client(client)
+            retrofit = Retrofit.Builder().client(client)
                 .addConverterFactory(
                         GsonConverterFactory.create())
                 .baseUrl(url)
@@ -54,6 +55,4 @@ interface RestApiRouter {
             return create()
         }
     }
-
-
 }

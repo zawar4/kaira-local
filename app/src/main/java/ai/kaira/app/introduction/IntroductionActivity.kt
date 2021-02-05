@@ -4,6 +4,8 @@ import ai.kaira.app.R
 import ai.kaira.app.ViewModelFactory
 import ai.kaira.app.databinding.ActivityIntroductionBinding
 import ai.kaira.app.utils.LanguageConfig.Companion.getLanguageLocale
+import ai.kaira.app.utils.UIUtils.Companion.networkCallAlert
+import ai.kaira.app.utils.UIUtils.Companion.networkContectivityAlert
 import android.os.Bundle
 import android.os.StrictMode
 import android.text.Editable
@@ -68,6 +70,7 @@ class IntroductionActivity : AppCompatActivity() {
         }
 
         introductionViewModel.onErrorLiveData.observe(this, {
+            networkCallAlert(this,it)
         })
 
         introductionViewModel.onLoadLiveData.observe(this, {
@@ -83,7 +86,7 @@ class IntroductionActivity : AppCompatActivity() {
                 //TODO start next screen
             })
         }else{
-            MaterialAlertDialogBuilder(this).setTitle(getString(R.string.attention)).setMessage(getString(R.string.error_network)).setPositiveButton(getText(R.string.ok),null).show()
+            networkContectivityAlert(this)
         }
     }
 
