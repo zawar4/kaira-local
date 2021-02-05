@@ -11,15 +11,17 @@ import android.os.StrictMode
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
+import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import androidx.transition.Fade
+import androidx.transition.Transition
+import androidx.transition.TransitionManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -70,12 +72,14 @@ class IntroductionActivity : AppCompatActivity() {
         }
 
         introductionViewModel.onError().observe(this, {
-            networkCallAlert(this,it)
+            networkCallAlert(this, it)
         })
 
-        introductionViewModel.onConnectivityError().observe(this,{
+        introductionViewModel.onConnectivityError().observe(this, {
             networkContectivityAlert(this)
         })
+
+        animate()
     }
 
     private fun submit(){
@@ -88,6 +92,14 @@ class IntroductionActivity : AppCompatActivity() {
         }else{
             networkContectivityAlert(this)
         }
+    }
+
+    private fun animate(){
+
+        introductionBinding.avatarIm.animate().alpha(1.0f).duration = 700
+        introductionBinding.headingTv.animate().alpha(1.0f).duration = 700
+        introductionBinding.descriptionTv.animate().alpha(1.0f).duration = 700
+        introductionBinding.firstNameEt.animate().alpha(1.0f).duration = 700
     }
 
 }
