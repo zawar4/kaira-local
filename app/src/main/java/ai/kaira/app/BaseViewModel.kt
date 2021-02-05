@@ -9,10 +9,11 @@ import java.net.Socket
 open class BaseViewModel : ViewModel() {
 
 
-    val onLoadLiveData : MutableLiveData<Boolean> = MutableLiveData()
-    val onErrorLiveData : MutableLiveData<String> = MutableLiveData()
+    protected val loadLiveData : MutableLiveData<Boolean> = MutableLiveData()
+    protected val errorLiveData : MutableLiveData<String> = MutableLiveData()
 
-    public fun isConnectedToInternet(): Boolean {
+
+    fun isConnectedToInternet(): Boolean {
         return try {
             val socket = Socket()
             val socketAddress = InetSocketAddress("8.8.8.8", 53)
@@ -24,11 +25,18 @@ open class BaseViewModel : ViewModel() {
         }
     }
 
+    fun onLoad() : LiveData<Boolean>{
+        return loadLiveData
+    }
+
+    fun onError() : LiveData<String>{
+        return errorLiveData
+    }
     fun showLoading(show:Boolean){
-        onLoadLiveData.value = show
+        loadLiveData.value = show
     }
 
     fun showError(error:String){
-        onErrorLiveData.value = error
+        errorLiveData.value = error
     }
 }
