@@ -6,6 +6,7 @@ import ai.kaira.domain.introduction.repository.IntroductionRepository
 import androidx.lifecycle.MutableLiveData
 import javax.inject.Inject
 
+
 class CreateUserUsecase @Inject constructor(private val introductionRepository: IntroductionRepository) {
 
     fun createUser(firstName:String, languageLocale: String) : MutableLiveData<Result<User>>{

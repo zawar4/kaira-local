@@ -48,6 +48,9 @@
     <string name="introduction_assessment_detail_1">Help me optimize your experience and personalize my coaching. Respond to the evaluations below:</string>
     <string name="introduction_assessment_detail_2">Now please click and respond to the 2nd one!</string>
 
+    <string name="ok">OK</string>
+    <string name ="attention">Attention</string>
+    <string name ="error_network">Your internet connection is not stable. Please correct the situation before continuing.</string>
 
 
 </resources>

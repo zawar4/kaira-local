@@ -15,8 +15,8 @@ import javax.inject.Inject
 class IntroductionNetworkDataSourceImp @Inject constructor(val restApiRouter: RestApiRouter) : IntroductionNetworkDataSource {
 
     override fun createUser(firstName: String, languageLocale: String): MutableLiveData<Result<User>> {
-
         val createUserLiveData :  MutableLiveData<Result<User>> = MutableLiveData()
+
         createUserLiveData.value = Result(resultState = ResultState.LOADING, data = User())
         GlobalScope.launch(IO) {
             val response = restApiRouter.createUser(firstName,languageLocale).execute()

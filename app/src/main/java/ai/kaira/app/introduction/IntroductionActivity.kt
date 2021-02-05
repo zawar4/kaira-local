@@ -5,17 +5,22 @@ import ai.kaira.app.ViewModelFactory
 import ai.kaira.app.databinding.ActivityIntroductionBinding
 import ai.kaira.app.utils.LanguageConfig.Companion.getLanguageLocale
 import android.os.Bundle
+import android.os.StrictMode
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
+import android.view.KeyEvent
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class IntroductionActivity : AppCompatActivity() {
@@ -29,9 +34,10 @@ class IntroductionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         introductionBinding = DataBindingUtil.setContentView(this, R.layout.activity_introduction)
 
+        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
 
-        introductionViewModel = ViewModelProvider(this,viewModelFactory).get(IntroductionViewModel::class.java)
-
+        introductionViewModel = ViewModelProvider(this, viewModelFactory).get(IntroductionViewModel::class.java)
         introductionBinding?.firstNameEt?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -48,21 +54,37 @@ class IntroductionActivity : AppCompatActivity() {
             }
         })
 
-        introductionBinding?.submitButton?.setOnClickListener {
-            val firstName: String = introductionBinding.firstNameEt.text.toString()
-            val languageLocale: String = getLanguageLocale(applicationContext)
-            introductionViewModel.createUser(firstName,languageLocale).observe(this,{
+        introductionBinding.firstNameEt.setOnEditorActionListener(object : TextView.OnEditorActionListener {
+            override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    submit()
+                }
+                return false;
+            }
+        })
 
-            })
+        introductionBinding.submitButton.setOnClickListener {
+            submit()
         }
 
-        introductionViewModel.onErrorLiveData?.observe(this, {
-            Toast.makeText(applicationContext,it,Toast.LENGTH_SHORT).show()
+        introductionViewModel.onErrorLiveData.observe(this, {
         })
 
-        introductionViewModel.onLoadLiveData?.observe(this,{
-            Toast.makeText(applicationContext,"Loading "+ it,Toast.LENGTH_SHORT).show()
+        introductionViewModel.onLoadLiveData.observe(this, {
+            Toast.makeText(applicationContext, "Loading " + it, Toast.LENGTH_SHORT).show()
         })
+    }
+
+    private fun submit(){
+        val firstName: String = introductionBinding.firstNameEt.text.toString()
+        val languageLocale: String = getLanguageLocale(applicationContext)
+        if(introductionViewModel.isConnectedToInternet()){
+            introductionViewModel.createUser(firstName, languageLocale).observe(this, {
+                //TODO start next screen
+            })
+        }else{
+            MaterialAlertDialogBuilder(this).setTitle(getString(R.string.attention)).setMessage(getString(R.string.error_network)).setPositiveButton(getText(R.string.ok),null).show()
+        }
     }
 
 }

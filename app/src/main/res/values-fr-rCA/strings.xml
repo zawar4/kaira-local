@@ -42,4 +42,9 @@
     <string name="introduction_assessment_title_2">La première évaluation est complétée!</string>
     <string name="introduction_assessment_detail_1">Pour m’aider à optimiser ton expérience et personnaliser mon coaching, réponds aux évaluations ci-dessous :</string>
     <string name="introduction_assessment_detail_2">Maintenant, clique et réponds à la 2e !</string>
+
+
+    <string name="ok">OK</string>
+    <string name ="attention">Attention</string>
+    <string name ="error_network">Ta connexion Internet n’est pas stable. Stp, corrige la situation avant de poursuivre.</string>
 </resources>

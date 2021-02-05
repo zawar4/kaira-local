@@ -1,19 +1,17 @@
 package ai.kaira.app.introduction
 
 
+import ai.kaira.app.BaseViewModel
 import ai.kaira.domain.Result
 import ai.kaira.domain.ResultState
 import ai.kaira.domain.introduction.model.User
 import ai.kaira.domain.introduction.usecase.CreateUserUsecase
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 
-class IntroductionViewModel(private val createUserUsecase: CreateUserUsecase) : ViewModel() {
+class IntroductionViewModel(private val createUserUsecase: CreateUserUsecase) : BaseViewModel() {
 
+    private val userLiveData : MutableLiveData<User> = MutableLiveData()
 
-    val onLoadLiveData : MutableLiveData<Boolean> = MutableLiveData()
-    val onErrorLiveData : MutableLiveData<String> = MutableLiveData()
-    val userLiveData : MutableLiveData<User> = MutableLiveData()
     fun createUser(firstName:String, languageLocale: String) : MutableLiveData<User>{
         createUserUsecase.createUser(firstName,languageLocale)?.observeForever {
             val result : Result<User>? = it
@@ -33,4 +31,5 @@ class IntroductionViewModel(private val createUserUsecase: CreateUserUsecase) : 
         }
         return userLiveData
     }
+
 }
