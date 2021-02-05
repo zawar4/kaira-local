@@ -73,6 +73,7 @@ class IntroductionActivity : AppCompatActivity() {
             networkCallAlert(this,it)
         })
 
+
         introductionViewModel.onLoadLiveData.observe(this, {
             Toast.makeText(applicationContext, "Loading " + it, Toast.LENGTH_SHORT).show()
         })

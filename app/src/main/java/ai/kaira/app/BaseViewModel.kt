@@ -23,4 +23,12 @@ open class BaseViewModel : ViewModel() {
             false
         }
     }
+
+    fun showLoading(show:Boolean){
+        onLoadLiveData.value = show
+    }
+
+    fun showError(error:String){
+        onErrorLiveData.value = error
+    }
 }

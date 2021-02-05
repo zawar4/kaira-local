@@ -1,17 +1,16 @@
 package ai.kaira.data.introduction.datasource.network
 
-import ai.kaira.data.introduction.dto.User
+import ai.kaira.data.introduction.dto.UserDTO
 import ai.kaira.data.webservice.RestApiRouter
 import ai.kaira.domain.Result
 import ai.kaira.domain.ResultState
+import ai.kaira.domain.introduction.model.User
 import androidx.lifecycle.MutableLiveData
-import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.json.JSONObject
 import javax.inject.Inject
 
 class IntroductionNetworkDataSourceImp @Inject constructor(val restApiRouter: RestApiRouter) : IntroductionNetworkDataSource {
@@ -24,9 +23,9 @@ class IntroductionNetworkDataSourceImp @Inject constructor(val restApiRouter: Re
             val response = restApiRouter.createUser(firstName, languageLocale).execute()
             withContext(Main) {
                 if (response.isSuccessful) {
-                    val user: User? = response.body()
+                    val user: UserDTO? = response.body()
                     user?.let {
-                        createUserLiveData.value = Result(user, resultState = ResultState.SUCCESS)
+                        createUserLiveData.value = Result(User(user.id,user.firstName,user.language,user.createdAt,user.verified,user.validGroupCode), resultState = ResultState.SUCCESS)
                     }
                 } else {
                     val error : String? = response.errorBody()?.string()

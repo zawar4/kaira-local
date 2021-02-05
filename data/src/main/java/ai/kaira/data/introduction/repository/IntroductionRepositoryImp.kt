@@ -13,29 +13,8 @@ import javax.inject.Inject
 
 class IntroductionRepositoryImp @Inject constructor(private val introductionNetworkDataSource: IntroductionNetworkDataSource, private val introductionLocalDataSource: IntroductionLocalDataSource) : IntroductionRepository {
 
-    private val createUserLiveData: MutableLiveData<Result<User>> = MutableLiveData()
     override fun createUser(firstName: String, languageLocale: String): MutableLiveData<Result<User>> {
-        introductionNetworkDataSource?.createUser(firstName,languageLocale).observeForever {
-            when(it.resultState){
-                ResultState.SUCCESS ->{
-                    val user : ai.kaira.data.introduction.dto.User = it.data
-                    val userModel = User(user.id,user.firstName,user.language,user.createdAt,user.verified,user.validGroupCode)
-                    val result : Result<User> = Result(data = userModel,resultState = it.resultState)
-                    createUserLiveData.value = result
-                    saveUser(userModel)
-                    // TODO SAVE USER
-                }
-                ResultState.LOADING->{
-                    val result : Result<User> = Result(data = User(),resultState = it.resultState)
-                    createUserLiveData.value = result
-                }
-                ResultState.ERROR->{
-                    val result : Result<User> = Result(data = User(),resultState = it.resultState,error = it.error)
-                    createUserLiveData.value = result
-                }
-            }
-        }
-        return createUserLiveData
+        return introductionNetworkDataSource.createUser(firstName,languageLocale)
     }
 
     override fun saveUser(user: User) {

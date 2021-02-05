@@ -5,27 +5,29 @@ import ai.kaira.app.BaseViewModel
 import ai.kaira.domain.Result
 import ai.kaira.domain.ResultState
 import ai.kaira.domain.introduction.model.User
-import ai.kaira.domain.introduction.usecase.CreateUserUsecase
+import ai.kaira.domain.introduction.usecase.IntroductionUsecase
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 
-class IntroductionViewModel(private val createUserUsecase: CreateUserUsecase) : BaseViewModel() {
+class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase) : BaseViewModel() {
 
-    private val userLiveData : MutableLiveData<User> = MutableLiveData()
-
-    fun createUser(firstName:String, languageLocale: String) : MutableLiveData<User>{
-        createUserUsecase.createUser(firstName,languageLocale).observeForever {
-            val result : Result<User>? = it
-            when(result?.resultState){
+    var userLiveData = MediatorLiveData<User>()
+    fun createUser(firstName: String, languageLocale: String) : MutableLiveData<User>{
+        userLiveData.addSource(introductionUsecase.createUser(firstName, languageLocale)) { t ->
+            val result: Result<User>? = t
+            when (result?.resultState) {
                 ResultState.SUCCESS -> {
-                    onLoadLiveData.value = false
+                    showLoading(false)
                     userLiveData.value = result.data
+                    introductionUsecase.saveUser(result.data)
                 }
                 ResultState.LOADING -> {
-                    onLoadLiveData.value = true
+                    showLoading(true)
                 }
                 ResultState.ERROR -> {
-                    onLoadLiveData.value = false
-                    onErrorLiveData.value = result.error
+                    showLoading(false)
+                    showError(result.error)
                 }
             }
         }
