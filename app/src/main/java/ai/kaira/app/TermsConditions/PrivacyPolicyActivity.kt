@@ -17,6 +17,7 @@ class PrivacyPolicyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         privacyPolicyBinding = DataBindingUtil.setContentView(this,R.layout.activity_privacy_policy)
+
         val currentLanguageLocale = getLanguageLocale(applicationContext)
         if((currentLanguageLocale == CANADIAN_FRENCH || currentLanguageLocale == FRENCH)){
             privacyPolicyBinding.privacyPolicyWebview.loadUrl("file:///android_asset/privacy_policy_fr_ca.html")
