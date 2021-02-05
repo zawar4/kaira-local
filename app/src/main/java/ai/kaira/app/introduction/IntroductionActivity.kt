@@ -73,9 +73,8 @@ class IntroductionActivity : AppCompatActivity() {
             networkCallAlert(this,it)
         })
 
-
-        introductionViewModel.onLoad().observe(this, {
-            Toast.makeText(applicationContext, "Loading " + it, Toast.LENGTH_SHORT).show()
+        introductionViewModel.onConnectivityError().observe(this,{
+            networkContectivityAlert(this)
         })
     }
 

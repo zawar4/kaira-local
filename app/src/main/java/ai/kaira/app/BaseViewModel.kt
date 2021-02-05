@@ -11,6 +11,7 @@ open class BaseViewModel : ViewModel() {
 
     protected val loadLiveData : MutableLiveData<Boolean> = MutableLiveData()
     protected val errorLiveData : MutableLiveData<String> = MutableLiveData()
+    protected val connectivityError : MutableLiveData<Boolean> = MutableLiveData()
 
 
     fun isConnectedToInternet(): Boolean {
@@ -29,6 +30,9 @@ open class BaseViewModel : ViewModel() {
         return loadLiveData
     }
 
+    fun onConnectivityError() : LiveData<Boolean>{
+        return connectivityError
+    }
     fun onError() : LiveData<String>{
         return errorLiveData
     }
@@ -38,5 +42,9 @@ open class BaseViewModel : ViewModel() {
 
     fun showError(error:String){
         errorLiveData.value = error
+    }
+
+    fun showConnectivityError(){
+        connectivityError.value = true
     }
 }

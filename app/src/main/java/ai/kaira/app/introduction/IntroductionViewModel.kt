@@ -13,16 +13,19 @@ class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase
 
     var userLiveData = MediatorLiveData<User>()
     fun createUser(firstName: String, languageLocale: String) : MutableLiveData<User>{
-
-        userLiveData.addSource(introductionUsecase.createUser(firstName, languageLocale)) { t ->
-            val result: Result<User>? = t
-            when (result?.resultState) {
-                ResultState.SUCCESS -> {
-                    userLiveData.value = result.data
-                    introductionUsecase.saveUser(result.data)
-                }
-                ResultState.ERROR -> {
-                    showError(result.error)
+        if(!isConnectedToInternet()){
+            showConnectivityError()
+        }else{
+            userLiveData.addSource(introductionUsecase.createUser(firstName, languageLocale)) { t ->
+                val result: Result<User>? = t
+                when (result?.resultState) {
+                    ResultState.SUCCESS -> {
+                        userLiveData.value = result.data
+                        introductionUsecase.saveUser(result.data)
+                    }
+                    ResultState.ERROR -> {
+                        showError(result.error)
+                    }
                 }
             }
         }
