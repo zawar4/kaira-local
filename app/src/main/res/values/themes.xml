@@ -58,6 +58,7 @@
         <item name="android:fontFamily">@font/avenir_next_demi_bold_font</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/kairaSecLabel</item>
+        <item name="android:paddingLeft">10dp</item>
     </style>
 
     <style name="Text03_button">
@@ -74,4 +75,25 @@
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/kairaSecLabel</item>
     </style>
+
+    <style name="AlertDialogTheme">
+        <item name="buttonBarPositiveButtonStyle">@style/Alert.Button.Positive</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Alert.Button.Neutral</item>
+    </style>
+
+    <style name="Alert.Button.Positive" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="backgroundTint">@color/colorPrimaryDark</item>
+        <item name="rippleColor">@color/colorPrimary</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="Alert.Button.Neutral" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="rippleColor">@color/colorPrimary</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>
