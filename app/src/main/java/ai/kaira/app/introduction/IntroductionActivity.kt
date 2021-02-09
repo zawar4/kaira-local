@@ -14,14 +14,18 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.View.*
+import android.view.animation.AnticipateInterpolator
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.transition.*
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.*
+import java.lang.Thread.sleep
 import javax.inject.Inject
 
 
@@ -81,33 +85,33 @@ class IntroductionActivity : AppCompatActivity() {
             networkContectivityAlert(this)
         })
 
-        makeLayoutVisibleAnimation()
-
-        introductionBinding.moneyMotivationAssessmentLayout?.setOnClickListener {
+        introductionBinding.moneyMotivationAssessmentLayout.setOnClickListener {
             if(!moneyMotivationAssessmentCompleted){
                 completeMoneyMotivationAssessment()
                 enableFinancialAssessment()
-                introductionBinding.financialAssessmentLayout?.isEnabled = true
+                introductionBinding.financialAssessmentLayout.isEnabled = true
             }
         }
-        introductionBinding.financialAssessmentLayout?.setOnClickListener {
+        introductionBinding.financialAssessmentLayout.setOnClickListener {
             if(!financialAssessmentCompleted){
                 completeFinancialAssessment()
             }
         }
+
+        introductionViewModel.onCreateUser().observe(this,{
+            hideIntroductionFields()
+            displayAssessmentsFields(it)
+            displayedAssessmentFields = true
+        })
+
+        displayLayoutVisibleAnimation()
     }
 
     private fun submit(){
         val firstName: String = introductionBinding.firstNameEt.text.toString()
         val languageLocale: String = getLanguageLocale(applicationContext)
         if(introductionViewModel.isConnectedToInternet()){
-            introductionViewModel.createUser(firstName, languageLocale).observe(this, {
-                //TODO start next screen
-                hideIntroductionFields()
-                displayAssessmentsFields(it)
-                displayedAssessmentFields = true
-
-            })
+            introductionViewModel.createUser(firstName, languageLocale)
         }else{
             networkContectivityAlert(this)
         }
@@ -115,27 +119,49 @@ class IntroductionActivity : AppCompatActivity() {
 
 
     private fun hideIntroductionFields(){
-        introductionBinding.firstNameEt.setVisibility(GONE)
-        introductionBinding.submitButton.setVisibility(GONE)
+        introductionBinding.firstNameEt.visibility = INVISIBLE
+        introductionBinding.submitButton.visibility = INVISIBLE
     }
 
     private fun displayAssessmentsFields(user: User){
+
+        val fadeTransition : Transition = Fade()
+        val boundTransition : Transition = ChangeBounds()
+        fadeTransition.duration = 2000
+        val transitionSet = TransitionSet()
+        transitionSet.addTransition(fadeTransition).addTransition(boundTransition)
+        TransitionManager.beginDelayedTransition(introductionBinding.introductionLayoutParent,transitionSet)
+
+        val imageHeight = introductionBinding.avatarIm.layoutParams.height
+        introductionBinding.avatarIm.layoutParams.height = imageHeight/2
+        introductionBinding.avatarIm.layoutParams.width = introductionBinding.avatarIm.layoutParams.height
         introductionBinding.moneyMotivationAssessmentLayout.setVisibility(VISIBLE)
         introductionBinding.financialAssessmentLayout.setVisibility(VISIBLE)
         introductionBinding.headingTv.setText(getString(R.string.introduction_assessment_title_1, user.firstName))
         introductionBinding.descriptionTv.setText(getString(R.string.introduction_assessment_detail_1))
         introductionBinding.financialAssessmentLayout.setBackgroundResource(R.drawable.light_gray_round_rectangle)
         introductionBinding.fininacialAssessmentNumTv.setBackgroundResource(R.drawable.dark_gray_circle)
-        introductionBinding.fininacialAssessmentNumTv.setTextColor(ContextCompat.getColor(this,android.R.color.white))
+        introductionBinding.fininacialAssessmentNumTv.setTextColor(ContextCompat.getColor(applicationContext,android.R.color.white))
         introductionBinding.fininacialAssessmentNumTv.setText(R.string._2)
-        introductionBinding.fininacialAssessmentTv.setTextColor(ContextCompat.getColor(this,R.color.medium_gray))
+        introductionBinding.fininacialAssessmentTv.setTextColor(ContextCompat.getColor(applicationContext,R.color.medium_gray))
         introductionBinding.financialAssessmentLayout?.isEnabled = false
-
         introductionBinding.moneyMotivationAssessmentNumTv.setText(R.string._1)
 
     }
 
+
+
     private fun displayIntroductionFields(){
+
+        val fadeTransition : Transition = Fade()
+        val boundTransition : Transition = ChangeBounds()
+        fadeTransition.duration = 2000
+        val transitionSet = TransitionSet()
+        transitionSet.addTransition(fadeTransition).addTransition(boundTransition)
+        TransitionManager.beginDelayedTransition(introductionBinding.introductionLayoutParent,transitionSet)
+        val imageHeight = introductionBinding.avatarIm.layoutParams.height
+        introductionBinding.avatarIm.layoutParams.height = imageHeight*2
+        introductionBinding.avatarIm.layoutParams.width = introductionBinding.avatarIm.layoutParams.height
         introductionBinding.firstNameEt.setVisibility(VISIBLE)
         introductionBinding.submitButton.setVisibility(VISIBLE)
         introductionBinding.headingTv.setText(R.string.introduction_welcome_title)
@@ -143,8 +169,8 @@ class IntroductionActivity : AppCompatActivity() {
     }
 
     private fun hideAssessmentsFields(){
-        introductionBinding.moneyMotivationAssessmentLayout.setVisibility(GONE)
-        introductionBinding.financialAssessmentLayout.setVisibility(GONE)
+        introductionBinding.moneyMotivationAssessmentLayout.setVisibility(INVISIBLE)
+        introductionBinding.financialAssessmentLayout.setVisibility(INVISIBLE)
     }
 
     private fun completeFinancialAssessment(){
@@ -165,13 +191,12 @@ class IntroductionActivity : AppCompatActivity() {
         if(displayedAssessmentFields){
             hideAssessmentsFields()
             displayIntroductionFields()
-            displayedAssessmentFields = true
+            displayedAssessmentFields = false
         }else{
             super.onBackPressed();
         }
-
     }
-    private fun makeLayoutVisibleAnimation(){
+    private fun displayLayoutVisibleAnimation(){
         introductionBinding.introductionLayoutParent.animate().alpha(1.0f).duration = 800
     }
 

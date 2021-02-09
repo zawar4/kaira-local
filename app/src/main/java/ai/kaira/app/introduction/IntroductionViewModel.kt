@@ -11,25 +11,35 @@ import androidx.lifecycle.MutableLiveData
 
 class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase) : BaseViewModel() {
 
-    var userLiveData = MediatorLiveData<User>()
-    fun createUser(firstName: String, languageLocale: String) : MutableLiveData<User>{
+    var userResultLiveData = MediatorLiveData<User>()
+    var createUserLiveData  = MutableLiveData<Result<User>>()
+
+    fun createUser(firstName: String, languageLocale: String){
         if(!isConnectedToInternet()){
             showConnectivityError()
         }else{
-            userLiveData.addSource(introductionUsecase.createUser(firstName, languageLocale)) { t ->
+            createUserLiveData = introductionUsecase.createUser(firstName, languageLocale)
+            userResultLiveData.addSource(createUserLiveData) { t ->
                 val result: Result<User>? = t
                 when (result?.resultState) {
                     ResultState.SUCCESS -> {
-                        userLiveData.value = result.data
+                        userResultLiveData.value = result.data
                         introductionUsecase.saveUser(result.data)
+                        userResultLiveData.removeSource(createUserLiveData)
                     }
                     ResultState.ERROR -> {
                         showError(result.error)
+                        userResultLiveData.removeSource(createUserLiveData)
                     }
                 }
             }
         }
-        return userLiveData
     }
+
+    fun onCreateUser() : MediatorLiveData<User>{
+        return userResultLiveData
+    }
+
+
 
 }
