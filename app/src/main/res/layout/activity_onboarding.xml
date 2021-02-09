@@ -85,7 +85,7 @@
             android:layout_marginBottom="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/loading_dot_two"
-            app:srcCompat="@drawable/rectangle_empty"/>
+            app:srcCompat="@drawable/kaira_sec_filled_round_rectangle"/>
 
         <ImageView
             android:id="@+id/loading_dot_two"
@@ -95,7 +95,7 @@
             android:layout_marginBottom="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/loading_dot_one"
-            app:srcCompat="@drawable/rectangle_empty"/>
+            app:srcCompat="@drawable/kaira_sec_filled_round_rectangle"/>
         <ImageView
             android:id="@+id/loading_dot_one"
             android:layout_width="50dp"
@@ -104,6 +104,6 @@
             android:layout_marginBottom="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/rectangle_filled" />
+            app:srcCompat="@drawable/kaira_accent_rectangle_filled" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -12,7 +12,7 @@
         <item name="colorOnSecondary">@color/colorOnPrimary</item>
     </style>
 
-    <style name="text01Darkblue">
+    <style name="Text01_Darkblue">
         <!-- Font Medium -->
         <!-- Line Height 24pt -->
         <item name="android:fontFamily">@font/avenir_next_medium_font</item>
