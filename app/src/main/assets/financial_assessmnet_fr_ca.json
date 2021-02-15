@@ -1,0 +1,268 @@
+{
+    "id":2,
+    "version":1,
+    "type":2,
+    "duration":5,
+    "number":2,
+    "title":"Ton portrait financier",
+    "description":"Ces 8 questions à choix multiples couvrent les 8 indicateurs de la santé financière. Tes réponses me permettront de mieux te connaître et personnaliser mes conseils.",
+    "mention":"Cette évaluation utilise le <i>FinHealth Score®</i> de <i>Financial Health Network</i>",
+    "questions": [
+        {
+            "id":1,
+            "type":0,
+            "title": "Lequel des énoncés suivants décrit le mieux les dépenses totales de ton ménage par rapport aux revenus, au cours des 12 derniers mois ?\n\nLes dépenses étaient :",
+            "answers": [
+                {
+                    "id":11,
+                    "value": 100,
+                    "title": "Beaucoup moins élevées que les revenus"
+                },
+                {
+                    "id":12,
+                    "value": 75,
+                    "title": "Un peu moins élevées que les revenus"
+                },
+                {
+                    "id":13,
+                    "value": 50,
+                    "title": "À peu près égales aux revenus"
+                },
+                {
+                    "id":14,
+                    "value": 25,
+                    "title": "Un peu plus élevées que les revenus"
+                },
+                {
+                    "id":15,
+                    "value": 0,
+                    "title": "Bien plus élevées que les revenus"
+                }
+            ]
+        },
+        {
+            "id":2,
+            "type":0,
+            "title": "Lequel des énoncés suivants décrit le mieux comment ton ménage a réglé ses factures au cours des 12 derniers mois ?\n\nMon ménage a été financièrement capable de payer :",
+            "answers": [
+                {
+                    "id":21,
+                    "value": 100,
+                    "title": "Toutes les factures à temps"
+                },
+                {
+                    "id":22,
+                    "value": 60,
+                    "title": "Presque toutes les factures à temps"
+                },
+                {
+                    "id":23,
+                    "value": 40,
+                    "title": "La plupart des factures à temps"
+                },
+                {
+                    "id":24,
+                    "value": 20,
+                    "title": "Certaines des factures à temps"
+                },
+                {
+                    "id":25,
+                    "value": 0,
+                    "title": "Très peu de nos factures à temps"
+                }
+            ]
+        },
+        {
+            "id":3,
+            "type":1,
+            "title": "Selon tes dépenses actuelles, combien de temps serais-tu capable de couvrir ces dépenses, si tu ne vivais que de ton argent immédiatement disponible, sans emprunter ni retirer de l'argent de ton épargne retraite ?",
+            "answers": [
+                {
+                    "id":31,
+                    "value": 100,
+                    "title": "6 mois ou plus"
+                },
+                {
+                    "id":32,
+                    "value": 75,
+                    "title": "3 à 5 mois"
+                },
+                {
+                    "id":33,
+                    "value": 50,
+                    "title": "1 à 2 mois"
+                },
+                {
+                    "id":34,
+                    "value": 25,
+                    "title": "1 à 3 semaines"
+                },
+                {
+                    "id":35,
+                    "value": 0,
+                    "title": "Moins d'une semaine"
+                }
+            ]
+        },
+        {
+            "id":4,
+            "type":1,
+            "title": "Pense aux objectifs financiers à long terme de ton ménage – comme par exemple épargner pour des études ou la retraite…\n\nJusqu’à quel point as-tu confiance que tu fais actuellement le nécessaire pour atteindre tes objectifs à long terme ?",
+            "answers": [
+                {
+                    "id":41,
+                    "value": 100,
+                    "title": "Tout à fait confiant"
+                },
+                {
+                    "id":42,
+                    "value": 75,
+                    "title": "Modérément confiant"
+                },
+                {
+                    "id":43,
+                    "value": 50,
+                    "title": "Plutôt confiant"
+                },
+                {
+                    "id":44,
+                    "value": 25,
+                    "title": "Légèrement confiant"
+                },
+                {
+                    "id":45,
+                    "value": 0,
+                    "title": "Pas du tout confiant"
+                }
+            ]
+        },
+        {
+            "id":5,
+            "type":2,
+            "title": "Pense à toutes les dettes actuelles de ton ménage – hypothèques, emprunts bancaires, etc. – qui sont reportées du mois précédant…\n\nPrésentement, lequel des énoncés suivants décrit à quel point tes dettes sont sous contrôle :",
+            "answers": [
+                {
+                    "id":51,
+                    "value": 100,
+                    "title": "Nous n'avons aucune dette"
+                },
+                {
+                    "id":52,
+                    "value": 85,
+                    "title": "Le montant de notre dette est gérable"
+                },
+                {
+                    "id":53,
+                    "value": 40,
+                    "title": "Notre dette dépasse légèrement nos capacités de remboursement"
+                },
+                {
+                    "id":54,
+                    "value": 0,
+                    "title": "Notre endettement est très excessif"
+                }
+            ]
+        },
+        {
+            "id":6,
+            "type":2,
+            "title": "Comment est-ce que tu évalues ta cote de crédit ?\n\nTa cote de crédit indique aux prêteurs à quel point il est risqué ou sécuritaire de te prêter de l'argent.",
+            "answers": [
+                {
+                    "id":61,
+                    "value": 100,
+                    "title": "Excellent"
+                },
+                {
+                    "id":62,
+                    "value": 80,
+                    "title": "Très bon"
+                },
+                {
+                    "id":63,
+                    "value": 60,
+                    "title": "Bon"
+                },
+                {
+                    "id":64,
+                    "value": 40,
+                    "title": "Correct"
+                },
+                {
+                    "id":65,
+                    "value": 0,
+                    "title": "Faible / Je ne sais pas"
+                }
+            ]
+        },
+        {
+            "id":7,
+            "type":3,
+            "title": "Pense à toutes les assurances que toi et les autres personnes de ton ménage avez actuellement, y compris les couvertures de santé, décès, invalidité, voiture, habitation…\nDans quelle mesure as-tu confiance que ces assurances te procurent une protection suffisante en cas d'urgence?",
+            "answers": [
+                {
+                    "id":71,
+                    "value": 100,
+                    "title": "Tout à fait confiant"
+                },
+                {
+                    "id":72,
+                    "value": 75,
+                    "title": "Modérément confiant"
+                },
+                {
+                    "id":73,
+                    "value": 50,
+                    "title": "Plutôt confiant"
+                },
+                {
+                    "id":74,
+                    "value": 25,
+                    "title": "Légèrement confiant"
+                },
+                {
+                    "id":75,
+                    "value": 10,
+                    "title": "Pas du tout confiant"
+                },
+                {
+                    "id":76,
+                    "value": 0,
+                    "title": "Personne dans notre foyer ne détient d'assurance"
+                }
+            ]
+        },
+        {
+            "id":8,
+            "type":3,
+            "title": "Dans quelle mesure es-tu d'accord avec l'affirmation suivante :\n« Mon ménage planifie ses finances» ?",
+            "answers": [
+                {
+                    "id":81,
+                    "value": 100,
+                    "title": "Entièrement d'accord"
+                },
+                {
+                    "id":82,
+                    "value": 65,
+                    "title": "Plutôt d'accord"
+                },
+                {
+                    "id":83,
+                    "value": 35,
+                    "title": "Ni en accord ni en désaccord"
+                },
+                {
+                    "id":84,
+                    "value": 15,
+                    "title": "Plutôt en désaccord"
+                },
+                {
+                    "id":85,
+                    "value": 0,
+                    "title": "Fortement en désaccord"
+                }
+            ]
+        }
+    ]
+}

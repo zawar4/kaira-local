@@ -7,8 +7,14 @@
     <color name="kairaSecFill">#c0e6e5</color>
     <color name="kairaThirdFillA">#ff6161</color>
     <color name="kairaThirdFillASemi">#ffc0c0</color>
+    <color name="kairaThirdFillASemiA">#fab0b1</color>
+    <color name="kairaThirdFillASemiB">#f8888a</color>
+
+
     <color name="kairaThirdFillB">#ffe3e3</color>
     <color name="kairaFourthFillA">#ffa652</color>
+    <color name="kairaFourthFillASemiA">#fcd8b5</color>
+    <color name="kairaFourthFillASemiB">#fbc593</color>
     <color name="kairaFourthFillB">#ffeddc</color>
 
 

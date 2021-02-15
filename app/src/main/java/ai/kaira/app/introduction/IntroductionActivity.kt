@@ -2,11 +2,14 @@ package ai.kaira.app.introduction
 
 import ai.kaira.app.R
 import ai.kaira.app.ViewModelFactory
+import ai.kaira.app.assessment.AssessmentActivity
 import ai.kaira.app.databinding.ActivityIntroductionBinding
 import ai.kaira.app.utils.LanguageConfig.Companion.getLanguageLocale
 import ai.kaira.app.utils.UIUtils.Companion.networkCallAlert
 import ai.kaira.app.utils.UIUtils.Companion.networkContectivityAlert
+import ai.kaira.domain.assessment.model.AssessmentType
 import ai.kaira.domain.introduction.model.User
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.StrictMode
@@ -34,9 +37,8 @@ class IntroductionActivity : AppCompatActivity() {
 
     lateinit var introductionBinding: ActivityIntroductionBinding
     lateinit var introductionViewModel: IntroductionViewModel
+    private val ASSESSMENT_TYPE : String = "ASSESSMENT_TYPE"
     var displayedAssessmentFields : Boolean = false
-    var moneyMotivationAssessmentCompleted : Boolean = false
-    var financialAssessmentCompleted : Boolean = false
 
     @Inject
     lateinit var viewModelFactory : ViewModelFactory
@@ -86,16 +88,18 @@ class IntroductionActivity : AppCompatActivity() {
         })
 
         introductionBinding.moneyMotivationAssessmentLayout.setOnClickListener {
-            if(!moneyMotivationAssessmentCompleted){
-                completeMoneyMotivationAssessment()
-                enableFinancialAssessment()
-                introductionBinding.financialAssessmentLayout.isEnabled = true
-            }
+            completeMoneyMotivationAssessment()
+            val intent = Intent(this,AssessmentActivity::class.java)
+            intent.putExtra(ASSESSMENT_TYPE,AssessmentType.PSYCHOLOGICAL)
+            startActivity(intent)
+            introductionBinding.financialAssessmentLayout.isEnabled = true
+            enableFinancialAssessment()
         }
+
         introductionBinding.financialAssessmentLayout.setOnClickListener {
-            if(!financialAssessmentCompleted){
-                completeFinancialAssessment()
-            }
+            val intent = Intent(this,AssessmentActivity::class.java)
+            intent.putExtra(ASSESSMENT_TYPE,AssessmentType.FINANCIAL)
+            startActivity(intent)
         }
 
         introductionViewModel.onCreateUser().observe(this,{

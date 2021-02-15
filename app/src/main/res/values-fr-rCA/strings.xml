@@ -49,10 +49,15 @@
     <string name ="error_network">Ta connexion Internet n’est pas stable. Stp, corrige la situation avant de poursuivre.</string>
 
     <!-- Assessements -->
-    <string name="assessement_start">Commencer l\'évaluation</string>
+    <string name="action_assessement_start">Commencer l\'évaluation</string>
     <string name="assessement_psychological_title">Ta motivation face à l’argent</string>
     <string name="assessement_financial_title">Ton portrait financier</string>
 
     <string name="assessement_computation_title">Je calcule ton résultat</string>
     <string name="assessement_computation_message">Merci de patienter…</string>
+
+    <string name="psychological_assessment_disclaimer">Cette évaluation a été développée en partenariat avec l’Université de Sherbrooke.</string>
+    <string name="financial_assessment_disclaimer">Cette évaluation utilise le FinHealth Score® du Financial Health Network.</string>
+
+
 </resources>

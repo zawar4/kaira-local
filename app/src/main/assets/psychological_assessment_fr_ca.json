@@ -1,0 +1,334 @@
+{
+    "id":1,
+    "version":1,
+    "type":1,
+    "duration":6,
+    "number":1,
+    "title":"Ta motivation face à l’argent",
+    "description":"Tes réponses à ces 10 questions à choix multiples me permettront de déterminer le profil qui reflète le mieux ta motivation et personnaliser mon coaching.",
+    "mention":"Cette évaluation a été développée en partenariat avec l’Université de Sherbrooke.",
+    "questions": [
+        {
+            "id":1,
+            "type":0,
+            "title":"L'argent est important parce qu'il permet d'occuper une position sociale élevée.",
+            "answers": [
+                {
+                    "id":1,
+                    "value":5,
+                    "title":"Fortement d'accord"
+                },
+                {
+                    "id":2,
+                    "value":4,
+                    "title":"Plutôt d'accord"
+                },
+                {
+                    "id":3,
+                    "value":3,
+                    "title":"Ni d’accord ni en désaccord"
+                },
+                {
+                    "id":4,
+                    "value":2,
+                    "title":"Un peu en désaccord"
+                },
+                {
+                    "id":5,
+                    "value":1,
+                    "title":"Fortement en désaccord"
+                }
+            ]
+        },
+        {
+            "id":8,
+            "type":1,
+            "title":"Une meilleure situation financière me permettrait de ne pas me soucier de mes problèmes financiers.",
+            "answers": [
+                {
+                    "id":71,
+                    "value":5,
+                    "title":"Fortement d'accord"
+                },
+                {
+                    "id":72,
+                    "value":4,
+                    "title":"Plutôt d'accord"
+                },
+                {
+                    "id":73,
+                    "value":3,
+                    "title":"Ni d’accord ni en désaccord"
+                },
+                {
+                    "id":74,
+                    "value":2,
+                    "title":"Un peu en désaccord"
+                },
+                {
+                    "id":75,
+                    "value":1,
+                    "title":"Fortement en désaccord"
+                }
+            ]
+        },
+        {
+            "id":13,
+            "type":2,
+            "title":"L'argent est important pour moi, car il me permet de veiller au bien-être de mon entourage.",
+            "answers": [
+                {
+                    "id":121,
+                    "value":5,
+                    "title":"Fortement d'accord"
+                },
+                {
+                    "id":122,
+                    "value":4,
+                    "title":"Plutôt d'accord"
+                },
+                {
+                    "id":123,
+                    "value":3,
+                    "title":"Ni d’accord ni en désaccord"
+                },
+                {
+                    "id":124,
+                    "value":2,
+                    "title":"Un peu en désaccord"
+                },
+                {
+                    "id":125,
+                    "value":1,
+                    "title":"Fortement en désaccord"
+                }
+            ]
+        },
+        {
+            "id":21,
+            "type":3,
+            "title":"Avoir suffisamment d'argent pour m'amuser est primordial pour moi.",
+            "answers": [
+                {
+                    "id":201,
+                    "value":5,
+                    "title":"Fortement d'accord"
+                },
+                {
+                    "id":202,
+                    "value":4,
+                    "title":"Plutôt d'accord"
+                },
+                {
+                    "id":203,
+                    "value":3,
+                    "title":"Ni d’accord ni en désaccord"
+                },
+                {
+                    "id":204,
+                    "value":2,
+                    "title":"Un peu en désaccord"
+                },
+                {
+                    "id":205,
+                    "value":1,
+                    "title":"Fortement en désaccord"
+                }
+            ]
+        },
+        {
+            "id":3,
+            "type":0,
+            "title":"J'aimerais avoir un plus haut statut social grâce à l'argent.",
+            "answers": [
+                {
+                    "id":21,
+                    "value":5,
+                    "title":"Fortement d'accord"
+                },
+                {
+                    "id":22,
+                    "value":4,
+                    "title":"Plutôt d'accord"
+                },
+                {
+                    "id":23,
+                    "value":3,
+                    "title":"Ni d’accord ni en désaccord"
+                },
+                {
+                    "id":24,
+                    "value":2,
+                    "title":"Un peu en désaccord"
+                },
+                {
+                    "id":25,
+                    "value":1,
+                    "title":"Fortement en désaccord"
+                }
+            ]
+        },
+        {
+            "id":12,
+            "type":1,
+            "title":"Je désire plus d'autonomie financière.",
+            "answers": [
+                {
+                    "id":111,
+                    "value":5,
+                    "title":"Fortement d'accord"
+                },
+                {
+                    "id":112,
+                    "value":4,
+                    "title":"Plutôt d'accord"
+                },
+                {
+                    "id":113,
+                    "value":3,
+                    "title":"Ni d’accord ni en désaccord"
+                },
+                {
+                    "id":114,
+                    "value":2,
+                    "title":"Un peu en désaccord"
+                },
+                {
+                    "id":115,
+                    "value":1,
+                    "title":"Fortement en désaccord"
+                }
+            ]
+        },
+        {
+            "id":17,
+            "type":2,
+            "title":"Mon but dans la vie est de veiller au bien-être de mes proches.",
+            "answers": [
+                {
+                    "id":161,
+                    "value":5,
+                    "title":"Fortement d'accord"
+                },
+                {
+                    "id":162,
+                    "value":4,
+                    "title":"Plutôt d'accord"
+                },
+                {
+                    "id":163,
+                    "value":3,
+                    "title":"Ni d’accord ni en désaccord"
+                },
+                {
+                    "id":164,
+                    "value":2,
+                    "title":"Un peu en désaccord"
+                },
+                {
+                    "id":165,
+                    "value":1,
+                    "title":"Fortement en désaccord"
+                }
+            ]
+        },
+        {
+            "id":22,
+            "type":3,
+            "title":"Avec l'argent, je veux d'abord et avant tout me faire plaisir.",
+            "answers": [
+                {
+                    "id":211,
+                    "value":5,
+                    "title":"Fortement d'accord"
+                },
+                {
+                    "id":212,
+                    "value":4,
+                    "title":"Plutôt d'accord"
+                },
+                {
+                    "id":213,
+                    "value":3,
+                    "title":"Ni d’accord ni en désaccord"
+                },
+                {
+                    "id":214,
+                    "value":2,
+                    "title":"Un peu en désaccord"
+                },
+                {
+                    "id":215,
+                    "value":1,
+                    "title":"Fortement en désaccord"
+                }
+            ]
+        },
+        {
+            "id":1000,
+            "type":999,
+            "title":"Ma situation financière me stresse au quotidien.",
+            "answers": [
+                {
+                    "id":1,
+                    "value":5,
+                    "title":"Fortement d'accord"
+                },
+                {
+                    "id":2,
+                    "value":4,
+                    "title":"Plutôt d'accord"
+                },
+                {
+                    "id":3,
+                    "value":3,
+                    "title":"Ni d’accord ni en désaccord"
+                },
+                {
+                    "id":4,
+                    "value":2,
+                    "title":"Un peu en désaccord"
+                },
+                {
+                    "id":5,
+                    "value":1,
+                    "title":"Fortement en désaccord"
+                }
+            ]
+        },
+        {
+            "id":1001,
+            "type":999,
+            "title":"Je pense souvent à mes finances lorsque je suis au travail.",
+            "answers": [
+                {
+                    "id":1,
+                    "value":5,
+                    "title":"Fortement d'accord"
+                },
+                {
+                    "id":2,
+                    "value":4,
+                    "title":"Plutôt d'accord"
+                },
+                {
+                    "id":3,
+                    "value":3,
+                    "title":"Ni d’accord ni en désaccord"
+                },
+                {
+                    "id":4,
+                    "value":2,
+                    "title":"Un peu en désaccord"
+                },
+                {
+                    "id":5,
+                    "value":1,
+                    "title":"Fortement en désaccord"
+                }
+            ]
+        }
+    ]
+}
+
+
