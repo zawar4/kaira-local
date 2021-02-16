@@ -43,7 +43,7 @@
     <string name="introduction_welcome_description">I am your front-line partner through the whole app\'s experience. What\'s your first name?</string>
     <string name="introduction_welcome_next">Let\'s get started! \u2192</string>
 
-    <string name="introduction_assessment_title_1">It\'s your turn now !</string>
+    <string name="introduction_assessment_title_1">It\'s your turn now %1$s!</string>
     <string name="introduction_assessment_title_2">The first evaluation is completed!</string>
     <string name="introduction_assessment_detail_1">Help me optimize your experience and personalize my coaching. Respond to the evaluations below:</string>
     <string name="introduction_assessment_detail_2">Now please click and respond to the 2nd one!</string>
@@ -51,6 +51,18 @@
     <string name="ok">OK</string>
     <string name ="attention">Attention</string>
     <string name ="error_network">Your internet connection is not stable. Please correct the situation before continuing.</string>
+
+    <!-- Assessements -->
+    <string name="assessement_start">Start the test</string>
+    <string name="assessement_psychological_title">Your motivation for money</string>
+    <string name="assessement_financial_title">Your financial assessment</string>
+
+    <string name="assessement_computation_title">I\'m calculating your result</string>
+    <string name="assessement_computation_message">Thank you for your patience…</string>
+    <string name="_2" translatable="false">2</string>
+    <string name="_1" translatable="false">1</string>
+
+    <string name = "tick" translatable="false">\u2713</string>
 
 
 </resources>

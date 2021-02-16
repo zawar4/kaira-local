@@ -25,8 +25,8 @@ class OnboardSlidingDotAnimator constructor(val context: Context, val loadingDot
                 .setDuration(400)
 
         if(currentOnboardingPageNum == 2 && swipeType == SwipeDetector.SwipeTypeEnum.RIGHT_TO_LEFT){
-            loadingDotViewTwo.setImageDrawable(context.getDrawable(R.drawable.rectangle_filled))
-            loadingDotViewOne.setImageDrawable(context.getDrawable(R.drawable.rectangle_empty))
+            loadingDotViewTwo.setImageDrawable(context.getDrawable(R.drawable.kaira_accent_rectangle_filled))
+            loadingDotViewOne.setImageDrawable(context.getDrawable(R.drawable.kaira_sec_filled_round_rectangle))
             slideAnimator2.addUpdateListener { animation1: ValueAnimator ->
                 val value = animation1.animatedValue as Int
                 loadingDotViewTwo.getLayoutParams().width = value
@@ -40,8 +40,8 @@ class OnboardSlidingDotAnimator constructor(val context: Context, val loadingDot
 
             }
         }else if(currentOnboardingPageNum == 3 && swipeType == SwipeDetector.SwipeTypeEnum.RIGHT_TO_LEFT){
-            loadingDotViewThree.setImageDrawable(context.getDrawable(R.drawable.rectangle_filled))
-            loadingDotViewTwo.setImageDrawable(context.getDrawable(R.drawable.rectangle_empty))
+            loadingDotViewThree.setImageDrawable(context.getDrawable(R.drawable.kaira_accent_rectangle_filled))
+            loadingDotViewTwo.setImageDrawable(context.getDrawable(R.drawable.kaira_sec_filled_round_rectangle))
             slideAnimator2.addUpdateListener { animation1: ValueAnimator ->
                 val value = animation1.animatedValue as Int
                 loadingDotViewThree.getLayoutParams().width = value
@@ -56,8 +56,8 @@ class OnboardSlidingDotAnimator constructor(val context: Context, val loadingDot
             }
         }
         if(currentOnboardingPageNum == 1 && swipeType == SwipeDetector.SwipeTypeEnum.LEFT_TO_RIGHT){
-            loadingDotViewOne.setImageDrawable(context.getDrawable(R.drawable.rectangle_filled))
-            loadingDotViewTwo.setImageDrawable(context.getDrawable(R.drawable.rectangle_empty))
+            loadingDotViewOne.setImageDrawable(context.getDrawable(R.drawable.kaira_accent_rectangle_filled))
+            loadingDotViewTwo.setImageDrawable(context.getDrawable(R.drawable.kaira_sec_filled_round_rectangle))
             slideAnimator2.addUpdateListener { animation1: ValueAnimator ->
                 val value = animation1.animatedValue as Int
                 loadingDotViewOne.getLayoutParams().width = value
@@ -71,8 +71,8 @@ class OnboardSlidingDotAnimator constructor(val context: Context, val loadingDot
 
             }
         }else if(currentOnboardingPageNum == 2 && swipeType == SwipeDetector.SwipeTypeEnum.LEFT_TO_RIGHT){
-            loadingDotViewTwo.setImageDrawable(context.getDrawable(R.drawable.rectangle_filled))
-            loadingDotViewThree.setImageDrawable(context.getDrawable(R.drawable.rectangle_empty))
+            loadingDotViewTwo.setImageDrawable(context.getDrawable(R.drawable.kaira_accent_rectangle_filled))
+            loadingDotViewThree.setImageDrawable(context.getDrawable(R.drawable.kaira_sec_filled_round_rectangle))
             slideAnimator2.addUpdateListener { animation1: ValueAnimator ->
                 val value = animation1.animatedValue as Int
                 loadingDotViewTwo.getLayoutParams().width = value
