@@ -82,8 +82,8 @@ class IntroductionActivity : AppCompatActivity() {
             networkContectivityAlert(this)
         })
 
-        introductionBinding.moneyMotivationAssessmentLayout.setOnClickListener {
-            completeMoneyMotivationAssessment()
+        introductionBinding.psychologicalAssessmentLayout?.setOnClickListener {
+            completePsychologicalAssessment()
             val intent = Intent(this,AssessmentActivity::class.java)
             intent.putExtra(ASSESSMENT_TYPE,AssessmentType.PSYCHOLOGICAL)
             startActivity(intent)
@@ -95,6 +95,7 @@ class IntroductionActivity : AppCompatActivity() {
             val intent = Intent(this,AssessmentActivity::class.java)
             intent.putExtra(ASSESSMENT_TYPE,AssessmentType.FINANCIAL)
             startActivity(intent)
+            completeFinancialAssessment()
         }
 
         introductionViewModel.onCreateUser().observe(this,{
@@ -134,17 +135,17 @@ class IntroductionActivity : AppCompatActivity() {
         val imageHeight = introductionBinding.avatarIm.layoutParams.height
         introductionBinding.avatarIm.layoutParams.height = imageHeight/2
         introductionBinding.avatarIm.layoutParams.width = introductionBinding.avatarIm.layoutParams.height
-        introductionBinding.moneyMotivationAssessmentLayout.setVisibility(VISIBLE)
+        introductionBinding.psychologicalAssessmentLayout?.setVisibility(VISIBLE)
         introductionBinding.financialAssessmentLayout.setVisibility(VISIBLE)
         introductionBinding.headingTv.setText(getString(R.string.introduction_assessment_title_1, user.firstName))
         introductionBinding.descriptionTv.setText(getString(R.string.introduction_assessment_detail_1))
         introductionBinding.financialAssessmentLayout.setBackgroundResource(R.drawable.light_gray_round_rectangle)
-        introductionBinding.fininacialAssessmentNumTv.setBackgroundResource(R.drawable.dark_gray_circle)
-        introductionBinding.fininacialAssessmentNumTv.setTextColor(ContextCompat.getColor(applicationContext,android.R.color.white))
-        introductionBinding.fininacialAssessmentNumTv.setText(R.string._2)
-        introductionBinding.fininacialAssessmentTv.setTextColor(ContextCompat.getColor(applicationContext,R.color.medium_gray))
+        introductionBinding.financialAssessmentNumTv?.setBackgroundResource(R.drawable.dark_gray_circle)
+        introductionBinding.financialAssessmentNumTv?.setTextColor(ContextCompat.getColor(applicationContext,android.R.color.white))
+        introductionBinding.financialAssessmentNumTv?.setText(R.string._2)
+        introductionBinding.financialAssessmentTv?.setTextColor(ContextCompat.getColor(applicationContext,R.color.medium_gray))
         introductionBinding.financialAssessmentLayout?.isEnabled = false
-        introductionBinding.moneyMotivationAssessmentNumTv.setText(R.string._1)
+        introductionBinding.psychologicalAssessmentNumTv?.setText(R.string._1)
 
     }
 
@@ -168,22 +169,22 @@ class IntroductionActivity : AppCompatActivity() {
     }
 
     private fun hideAssessmentsFields(){
-        introductionBinding.moneyMotivationAssessmentLayout.setVisibility(INVISIBLE)
+        introductionBinding.psychologicalAssessmentLayout?.setVisibility(INVISIBLE)
         introductionBinding.financialAssessmentLayout.setVisibility(INVISIBLE)
     }
 
     private fun completeFinancialAssessment(){
-        introductionBinding.fininacialAssessmentNumTv.setText(R.string.tick)
+        introductionBinding.financialAssessmentNumTv?.setText(R.string.tick)
     }
     private fun enableFinancialAssessment(){
         introductionBinding.financialAssessmentLayout.setBackgroundResource(R.drawable.fourth_filled_b_round_rectangle)
-        introductionBinding.fininacialAssessmentNumTv.setBackgroundResource(R.drawable.kaira_forth_filled_circle)
-        introductionBinding.fininacialAssessmentNumTv.setTextColor(ContextCompat.getColor(this,android.R.color.white))
-        introductionBinding.fininacialAssessmentTv.setTextColor(ContextCompat.getColor(this,android.R.color.black))
+        introductionBinding.financialAssessmentNumTv?.setBackgroundResource(R.drawable.kaira_forth_filled_circle)
+        introductionBinding.financialAssessmentNumTv?.setTextColor(ContextCompat.getColor(this,android.R.color.white))
+        introductionBinding.financialAssessmentTv?.setTextColor(ContextCompat.getColor(this,android.R.color.black))
     }
 
-    private fun completeMoneyMotivationAssessment(){
-        introductionBinding.moneyMotivationAssessmentNumTv.setText(R.string.tick)
+    private fun completePsychologicalAssessment(){
+        introductionBinding.psychologicalAssessmentNumTv?.setText(R.string.tick)
     }
 
     override fun onBackPressed() {
