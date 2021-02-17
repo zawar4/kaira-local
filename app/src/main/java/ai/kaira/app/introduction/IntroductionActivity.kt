@@ -1,7 +1,7 @@
 package ai.kaira.app.introduction
 
 import ai.kaira.app.R
-import ai.kaira.app.ViewModelFactory
+import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.assessment.AssessmentActivity
 import ai.kaira.app.databinding.ActivityIntroductionBinding
 import ai.kaira.app.utils.LanguageConfig.Companion.getLanguageLocale
@@ -10,25 +10,20 @@ import ai.kaira.app.utils.UIUtils.Companion.networkContectivityAlert
 import ai.kaira.domain.assessment.model.AssessmentType
 import ai.kaira.domain.introduction.model.User
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.os.StrictMode
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.View.*
-import android.view.animation.AnticipateInterpolator
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.transition.*
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.*
-import java.lang.Thread.sleep
 import javax.inject.Inject
 
 

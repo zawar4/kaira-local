@@ -59,5 +59,6 @@
     <string name="psychological_assessment_disclaimer">Cette évaluation a été développée en partenariat avec l’Université de Sherbrooke.</string>
     <string name="financial_assessment_disclaimer">Cette évaluation utilise le FinHealth Score® du Financial Health Network.</string>
 
+    <string name = "mint" >mint</string>
 
 </resources>

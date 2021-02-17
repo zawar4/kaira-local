@@ -1,4 +1,4 @@
-package ai.kaira.app.Onboarding
+package ai.kaira.app.onboarding
 
 import ai.kaira.app.R
 import ai.kaira.app.utils.SwipeDetector

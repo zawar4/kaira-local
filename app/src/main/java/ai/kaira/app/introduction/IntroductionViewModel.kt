@@ -1,7 +1,7 @@
 package ai.kaira.app.introduction
 
 
-import ai.kaira.app.BaseViewModel
+import ai.kaira.app.application.BaseViewModel
 import ai.kaira.domain.Result
 import ai.kaira.domain.ResultState
 import ai.kaira.domain.introduction.model.User

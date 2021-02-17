@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".KairaApplication"
+        android:name=".application.KairaApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="${appName}"
@@ -14,19 +14,19 @@
         <activity android:name=".assessment.AssessmentActivity"></activity>
         <activity android:name=".introduction.IntroductionActivity" />
         <activity
-            android:name=".TermsConditions.PrivacyPolicyActivity"
+            android:name=".termsconditions.PrivacyPolicyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TermsConditions.TermsConditionActivity"
+            android:name=".termsconditions.TermsConditionActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TermsConditions.TermsOfUseActivity"
+            android:name=".termsconditions.TermsOfUseActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Onboarding.OnboardActivity"
+            android:name=".onboarding.OnboardActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Splash.SplashActivity"
+            android:name=".splash.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

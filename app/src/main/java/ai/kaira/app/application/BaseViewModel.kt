@@ -1,4 +1,4 @@
-package ai.kaira.app
+package ai.kaira.app.application
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

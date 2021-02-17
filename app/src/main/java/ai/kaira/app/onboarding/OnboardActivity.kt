@@ -1,7 +1,7 @@
-package ai.kaira.app.Onboarding
+package ai.kaira.app.onboarding
 
 import ai.kaira.app.R
-import ai.kaira.app.TermsConditions.TermsConditionActivity
+import ai.kaira.app.termsconditions.TermsConditionActivity
 import ai.kaira.app.utils.SwipeDetector
 import ai.kaira.app.databinding.ActivityOnboardingBinding
 import android.content.Intent

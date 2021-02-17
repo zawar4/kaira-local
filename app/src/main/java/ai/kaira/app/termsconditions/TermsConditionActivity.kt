@@ -1,4 +1,4 @@
-package ai.kaira.app.TermsConditions
+package ai.kaira.app.termsconditions
 
 import ai.kaira.app.introduction.IntroductionActivity
 import ai.kaira.app.R

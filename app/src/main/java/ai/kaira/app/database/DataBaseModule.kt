@@ -1,7 +1,8 @@
-package ai.kaira.app.Database
+package ai.kaira.app.database
 
 import ai.kaira.data.introduction.datasource.database.dao.UserDao
 import android.content.Context
+import android.content.res.AssetManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,6 +14,13 @@ import javax.inject.Singleton
 @Module
 @InstallIn(ApplicationComponent::class)
 class DataBaseModule {
+
+
+    @Provides
+    @Singleton
+    fun provideAssetManager(@ApplicationContext context: Context): AssetManager {
+        return context.assets
+    }
 
     @Provides
     @Singleton

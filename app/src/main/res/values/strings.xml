@@ -66,8 +66,10 @@
     <string name="_1" translatable="false">1</string>
 
 
-    <string name ="clock" translatable="false">\u1F558</string>
+    <string name ="clock" translatable="false">\u23F0</string>
+    <string name ="question" translatable="false">\u2753</string>
     <string name = "tick" translatable="false">\u2713</string>
+    <string name = "mint" >mint</string>
 
 
 </resources>

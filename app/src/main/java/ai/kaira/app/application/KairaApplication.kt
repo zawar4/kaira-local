@@ -1,4 +1,4 @@
-package ai.kaira.app
+package ai.kaira.app.application
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
