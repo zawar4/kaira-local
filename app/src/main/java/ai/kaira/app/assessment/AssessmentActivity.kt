@@ -76,7 +76,11 @@ class AssessmentActivity : AppCompatActivity() {
         activityAssessmentBinding.assessmentNumTv.text = assessment.type.type.toString()
         activityAssessmentBinding.assessmentDescriptionTv.text = assessment.description
         activityAssessmentBinding.assessmentDurationTv.text = "${getString(R.string.clock)} ${assessment.duration} ${getString(R.string.mint)}"
-        activityAssessmentBinding.assessmentQuestionsTv.text = "${getString(R.string.question)} ${assessment.questions.size}"
+        var numOfQuestions = assessment.questions.size.toString()
+        if(assessment.questions.size.toString().length == 1) {
+            numOfQuestions  = "0$numOfQuestions"
+        }
+        activityAssessmentBinding.assessmentQuestionsTv.text = "${getString(R.string.question)} ${numOfQuestions}"
     }
 
 
