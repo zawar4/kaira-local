@@ -1,11 +1,10 @@
-package ai.kaira.app.Splash
+package ai.kaira.app.splash
 
-import ai.kaira.app.Onboarding.OnboardActivity
+import ai.kaira.app.onboarding.OnboardActivity
 import ai.kaira.app.R
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import java.util.*
 import kotlin.concurrent.schedule
 

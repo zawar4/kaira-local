@@ -1,4 +1,4 @@
-package ai.kaira.app.TermsConditions
+package ai.kaira.app.termsconditions
 
 import ai.kaira.app.R
 import ai.kaira.app.utils.LanguageConfig

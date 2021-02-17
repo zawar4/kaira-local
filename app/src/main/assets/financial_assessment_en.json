@@ -1,0 +1,269 @@
+{
+    "id":2,
+    "version":1,
+    "type":2,
+    "duration":10,
+    "number":2,
+    "title":"Financial profile",
+    "description":"Ces 8 questions à choix multiples couvrent les 8 indicateurs de la santé financière. Tes réponses me permettront de mieux te connaître et personnaliser mes conseils.",
+	"mention":"Cette évaluation utilise le <i>FinHealth Score®</i> de <i>Financial Health Network</i>",
+    "mention":"Ce test utilise le FinHealth Score® du Financial Health Network",
+    "questions": [
+        {
+            "id":1,
+            "type":0,
+            "title":"Which of the following statements best describes how your household’s total spending compared to total income, over the last 12 months?",
+            "answers": [
+                {
+                    "id":11,
+                    "value":100,
+                    "title":"Spending was much less than income"
+                },
+                {
+                    "id":12,
+                    "value":75,
+                    "title":"Spending was a little less than income"
+                },
+                {
+                    "id":13,
+                    "value":50,
+                    "title":"Spending was about equal to income"
+                },
+                {
+                    "id":14,
+                    "value":25,
+                    "title":"Spending was a little more than income"
+                },
+                {
+                    "id":15,
+                    "value":0,
+                    "title":"Spending was much more than income"
+                }
+            ]
+        },
+        {
+            "id":2,
+            "type":0,
+            "title":"Which of the following statements best describes how your household has paid its bills over the last 12 months?\nMy household has been financially able to:",
+            "answers": [
+                {
+                    "id":21,
+                    "value":100,
+                    "title":"Pay all of our bills on time"
+                },
+                {
+                    "id":22,
+                    "value":60,
+                    "title":"Pay nearly all of our bills on time"
+                },
+                {
+                    "id":23,
+                    "value":40,
+                    "title":"Pay most of our bills on time"
+                },
+                {
+                    "id":24,
+                    "value":20,
+                    "title":"Pay some of our bills on time"
+                },
+                {
+                    "id":25,
+                    "value":0,
+                    "title":"Pay very few of our bills on time"
+                }
+            ]
+        },
+        {
+            "id":3,
+            "type":1,
+            "title":"At your current level of spending, how long could you afford to cover expenses, if you had to live only off the money you have readily available, without withdrawing money from retirement accounts or borrowing?",
+            "answers": [
+                {
+                    "id":31,
+                    "value":100,
+                    "title":"6 months or more"
+                },
+                {
+                    "id":32,
+                    "value":75,
+                    "title":"3-5 months"
+                },
+                {
+                    "id":33,
+                    "value":50,
+                    "title":"1-2 months"
+                },
+                {
+                    "id":34,
+                    "value":25,
+                    "title":"1-3 weeks"
+                },
+                {
+                    "id":35,
+                    "value":0,
+                    "title":"Less than 1 week"
+                }
+            ]
+        },
+        {
+            "id":4,
+            "type":1,
+            "title":"Thinking about your household’s longer term financial goals – saving for a vacation, starting a business, buying or paying off a home, saving up for education, putting money away for retirement…\nHow confident are you that you are currently doing what is needed to meet your longer term goals?",
+            "answers": [
+                {
+                    "id":41,
+                    "value":100,
+                    "title":"Very confident"
+                },
+                {
+                    "id":42,
+                    "value":75,
+                    "title":"Moderately confident"
+                },
+                {
+                    "id":43,
+                    "value":50,
+                    "title":"Somewhat confident"
+                },
+                {
+                    "id":44,
+                    "value":25,
+                    "title":"Slightly confident"
+                },
+                {
+                    "id":45,
+                    "value":0,
+                    "title":"Not at all confident"
+                }
+            ]
+        },
+        {
+            "id":5,
+            "type":2,
+            "title":"Thinking about all of your current debts – mortgages, bank loans, student loans, money owed to people, medical debt, past-due bills, and credit card balances carried over from prior months…\nAs of today, which of the following statements describes how manageable your debt is?",
+            "answers": [
+                {
+                    "id":51,
+                    "value":100,
+                    "title":"Do not have any debt"
+                },
+                {
+                    "id":52,
+                    "value":85,
+                    "title":"Have a manageable amount of debt"
+                },
+                {
+                    "id":53,
+                    "value":40,
+                    "title":"Have a bit more debt than is manageable"
+                },
+                {
+                    "id":54,
+                    "value":0,
+                    "title":"Have far more debt than is manageable"
+                }
+            ]
+        },
+        {
+            "id":6,
+            "type":2,
+            "title":"How would you rate your credit score? Your credit score is a number that tells lenders how risky or safe you are as a borrower.",
+            "answers": [
+                {
+                    "id":61,
+                    "value":100,
+                    "title":"Excellent"
+                },
+                {
+                    "id":62,
+                    "value":80,
+                    "title":"Very Good"
+                },
+                {
+                    "id":63,
+                    "value":60,
+                    "title":"Good"
+                },
+                {
+                    "id":64,
+                    "value":40,
+                    "title":"Fair"
+                },
+                {
+                    "id":65,
+                    "value":0,
+                    "title":"Poor / I don't know"
+                }
+            ]
+        },
+        {
+            "id":7,
+            "type":3,
+            "title":"Thinking about all of the types of insurance you and others in your household currently have – health insurance, vehicle insurance, home or rental insurance, life insurance, disability insurance…\nHow confident are you that those insurance policies will provide enough support in case of an emergency?",
+            "answers": [
+                {
+                    "id":71,
+                    "value":100,
+                    "title":"Very confident"
+                },
+                {
+                    "id":72,
+                    "value":75,
+                    "title":"Moderately confident"
+                },
+                {
+                    "id":73,
+                    "value":50,
+                    "title":"Somewhat confident"
+                },
+                {
+                    "id":74,
+                    "value":25,
+                    "title":"Slightly confident"
+                },
+                {
+                    "id":75,
+                    "value":10,
+                    "title":"Not at all confident"
+                },
+                {
+                    "id":76,
+                    "value":0,
+                    "title":"No one in my household has any insurance"
+                }
+            ]
+        },
+        {
+            "id":8,
+            "type":3,
+            "title":"To what extent do you agree or disagree with the following statement: “My household plans ahead financially”?",
+            "answers": [
+                {
+                    "id":81,
+                    "value":100,
+                    "title":"Agree strongly"
+                },
+                {
+                    "id":82,
+                    "value":65,
+                    "title":"Agree somewhat"
+                },
+                {
+                    "id":83,
+                    "value":35,
+                    "title":"Neither agree nor disagree"
+                },
+                {
+                    "id":84,
+                    "value":15,
+                    "title":"Disagree somewhat"
+                },
+                {
+                    "id":85,
+                    "value":0,
+                    "title":"Disagree strongly"
+                }
+            ]
+        }
+    ]
+}

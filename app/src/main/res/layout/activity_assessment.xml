@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".assessment.AssessmentActivity">
+
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.35"/>
+
+        <View
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/guideline_top">
+
+        </View>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/assessment_num_tv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginBottom="18dp"
+            android:fontFamily="@font/avenir_next_bold"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="28sp"
+            app:layout_constraintBottom_toTopOf="@id/guideline_top"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/assessment_duration_tv"
+            style="@style/Text03_Large_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginBottom="18dp"
+            android:layout_marginEnd="5dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@id/guideline_top"
+            app:layout_constraintEnd_toStartOf="@+id/assessment_questions_tv" />
+
+        <TextView
+            android:id="@+id/assessment_questions_tv"
+            style="@style/Text03_Large_button"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="18dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@id/guideline_top"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/assessment_title_tv"
+            style="@style/Heading01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="18dp"
+            android:paddingTop="18dp"
+            android:paddingRight="18dp"
+            android:paddingBottom="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline_top" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/assessment_description_tv"
+            style="@style/Text01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:paddingBottom="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/assessment_title_tv" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/assessment_start_btn"
+            style="@style/Text03_button"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/action_assessement_start"
+            android:textColor="@android:color/white"
+            app:cornerRadius="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/assessment_description_tv" />
+
+
+        <TextView
+            android:id="@+id/assessment_disclaimer_tv"
+            style="@style/Text04"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="18dp"
+            android:paddingTop="18dp"
+            android:paddingRight="18dp"
+            android:paddingBottom="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

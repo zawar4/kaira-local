@@ -53,16 +53,23 @@
     <string name ="error_network">Your internet connection is not stable. Please correct the situation before continuing.</string>
 
     <!-- Assessements -->
-    <string name="assessement_start">Start the test</string>
+    <string name="action_assessement_start">Start the test</string>
     <string name="assessement_psychological_title">Your motivation for money</string>
     <string name="assessement_financial_title">Your financial assessment</string>
 
     <string name="assessement_computation_title">I\'m calculating your result</string>
     <string name="assessement_computation_message">Thank you for your patience…</string>
+    <string name="psychological_assessment_disclaimer">This assessment was developed in partnership with the University of Sherbrooke.</string>
+    <string name="financial_assessment_disclaimer">This assessment uses the FinHealth Score® from the Financial Health Network</string>
+
     <string name="_2" translatable="false">2</string>
     <string name="_1" translatable="false">1</string>
 
+
+    <string name ="clock" translatable="false">\u23F0</string>
+    <string name ="question" translatable="false">\u2753</string>
     <string name = "tick" translatable="false">\u2713</string>
+    <string name = "mint" >mint</string>
 
 
 </resources>

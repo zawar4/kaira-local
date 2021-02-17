@@ -1,4 +1,4 @@
-package ai.kaira.app.Database
+package ai.kaira.app.database
 
 import ai.kaira.data.introduction.datasource.database.dao.UserDao
 import ai.kaira.data.introduction.datasource.database.entity.UserEntity
