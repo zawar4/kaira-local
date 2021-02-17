@@ -75,12 +75,14 @@ class AssessmentActivity : AppCompatActivity() {
     private fun setData(assessment:Assessment){
         activityAssessmentBinding.assessmentNumTv.text = assessment.type.type.toString()
         activityAssessmentBinding.assessmentDescriptionTv.text = assessment.description
-        activityAssessmentBinding.assessmentDurationTv.text = "${getString(R.string.clock)} ${assessment.duration} ${getString(R.string.mint)}"
+        activityAssessmentBinding.assessmentDurationTv.text = "  ${assessment.duration} ${getString(R.string.mint)}"
+        activityAssessmentBinding.assessmentDurationTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_clock,0,0,0)
         var numOfQuestions = assessment.questions.size.toString()
         if(assessment.questions.size.toString().length == 1) {
             numOfQuestions  = "0$numOfQuestions"
         }
-        activityAssessmentBinding.assessmentQuestionsTv.text = "${getString(R.string.question)} ${numOfQuestions}"
+        activityAssessmentBinding.assessmentQuestionsTv.text = "  $numOfQuestions"
+        activityAssessmentBinding.assessmentQuestionsTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_question,0,0,0)
     }
 
 
