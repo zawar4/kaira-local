@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".assessment.AssessmentQuestionActivity"
+        android:padding="24dp">
+
+        <TextView
+            style="@style/Text03_button"
+            android:id="@+id/question_num_tv"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:background="@drawable/kaira_third_filled_rectangle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/avatar_im"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/question_num_tv"
+            app:srcCompat="@drawable/icon_coach" />
+
+        <TextView
+            android:id="@+id/assessment_question_description_tv"
+            style="@style/Text01"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="sdfafdsfdfdsffdsgddsgfdgsdgdgfdgdfgfdsgfggfsdgfdfgsfdgfsggggdsfgdsgfggsfdgsfddsgfgfssfgsdfg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/avatar_im"
+            app:layout_constraintTop_toTopOf="@+id/avatar_im" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/top_barrier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="assessment_question_description_tv,avatar_im" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/confirm_btn"
+            style="@style/Text03_button"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="60dp"
+            android:text="@string/action_next"
+            android:textColor="@android:color/white"
+            app:cornerRadius="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/assessment_disclaimer_tv"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/assessment_disclaimer_tv"
+            style="@style/Text04"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ce test utilise le FinHealth Score® du Financial Health Network"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

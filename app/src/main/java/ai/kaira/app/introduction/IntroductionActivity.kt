@@ -7,6 +7,7 @@ import ai.kaira.app.databinding.ActivityIntroductionBinding
 import ai.kaira.app.utils.LanguageConfig.Companion.getLanguageLocale
 import ai.kaira.app.utils.UIUtils.Companion.networkCallAlert
 import ai.kaira.app.utils.UIUtils.Companion.networkContectivityAlert
+import ai.kaira.app.utils.di.Consts.Companion.ASSESSMENT_TYPE
 import ai.kaira.domain.assessment.model.AssessmentType
 import ai.kaira.domain.introduction.model.User
 import android.content.Intent
@@ -32,7 +33,6 @@ class IntroductionActivity : AppCompatActivity() {
 
     lateinit var introductionBinding: ActivityIntroductionBinding
     lateinit var introductionViewModel: IntroductionViewModel
-    private val ASSESSMENT_TYPE : String = "ASSESSMENT_TYPE"
     var displayedAssessmentFields : Boolean = false
 
     @Inject
@@ -61,14 +61,12 @@ class IntroductionActivity : AppCompatActivity() {
             }
         })
 
-        introductionBinding.firstNameEt.setOnEditorActionListener(object : TextView.OnEditorActionListener {
-            override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    submit()
-                }
-                return false;
+        introductionBinding.firstNameEt.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                submit()
             }
-        })
+            false;
+        }
 
         introductionBinding.submitButton.setOnClickListener {
             submit()
