@@ -3,16 +3,20 @@ package ai.kaira.app.application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.cancel
 import java.net.InetSocketAddress
 import java.net.Socket
+import javax.inject.Inject
 
-open class BaseViewModel : ViewModel() {
+open class BaseViewModel @Inject constructor() : ViewModel() {
 
 
-    protected val loadLiveData : MutableLiveData<Boolean> = MutableLiveData()
-    protected val errorLiveData : MutableLiveData<String> = MutableLiveData()
-    protected val connectivityError : MutableLiveData<Boolean> = MutableLiveData()
-
+    private val loadLiveData : MutableLiveData<Boolean> = MutableLiveData()
+    private val errorLiveData : MutableLiveData<String> = MutableLiveData()
+    private val connectivityError : MutableLiveData<Boolean> = MutableLiveData()
+    private val viewModelCoroutineScope : CoroutineScope = viewModelScope
 
     fun isConnectedToInternet(): Boolean {
         return try {
@@ -46,5 +50,11 @@ open class BaseViewModel : ViewModel() {
 
     fun showConnectivityError(){
         connectivityError.value = true
+    }
+
+
+    override fun onCleared(){
+        viewModelCoroutineScope.cancel()
+        super.onCleared()
     }
 }

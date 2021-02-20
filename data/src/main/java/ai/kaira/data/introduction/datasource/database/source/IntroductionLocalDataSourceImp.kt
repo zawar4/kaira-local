@@ -13,4 +13,8 @@ class IntroductionLocalDataSourceImp @Inject constructor(val userDao: UserDao) :
             userDao.insert(userEntity)
         }
     }
+
+    override fun getUser(): UserEntity {
+        return userDao.getUser()
+    }
 }

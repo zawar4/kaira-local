@@ -1,7 +1,9 @@
 package ai.kaira.data.webservice
 
-import ai.kaira.data.introduction.dto.UserDTO
+import ai.kaira.data.introduction.dto.UserResponse
 import ai.kaira.data.utils.APIConfig
+import ai.kaira.domain.Result
+import ai.kaira.domain.assessment.model.AnswerRequestParam
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -10,6 +12,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -20,8 +23,11 @@ interface RestApiRouter {
 
     @FormUrlEncoded
     @POST("users")
-    fun createUser(@Field("firstName") firstName: String, @Field("language") language: String): Call<UserDTO>
+    fun createUser(@Field("firstName") firstName: String, @Field("language") language: String): Call<UserResponse>
 
+
+    @POST("assessments/answer")
+    fun submitAnswer(@Body answerRequestParam: AnswerRequestParam) : Call<Result<Unit>>
 
     companion object {
 

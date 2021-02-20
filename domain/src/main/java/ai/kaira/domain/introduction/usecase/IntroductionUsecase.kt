@@ -3,6 +3,7 @@ package ai.kaira.domain.introduction.usecase
 import ai.kaira.domain.Result
 import ai.kaira.domain.introduction.model.User
 import ai.kaira.domain.introduction.repository.IntroductionRepository
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import javax.inject.Inject
 
@@ -15,5 +16,9 @@ class IntroductionUsecase @Inject constructor(private val introductionRepository
 
     fun saveUser(user: User){
         introductionRepository.saveUser(user)
+    }
+
+    fun getUser():MutableLiveData<User>{
+        return introductionRepository.getUser()
     }
 }

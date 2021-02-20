@@ -1,6 +1,6 @@
 package ai.kaira.data.introduction.datasource.network
 
-import ai.kaira.data.introduction.dto.UserDTO
+import ai.kaira.data.introduction.dto.UserResponse
 import ai.kaira.data.webservice.RestApiRouter
 import ai.kaira.domain.Result
 import ai.kaira.domain.ResultState
@@ -18,12 +18,11 @@ class IntroductionNetworkDataSourceImp @Inject constructor(val restApiRouter: Re
     override fun createUser(firstName: String, languageLocale: String): MutableLiveData<Result<User>> {
         val createUserLiveData :  MutableLiveData<Result<User>> = MutableLiveData()
 
-        createUserLiveData.value = Result(resultState = ResultState.LOADING, data = User())
         GlobalScope.launch(IO) {
             val response = restApiRouter.createUser(firstName, languageLocale).execute()
             withContext(Main) {
                 if (response.isSuccessful) {
-                    val user: UserDTO? = response.body()
+                    val user: UserResponse? = response.body()
                     user?.let {
                         createUserLiveData.value = Result(User(user.id,user.firstName,user.language,user.createdAt,user.verified,user.validGroupCode), resultState = ResultState.SUCCESS)
                     }

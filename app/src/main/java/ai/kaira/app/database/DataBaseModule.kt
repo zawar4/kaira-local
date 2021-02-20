@@ -1,13 +1,17 @@
 package ai.kaira.app.database
 
+import ai.kaira.app.application.BaseViewModel
 import ai.kaira.data.introduction.datasource.database.dao.UserDao
 import android.content.Context
 import android.content.res.AssetManager
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.CoroutineScope
 import javax.inject.Singleton
 
 
@@ -32,5 +36,10 @@ class DataBaseModule {
     @Singleton
     fun provideUserDao(kairaDatabase: KairaDatabase):UserDao{
         return kairaDatabase.userDao()
+    }
+
+    @Provides
+    fun providesViewModelCoroutineScope(baseViewModel: BaseViewModel) : CoroutineScope{
+        return baseViewModel.viewModelScope
     }
 }

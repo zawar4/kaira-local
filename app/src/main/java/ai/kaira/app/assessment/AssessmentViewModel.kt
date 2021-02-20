@@ -1,19 +1,18 @@
 package ai.kaira.app.assessment
 
 import ai.kaira.app.application.BaseViewModel
+import ai.kaira.domain.assessment.GetUserSubmitAnswerUseCase
 import ai.kaira.domain.assessment.model.Assessment
 import ai.kaira.domain.assessment.model.AssessmentAnswer
 import ai.kaira.domain.assessment.model.AssessmentQuestion
 import ai.kaira.domain.assessment.usecase.AssessmentUseCase
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
 
-class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : BaseViewModel() {
+class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase,private val getUserSubmitAnswerUseCase: GetUserSubmitAnswerUseCase) : BaseViewModel() {
 
 
     lateinit var assessment: Assessment
@@ -26,9 +25,10 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
     private var questionTitle : MutableLiveData<String> = MutableLiveData()
     private var clickTime : Long? = null
     private var currentAnswer: AssessmentAnswer? = null
-    private var submittedAnswers : ArrayList<AssessmentAnswer> = ArrayList()
     private var enableSubmitButton : MutableLiveData<Boolean> = MutableLiveData()
     private var questionAttempted : HashSet<Int> = HashSet()
+
+
     fun getFinancialAssessment(locale:String):MutableLiveData<Assessment>{
         return assessmentUseCase.getFinancialAssessment(locale)
     }
@@ -92,9 +92,13 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
         }
 
         questionAttempted.add(currentQuestionNumber)
-        //TODO FIRE API CALL
         enableSubmitButton.value = true
+        currentAnswer?.let{
+            getUserSubmitAnswerUseCase.submitAnswer(currentQuestion,it,assessment)
+        }
+
     }
+
     fun loadFirstQuestion(){
         clickTime = Calendar.getInstance().timeInMillis
         loadNextQuestion()
@@ -129,7 +133,6 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
         }
 
     }
-
 
     fun setSubmitButton(): MutableLiveData<Boolean>{
         return enableSubmitButton

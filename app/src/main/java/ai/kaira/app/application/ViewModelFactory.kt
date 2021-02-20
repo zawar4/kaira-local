@@ -2,6 +2,7 @@ package ai.kaira.app.application
 
 import ai.kaira.app.assessment.AssessmentViewModel
 import ai.kaira.app.introduction.IntroductionViewModel
+import ai.kaira.domain.assessment.GetUserSubmitAnswerUseCase
 import ai.kaira.domain.assessment.usecase.AssessmentUseCase
 import ai.kaira.domain.introduction.usecase.IntroductionUsecase
 import androidx.lifecycle.ViewModel
@@ -16,11 +17,14 @@ class ViewModelFactory @Inject constructor() : ViewModelProvider.Factory {
     @Inject
     lateinit var assessmentUsecase: AssessmentUseCase
 
+    @Inject
+    lateinit var getUserSubmitAnswerUseCase: GetUserSubmitAnswerUseCase
+
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(IntroductionViewModel::class.java.isAssignableFrom(modelClass)){
             return IntroductionViewModel(introductionUsecase) as T
         }else if(AssessmentViewModel::class.java.isAssignableFrom(modelClass))
-            return AssessmentViewModel(assessmentUsecase) as T
+            return AssessmentViewModel(assessmentUsecase,getUserSubmitAnswerUseCase) as T
         return create(modelClass)
     }
 }
