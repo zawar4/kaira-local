@@ -7,12 +7,17 @@ import ai.kaira.app.utils.LanguageConfig
 import ai.kaira.app.utils.di.Consts.Companion.ASSESSMENT_TYPE
 import ai.kaira.data.assessment.di.AssessmentModule
 import ai.kaira.domain.assessment.model.Assessment
+import ai.kaira.domain.assessment.model.AssessmentAnswer
 import ai.kaira.domain.assessment.model.AssessmentType
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.LinearLayout.VERTICAL
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -21,6 +26,7 @@ import javax.inject.Inject
 class AssessmentQuestionActivity : AppCompatActivity() {
     lateinit var activityAssessmentQuestionBinding : ActivityAssessmentQuestionBinding
     lateinit var assessmentViewModel: AssessmentViewModel
+    var answerClickCallback: MutableLiveData<AssessmentAnswer> = MutableLiveData()
 
     @Inject
     lateinit var viewModelFactory : ViewModelFactory
@@ -32,26 +38,29 @@ class AssessmentQuestionActivity : AppCompatActivity() {
         val languageLocale = LanguageConfig.getLanguageLocale(applicationContext)
         if(intent != null && intent.hasExtra(ASSESSMENT_TYPE)){
             assessmentType = intent.getSerializableExtra(ASSESSMENT_TYPE) as AssessmentType
-            if(assessmentType == AssessmentType.FINANCIAL) {
-                assessmentViewModel.getFinancialAssessment(languageLocale).observe(this,{
-                    setView(assessmentType)
-                    setData((it))
-                })
-            }
-            else if(assessmentType == AssessmentType.PSYCHOLOGICAL){
-                assessmentViewModel.getPsychologicalAssessment(languageLocale).observe(this,{
-                    setView(assessmentType)
-                    setData((it))
-                })
-            }else{
-                finish()
+            when (assessmentType) {
+                AssessmentType.FINANCIAL -> {
+                    assessmentViewModel.fetchFinancialAssessment(languageLocale).observe(this,{
+                        setAssessmentQuestionsView(assessmentType)
+                        setAssessmentQuestionsData((it))
+                    })
+                }
+                AssessmentType.PSYCHOLOGICAL -> {
+                    assessmentViewModel.fetchPsychologicalAssessment(languageLocale).observe(this,{
+                        setAssessmentQuestionsView(assessmentType)
+                        setAssessmentQuestionsData((it))
+                    })
+                }
+                else -> {
+                    finish()
+                }
             }
         }else{
             finish()
         }
     }
 
-    private fun setView(assessmentType: AssessmentType){
+    private fun setAssessmentQuestionsView(assessmentType: AssessmentType){
         if(assessmentType == AssessmentType.PSYCHOLOGICAL){
             activityAssessmentQuestionBinding.questionNumTv.setBackgroundResource(R.drawable.kaira_third_filled_rectangle);
         }else{
@@ -59,9 +68,55 @@ class AssessmentQuestionActivity : AppCompatActivity() {
         }
     }
 
-    private fun setData(assessment:Assessment){
-        activityAssessmentQuestionBinding.questionNumTv.text = "1 / 10"
+    private fun setAssessmentQuestionsData(assessment:Assessment){
+
+        assessmentViewModel.loadFirstQuestion()
         activityAssessmentQuestionBinding.assessmentDisclaimerTv.text = assessment.mention
-        activityAssessmentQuestionBinding.assessmentQuestionDescriptionTv.text = assessment.questions[0].title
+        lateinit var assessmentType : AssessmentType
+        if(assessment.type == AssessmentType.PSYCHOLOGICAL.value)
+            assessmentType =  AssessmentType.PSYCHOLOGICAL
+        else{
+            assessmentType =  AssessmentType.FINANCIAL
+        }
+        val answersAdapter = AnswersRecyclerViewAdapter(ArrayList(),answerClickCallback,assessmentType)
+        activityAssessmentQuestionBinding.answerRecyclerView.layoutManager = LinearLayoutManager(this)
+        activityAssessmentQuestionBinding.answerRecyclerView.adapter = answersAdapter
+        activityAssessmentQuestionBinding.submitBtn.setOnClickListener {
+            assessmentViewModel.loadNextQuestion()
+        }
+        assessmentViewModel.setQuestionAnswers().observe(this){
+            answersAdapter.answers = ArrayList(it)
+            answersAdapter.notifyDataSetChanged()
+            activityAssessmentQuestionBinding.scrollView.scrollTo(0,0)
+        }
+        assessmentViewModel.setQuestionTitle().observe(this){
+            activityAssessmentQuestionBinding.assessmentQuestionDescriptionTv.text = it
+        }
+
+        assessmentViewModel.setQuestionNumber().observe(this){
+            activityAssessmentQuestionBinding.questionNumTv.text = it
+        }
+
+        answerClickCallback.observe(this){
+            assessmentViewModel.setQuestionAnswered(it)
+        }
+
+        activityAssessmentQuestionBinding.submitBtn?.setOnClickListener {
+            assessmentViewModel.loadNextQuestion()
+
+        }
+
+        assessmentViewModel.setSubmitButton().observe(this){
+            activityAssessmentQuestionBinding.submitBtn.isEnabled = it
+        }
+
+    }
+
+    override fun onBackPressed() {
+        if(!assessmentViewModel.isFirstQuestion()){
+            assessmentViewModel.loadPreviousQuestion()
+        }else{
+            super.onBackPressed();
+        }
     }
 }

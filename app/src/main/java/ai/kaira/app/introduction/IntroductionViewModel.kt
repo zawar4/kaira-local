@@ -12,13 +12,11 @@ import androidx.lifecycle.MutableLiveData
 class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase) : BaseViewModel() {
 
     var userResultLiveData = MediatorLiveData<User>()
-    var createUserLiveData  = MutableLiveData<Result<User>>()
-
     fun createUser(firstName: String, languageLocale: String){
         if(!isConnectedToInternet()){
             showConnectivityError()
         }else{
-            createUserLiveData = introductionUsecase.createUser(firstName, languageLocale)
+            var createUserLiveData = introductionUsecase.createUser(firstName, languageLocale)
             userResultLiveData.addSource(createUserLiveData) { t ->
                 val result: Result<User>? = t
                 when (result?.resultState) {
