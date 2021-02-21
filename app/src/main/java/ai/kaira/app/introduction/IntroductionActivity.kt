@@ -37,13 +37,14 @@ class IntroductionActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory : ViewModelFactory
 
-    override fun onRestart() {
-        super.onRestart()
+    override fun onResume() {
+        super.onResume()
         if(introductionViewModel.isAssessmentCompleted(AssessmentType.PSYCHOLOGICAL.value) && !introductionViewModel.isAssessmentCompleted(AssessmentType.FINANCIAL.value)){
             completePsychologicalAssessment()
             introductionBinding.financialAssessmentLayout.isEnabled = true
             introductionBinding.headingTv.text = getString(R.string.introduction_assessment_title_2)
             introductionBinding.descriptionTv.text = getString(R.string.introduction_assessment_detail_2)
+
             enableFinancialAssessment()
         }
         if(introductionViewModel.isAssessmentCompleted(AssessmentType.FINANCIAL.value)){

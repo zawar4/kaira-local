@@ -116,6 +116,14 @@ class AssessmentQuestionActivity : AppCompatActivity() {
             finish()
         }
 
+        activityAssessmentQuestionBinding.backBtn.setOnClickListener {
+            onBackPressed()
+        }
+
+        activityAssessmentQuestionBinding.closeBtn.setOnClickListener {
+            finish()
+        }
+
     }
 
     override fun onBackPressed() {

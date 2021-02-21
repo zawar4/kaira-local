@@ -12,15 +12,23 @@
             tools:context=".assessment.AssessmentQuestionActivity"
             android:padding="24dp">
 
+            <ImageView
+                android:id="@+id/back_btn"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_back_button" />
             <TextView
                 style="@style/Text03_button"
                 android:id="@+id/question_num_tv"
                 android:layout_width="70dp"
                 android:layout_height="30dp"
+                android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:background="@drawable/kaira_third_filled_rectangle"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/back_btn" />
 
             <ImageView
                 android:id="@+id/avatar_im"
@@ -47,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:barrierDirection="bottom"
-                app:constraint_referenced_ids="assessment_question_description_tv,avatar_im" />
+                app:constraint_referenced_ids="assessment_question_description_tv,avatar_im,back_btn" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/answer_recycler_view"
@@ -78,6 +86,13 @@
                 android:text="Ce test utilise le FinHealth Score® du Financial Health Network"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/submit_btn" />
+
+            <ImageView
+                android:id="@+id/close_btn"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_close_button" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
