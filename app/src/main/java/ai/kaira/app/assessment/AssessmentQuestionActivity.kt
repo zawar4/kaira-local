@@ -4,6 +4,7 @@ import ai.kaira.app.R
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityAssessmentQuestionBinding
 import ai.kaira.app.utils.LanguageConfig
+import ai.kaira.app.utils.UIUtils
 import ai.kaira.app.utils.di.Consts.Companion.ASSESSMENT_TYPE
 import ai.kaira.data.assessment.di.AssessmentModule
 import ai.kaira.domain.assessment.model.Assessment
@@ -11,6 +12,7 @@ import ai.kaira.domain.assessment.model.AssessmentAnswer
 import ai.kaira.domain.assessment.model.AssessmentType
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.StrictMode
 import android.widget.LinearLayout.VERTICAL
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -33,6 +35,9 @@ class AssessmentQuestionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityAssessmentQuestionBinding = DataBindingUtil.setContentView(this,R.layout.activity_assessment_question)
+
+        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
         assessmentViewModel  = ViewModelProvider(this, viewModelFactory).get(AssessmentViewModel::class.java)
         lateinit var assessmentType : AssessmentType
         val languageLocale = LanguageConfig.getLanguageLocale(applicationContext)
@@ -109,6 +114,14 @@ class AssessmentQuestionActivity : AppCompatActivity() {
         assessmentViewModel.setSubmitButton().observe(this){
             activityAssessmentQuestionBinding.submitBtn.isEnabled = it
         }
+
+        assessmentViewModel.onConnectivityError().observe(this, {
+                    UIUtils.networkConnectivityAlert(this)
+        })
+
+        assessmentViewModel.onError().observe(this,{
+            UIUtils.networkCallAlert(this,it)
+        })
 
     }
 

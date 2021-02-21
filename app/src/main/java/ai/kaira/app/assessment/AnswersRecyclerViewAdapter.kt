@@ -41,7 +41,7 @@ class AnswersRecyclerViewAdapter(var answers : List<AssessmentAnswer>,var answer
             holder.textView.setTextColor(Color.WHITE)
             val answer : AssessmentAnswer = answers[position]
 
-            answer.time = Calendar.getInstance().timeInMillis
+            answer.time = Calendar.getInstance().timeInMillis.toDouble()
             answerClickCallback.value = answer
         }
 

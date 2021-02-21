@@ -29,13 +29,13 @@ class OnboardSlidingDotAnimator constructor(val context: Context, val loadingDot
             loadingDotViewOne.setImageDrawable(context.getDrawable(R.drawable.kaira_sec_filled_round_rectangle))
             slideAnimator2.addUpdateListener { animation1: ValueAnimator ->
                 val value = animation1.animatedValue as Int
-                loadingDotViewTwo.getLayoutParams().width = value
+                loadingDotViewTwo.layoutParams.width = value
                 loadingDotViewTwo.requestLayout()
 
             }
             slideAnimator.addUpdateListener { animation1: ValueAnimator ->
                 val value = animation1.animatedValue as Int
-                loadingDotViewOne.getLayoutParams().width = value
+                loadingDotViewOne.layoutParams.width = value
                 loadingDotViewOne.requestLayout()
 
             }
@@ -44,7 +44,7 @@ class OnboardSlidingDotAnimator constructor(val context: Context, val loadingDot
             loadingDotViewTwo.setImageDrawable(context.getDrawable(R.drawable.kaira_sec_filled_round_rectangle))
             slideAnimator2.addUpdateListener { animation1: ValueAnimator ->
                 val value = animation1.animatedValue as Int
-                loadingDotViewThree.getLayoutParams().width = value
+                loadingDotViewThree.layoutParams.width = value
                 loadingDotViewThree.requestLayout()
 
             }

@@ -1,4 +1,4 @@
 package ai.kaira.domain.introduction.model
 
-class User (val id:String = "",val firstName:String = "",val language:String = "",val createdAt:String = "",val verified:Boolean = false,val validGroupCode:Boolean=false) {
+class User (var id:String = "", var firstName:String = "", var language:String = "", var createdAt:String = "", var verified:Boolean = false, var validGroupCode:Boolean=false) {
 }

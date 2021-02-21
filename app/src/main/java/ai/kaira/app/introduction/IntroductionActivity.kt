@@ -6,7 +6,7 @@ import ai.kaira.app.assessment.AssessmentActivity
 import ai.kaira.app.databinding.ActivityIntroductionBinding
 import ai.kaira.app.utils.LanguageConfig.Companion.getLanguageLocale
 import ai.kaira.app.utils.UIUtils.Companion.networkCallAlert
-import ai.kaira.app.utils.UIUtils.Companion.networkContectivityAlert
+import ai.kaira.app.utils.UIUtils.Companion.networkConnectivityAlert
 import ai.kaira.app.utils.di.Consts.Companion.ASSESSMENT_TYPE
 import ai.kaira.domain.assessment.model.AssessmentType
 import ai.kaira.domain.introduction.model.User
@@ -15,10 +15,9 @@ import android.os.Bundle
 import android.os.StrictMode
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.KeyEvent
-import android.view.View.*
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.inputmethod.EditorInfo
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -77,7 +76,7 @@ class IntroductionActivity : AppCompatActivity() {
         })
 
         introductionViewModel.onConnectivityError().observe(this, {
-            networkContectivityAlert(this)
+            networkConnectivityAlert(this)
         })
 
         introductionBinding.psychologicalAssessmentLayout?.setOnClickListener {
@@ -111,7 +110,7 @@ class IntroductionActivity : AppCompatActivity() {
         if(introductionViewModel.isConnectedToInternet()){
             introductionViewModel.createUser(firstName, languageLocale)
         }else{
-            networkContectivityAlert(this)
+            networkConnectivityAlert(this)
         }
     }
 

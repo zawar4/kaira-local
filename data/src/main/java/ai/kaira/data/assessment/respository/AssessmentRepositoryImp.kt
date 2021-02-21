@@ -2,9 +2,14 @@ package ai.kaira.data.assessment.respository
 
 import ai.kaira.data.assessment.datasource.database.AssessmentLocalDataSource
 import ai.kaira.data.assessment.datasource.network.AssessmentNetworkDataSource
+import ai.kaira.data.assessment.model.AssessmentAnswerRequestParam
 import ai.kaira.domain.Result
 import ai.kaira.domain.assessment.model.Assessment
+import ai.kaira.domain.assessment.model.AssessmentAnswer
+import ai.kaira.domain.assessment.model.AssessmentQuestion
 import ai.kaira.domain.assessment.respository.AssessmentRepository
+import ai.kaira.domain.introduction.model.User
+import ai.kaira.data.utils.UtilityFunctions
 import androidx.lifecycle.MutableLiveData
 import javax.inject.Inject
 
@@ -18,8 +23,20 @@ class AssessmentRepositoryImp @Inject constructor(private val assessmentLocalDat
         return assessmentLocalDataSource.getPsychologicalAssessment(locale)
     }
 
-    override fun submitAnswer(answerRequestParam: ai.kaira.domain.assessment.model.AnswerRequestParam): MutableLiveData<Result<Unit>> {
-        return assessmentNetworkDataSource.submitAnswer(answerRequestParam)
+
+    override fun submitAssessmentAnswer(user: User, question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment): MutableLiveData<Result<Unit>> {
+        var answeredAt = UtilityFunctions.iso8601FormatDate(answer!!.time.toLong())
+        var assessmentAnswerRequestParam = AssessmentAnswerRequestParam(user.id,
+                assessment.id,
+                assessment.version,
+                assessment.type,
+                question.id,
+                question.type,
+                answer.id,
+                answer.value,
+                answeredAt,
+                answer.duration)
+        return assessmentNetworkDataSource.submitAssessmentAnswer(assessmentAnswerRequestParam)
     }
 
 }

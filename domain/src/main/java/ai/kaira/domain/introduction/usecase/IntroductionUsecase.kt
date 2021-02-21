@@ -8,17 +8,17 @@ import androidx.lifecycle.MutableLiveData
 import javax.inject.Inject
 
 
-class IntroductionUsecase @Inject constructor(private val introductionRepository: IntroductionRepository) {
+class IntroductionUsecase @Inject constructor(val createUserUsecase: CreateUser,val fetchUserUsecase: FetchUser, val saveUserUsecase: SaveUser) {
 
     fun createUser(firstName:String, languageLocale: String) : MutableLiveData<Result<User>>{
-        return introductionRepository.createUser(firstName,languageLocale)
+        return createUserUsecase(firstName,languageLocale)
     }
 
     fun saveUser(user: User){
-        introductionRepository.saveUser(user)
+        saveUserUsecase(user)
     }
 
-    fun getUser():MutableLiveData<User>{
-        return introductionRepository.getUser()
+    fun fetchUser(): User{
+        return fetchUserUsecase()
     }
 }

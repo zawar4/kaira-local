@@ -1,9 +1,9 @@
 package ai.kaira.data.webservice
 
-import ai.kaira.data.introduction.dto.UserResponse
 import ai.kaira.data.utils.APIConfig
 import ai.kaira.domain.Result
-import ai.kaira.domain.assessment.model.AnswerRequestParam
+import ai.kaira.data.assessment.model.AssessmentAnswerRequestParam
+import ai.kaira.data.introduction.model.UserResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -27,7 +27,7 @@ interface RestApiRouter {
 
 
     @POST("assessments/answer")
-    fun submitAnswer(@Body answerRequestParam: AnswerRequestParam) : Call<Result<Unit>>
+    fun submitAnswer(@Body AssessmentAnswerRequestParam: AssessmentAnswerRequestParam) : Call<Result<Unit>>
 
     companion object {
 
