@@ -2,6 +2,7 @@ package ai.kaira.app.assessment
 
 import ai.kaira.app.R
 import ai.kaira.domain.assessment.model.AssessmentAnswer
+import ai.kaira.domain.assessment.model.AssessmentAnswerClick
 import ai.kaira.domain.assessment.model.AssessmentType
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -13,8 +14,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
+import kotlin.collections.ArrayList
 
-class AnswersRecyclerViewAdapter(var answers : List<AssessmentAnswer>,var answerClickCallback: MutableLiveData<AssessmentAnswer>,var assessmentType:AssessmentType) : RecyclerView.Adapter<AnswersRecyclerViewAdapter.AnswerViewHolder>() {
+class AnswersRecyclerViewAdapter(var answers : ArrayList<AssessmentAnswer>, var answerClickCallback: MutableLiveData<AssessmentAnswerClick>, var assessmentType:AssessmentType) : RecyclerView.Adapter<AnswersRecyclerViewAdapter.AnswerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnswerViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -24,8 +26,10 @@ class AnswersRecyclerViewAdapter(var answers : List<AssessmentAnswer>,var answer
     }
 
     override fun onBindViewHolder(holder: AnswerViewHolder, position: Int) {
-        holder.textView.text = answers[position].title
-        if(answers[position].duration > 0){
+        val answer : AssessmentAnswer = answers[position]
+        holder.textView.text = answer.title
+
+        if(answer.selected){
             holder.textView.setBackgroundResource(R.drawable.kaira_third_filled_rectangle)
             holder.textView.setTextColor(Color.WHITE)
         }else{
@@ -39,12 +43,13 @@ class AnswersRecyclerViewAdapter(var answers : List<AssessmentAnswer>,var answer
                 holder.textView.setBackgroundResource(R.drawable.kaira_fourth_filled_rectangle)
             }
             holder.textView.setTextColor(Color.WHITE)
-            val answer : AssessmentAnswer = answers[position]
-
-            answer.time = Calendar.getInstance().timeInMillis.toDouble()
-            answerClickCallback.value = answer
+            answerClickCallback.value = AssessmentAnswerClick(answer.id,position,Calendar.getInstance().timeInMillis.toDouble())
         }
 
+    }
+
+    fun addAnswers(answers : ArrayList<AssessmentAnswer>){
+        this.answers = answers
     }
 
     override fun getItemCount(): Int {

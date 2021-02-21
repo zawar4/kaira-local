@@ -16,8 +16,9 @@ import androidx.lifecycle.MediatorLiveData
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import kotlin.reflect.KProperty
 
-class FetchUserSubmitAssessmentAnswer @Inject constructor(private val fetchUser: FetchUser, private val submitAssessmentAnswer: SubmitAssessmentAnswer,private val viewModelCoroutineScope: CoroutineScope) : BaseUseCase(viewModelCoroutineScope) {
+class FetchUserSubmitAssessmentAnswer @Inject constructor(val fetchUser: FetchUser, private val submitAssessmentAnswer: SubmitAssessmentAnswer,private val viewModelCoroutineScope: CoroutineScope) : BaseUseCase(viewModelCoroutineScope) {
 
     operator fun invoke(question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment):MutableLiveData<Result<Unit>>{
         return fetchUserSubmitAssessmentAnswer(question,answer,assessment)
@@ -40,3 +41,4 @@ class FetchUserSubmitAssessmentAnswer @Inject constructor(private val fetchUser:
         return submitAssessmentAnswerLiveData;
     }
 }
+

@@ -9,6 +9,7 @@ import ai.kaira.app.utils.di.Consts.Companion.ASSESSMENT_TYPE
 import ai.kaira.data.assessment.di.AssessmentModule
 import ai.kaira.domain.assessment.model.Assessment
 import ai.kaira.domain.assessment.model.AssessmentAnswer
+import ai.kaira.domain.assessment.model.AssessmentAnswerClick
 import ai.kaira.domain.assessment.model.AssessmentType
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,7 +29,7 @@ import javax.inject.Inject
 class AssessmentQuestionActivity : AppCompatActivity() {
     lateinit var activityAssessmentQuestionBinding : ActivityAssessmentQuestionBinding
     lateinit var assessmentViewModel: AssessmentViewModel
-    var answerClickCallback: MutableLiveData<AssessmentAnswer> = MutableLiveData()
+    var answerClickCallback: MutableLiveData<AssessmentAnswerClick> = MutableLiveData()
 
     @Inject
     lateinit var viewModelFactory : ViewModelFactory
@@ -90,7 +91,7 @@ class AssessmentQuestionActivity : AppCompatActivity() {
             assessmentViewModel.loadNextQuestion()
         }
         assessmentViewModel.setQuestionAnswers().observe(this){
-            answersAdapter.answers = ArrayList(it)
+            answersAdapter.addAnswers(ArrayList(it))
             answersAdapter.notifyDataSetChanged()
             activityAssessmentQuestionBinding.scrollView.scrollTo(0,0)
         }

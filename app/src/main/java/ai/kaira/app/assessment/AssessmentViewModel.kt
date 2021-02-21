@@ -4,11 +4,10 @@ import ai.kaira.app.application.BaseViewModel
 import ai.kaira.domain.ResultState
 import ai.kaira.domain.assessment.model.Assessment
 import ai.kaira.domain.assessment.model.AssessmentAnswer
+import ai.kaira.domain.assessment.model.AssessmentAnswerClick
 import ai.kaira.domain.assessment.model.AssessmentQuestion
 import ai.kaira.domain.assessment.usecase.AssessmentUseCase
 import ai.kaira.domain.assessment.usecase.FetchUserSubmitAssessmentAnswer
-import ai.kaira.domain.introduction.model.User
-import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import java.util.*
@@ -19,17 +18,19 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase,priva
 
     lateinit var assessment: Assessment
     private var currentQuestionNumber : Int = -1
+    private var screenVisibleTime : Long? = null
+    private var currentAnswer: AssessmentAnswer? = null
+    private var currentAnswerPosition : Int = -1
     private lateinit var currentQuestion : AssessmentQuestion
+
     private var financialAssessmentLiveData : MediatorLiveData<Assessment> = MediatorLiveData()
     private var psychologicalAssessmentLiveData : MediatorLiveData<Assessment> = MediatorLiveData()
     private var currentQuestionAnswers : MutableLiveData<List<AssessmentAnswer>> = MutableLiveData()
     private var questionNumber : MutableLiveData<String> = MutableLiveData()
     private var questionTitle : MutableLiveData<String> = MutableLiveData()
-    private var clickTime : Long? = null
-    private var currentAnswer: AssessmentAnswer? = null
     private var enableSubmitButton : MutableLiveData<Boolean> = MutableLiveData()
-    private var questionAttempted : HashSet<Int> = HashSet()
-    var submitAssessmentAnswer = MediatorLiveData<Result<Unit>>()
+    private var questionsAttempted : HashSet<Int> = HashSet()
+    var submitAssessmentAnswerLiveData = MediatorLiveData<Result<Unit>>()
 
     fun getFinancialAssessment(locale:String):MutableLiveData<Assessment>{
         return assessmentUseCase.fetchFinancialAssessment(locale)
@@ -69,51 +70,42 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase,priva
         return currentQuestionAnswers
     }
 
-    fun setQuestionAnswered(answer:AssessmentAnswer){
-        if(clickTime != null && currentAnswer == null){
-            clickTime?.let {
-                currentAnswer = answer.clone()
-                val duration : Double = (currentAnswer!!.time - it)/1000.00
-                Log.v("DURATION",duration.toString())
-                currentAnswer?.time = answer.time
-                currentAnswer?.duration = duration
-            }
-        }else if(currentAnswer != null){
-            if(currentAnswer!!.id == answer.id){
-                val duration : Double = (answer.time - currentAnswer!!.time)/1000.00
-                Log.v("DURATION",duration.toString())
-                currentAnswer?.time = answer.time
-                currentAnswer?.duration = duration
-            }else{
-                val duration = (answer.time - currentAnswer!!.time)/1000.00
-                Log.v("DURATION",duration.toString())
-                currentAnswer = answer.clone()
-                currentAnswer?.time = answer.time
-                currentAnswer!!.duration = duration
-            }
+    fun setQuestionAnswered(assessmentAnswerClick: AssessmentAnswerClick){
+
+        val newAnswer :AssessmentAnswer = currentQuestion.answers[assessmentAnswerClick.position]
+        if(currentAnswerPosition > -1 && currentAnswer != null){
+            currentQuestion.answers[currentAnswerPosition].selected = false
         }
-
-        submitAssessmentAnswer()
-
+        currentAnswer = assessmentUseCase.onAssessmentQuestionAnswered(screenVisibleTime?.toDouble()!!,assessmentAnswerClick, currentAnswer,newAnswer.clone())
+        currentAnswer?.let {
+            currentAnswerPosition = assessmentAnswerClick.position
+            it.selected = true
+            currentQuestion.answers[currentAnswerPosition] = it
+            reloadCurrentQuestion()
+            submitAssessmentAnswer()
+        }
     }
 
     private fun submitAssessmentAnswer(){
         if(!isConnectedToInternet()){
             showConnectivityError()
         }else{
-            questionAttempted.add(currentQuestionNumber)
+            questionsAttempted.add(currentQuestionNumber)
             enableSubmitButton.value = true
             currentAnswer?.let{
-                val liveData : MutableLiveData<ai.kaira.domain.Result<Unit>>  = fetchUserSubmitAssessmentAnswer(currentQuestion,it,assessment)
-                submitAssessmentAnswer.addSource(liveData) {
+                val liveDataSource : MutableLiveData<ai.kaira.domain.Result<Unit>>  = fetchUserSubmitAssessmentAnswer(currentQuestion,it,assessment)
+                submitAssessmentAnswerLiveData.addSource(liveDataSource) {
                     val result: ai.kaira.domain.Result<Unit>? = it
                     when(result?.resultState){
                         ResultState.SUCCESS -> {
                             // Do nothing
+                            submitAssessmentAnswerLiveData.removeSource(liveDataSource)
                         }
                         ResultState.ERROR ->{
                             showError(result.error)
+                            submitAssessmentAnswerLiveData.removeSource(liveDataSource)
                         }
+                        else ->  submitAssessmentAnswerLiveData.removeSource(liveDataSource)
                     }
                 }
             }
@@ -121,33 +113,37 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase,priva
     }
 
     fun loadFirstQuestion(){
-        clickTime = Calendar.getInstance().timeInMillis
+        screenVisibleTime = Calendar.getInstance().timeInMillis
         loadNextQuestion()
     }
 
     fun loadPreviousQuestion(){
         if(!isFirstQuestion())
         {
-            clickTime = Calendar.getInstance().timeInMillis
+            screenVisibleTime = Calendar.getInstance().timeInMillis
             currentAnswer = null
             currentQuestion = assessment.questions[--currentQuestionNumber]
             questionNumber.value = "${currentQuestionNumber+1} / ${assessment.questions.size}"
             questionTitle.value = currentQuestion.title
             currentQuestionAnswers.value = currentQuestion.answers
-            enableSubmitButton.value = questionAttempted.contains(currentQuestionNumber)
+            enableSubmitButton.value = questionsAttempted.contains(currentQuestionNumber)
         }
 
     }
 
+    private fun reloadCurrentQuestion(){
+        currentQuestionAnswers.value = currentQuestion.answers
+    }
+
     fun loadNextQuestion(){
         if(!isLastQuestion()){
-            clickTime = Calendar.getInstance().timeInMillis
+            screenVisibleTime = Calendar.getInstance().timeInMillis
             currentAnswer = null
             currentQuestion = assessment.questions[++currentQuestionNumber]
             questionNumber.value = "${currentQuestionNumber+1} / ${assessment.questions.size}"
             questionTitle.value = currentQuestion.title
             currentQuestionAnswers.value = currentQuestion.answers
-            enableSubmitButton.value = questionAttempted.contains(currentQuestionNumber)
+            enableSubmitButton.value = questionsAttempted.contains(currentQuestionNumber)
 
         }else{
 

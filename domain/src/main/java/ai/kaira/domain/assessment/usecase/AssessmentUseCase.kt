@@ -1,12 +1,12 @@
 package ai.kaira.domain.assessment.usecase
 
-import ai.kaira.domain.Result
 import ai.kaira.domain.assessment.model.Assessment
-import androidx.lifecycle.LiveData
+import ai.kaira.domain.assessment.model.AssessmentAnswer
+import ai.kaira.domain.assessment.model.AssessmentAnswerClick
 import androidx.lifecycle.MutableLiveData
 import javax.inject.Inject
 
-class AssessmentUseCase @Inject constructor(val fetchFinancialAssessmentUseCase: FetchFinancialAssessment,val fetchPsychologicalAssessmentUseCase: FetchPsychologicalAssessment) {
+class AssessmentUseCase @Inject constructor(val fetchFinancialAssessmentUseCase: FetchFinancialAssessment, val fetchPsychologicalAssessmentUseCase: FetchPsychologicalAssessment, private val assessmentQuestionAnsweredUseCase: AssessmentQuestionAnswered) {
     fun fetchFinancialAssessment(locale:String): MutableLiveData<Assessment>{
         return fetchFinancialAssessmentUseCase(locale)
     }
@@ -15,4 +15,7 @@ class AssessmentUseCase @Inject constructor(val fetchFinancialAssessmentUseCase:
         return fetchPsychologicalAssessmentUseCase(locale)
     }
 
+    fun onAssessmentQuestionAnswered(screenVisibleTime: Double, assessmentAnswerClick: AssessmentAnswerClick, currentAssessmentAnswer: AssessmentAnswer?, newAssessmentAnswer: AssessmentAnswer):AssessmentAnswer{
+        return assessmentQuestionAnsweredUseCase.onAssessmentQuestionAnswered(screenVisibleTime,assessmentAnswerClick, currentAssessmentAnswer,newAssessmentAnswer)
+    }
 }
