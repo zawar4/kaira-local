@@ -32,4 +32,8 @@ class AssessmentQuestionAnswered @Inject constructor(private val assessmentRepos
     fun saveSelectedAssessmentAnswer(assessmentId:Int,assessmentType:Int,questionId:Int,assessmentAnswerPosition:Int) {
         assessmentRepository.saveSelectedAssessmentAnswer(assessmentId,assessmentType,questionId,assessmentAnswerPosition)
     }
+
+    fun deleteUserOldAssessmentsAnswers(){
+        assessmentRepository.deleteUserOldAssessmentsAnswers()
+    }
 }

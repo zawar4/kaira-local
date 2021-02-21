@@ -15,6 +15,7 @@ open class BaseViewModel @Inject constructor() : ViewModel() {
 
     private val loadLiveData : MutableLiveData<Boolean> = MutableLiveData()
     private val errorLiveData : MutableLiveData<String> = MutableLiveData()
+    private val finishActivityLiveData : MutableLiveData<Unit> = MutableLiveData()
     private val connectivityError : MutableLiveData<Boolean> = MutableLiveData()
     private val viewModelCoroutineScope : CoroutineScope = viewModelScope
 
@@ -40,6 +41,10 @@ open class BaseViewModel @Inject constructor() : ViewModel() {
     fun onError() : LiveData<String>{
         return errorLiveData
     }
+
+    fun onActivityFinish():LiveData<Unit>{
+        return finishActivityLiveData
+    }
     fun showLoading(show:Boolean){
         loadLiveData.value = show
     }
@@ -48,6 +53,9 @@ open class BaseViewModel @Inject constructor() : ViewModel() {
         errorLiveData.value = error
     }
 
+    fun finishActivity(){
+        finishActivityLiveData.value = Unit
+    }
     fun showConnectivityError(){
         connectivityError.value = true
     }

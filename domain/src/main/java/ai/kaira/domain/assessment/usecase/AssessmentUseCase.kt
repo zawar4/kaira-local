@@ -6,7 +6,11 @@ import ai.kaira.domain.assessment.model.AssessmentAnswerClick
 import androidx.lifecycle.MutableLiveData
 import javax.inject.Inject
 
-class AssessmentUseCase @Inject constructor(val fetchFinancialAssessmentUseCase: FetchFinancialAssessment, val fetchPsychologicalAssessmentUseCase: FetchPsychologicalAssessment, private val assessmentQuestionAnsweredUseCase: AssessmentQuestionAnswered) {
+class AssessmentUseCase @Inject constructor(val fetchFinancialAssessmentUseCase: FetchFinancialAssessment,
+                                            val fetchPsychologicalAssessmentUseCase: FetchPsychologicalAssessment,
+                                             val assessmentQuestionAnsweredUseCase: AssessmentQuestionAnswered,
+                                             val completeAssessment: CompleteAssessment,
+                                             val fetchUserSubmitAssessmentAnswer: FetchUserSubmitAssessmentAnswer) {
     fun fetchFinancialAssessment(locale:String): MutableLiveData<Assessment>{
         return fetchFinancialAssessmentUseCase(locale)
     }
@@ -25,5 +29,9 @@ class AssessmentUseCase @Inject constructor(val fetchFinancialAssessmentUseCase:
 
     fun isQuestionAlreadyAnswered(assessmentId:Int,assessmentType:Int,questionId:Int):Int{
         return assessmentQuestionAnsweredUseCase.isQuestionAlreadyAnswered(assessmentId,assessmentType,questionId)
+    }
+
+    fun markAssessmentAsComplete(assessmentType: Int){
+        completeAssessment.markAssessmentAsComplete(assessmentType)
     }
 }

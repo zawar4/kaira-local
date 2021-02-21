@@ -9,4 +9,7 @@ interface AssessmentLocalDataSource {
     fun getPsychologicalAssessment(locale:String): MutableLiveData<Assessment>
     fun isQuestionAlreadyAnswered(assessmentId: Int, assessmentType: Int, questionId: Int): Int
     fun saveSelectedAssessmentAnswer(assessmentId: Int, assessmentType: Int, questionId: Int, assessmentAnswerPosition: Int)
+    fun deleteUserOldAssessmentsAnswers()
+    fun markAssessmentAsComplete(assessmentType: Int)
+    fun isAssessmentCompleted(assessmentType: Int):Boolean
 }

@@ -17,14 +17,11 @@ class ViewModelFactory @Inject constructor() : ViewModelProvider.Factory {
     @Inject
     lateinit var assessmentUsecase: AssessmentUseCase
 
-    @Inject
-    lateinit var fetchUserSubmitAssessmentAnswer: FetchUserSubmitAssessmentAnswer
-
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(IntroductionViewModel::class.java.isAssignableFrom(modelClass)){
             return IntroductionViewModel(introductionUsecase) as T
         }else if(AssessmentViewModel::class.java.isAssignableFrom(modelClass))
-            return AssessmentViewModel(assessmentUsecase,fetchUserSubmitAssessmentAnswer) as T
+            return AssessmentViewModel(assessmentUsecase) as T
         return create(modelClass)
     }
 }

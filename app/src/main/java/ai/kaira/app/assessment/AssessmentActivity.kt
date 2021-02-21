@@ -88,6 +88,7 @@ class AssessmentActivity : AppCompatActivity() {
             var intent = Intent(this,AssessmentQuestionActivity::class.java)
             intent.putExtra(ASSESSMENT_TYPE,assessmentType)
             startActivity(intent)
+            finish()
         }
     }
 

@@ -51,4 +51,16 @@ class AssessmentLocalDataSourceImp @Inject constructor(private val assetManager:
         prefs.edit().putInt("$assessmentType$assessmentId$questionId",assessmentAnswerPosition).apply()
     }
 
+    override fun deleteUserOldAssessmentsAnswers() {
+        prefs.edit().clear().apply()
+    }
+
+    override fun markAssessmentAsComplete(assessmentType: Int) {
+        prefs.edit().putBoolean("$assessmentType",true).apply()
+    }
+
+    override fun isAssessmentCompleted(assessmentType: Int):Boolean {
+        return prefs.getBoolean("$assessmentType",false)
+    }
+
 }

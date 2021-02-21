@@ -36,6 +36,21 @@ class IntroductionActivity : AppCompatActivity() {
     var isAvatarAlreadyReduced : Boolean = false
     @Inject
     lateinit var viewModelFactory : ViewModelFactory
+
+    override fun onRestart() {
+        super.onRestart()
+        if(introductionViewModel.isAssessmentCompleted(AssessmentType.PSYCHOLOGICAL.value) && !introductionViewModel.isAssessmentCompleted(AssessmentType.FINANCIAL.value)){
+            completePsychologicalAssessment()
+            introductionBinding.financialAssessmentLayout.isEnabled = true
+            introductionBinding.headingTv.text = getString(R.string.introduction_assessment_title_2)
+            introductionBinding.descriptionTv.text = getString(R.string.introduction_assessment_detail_2)
+            enableFinancialAssessment()
+        }
+        if(introductionViewModel.isAssessmentCompleted(AssessmentType.FINANCIAL.value)){
+            completeFinancialAssessment()
+        }
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         introductionBinding = DataBindingUtil.setContentView(this, R.layout.activity_introduction)
@@ -80,19 +95,15 @@ class IntroductionActivity : AppCompatActivity() {
         })
 
         introductionBinding.psychologicalAssessmentLayout?.setOnClickListener {
-            completePsychologicalAssessment()
             val intent = Intent(this,AssessmentActivity::class.java)
             intent.putExtra(ASSESSMENT_TYPE,AssessmentType.PSYCHOLOGICAL)
             startActivity(intent)
-            introductionBinding.financialAssessmentLayout.isEnabled = true
-            enableFinancialAssessment()
         }
 
         introductionBinding.financialAssessmentLayout.setOnClickListener {
             val intent = Intent(this,AssessmentActivity::class.java)
             intent.putExtra(ASSESSMENT_TYPE,AssessmentType.FINANCIAL)
             startActivity(intent)
-            completeFinancialAssessment()
         }
 
         introductionViewModel.onCreateUser().observe(this,{
@@ -105,10 +116,12 @@ class IntroductionActivity : AppCompatActivity() {
     }
 
     private fun submit(){
+        isAvatarAlreadyReduced = false
         val firstName: String = introductionBinding.firstNameEt.text.toString()
         val languageLocale: String = getLanguageLocale(applicationContext)
         if(introductionViewModel.isConnectedToInternet()){
             introductionViewModel.createUser(firstName, languageLocale)
+            introductionViewModel.deleteUserOldAssessmentsAnswers()
         }else{
             networkConnectivityAlert(this)
         }
@@ -161,17 +174,17 @@ class IntroductionActivity : AppCompatActivity() {
         transitionSet.addTransition(fadeTransition).addTransition(boundTransition)
         TransitionManager.beginDelayedTransition(introductionBinding.introductionLayoutParent,transitionSet)
         val imageHeight = introductionBinding.avatarIm.layoutParams.height
-        introductionBinding.avatarIm.layoutParams.height = imageHeight*2
+        introductionBinding.avatarIm.layoutParams.height = imageHeight * 2
         introductionBinding.avatarIm.layoutParams.width = introductionBinding.avatarIm.layoutParams.height
-        introductionBinding.firstNameEt.setVisibility(VISIBLE)
-        introductionBinding.submitButton.setVisibility(VISIBLE)
+        introductionBinding.firstNameEt.visibility = VISIBLE
+        introductionBinding.submitButton.visibility = VISIBLE
         introductionBinding.headingTv.setText(R.string.introduction_welcome_title)
         introductionBinding.descriptionTv.setText(R.string.introduction_welcome_description)
     }
 
     private fun hideAssessmentsFields(){
-        introductionBinding.psychologicalAssessmentLayout?.setVisibility(INVISIBLE)
-        introductionBinding.financialAssessmentLayout.setVisibility(INVISIBLE)
+        introductionBinding.psychologicalAssessmentLayout?.visibility = INVISIBLE
+        introductionBinding.financialAssessmentLayout.visibility = INVISIBLE
     }
 
     private fun completeFinancialAssessment(){

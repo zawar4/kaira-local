@@ -105,12 +105,16 @@ class AssessmentQuestionActivity : AppCompatActivity() {
         }
 
         assessmentViewModel.onConnectivityError().observe(this, {
-                    UIUtils.networkConnectivityAlert(this)
+            UIUtils.networkConnectivityAlert(this)
         })
 
         assessmentViewModel.onError().observe(this,{
             UIUtils.networkCallAlert(this,it)
         })
+
+        assessmentViewModel.onActivityFinish().observe(this){
+            finish()
+        }
 
     }
 

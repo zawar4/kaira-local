@@ -4,6 +4,7 @@ package ai.kaira.app.introduction
 import ai.kaira.app.application.BaseViewModel
 import ai.kaira.domain.Result
 import ai.kaira.domain.ResultState
+import ai.kaira.domain.assessment.model.AssessmentType
 import ai.kaira.domain.introduction.model.User
 import ai.kaira.domain.introduction.usecase.IntroductionUsecase
 import androidx.lifecycle.MediatorLiveData
@@ -38,6 +39,12 @@ class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase
         return userResultLiveData
     }
 
+    fun deleteUserOldAssessmentsAnswers(){
+        introductionUsecase.deleteUserOldAssessmentsAnswers()
+    }
 
+    fun isAssessmentCompleted(assessmentType: Int):Boolean{
+        return introductionUsecase.isAssessmentCompleted(assessmentType)
+    }
 
 }

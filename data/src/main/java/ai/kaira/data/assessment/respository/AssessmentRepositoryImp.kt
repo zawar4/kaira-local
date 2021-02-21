@@ -47,4 +47,16 @@ class AssessmentRepositoryImp @Inject constructor(private val assessmentLocalDat
         assessmentLocalDataSource.saveSelectedAssessmentAnswer(assessmentId,assessmentType,questionId,assessmentAnswerPosition)
     }
 
+    override fun deleteUserOldAssessmentsAnswers() {
+        assessmentLocalDataSource.deleteUserOldAssessmentsAnswers()
+    }
+
+    override fun markAssessmentAsComplete(assessmentType: Int){
+        assessmentLocalDataSource.markAssessmentAsComplete(assessmentType)
+    }
+
+    override fun isAssessmentCompleted(assessmentType: Int): Boolean {
+        return assessmentLocalDataSource.isAssessmentCompleted(assessmentType)
+    }
+
 }

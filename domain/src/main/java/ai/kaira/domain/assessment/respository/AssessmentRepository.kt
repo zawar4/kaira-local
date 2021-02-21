@@ -13,4 +13,7 @@ interface AssessmentRepository {
     fun submitAssessmentAnswer(user: User, question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment): MutableLiveData<Result<Unit>>
     fun isQuestionAlreadyAnswered(assessmentId:Int,assessmentType:Int,questionId:Int):Int
     fun saveSelectedAssessmentAnswer(assessmentId:Int,assessmentType:Int,questionId:Int,assessmentAnswerPosition:Int)
+    fun deleteUserOldAssessmentsAnswers()
+    fun markAssessmentAsComplete(assessmentType: Int)
+    fun isAssessmentCompleted(assessmentType: Int):Boolean
 }

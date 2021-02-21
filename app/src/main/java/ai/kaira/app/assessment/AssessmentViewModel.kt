@@ -10,7 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import java.util.*
 import kotlin.collections.HashSet
 
-class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase,private val fetchUserSubmitAssessmentAnswer: FetchUserSubmitAssessmentAnswer) : BaseViewModel() {
+class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : BaseViewModel() {
 
 
     lateinit var assessment: Assessment
@@ -100,7 +100,7 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase,priva
         }else{
             enableSubmitButton.value = true
             currentAnswer?.let{
-                val liveDataSource : MutableLiveData<ai.kaira.domain.Result<Unit>>  = fetchUserSubmitAssessmentAnswer(currentQuestion,it,assessment)
+                val liveDataSource : MutableLiveData<ai.kaira.domain.Result<Unit>>  = assessmentUseCase.fetchUserSubmitAssessmentAnswer(currentQuestion,it,assessment)
                 submitAssessmentAnswerLiveData.addSource(liveDataSource) {
                     val result: ai.kaira.domain.Result<Unit>? = it
                     when(result?.resultState){
@@ -153,11 +153,15 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase,priva
             populatePreselectedAnswers(assessment.id,assessment.type,currentQuestion.id)
             currentQuestionAnswers.value = currentQuestion.answers
         }else{
-
+            markAssessmentAsComplete(assessment.type)
+            finishActivity()
         }
 
     }
 
+    private fun markAssessmentAsComplete(assessmentType: Int){
+        assessmentUseCase.markAssessmentAsComplete(assessmentType)
+    }
     private fun saveSelectedAnswer(assessmentId:Int,assessmentType: Int,questionId:Int,assessmentAnswerPosition:Int){
         assessmentUseCase.saveSelectedAssessmentAnswer(assessmentId,assessmentType,questionId,assessmentAnswerPosition)
     }
