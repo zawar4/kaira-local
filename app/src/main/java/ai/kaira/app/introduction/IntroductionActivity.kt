@@ -33,7 +33,7 @@ class IntroductionActivity : AppCompatActivity() {
     lateinit var introductionBinding: ActivityIntroductionBinding
     lateinit var introductionViewModel: IntroductionViewModel
     var displayedAssessmentFields : Boolean = false
-
+    var isAvatarAlreadyReduced : Boolean = false
     @Inject
     lateinit var viewModelFactory : ViewModelFactory
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -129,9 +129,13 @@ class IntroductionActivity : AppCompatActivity() {
         transitionSet.addTransition(fadeTransition).addTransition(boundTransition)
         TransitionManager.beginDelayedTransition(introductionBinding.introductionLayoutParent,transitionSet)
 
-        val imageHeight = introductionBinding.avatarIm.layoutParams.height
-        introductionBinding.avatarIm.layoutParams.height = imageHeight/2
-        introductionBinding.avatarIm.layoutParams.width = introductionBinding.avatarIm.layoutParams.height
+        if(!isAvatarAlreadyReduced)
+        {
+            isAvatarAlreadyReduced = true
+            val imageHeight = introductionBinding.avatarIm.layoutParams.height
+            introductionBinding.avatarIm.layoutParams.height = imageHeight/2
+            introductionBinding.avatarIm.layoutParams.width = introductionBinding.avatarIm.layoutParams.height
+        }
         introductionBinding.psychologicalAssessmentLayout?.setVisibility(VISIBLE)
         introductionBinding.financialAssessmentLayout.setVisibility(VISIBLE)
         introductionBinding.headingTv.setText(getString(R.string.introduction_assessment_title_1, user.firstName))

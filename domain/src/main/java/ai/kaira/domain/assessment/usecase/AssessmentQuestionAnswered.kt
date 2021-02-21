@@ -24,4 +24,12 @@ class AssessmentQuestionAnswered @Inject constructor(private val assessmentRepos
             return AssessmentAnswer(newAssessmentAnswer.id, newAssessmentAnswer.title, newAssessmentAnswer.value, duration, assessmentAnswerClick.time,true)
         }
     }
+
+    fun isQuestionAlreadyAnswered(assessmentId:Int,assessmentType:Int,questionId:Int):Int{
+        return assessmentRepository.isQuestionAlreadyAnswered(assessmentId,assessmentType,questionId)
+    }
+
+    fun saveSelectedAssessmentAnswer(assessmentId:Int,assessmentType:Int,questionId:Int,assessmentAnswerPosition:Int) {
+        assessmentRepository.saveSelectedAssessmentAnswer(assessmentId,assessmentType,questionId,assessmentAnswerPosition)
+    }
 }

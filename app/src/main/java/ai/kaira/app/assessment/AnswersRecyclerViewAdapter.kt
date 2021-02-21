@@ -30,7 +30,11 @@ class AnswersRecyclerViewAdapter(var answers : ArrayList<AssessmentAnswer>, var 
         holder.textView.text = answer.title
 
         if(answer.selected){
-            holder.textView.setBackgroundResource(R.drawable.kaira_third_filled_rectangle)
+            if(assessmentType == AssessmentType.PSYCHOLOGICAL) {
+                holder.textView.setBackgroundResource(R.drawable.kaira_third_filled_rectangle)
+            }else{
+                holder.textView.setBackgroundResource(R.drawable.kaira_fourth_filled_rectangle)
+            }
             holder.textView.setTextColor(Color.WHITE)
         }else{
             holder.textView.setBackgroundResource(R.drawable.kaira_accent_semi_filled_rectangle)

@@ -18,4 +18,12 @@ class AssessmentUseCase @Inject constructor(val fetchFinancialAssessmentUseCase:
     fun onAssessmentQuestionAnswered(screenVisibleTime: Double, assessmentAnswerClick: AssessmentAnswerClick, currentAssessmentAnswer: AssessmentAnswer?, newAssessmentAnswer: AssessmentAnswer):AssessmentAnswer{
         return assessmentQuestionAnsweredUseCase.onAssessmentQuestionAnswered(screenVisibleTime,assessmentAnswerClick, currentAssessmentAnswer,newAssessmentAnswer)
     }
+
+    fun saveSelectedAssessmentAnswer(assessmentId:Int,assessmentType:Int,questionId:Int,assessmentAnswerPosition:Int){
+        assessmentQuestionAnsweredUseCase.saveSelectedAssessmentAnswer(assessmentId,assessmentType,questionId,assessmentAnswerPosition)
+    }
+
+    fun isQuestionAlreadyAnswered(assessmentId:Int,assessmentType:Int,questionId:Int):Int{
+        return assessmentQuestionAnsweredUseCase.isQuestionAlreadyAnswered(assessmentId,assessmentType,questionId)
+    }
 }

@@ -11,4 +11,6 @@ interface AssessmentRepository {
     fun getFinancialAssessment(locale:String): MutableLiveData<Assessment>
     fun getPsychologicalAssessment(locale:String): MutableLiveData<Assessment>
     fun submitAssessmentAnswer(user: User, question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment): MutableLiveData<Result<Unit>>
+    fun isQuestionAlreadyAnswered(assessmentId:Int,assessmentType:Int,questionId:Int):Int
+    fun saveSelectedAssessmentAnswer(assessmentId:Int,assessmentType:Int,questionId:Int,assessmentAnswerPosition:Int)
 }

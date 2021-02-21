@@ -44,22 +44,10 @@ class AssessmentQuestionActivity : AppCompatActivity() {
         val languageLocale = LanguageConfig.getLanguageLocale(applicationContext)
         if(intent != null && intent.hasExtra(ASSESSMENT_TYPE)){
             assessmentType = intent.getSerializableExtra(ASSESSMENT_TYPE) as AssessmentType
-            when (assessmentType) {
-                AssessmentType.FINANCIAL -> {
-                    assessmentViewModel.fetchFinancialAssessment(languageLocale).observe(this,{
-                        setAssessmentQuestionsView(assessmentType)
-                        setAssessmentQuestionsData((it))
-                    })
-                }
-                AssessmentType.PSYCHOLOGICAL -> {
-                    assessmentViewModel.fetchPsychologicalAssessment(languageLocale).observe(this,{
-                        setAssessmentQuestionsView(assessmentType)
-                        setAssessmentQuestionsData((it))
-                    })
-                }
-                else -> {
-                    finish()
-                }
+
+            assessmentViewModel.fetchAssessments(assessmentType,languageLocale).observe(this){
+                setAssessmentQuestionsView(assessmentType)
+                setAssessmentQuestionsData((it))
             }
         }else{
             finish()

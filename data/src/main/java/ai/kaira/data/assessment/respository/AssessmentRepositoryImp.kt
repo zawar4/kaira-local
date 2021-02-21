@@ -39,4 +39,12 @@ class AssessmentRepositoryImp @Inject constructor(private val assessmentLocalDat
         return assessmentNetworkDataSource.submitAssessmentAnswer(assessmentAnswerRequestParam)
     }
 
+    override fun isQuestionAlreadyAnswered(assessmentId: Int, assessmentType: Int, questionId: Int): Int {
+        return assessmentLocalDataSource.isQuestionAlreadyAnswered(assessmentId,assessmentType,questionId)
+    }
+
+    override fun saveSelectedAssessmentAnswer(assessmentId: Int, assessmentType: Int, questionId: Int, assessmentAnswerPosition: Int) {
+        assessmentLocalDataSource.saveSelectedAssessmentAnswer(assessmentId,assessmentType,questionId,assessmentAnswerPosition)
+    }
+
 }

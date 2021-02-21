@@ -2,10 +2,7 @@ package ai.kaira.app.assessment
 
 import ai.kaira.app.application.BaseViewModel
 import ai.kaira.domain.ResultState
-import ai.kaira.domain.assessment.model.Assessment
-import ai.kaira.domain.assessment.model.AssessmentAnswer
-import ai.kaira.domain.assessment.model.AssessmentAnswerClick
-import ai.kaira.domain.assessment.model.AssessmentQuestion
+import ai.kaira.domain.assessment.model.*
 import ai.kaira.domain.assessment.usecase.AssessmentUseCase
 import ai.kaira.domain.assessment.usecase.FetchUserSubmitAssessmentAnswer
 import androidx.lifecycle.MediatorLiveData
@@ -29,13 +26,12 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase,priva
     private var questionNumber : MutableLiveData<String> = MutableLiveData()
     private var questionTitle : MutableLiveData<String> = MutableLiveData()
     private var enableSubmitButton : MutableLiveData<Boolean> = MutableLiveData()
-    private var questionsAttempted : HashSet<Int> = HashSet()
     var submitAssessmentAnswerLiveData = MediatorLiveData<Result<Unit>>()
 
     fun getFinancialAssessment(locale:String):MutableLiveData<Assessment>{
         return assessmentUseCase.fetchFinancialAssessment(locale)
     }
-    fun fetchFinancialAssessment(locale:String) : MediatorLiveData<Assessment>{
+    private fun fetchFinancialAssessment(locale:String) : MediatorLiveData<Assessment>{
         val financialAssessmentLivaDataSource = getFinancialAssessment(locale)
         financialAssessmentLiveData.addSource(financialAssessmentLivaDataSource){
             assessment = it
@@ -45,11 +41,22 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase,priva
         return financialAssessmentLiveData
     }
 
+    fun fetchAssessments(assessmentType:AssessmentType,languageLocale:String):MutableLiveData<Assessment> {
+        return when (assessmentType) {
+            AssessmentType.FINANCIAL -> {
+                fetchFinancialAssessment(languageLocale)
+            }
+            AssessmentType.PSYCHOLOGICAL -> {
+                fetchPsychologicalAssessment(languageLocale)
+            }
+        }
+    }
+
     fun getPsychologicalAssessment(locale:String):MutableLiveData<Assessment>{
         return assessmentUseCase.fetchPsychologicalAssessment(locale)
     }
 
-    fun fetchPsychologicalAssessment(locale:String) : MediatorLiveData<Assessment>{
+    private fun fetchPsychologicalAssessment(locale:String) : MediatorLiveData<Assessment>{
         val psychologicalAssessmentLivaDataSource = getPsychologicalAssessment(locale)
         psychologicalAssessmentLiveData.addSource(psychologicalAssessmentLivaDataSource){
             assessment = it
@@ -73,7 +80,7 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase,priva
     fun setQuestionAnswered(assessmentAnswerClick: AssessmentAnswerClick){
 
         val newAnswer :AssessmentAnswer = currentQuestion.answers[assessmentAnswerClick.position]
-        if(currentAnswerPosition > -1 && currentAnswer != null){
+        if(currentAnswerPosition > -1){
             currentQuestion.answers[currentAnswerPosition].selected = false
         }
         currentAnswer = assessmentUseCase.onAssessmentQuestionAnswered(screenVisibleTime?.toDouble()!!,assessmentAnswerClick, currentAnswer,newAnswer.clone())
@@ -81,6 +88,7 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase,priva
             currentAnswerPosition = assessmentAnswerClick.position
             it.selected = true
             currentQuestion.answers[currentAnswerPosition] = it
+            saveSelectedAnswer(assessment.id,assessment.type,currentQuestion.id,currentAnswerPosition)
             reloadCurrentQuestion()
             submitAssessmentAnswer()
         }
@@ -90,7 +98,6 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase,priva
         if(!isConnectedToInternet()){
             showConnectivityError()
         }else{
-            questionsAttempted.add(currentQuestionNumber)
             enableSubmitButton.value = true
             currentAnswer?.let{
                 val liveDataSource : MutableLiveData<ai.kaira.domain.Result<Unit>>  = fetchUserSubmitAssessmentAnswer(currentQuestion,it,assessment)
@@ -125,13 +132,14 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase,priva
             currentQuestion = assessment.questions[--currentQuestionNumber]
             questionNumber.value = "${currentQuestionNumber+1} / ${assessment.questions.size}"
             questionTitle.value = currentQuestion.title
+            populatePreselectedAnswers(assessment.id,assessment.type,currentQuestion.id)
             currentQuestionAnswers.value = currentQuestion.answers
-            enableSubmitButton.value = questionsAttempted.contains(currentQuestionNumber)
         }
 
     }
 
     private fun reloadCurrentQuestion(){
+        populatePreselectedAnswers(assessment.id,assessment.type,currentQuestion.id)
         currentQuestionAnswers.value = currentQuestion.answers
     }
 
@@ -142,11 +150,25 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase,priva
             currentQuestion = assessment.questions[++currentQuestionNumber]
             questionNumber.value = "${currentQuestionNumber+1} / ${assessment.questions.size}"
             questionTitle.value = currentQuestion.title
+            populatePreselectedAnswers(assessment.id,assessment.type,currentQuestion.id)
             currentQuestionAnswers.value = currentQuestion.answers
-            enableSubmitButton.value = questionsAttempted.contains(currentQuestionNumber)
-
         }else{
 
+        }
+
+    }
+
+    private fun saveSelectedAnswer(assessmentId:Int,assessmentType: Int,questionId:Int,assessmentAnswerPosition:Int){
+        assessmentUseCase.saveSelectedAssessmentAnswer(assessmentId,assessmentType,questionId,assessmentAnswerPosition)
+    }
+    private fun populatePreselectedAnswers(assessmentId:Int,assessmentType: Int,questionId:Int){
+        val assessmentAnswerPosition : Int = assessmentUseCase.isQuestionAlreadyAnswered(assessmentId,assessmentType,questionId);
+        if(assessmentAnswerPosition > -1){
+            currentAnswerPosition = assessmentAnswerPosition
+            currentQuestion.answers[assessmentAnswerPosition].selected = true
+            enableSubmitButton.value = true
+        }else{
+            enableSubmitButton.value = false
         }
 
     }
