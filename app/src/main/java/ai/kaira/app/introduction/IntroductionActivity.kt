@@ -40,16 +40,30 @@ class IntroductionActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if(introductionViewModel.isAssessmentCompleted(AssessmentType.PSYCHOLOGICAL.value) && !introductionViewModel.isAssessmentCompleted(AssessmentType.FINANCIAL.value)){
-            completePsychologicalAssessment()
-            introductionBinding.financialAssessmentLayout.isEnabled = true
-            introductionBinding.headingTv.text = getString(R.string.introduction_assessment_title_2)
-            introductionBinding.descriptionTv.text = getString(R.string.introduction_assessment_detail_2)
+        introductionViewModel.fetchUser().observe(this){
+            if(it != null){
+                if(introductionViewModel.isAssessmentCompleted(AssessmentType.PSYCHOLOGICAL.value) ||
+                        introductionViewModel.isAssessmentCompleted(AssessmentType.FINANCIAL.value)){
 
-            enableFinancialAssessment()
-        }
-        if(introductionViewModel.isAssessmentCompleted(AssessmentType.FINANCIAL.value)){
-            completeFinancialAssessment()
+                    hideIntroductionFields()
+                    displayAssessmentsFields(it)
+                    displayedAssessmentFields = true
+
+                    if(introductionViewModel.isAssessmentCompleted(AssessmentType.PSYCHOLOGICAL.value)){
+                        completePsychologicalAssessment()
+                        introductionBinding.financialAssessmentLayout.isEnabled = true
+                        introductionBinding.headingTv.text = getString(R.string.introduction_assessment_title_2)
+                        introductionBinding.descriptionTv.text = getString(R.string.introduction_assessment_detail_2)
+
+                        enableFinancialAssessment()
+                    }
+                    if(introductionViewModel.isAssessmentCompleted(AssessmentType.FINANCIAL.value)){
+                        completeFinancialAssessment()
+                    }
+
+                }
+            }
+            displayLayoutVisibleAnimation()
         }
 
     }
@@ -113,8 +127,6 @@ class IntroductionActivity : AppCompatActivity() {
             displayAssessmentsFields(it)
             displayedAssessmentFields = true
         })
-
-        displayLayoutVisibleAnimation()
     }
 
     private fun submit(){
@@ -153,8 +165,8 @@ class IntroductionActivity : AppCompatActivity() {
         }
         introductionBinding.psychologicalAssessmentLayout?.setVisibility(VISIBLE)
         introductionBinding.financialAssessmentLayout.setVisibility(VISIBLE)
-        introductionBinding.headingTv.setText(getString(R.string.introduction_assessment_title_1, user.firstName))
-        introductionBinding.descriptionTv.setText(getString(R.string.introduction_assessment_detail_1))
+        introductionBinding.headingTv.text = getString(R.string.introduction_assessment_title_1, user.firstName)
+        introductionBinding.descriptionTv.text = getString(R.string.introduction_assessment_detail_1)
         introductionBinding.financialAssessmentLayout.setBackgroundResource(R.drawable.light_gray_round_rectangle)
         introductionBinding.financialAssessmentNumTv?.setBackgroundResource(R.drawable.dark_gray_circle)
         introductionBinding.financialAssessmentNumTv?.setTextColor(ContextCompat.getColor(applicationContext,android.R.color.white))
@@ -207,6 +219,7 @@ class IntroductionActivity : AppCompatActivity() {
         if(displayedAssessmentFields){
             hideAssessmentsFields()
             displayIntroductionFields()
+            introductionViewModel.deleteUserOldAssessmentsAnswers()
             displayedAssessmentFields = false
         }else{
             super.onBackPressed();

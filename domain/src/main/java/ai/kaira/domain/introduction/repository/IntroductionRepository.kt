@@ -8,5 +8,6 @@ import androidx.lifecycle.MutableLiveData
 interface IntroductionRepository {
     fun createUser(firstName:String,languageLocale:String): MutableLiveData<Result<User>>
     fun saveUser(user: User)
-    fun getUser():User
+    fun fetchUser():User
+    fun fetchUserAsync(): MutableLiveData<User?>
 }

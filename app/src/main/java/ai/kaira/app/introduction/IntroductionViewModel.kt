@@ -48,4 +48,8 @@ class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase
         return introductionUsecase.isAssessmentCompleted(assessmentType)
     }
 
+    fun fetchUser():MutableLiveData<User?>{
+        return introductionUsecase.fetchUserAsync()
+    }
+
 }

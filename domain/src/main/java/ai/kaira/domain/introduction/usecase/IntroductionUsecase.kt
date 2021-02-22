@@ -25,6 +25,10 @@ class IntroductionUsecase @Inject constructor(val createUserUsecase: CreateUser,
         return fetchUserUsecase()
     }
 
+    fun fetchUserAsync() : MutableLiveData<User?>{
+        return fetchUserUsecase.fetchUserAsync()
+    }
+
     fun deleteUserOldAssessmentsAnswers(){
         assessmentQuestionAnswered.deleteUserOldAssessmentsAnswers()
     }

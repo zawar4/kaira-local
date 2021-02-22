@@ -20,8 +20,12 @@ class IntroductionRepositoryImp @Inject constructor(private val introductionNetw
         introductionLocalDataSource.insertUser(UserEntity(user.id,user.firstName,user.language,user.createdAt,user.verified,user.validGroupCode))
     }
 
-    override fun getUser(): User {
-        val userEntity : UserEntity = introductionLocalDataSource.getUser()
+    override fun fetchUser(): User {
+        val userEntity : UserEntity = introductionLocalDataSource.fetchUser()
         return User(userEntity.id,userEntity.firstName,userEntity.language,userEntity.createdAt,userEntity.verified,userEntity.validGroupCode)
+    }
+
+    override fun fetchUserAsync(): MutableLiveData<User?> {
+        return  introductionLocalDataSource.fetchUserAsync()
     }
 }
