@@ -73,10 +73,15 @@ class AssessmentQuestionActivity : AppCompatActivity() {
         activityAssessmentQuestionBinding.submitBtn.setOnClickListener {
             assessmentViewModel.loadNextQuestion()
         }
-        assessmentViewModel.setQuestionAnswers().observe(this){
+        assessmentViewModel.setNextQuestionAnswers().observe(this){
             answersAdapter.addAnswers(ArrayList(it))
             answersAdapter.notifyDataSetChanged()
             activityAssessmentQuestionBinding.scrollView.scrollTo(0,0)
+        }
+
+        assessmentViewModel.setCurrentQuestionAnswers().observe(this){
+            answersAdapter.addAnswers(ArrayList(it))
+            answersAdapter.notifyDataSetChanged()
         }
         assessmentViewModel.setQuestionTitle().observe(this){
             activityAssessmentQuestionBinding.assessmentQuestionDescriptionTv.text = it

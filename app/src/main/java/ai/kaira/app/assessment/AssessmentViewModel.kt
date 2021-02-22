@@ -22,6 +22,7 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
     private var financialAssessmentLiveData : MediatorLiveData<Assessment> = MediatorLiveData()
     private var psychologicalAssessmentLiveData : MediatorLiveData<Assessment> = MediatorLiveData()
     private var currentQuestionAnswers : MutableLiveData<List<AssessmentAnswer>> = MutableLiveData()
+    private var nextQuestionAnswers : MutableLiveData<List<AssessmentAnswer>> = MutableLiveData()
     private var questionNumber : MutableLiveData<String> = MutableLiveData()
     private var questionTitle : MutableLiveData<String> = MutableLiveData()
     private var enableSubmitButton : MutableLiveData<Boolean> = MutableLiveData()
@@ -72,7 +73,11 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
     fun setQuestionTitle(): MutableLiveData<String>{
         return questionTitle
     }
-    fun setQuestionAnswers():MutableLiveData<List<AssessmentAnswer>>{
+    fun setNextQuestionAnswers():MutableLiveData<List<AssessmentAnswer>>{
+        return nextQuestionAnswers
+    }
+
+    fun setCurrentQuestionAnswers():MutableLiveData<List<AssessmentAnswer>>{
         return currentQuestionAnswers
     }
 
@@ -138,11 +143,12 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
         {
             screenVisibleTime = Calendar.getInstance().timeInMillis
             currentAnswer = null
+            currentAnswerPosition = -1
             currentQuestion = assessment.questions[--currentQuestionNumber]
             questionNumber.value = "${currentQuestionNumber+1} / ${assessment.questions.size}"
             questionTitle.value = currentQuestion.title
             populatePreselectedAnswers(assessment.id,assessment.type,currentQuestion.id)
-            currentQuestionAnswers.value = currentQuestion.answers
+            nextQuestionAnswers.value = currentQuestion.answers
         }
 
     }
@@ -156,11 +162,12 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
         if(!isLastQuestion()){
             screenVisibleTime = Calendar.getInstance().timeInMillis
             currentAnswer = null
+            currentAnswerPosition = -1
             currentQuestion = assessment.questions[++currentQuestionNumber]
             questionNumber.value = "${currentQuestionNumber+1} / ${assessment.questions.size}"
             questionTitle.value = currentQuestion.title
             populatePreselectedAnswers(assessment.id,assessment.type,currentQuestion.id)
-            currentQuestionAnswers.value = currentQuestion.answers
+            nextQuestionAnswers.value = currentQuestion.answers
         }else{
             markAssessmentAsComplete(assessment.type)
             finishActivity()
