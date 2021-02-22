@@ -1,8 +1,10 @@
 package ai.kaira.app.utils
 
 import android.content.Context
+import java.net.HttpURLConnection
 import java.net.InetSocketAddress
 import java.net.Socket
+import java.net.URL
 
 class Extensions {
 
@@ -14,11 +16,9 @@ class Extensions {
 
         fun isConnectedToInternet(): Boolean {
             return try {
-                val socket = Socket()
-                val socketAddress = InetSocketAddress("8.8.8.8", 53)
-                socket.connect(socketAddress, 2000)
-                socket.close()
-                true
+                val connection: HttpURLConnection = URL("https://clients3.google.com/generate_204")
+                        .openConnection() as HttpURLConnection
+                connection.responseCode == 204 && connection.contentLength == 0
             } catch (e: Exception) {
                 false
             }

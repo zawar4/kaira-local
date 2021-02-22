@@ -16,8 +16,7 @@ import android.os.Bundle
 import android.os.StrictMode
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View.INVISIBLE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -33,8 +32,8 @@ class IntroductionActivity : AppCompatActivity() {
 
     lateinit var introductionBinding: ActivityIntroductionBinding
     lateinit var introductionViewModel: IntroductionViewModel
-    var displayedAssessmentFields : Boolean = false
-    var isAvatarAlreadyReduced : Boolean = false
+
+
     @Inject
     lateinit var viewModelFactory : ViewModelFactory
 
@@ -45,16 +44,17 @@ class IntroductionActivity : AppCompatActivity() {
                 if(introductionViewModel.isAssessmentCompleted(AssessmentType.PSYCHOLOGICAL.value) ||
                         introductionViewModel.isAssessmentCompleted(AssessmentType.FINANCIAL.value)){
 
-                    hideIntroductionFields()
-                    displayAssessmentsFields(it)
-                    displayedAssessmentFields = true
 
+                    introductionViewModel.displayIntroductionFields(false)
+                    if(!introductionViewModel.isAvatarHeightReduced()){
+                        introductionViewModel.reduceAvatarHeight(true)
+                    }
+                    introductionViewModel.displayAssessmentFields(true,it)
                     if(introductionViewModel.isAssessmentCompleted(AssessmentType.PSYCHOLOGICAL.value)){
                         completePsychologicalAssessment()
                         introductionBinding.financialAssessmentLayout.isEnabled = true
                         introductionBinding.headingTv.text = getString(R.string.introduction_assessment_title_2)
                         introductionBinding.descriptionTv.text = getString(R.string.introduction_assessment_detail_2)
-
                         enableFinancialAssessment()
                     }
                     if(introductionViewModel.isAssessmentCompleted(AssessmentType.FINANCIAL.value)){
@@ -75,15 +75,15 @@ class IntroductionActivity : AppCompatActivity() {
         StrictMode.setThreadPolicy(policy)
 
         introductionViewModel = ViewModelProvider(this, viewModelFactory).get(IntroductionViewModel::class.java)
-        introductionBinding?.firstNameEt?.addTextChangedListener(object : TextWatcher {
+        introductionBinding.firstNameEt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (introductionBinding?.firstNameEt?.text.isNotEmpty() && introductionBinding?.submitButton?.visibility == INVISIBLE) {
-                    introductionBinding?.submitButton?.visibility = VISIBLE
-                } else if (introductionBinding?.firstNameEt?.text.isEmpty() && introductionBinding?.submitButton?.visibility == VISIBLE) {
-                    introductionBinding?.submitButton?.visibility = INVISIBLE
+                if (introductionBinding.firstNameEt.text.isNotEmpty() && introductionBinding.submitButton.visibility == INVISIBLE) {
+                    introductionBinding.submitButton.visibility = VISIBLE
+                } else if (introductionBinding.firstNameEt.text.isEmpty() && introductionBinding.submitButton.visibility == VISIBLE) {
+                    introductionBinding.submitButton.visibility = INVISIBLE
                 }
             }
 
@@ -123,19 +123,44 @@ class IntroductionActivity : AppCompatActivity() {
         }
 
         introductionViewModel.onCreateUser().observe(this,{
-            hideIntroductionFields()
-            displayAssessmentsFields(it)
-            displayedAssessmentFields = true
+            if(!introductionViewModel.isAvatarHeightReduced()){
+                introductionViewModel.reduceAvatarHeight(true)
+            }
+            introductionViewModel.displayIntroductionFields(false)
+            introductionViewModel.displayAssessmentFields(true,it)
+
         })
+
+        introductionViewModel.onDisplayAssessmentFields().observe(this){
+            displayAssessmentsFields(it)
+        }
+
+        introductionViewModel.onHideAssessmentFields().observe(this){
+            hideAssessmentsFields()
+        }
+
+        introductionViewModel.onDisplayIntroductionFields().observe(this){
+            if(it == true){
+                displayIntroductionFields()
+            }else{
+                hideIntroductionFields()
+            }
+        }
+
+        introductionViewModel.onAvatarHeightChange().observe(this){
+            onAvatarHeightChange(it)
+        }
     }
 
     private fun submit(){
-        isAvatarAlreadyReduced = false
         val firstName: String = introductionBinding.firstNameEt.text.toString()
         val languageLocale: String = getLanguageLocale(applicationContext)
         if(isConnectedToInternet()){
-            introductionViewModel.createUser(firstName, languageLocale)
-            introductionViewModel.deleteUserOldAssessmentsAnswers()
+            if(firstName.isNotBlank()){
+                introductionViewModel.createUser(firstName, languageLocale)
+                introductionViewModel.deleteUserOldAssessmentsAnswers()
+            }
+
         }else{
             networkConnectivityAlert(this)
         }
@@ -156,42 +181,56 @@ class IntroductionActivity : AppCompatActivity() {
         transitionSet.addTransition(fadeTransition).addTransition(boundTransition)
         TransitionManager.beginDelayedTransition(introductionBinding.introductionLayoutParent,transitionSet)
 
-        if(!isAvatarAlreadyReduced)
-        {
-            isAvatarAlreadyReduced = true
-            val imageHeight = introductionBinding.avatarIm.layoutParams.height
-            introductionBinding.avatarIm.layoutParams.height = imageHeight/2
-            introductionBinding.avatarIm.layoutParams.width = introductionBinding.avatarIm.layoutParams.height
-        }
-        introductionBinding.psychologicalAssessmentLayout?.setVisibility(VISIBLE)
-        introductionBinding.financialAssessmentLayout.setVisibility(VISIBLE)
-        introductionBinding.headingTv.text = getString(R.string.introduction_assessment_title_1, user.firstName)
-        introductionBinding.descriptionTv.text = getString(R.string.introduction_assessment_detail_1)
+
+        introductionBinding.psychologicalAssessmentLayout?.visibility = VISIBLE
+        introductionBinding.financialAssessmentLayout.visibility = VISIBLE
+
         introductionBinding.financialAssessmentLayout.setBackgroundResource(R.drawable.light_gray_round_rectangle)
         introductionBinding.financialAssessmentNumTv?.setBackgroundResource(R.drawable.dark_gray_circle)
         introductionBinding.financialAssessmentNumTv?.setTextColor(ContextCompat.getColor(applicationContext,android.R.color.white))
         introductionBinding.financialAssessmentNumTv?.setText(R.string._2)
         introductionBinding.financialAssessmentTv?.setTextColor(ContextCompat.getColor(applicationContext,R.color.medium_gray))
-        introductionBinding.financialAssessmentLayout?.isEnabled = false
+        introductionBinding.financialAssessmentLayout.isEnabled = false
         introductionBinding.psychologicalAssessmentNumTv?.setText(R.string._1)
+
+        introductionBinding.headingTv.text = getString(R.string.introduction_assessment_title_1, user.firstName)
+        introductionBinding.descriptionTv.text = getString(R.string.introduction_assessment_detail_1)
+
 
     }
 
-
-
-    private fun displayIntroductionFields(){
-
+    private fun onAvatarHeightChange(reduce:Boolean){
         val fadeTransition : Transition = Fade()
         val boundTransition : Transition = ChangeBounds()
         fadeTransition.duration = 2000
         val transitionSet = TransitionSet()
         transitionSet.addTransition(fadeTransition).addTransition(boundTransition)
         TransitionManager.beginDelayedTransition(introductionBinding.introductionLayoutParent,transitionSet)
-        val imageHeight = introductionBinding.avatarIm.layoutParams.height
-        introductionBinding.avatarIm.layoutParams.height = imageHeight * 2
-        introductionBinding.avatarIm.layoutParams.width = introductionBinding.avatarIm.layoutParams.height
+        if(reduce){
+            val imageHeight = introductionBinding.avatarIm.layoutParams.height
+            introductionBinding.avatarIm.layoutParams.height = imageHeight/2
+            introductionBinding.avatarIm.layoutParams.width = introductionBinding.avatarIm.layoutParams.height
+        }else{
+            val imageHeight = introductionBinding.avatarIm.layoutParams.height
+            introductionBinding.avatarIm.layoutParams.height = imageHeight * 2
+            introductionBinding.avatarIm.layoutParams.width = introductionBinding.avatarIm.layoutParams.height
+        }
+
+    }
+
+    private fun displayIntroductionFields(){
+        val fadeTransition : Transition = Fade()
+        val boundTransition : Transition = ChangeBounds()
+        fadeTransition.duration = 2000
+        val transitionSet = TransitionSet()
+        transitionSet.addTransition(fadeTransition).addTransition(boundTransition)
+        TransitionManager.beginDelayedTransition(introductionBinding.introductionLayoutParent,transitionSet)
         introductionBinding.firstNameEt.visibility = VISIBLE
-        introductionBinding.submitButton.visibility = VISIBLE
+        if(introductionBinding.firstNameEt.text.toString().isNotBlank()){
+            introductionBinding.submitButton.visibility = VISIBLE
+        }else{
+            introductionBinding.submitButton.visibility = INVISIBLE
+        }
         introductionBinding.headingTv.setText(R.string.introduction_welcome_title)
         introductionBinding.descriptionTv.setText(R.string.introduction_welcome_description)
     }
@@ -216,11 +255,13 @@ class IntroductionActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if(displayedAssessmentFields){
-            hideAssessmentsFields()
-            displayIntroductionFields()
+        if(introductionViewModel.isAssessmentFieldsDisplayed()){
+            introductionViewModel.displayAssessmentFields(false)
+            introductionViewModel.displayIntroductionFields(true)
             introductionViewModel.deleteUserOldAssessmentsAnswers()
-            displayedAssessmentFields = false
+            if(introductionViewModel.isAvatarHeightReduced())
+                introductionViewModel.reduceAvatarHeight(false)
+            hideAssessmentsFields()
         }else{
             super.onBackPressed();
         }
