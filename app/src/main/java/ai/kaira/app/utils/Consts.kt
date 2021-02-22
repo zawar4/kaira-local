@@ -1,4 +1,4 @@
-package ai.kaira.app.utils.di
+package ai.kaira.app.utils
 
 class Consts {
     companion object {

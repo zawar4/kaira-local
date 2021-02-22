@@ -20,20 +20,19 @@ import kotlin.reflect.KProperty
 
 class FetchUserSubmitAssessmentAnswer @Inject constructor(val fetchUser: FetchUser, private val submitAssessmentAnswer: SubmitAssessmentAnswer,private val viewModelCoroutineScope: CoroutineScope) : BaseUseCase(viewModelCoroutineScope) {
 
-    operator fun invoke(question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment):MutableLiveData<Result<Unit>>{
+    operator fun invoke(question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment):MediatorLiveData<Result<Unit>>{
         return fetchUserSubmitAssessmentAnswer(question,answer,assessment)
     }
-    private fun fetchUserSubmitAssessmentAnswer(question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment):MutableLiveData<Result<Unit>>{
-        val submitAssessmentAnswerLiveData = MutableLiveData<Result<Unit>>()
+    private fun fetchUserSubmitAssessmentAnswer(question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment):MediatorLiveData<Result<Unit>>{
+        val submitAssessmentAnswerLiveData = MediatorLiveData<Result<Unit>>()
         viewModelCoroutineScope.launch(IO) {
             val user : User = fetchUser()
             withContext(Main){
                 user.let {
-                    val liveData = submitAssessmentAnswer(it,question,answer,assessment)
-                    val mediator = MediatorLiveData<Result<Unit>>()
-                    mediator.addSource(liveData){
-                        submitAssessmentAnswerLiveData.value = it
-                        mediator.removeSource(liveData)
+                    val liveDataSource = submitAssessmentAnswer(it,question,answer,assessment)
+                    submitAssessmentAnswerLiveData.addSource(liveDataSource){ it2 ->
+                        submitAssessmentAnswerLiveData.value = it2
+                        submitAssessmentAnswerLiveData.removeSource(liveDataSource)
                     }
                 }
             }

@@ -4,7 +4,7 @@ import ai.kaira.app.R
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityAssessmentBinding
 import ai.kaira.app.utils.LanguageConfig
-import ai.kaira.app.utils.di.Consts.Companion.ASSESSMENT_TYPE
+import ai.kaira.app.utils.Consts.Companion.ASSESSMENT_TYPE
 import ai.kaira.domain.assessment.model.Assessment
 import ai.kaira.domain.assessment.model.AssessmentType
 import android.content.Intent

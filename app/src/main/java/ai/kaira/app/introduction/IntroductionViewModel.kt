@@ -2,6 +2,7 @@ package ai.kaira.app.introduction
 
 
 import ai.kaira.app.application.BaseViewModel
+import ai.kaira.app.utils.Extensions.Companion.isConnectedToInternet
 import ai.kaira.domain.Result
 import ai.kaira.domain.ResultState
 import ai.kaira.domain.assessment.model.AssessmentType

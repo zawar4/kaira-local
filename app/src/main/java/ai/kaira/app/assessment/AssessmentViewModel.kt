@@ -1,14 +1,13 @@
 package ai.kaira.app.assessment
 
 import ai.kaira.app.application.BaseViewModel
+import ai.kaira.app.utils.Extensions.Companion.isConnectedToInternet
 import ai.kaira.domain.ResultState
 import ai.kaira.domain.assessment.model.*
 import ai.kaira.domain.assessment.usecase.AssessmentUseCase
-import ai.kaira.domain.assessment.usecase.FetchUserSubmitAssessmentAnswer
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import java.util.*
-import kotlin.collections.HashSet
 
 class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : BaseViewModel() {
 
@@ -26,7 +25,7 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
     private var questionNumber : MutableLiveData<String> = MutableLiveData()
     private var questionTitle : MutableLiveData<String> = MutableLiveData()
     private var enableSubmitButton : MutableLiveData<Boolean> = MutableLiveData()
-    var submitAssessmentAnswerLiveData = MediatorLiveData<Result<Unit>>()
+    var submitAssessmentAnswerLiveData = MediatorLiveData<String>()
 
     fun getFinancialAssessment(locale:String):MutableLiveData<Assessment>{
         return assessmentUseCase.fetchFinancialAssessment(locale)
@@ -79,19 +78,29 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
 
     fun setQuestionAnswered(assessmentAnswerClick: AssessmentAnswerClick){
 
-        val newAnswer :AssessmentAnswer = currentQuestion.answers[assessmentAnswerClick.position]
-        if(currentAnswerPosition > -1){
-            currentQuestion.answers[currentAnswerPosition].selected = false
+        if(!isConnectedToInternet()){
+            showConnectivityError()
+            rollBackAssessmentAnswerClick()
+        }else{
+            val newAnswer :AssessmentAnswer = currentQuestion.answers[assessmentAnswerClick.position]
+            if(currentAnswerPosition > -1){
+                currentQuestion.answers[currentAnswerPosition].selected = false
+            }
+            currentAnswer = assessmentUseCase.onAssessmentQuestionAnswered(screenVisibleTime?.toDouble()!!,assessmentAnswerClick, currentAnswer,newAnswer.clone())
+            currentAnswer?.let {
+                currentAnswerPosition = assessmentAnswerClick.position
+                it.selected = true
+                currentQuestion.answers[currentAnswerPosition] = it
+                saveSelectedAnswer(assessment.id,assessment.type,currentQuestion.id,currentAnswerPosition)
+                reloadCurrentQuestion()
+                submitAssessmentAnswer()
+            }
         }
-        currentAnswer = assessmentUseCase.onAssessmentQuestionAnswered(screenVisibleTime?.toDouble()!!,assessmentAnswerClick, currentAnswer,newAnswer.clone())
-        currentAnswer?.let {
-            currentAnswerPosition = assessmentAnswerClick.position
-            it.selected = true
-            currentQuestion.answers[currentAnswerPosition] = it
-            saveSelectedAnswer(assessment.id,assessment.type,currentQuestion.id,currentAnswerPosition)
-            reloadCurrentQuestion()
-            submitAssessmentAnswer()
-        }
+
+    }
+
+    private fun rollBackAssessmentAnswerClick(){
+        reloadCurrentQuestion()
     }
 
     private fun submitAssessmentAnswer(){
@@ -100,9 +109,9 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
         }else{
             enableSubmitButton.value = true
             currentAnswer?.let{
-                val liveDataSource : MutableLiveData<ai.kaira.domain.Result<Unit>>  = assessmentUseCase.fetchUserSubmitAssessmentAnswer(currentQuestion,it,assessment)
-                submitAssessmentAnswerLiveData.addSource(liveDataSource) {
-                    val result: ai.kaira.domain.Result<Unit>? = it
+                val liveDataSource : MediatorLiveData<ai.kaira.domain.Result<Unit>>  = assessmentUseCase.fetchUserSubmitAssessmentAnswer(currentQuestion,it,assessment)
+                submitAssessmentAnswerLiveData.addSource(liveDataSource) { it2 ->
+                    val result: ai.kaira.domain.Result<Unit>? = it2
                     when(result?.resultState){
                         ResultState.SUCCESS -> {
                             // Do nothing
@@ -177,6 +186,9 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
 
     }
 
+    fun onSubmitAnswer(): MediatorLiveData<String>{
+        return submitAssessmentAnswerLiveData
+    }
     fun setSubmitButton(): MutableLiveData<Boolean>{
         return enableSubmitButton
     }

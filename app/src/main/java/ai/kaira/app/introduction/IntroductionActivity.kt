@@ -7,7 +7,8 @@ import ai.kaira.app.databinding.ActivityIntroductionBinding
 import ai.kaira.app.utils.LanguageConfig.Companion.getLanguageLocale
 import ai.kaira.app.utils.UIUtils.Companion.networkCallAlert
 import ai.kaira.app.utils.UIUtils.Companion.networkConnectivityAlert
-import ai.kaira.app.utils.di.Consts.Companion.ASSESSMENT_TYPE
+import ai.kaira.app.utils.Consts.Companion.ASSESSMENT_TYPE
+import ai.kaira.app.utils.Extensions.Companion.isConnectedToInternet
 import ai.kaira.domain.assessment.model.AssessmentType
 import ai.kaira.domain.introduction.model.User
 import android.content.Intent
@@ -120,7 +121,7 @@ class IntroductionActivity : AppCompatActivity() {
         isAvatarAlreadyReduced = false
         val firstName: String = introductionBinding.firstNameEt.text.toString()
         val languageLocale: String = getLanguageLocale(applicationContext)
-        if(introductionViewModel.isConnectedToInternet()){
+        if(isConnectedToInternet()){
             introductionViewModel.createUser(firstName, languageLocale)
             introductionViewModel.deleteUserOldAssessmentsAnswers()
         }else{

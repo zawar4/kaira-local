@@ -5,22 +5,17 @@ import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityAssessmentQuestionBinding
 import ai.kaira.app.utils.LanguageConfig
 import ai.kaira.app.utils.UIUtils
-import ai.kaira.app.utils.di.Consts.Companion.ASSESSMENT_TYPE
-import ai.kaira.data.assessment.di.AssessmentModule
+import ai.kaira.app.utils.Consts.Companion.ASSESSMENT_TYPE
 import ai.kaira.domain.assessment.model.Assessment
-import ai.kaira.domain.assessment.model.AssessmentAnswer
 import ai.kaira.domain.assessment.model.AssessmentAnswerClick
 import ai.kaira.domain.assessment.model.AssessmentType
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.StrictMode
-import android.widget.LinearLayout.VERTICAL
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -122,6 +117,10 @@ class AssessmentQuestionActivity : AppCompatActivity() {
 
         activityAssessmentQuestionBinding.closeBtn.setOnClickListener {
             finish()
+        }
+
+        assessmentViewModel.onSubmitAnswer().observe(this){
+
         }
 
     }

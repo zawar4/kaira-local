@@ -1,6 +1,7 @@
 package ai.kaira.app.assessment
 
 import ai.kaira.app.R
+import ai.kaira.app.utils.Extensions.Companion.isConnectedToInternet
 import ai.kaira.domain.assessment.model.AssessmentAnswer
 import ai.kaira.domain.assessment.model.AssessmentAnswerClick
 import ai.kaira.domain.assessment.model.AssessmentType

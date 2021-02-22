@@ -19,17 +19,6 @@ open class BaseViewModel @Inject constructor() : ViewModel() {
     private val connectivityError : MutableLiveData<Boolean> = MutableLiveData()
     private val viewModelCoroutineScope : CoroutineScope = viewModelScope
 
-    fun isConnectedToInternet(): Boolean {
-        return try {
-            val socket = Socket()
-            val socketAddress = InetSocketAddress("8.8.8.8", 53)
-            socket.connect(socketAddress, 2000)
-            socket.close()
-            true
-        } catch (e: Exception) {
-            false
-        }
-    }
 
     fun onLoad() : LiveData<Boolean>{
         return loadLiveData
