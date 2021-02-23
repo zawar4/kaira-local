@@ -117,13 +117,15 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
                 val liveDataSource : MediatorLiveData<ai.kaira.domain.Result<Unit>>  = assessmentUseCase.fetchUserSubmitAssessmentAnswer(currentQuestion,it,assessment)
                 submitAssessmentAnswerLiveData.addSource(liveDataSource) { it2 ->
                     val result: ai.kaira.domain.Result<Unit>? = it2
-                    when(result?.resultState){
+                    when(result?.status){
                         ResultState.SUCCESS -> {
                             // Do nothing
                             submitAssessmentAnswerLiveData.removeSource(liveDataSource)
                         }
                         ResultState.ERROR ->{
-                            showError(result.error)
+                            result.message?.let {it ->
+                                showError(it)
+                            }
                             submitAssessmentAnswerLiveData.removeSource(liveDataSource)
                         }
                         else ->  submitAssessmentAnswerLiveData.removeSource(liveDataSource)

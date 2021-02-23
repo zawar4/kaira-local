@@ -24,11 +24,11 @@ class IntroductionNetworkDataSourceImp @Inject constructor(private val restApiRo
                 if (response.isSuccessful) {
                     val userResponse: UserResponse? = response.body()
                     userResponse?.let {
-                        createUserLiveData.value = Result(it.maptoUser(), resultState = ResultState.SUCCESS)
+                        createUserLiveData.value = Result.success(it.maptoUser())
                     }
                 } else {
                     val error : String? = response.errorBody()?.string()
-                    createUserLiveData.value = error?.let { it1 -> Result(error = it1, resultState = ResultState.ERROR, data = User()) }
+                    createUserLiveData.value = error?.let { it1 -> Result.error(message = it1)}
                 }
             }
         }

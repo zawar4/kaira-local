@@ -4,12 +4,10 @@ import ai.kaira.data.assessment.datasource.database.AssessmentLocalDataSource
 import ai.kaira.data.assessment.datasource.network.AssessmentNetworkDataSource
 import ai.kaira.data.assessment.model.AssessmentAnswerRequestParam
 import ai.kaira.domain.Result
-import ai.kaira.domain.assessment.model.Assessment
-import ai.kaira.domain.assessment.model.AssessmentAnswer
-import ai.kaira.domain.assessment.model.AssessmentQuestion
 import ai.kaira.domain.assessment.respository.AssessmentRepository
 import ai.kaira.domain.introduction.model.User
 import ai.kaira.data.utils.UtilityFunctions
+import ai.kaira.domain.assessment.model.*
 import androidx.lifecycle.MutableLiveData
 import javax.inject.Inject
 
@@ -57,6 +55,13 @@ class AssessmentRepositoryImp @Inject constructor(private val assessmentLocalDat
 
     override fun isAssessmentCompleted(assessmentType: Int): Boolean {
         return assessmentLocalDataSource.isAssessmentCompleted(assessmentType)
+    }
+
+    override fun fetchFinancialAssessmentProfile(assessmentType: Int,userId:String) : MutableLiveData<Result<FinancialProfileResponse>>{
+        return assessmentNetworkDataSource.fetchFinancialAssessmentProfile(assessmentType,userId)
+    }
+    override fun fetchPsychologicalAssessmentProfile(assessmentType: Int,userId:String) : MutableLiveData<Result<PsychologicalProfileResponse>>{
+        return assessmentNetworkDataSource.fetchPsychologicalAssessmentProfile(assessmentType,userId)
     }
 
 }

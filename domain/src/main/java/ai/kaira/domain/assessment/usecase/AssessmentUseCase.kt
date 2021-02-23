@@ -8,9 +8,11 @@ import javax.inject.Inject
 
 class AssessmentUseCase @Inject constructor(val fetchFinancialAssessmentUseCase: FetchFinancialAssessment,
                                             val fetchPsychologicalAssessmentUseCase: FetchPsychologicalAssessment,
-                                             val assessmentQuestionAnsweredUseCase: AssessmentQuestionAnswered,
-                                             val completeAssessment: CompleteAssessment,
-                                             val fetchUserSubmitAssessmentAnswer: FetchUserSubmitAssessmentAnswer) {
+                                            private val assessmentQuestionAnsweredUseCase: AssessmentQuestionAnswered,
+                                            val completeAssessment: CompleteAssessment,
+                                            val fetchUserSubmitAssessmentAnswer: FetchUserSubmitAssessmentAnswer,
+                                            val fetchFinancialAssessmentProfileUseCase: FetchFinancialAssessmentProfile,
+                                            val fetchPsychologicalAssessmentProfileUseCase: FetchPsychologicalAssessmentProfile) {
     fun fetchFinancialAssessment(locale:String): MutableLiveData<Assessment>{
         return fetchFinancialAssessmentUseCase(locale)
     }

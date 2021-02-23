@@ -82,15 +82,21 @@ class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase
             var createUserLiveData = introductionUsecase.createUser(firstName, languageLocale)
             userResultLiveData.addSource(createUserLiveData) { t ->
                 val result: Result<User>? = t
-                when (result?.resultState) {
+                when (result?.status) {
                     ResultState.SUCCESS -> {
-                        user = result.data
-                        userResultLiveData.value = result.data
-                        introductionUsecase.saveUser(result.data)
-                        userResultLiveData.removeSource(createUserLiveData)
+                        result.data?.let { it ->
+                            user = it
+                            userResultLiveData.value = result.data
+                            introductionUsecase.saveUser(it)
+                            userResultLiveData.removeSource(createUserLiveData)
+                        }
+
                     }
                     ResultState.ERROR -> {
-                        showError(result.error)
+                        result.message?.let{it->
+                            showError(it)
+                        }
+
                         userResultLiveData.removeSource(createUserLiveData)
                     }
                 }
