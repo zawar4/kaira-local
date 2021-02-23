@@ -176,7 +176,7 @@ class IntroductionActivity : AppCompatActivity() {
 
         val fadeTransition : Transition = Fade()
         val boundTransition : Transition = ChangeBounds()
-        fadeTransition.duration = 2000
+        fadeTransition.duration = 500
         val transitionSet = TransitionSet()
         transitionSet.addTransition(fadeTransition).addTransition(boundTransition)
         TransitionManager.beginDelayedTransition(introductionBinding.introductionLayoutParent,transitionSet)
@@ -202,7 +202,7 @@ class IntroductionActivity : AppCompatActivity() {
     private fun onAvatarHeightChange(reduce:Boolean){
         val fadeTransition : Transition = Fade()
         val boundTransition : Transition = ChangeBounds()
-        fadeTransition.duration = 2000
+        fadeTransition.duration = 1000
         val transitionSet = TransitionSet()
         transitionSet.addTransition(fadeTransition).addTransition(boundTransition)
         TransitionManager.beginDelayedTransition(introductionBinding.introductionLayoutParent,transitionSet)
@@ -221,7 +221,7 @@ class IntroductionActivity : AppCompatActivity() {
     private fun displayIntroductionFields(){
         val fadeTransition : Transition = Fade()
         val boundTransition : Transition = ChangeBounds()
-        fadeTransition.duration = 2000
+        fadeTransition.duration = 500
         val transitionSet = TransitionSet()
         transitionSet.addTransition(fadeTransition).addTransition(boundTransition)
         TransitionManager.beginDelayedTransition(introductionBinding.introductionLayoutParent,transitionSet)

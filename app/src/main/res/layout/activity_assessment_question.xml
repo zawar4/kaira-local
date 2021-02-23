@@ -14,8 +14,8 @@
 
             <ImageView
                 android:id="@+id/back_btn"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_back_button" />
@@ -24,7 +24,7 @@
                 android:id="@+id/question_num_tv"
                 android:layout_width="70dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:background="@drawable/kaira_third_filled_rectangle"
                 app:layout_constraintStart_toStartOf="parent"
@@ -89,8 +89,8 @@
 
             <ImageView
                 android:id="@+id/close_btn"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:srcCompat="@drawable/ic_close_button" />
         </androidx.constraintlayout.widget.ConstraintLayout>
