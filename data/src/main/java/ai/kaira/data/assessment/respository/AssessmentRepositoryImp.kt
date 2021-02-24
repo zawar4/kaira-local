@@ -27,7 +27,7 @@ class AssessmentRepositoryImp @Inject constructor(private val assessmentLocalDat
         var assessmentAnswerRequestParam = AssessmentAnswerRequestParam(user.id,
                 assessment.id,
                 assessment.version,
-                assessment.type,
+                assessment.type.value,
                 question.id,
                 question.type,
                 answer.id,
@@ -57,11 +57,13 @@ class AssessmentRepositoryImp @Inject constructor(private val assessmentLocalDat
         return assessmentLocalDataSource.isAssessmentCompleted(assessmentType)
     }
 
-    override fun fetchFinancialAssessmentProfile(assessmentType: Int,userId:String) : MutableLiveData<Result<FinancialProfileResponse>>{
-        return assessmentNetworkDataSource.fetchFinancialAssessmentProfile(assessmentType,userId)
+    override fun computeFinancialAssessmentProfile(assessmentType: Int, userId: String): MutableLiveData<Result<FinancialProfileResponse>> {
+        return assessmentNetworkDataSource.computeFinancialAssessmentProfile(assessmentType,userId)
     }
-    override fun fetchPsychologicalAssessmentProfile(assessmentType: Int,userId:String) : MutableLiveData<Result<PsychologicalProfileResponse>>{
-        return assessmentNetworkDataSource.fetchPsychologicalAssessmentProfile(assessmentType,userId)
+
+    override fun computePsychologicalAssessmentProfile(assessmentType: Int, userId: String): MutableLiveData<Result<PsychologicalProfileResponse>> {
+        return assessmentNetworkDataSource.computePsychologicalAssessmentProfile(assessmentType,userId)
     }
+
 
 }

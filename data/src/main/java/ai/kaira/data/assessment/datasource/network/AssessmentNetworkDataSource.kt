@@ -9,6 +9,6 @@ import androidx.lifecycle.MutableLiveData
 interface AssessmentNetworkDataSource {
 
     fun submitAssessmentAnswer(AssessmentAnswerRequestParam: AssessmentAnswerRequestParam): MutableLiveData<Result<Unit>>
-    fun fetchFinancialAssessmentProfile(assessmentType: Int,userId:String) : MutableLiveData<Result<FinancialProfileResponse>>
-    fun fetchPsychologicalAssessmentProfile(assessmentType: Int,userId:String) : MutableLiveData<Result<PsychologicalProfileResponse>>
+    fun computeFinancialAssessmentProfile(assessmentType: Int,userId:String) : MutableLiveData<Result<FinancialProfileResponse>>
+    fun computePsychologicalAssessmentProfile(assessmentType: Int,userId:String) : MutableLiveData<Result<PsychologicalProfileResponse>>
 }

@@ -25,11 +25,11 @@ interface RestApiRouter {
     fun createUser(@Field("firstName") firstName: String, @Field("language") language: String): Call<UserResponse>
 
 
-    @GET("assessments/{assessment_type}/profile/user_id")
-    fun fetchPsychologicalAssessmentProfile(@Path("assessment_type") assessmentType: Int,userId:String) : Call<PsychologicalProfileResponse>
+    @GET("assessments/{assessment_type}/profile/{user_id}")
+    fun computePsychologicalAssessmentProfile(@Path("assessment_type") assessmentType: Int,@Path("user_id")userId:String) : Call<PsychologicalProfileResponse>
 
-    @GET("assessments/{assessment_type}/profile/user_id")
-    fun fetchFinancialAssessmentProfile(@Path("assessment_type") assessmentType: Int,userId:String) : Call<FinancialProfileResponse>
+    @GET("assessments/{assessment_type}/profile/{user_id}")
+    fun computeFinancialAssessmentProfile(@Path("assessment_type") assessmentType: Int,@Path("user_id") userId:String) : Call<FinancialProfileResponse>
 
     @POST("assessments/answer")
     fun submitAnswer(@Body AssessmentAnswerRequestParam: AssessmentAnswerRequestParam) : Call<Result<Unit>>

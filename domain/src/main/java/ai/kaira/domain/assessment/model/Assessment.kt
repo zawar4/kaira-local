@@ -2,7 +2,7 @@ package ai.kaira.domain.assessment.model
 
 class Assessment(var id: Int,
                  var version: Int,
-                 var type: Int,
+                 var type: AssessmentType,
                  var duration:Int,
                  var number:Int,
                  var title:String,

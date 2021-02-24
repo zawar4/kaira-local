@@ -31,10 +31,10 @@ class AssessmentNetworkDataSourceImp @Inject constructor(val restApiRouter: Rest
         return submitAnswerLiveData
     }
 
-    override fun fetchFinancialAssessmentProfile(assessmentType: Int,userId:String): MutableLiveData<Result<FinancialProfileResponse>> {
+    override fun computeFinancialAssessmentProfile(assessmentType: Int,userId:String): MutableLiveData<Result<FinancialProfileResponse>> {
         val financialAssessmentProfileLiveData = MutableLiveData<Result<FinancialProfileResponse>>()
         viewModelCoroutineScope.launch(IO) {
-            val response = restApiRouter.fetchFinancialAssessmentProfile(assessmentType,userId).execute()
+            val response = restApiRouter.computeFinancialAssessmentProfile(assessmentType,userId).execute()
             withContext(Main){
                 if(response.isSuccessful){
                     val financialProfileResponse = response.body()
@@ -53,10 +53,10 @@ class AssessmentNetworkDataSourceImp @Inject constructor(val restApiRouter: Rest
         return financialAssessmentProfileLiveData
     }
 
-    override fun fetchPsychologicalAssessmentProfile(assessmentType: Int,userId:String): MutableLiveData<Result<PsychologicalProfileResponse>> {
+    override fun computePsychologicalAssessmentProfile(assessmentType: Int,userId:String): MutableLiveData<Result<PsychologicalProfileResponse>> {
         val psychologicalAssessmentProfileLiveData = MutableLiveData<Result<PsychologicalProfileResponse>>()
         viewModelCoroutineScope.launch(IO) {
-            val response = restApiRouter.fetchPsychologicalAssessmentProfile(assessmentType,userId).execute()
+            val response = restApiRouter.computePsychologicalAssessmentProfile(assessmentType,userId).execute()
             withContext(Main){
                 if(response.isSuccessful){
                     val psychologicalProfileResponse = response.body()

@@ -9,12 +9,12 @@ import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 
-class FetchPsychologicalAssessmentProfile @Inject constructor(private val assessmentRepository: AssessmentRepository, viewModelCoroutineScope: CoroutineScope) : BaseUseCase(viewModelCoroutineScope) {
+class ComputePsychologicalAssessmentProfile @Inject constructor(private val assessmentRepository: AssessmentRepository, viewModelCoroutineScope: CoroutineScope) : BaseUseCase(viewModelCoroutineScope) {
 
     operator fun invoke(assessmentType: Int,userId:String) : MutableLiveData<Result<PsychologicalProfileResponse>>{
-        return fetchPsychologicalAssessmentProfile(assessmentType,userId)
+        return computePsychologicalAssessmentProfile(assessmentType,userId)
     }
-    private fun fetchPsychologicalAssessmentProfile(assessmentType: Int, userId:String) : MutableLiveData<Result<PsychologicalProfileResponse>> {
-        return assessmentRepository.fetchPsychologicalAssessmentProfile(assessmentType,userId)
+    private fun computePsychologicalAssessmentProfile(assessmentType: Int, userId:String) : MutableLiveData<Result<PsychologicalProfileResponse>> {
+        return assessmentRepository.computePsychologicalAssessmentProfile(assessmentType,userId)
     }
 }

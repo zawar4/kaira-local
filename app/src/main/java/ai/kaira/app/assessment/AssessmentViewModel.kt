@@ -28,6 +28,11 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
     private var enableSubmitButton : MutableLiveData<Boolean> = MutableLiveData()
     var submitAssessmentAnswerLiveData = MediatorLiveData<String>()
 
+    var financialAssessmentProfileComputeLiveData = MediatorLiveData<FinancialProfileResponse>()
+    var psychologicalAssessmentProfileComputeLiveData = MediatorLiveData<PsychologicalProfileResponse>()
+
+    var startComputeAssessmentProfileLiveData = MutableLiveData<AssessmentType>()
+
     fun getFinancialAssessment(locale:String):MutableLiveData<Assessment>{
         return assessmentUseCase.fetchFinancialAssessment(locale)
     }
@@ -96,12 +101,60 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
                 currentAnswerPosition = assessmentAnswerClick.position
                 it.selected = true
                 currentQuestion.answers[currentAnswerPosition] = it
-                saveSelectedAnswer(assessment.id,assessment.type,currentQuestion.id,currentAnswerPosition)
+                saveSelectedAnswer(assessment.id,assessment.type.value,currentQuestion.id,currentAnswerPosition)
                 reloadCurrentQuestion()
                 submitAssessmentAnswer()
             }
         }
 
+    }
+
+    fun computeFinancialAssessmentProfile(assessmentType: Int){
+        val liveDataSource = assessmentUseCase.computeFinancialAssessmentProfile(assessmentType)
+        financialAssessmentProfileComputeLiveData.addSource(liveDataSource){
+            it?.let{
+                when(it.status){
+                    ResultState.SUCCESS ->{
+
+                        financialAssessmentProfileComputeLiveData.removeSource(liveDataSource)
+                    }
+                    ResultState.ERROR ->{
+                        financialAssessmentProfileComputeLiveData.removeSource(liveDataSource)
+                    }
+                    ResultState.LOADING->{
+
+                    }
+                }
+            }
+        }
+    }
+
+    fun onFinancialAssessmentProfileComputed():MediatorLiveData<FinancialProfileResponse>{
+        return financialAssessmentProfileComputeLiveData
+    }
+
+    fun onPsychologicalAssessmentProfileComputed():MediatorLiveData<PsychologicalProfileResponse>{
+        return psychologicalAssessmentProfileComputeLiveData
+    }
+
+    fun computePsychologicalAssessmentProfile(assessmentType: Int) {
+        val liveDataSource = assessmentUseCase.computePsychologicalAssessmentProfile(assessmentType)
+        psychologicalAssessmentProfileComputeLiveData.addSource(liveDataSource){
+            it?.let{
+                when(it.status){
+                    ResultState.SUCCESS ->{
+
+                        psychologicalAssessmentProfileComputeLiveData.removeSource(liveDataSource)
+                    }
+                    ResultState.ERROR ->{
+                        psychologicalAssessmentProfileComputeLiveData.removeSource(liveDataSource)
+                    }
+                    ResultState.LOADING->{
+
+                    }
+                }
+            }
+        }
     }
 
     private fun rollBackAssessmentAnswerClick(){
@@ -114,7 +167,7 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
         }else{
             enableSubmitButton.value = true
             currentAnswer?.let{
-                val liveDataSource : MediatorLiveData<ai.kaira.domain.Result<Unit>>  = assessmentUseCase.fetchUserSubmitAssessmentAnswer(currentQuestion,it,assessment)
+                val liveDataSource : MediatorLiveData<ai.kaira.domain.Result<Unit>>  = assessmentUseCase.submitAssessmentAnswer(currentQuestion,it,assessment)
                 submitAssessmentAnswerLiveData.addSource(liveDataSource) { it2 ->
                     val result: ai.kaira.domain.Result<Unit>? = it2
                     when(result?.status){
@@ -149,14 +202,14 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
             currentQuestion = assessment.questions[--currentQuestionNumber]
             questionNumber.value = "${currentQuestionNumber+1} / ${assessment.questions.size}"
             questionTitle.value = currentQuestion.title
-            populatePreselectedAnswers(assessment.id,assessment.type,currentQuestion.id)
+            populatePreselectedAnswers(assessment.id,assessment.type.value,currentQuestion.id)
             nextQuestionAnswers.value = currentQuestion.answers
         }
 
     }
 
     private fun reloadCurrentQuestion(){
-        populatePreselectedAnswers(assessment.id,assessment.type,currentQuestion.id)
+        populatePreselectedAnswers(assessment.id,assessment.type.value,currentQuestion.id)
         currentQuestionAnswers.value = currentQuestion.answers
     }
 
@@ -168,11 +221,12 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
             currentQuestion = assessment.questions[++currentQuestionNumber]
             questionNumber.value = "${currentQuestionNumber+1} / ${assessment.questions.size}"
             questionTitle.value = currentQuestion.title
-            populatePreselectedAnswers(assessment.id,assessment.type,currentQuestion.id)
+            populatePreselectedAnswers(assessment.id,assessment.type.value,currentQuestion.id)
             nextQuestionAnswers.value = currentQuestion.answers
         }else{
-            markAssessmentAsComplete(assessment.type)
-            finishActivity()
+            markAssessmentAsComplete(assessment.type.value)
+            startComputeAssessmentProfileActivity()
+
         }
 
     }
@@ -193,6 +247,21 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
             enableSubmitButton.value = false
         }
 
+    }
+
+    private fun startComputeAssessmentProfileActivity(){
+        if(AssessmentType.PSYCHOLOGICAL == assessment.type){
+            startComputeAssessmentProfileLiveData.value = AssessmentType.PSYCHOLOGICAL
+            finishActivity()
+        }else if(AssessmentType.FINANCIAL == assessment.type){
+            startComputeAssessmentProfileLiveData.value = AssessmentType.FINANCIAL
+            finishActivity()
+        }
+
+    }
+
+    fun onStartComputeAssessmentProfileActivity():MutableLiveData<AssessmentType>{
+        return startComputeAssessmentProfileLiveData
     }
 
     fun onSubmitAnswer(): MediatorLiveData<String>{

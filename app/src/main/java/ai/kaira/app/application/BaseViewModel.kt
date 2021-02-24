@@ -45,6 +45,7 @@ open class BaseViewModel @Inject constructor() : ViewModel() {
     fun finishActivity(){
         finishActivityLiveData.value = Unit
     }
+
     fun showConnectivityError(){
         connectivityError.value = true
     }
