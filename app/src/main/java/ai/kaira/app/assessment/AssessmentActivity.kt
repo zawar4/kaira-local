@@ -4,8 +4,10 @@ import ai.kaira.app.R
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityAssessmentBinding
 import ai.kaira.app.utils.LanguageConfig
+import ai.kaira.app.utils.Consts.Companion.ASSESSMENT_TYPE
 import ai.kaira.domain.assessment.model.Assessment
 import ai.kaira.domain.assessment.model.AssessmentType
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -18,29 +20,27 @@ import javax.inject.Inject
 class AssessmentActivity : AppCompatActivity() {
 
     lateinit var activityAssessmentBinding : ActivityAssessmentBinding
-    private val ASSESSMENT_TYPE : String = "ASSESSMENT_TYPE"
     @Inject
     lateinit var viewModelFactory : ViewModelFactory
     lateinit var assessmentViewModel: AssessmentViewModel
+    lateinit var assessmentType : AssessmentType
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityAssessmentBinding = DataBindingUtil.setContentView(this,R.layout.activity_assessment)
-
         assessmentViewModel  = ViewModelProvider(this, viewModelFactory).get(AssessmentViewModel::class.java)
-        lateinit var assessmentType : AssessmentType
+
         val languageLocale = LanguageConfig.getLanguageLocale(applicationContext)
         if(intent != null && intent.hasExtra(ASSESSMENT_TYPE)){
             assessmentType = intent.getSerializableExtra(ASSESSMENT_TYPE) as AssessmentType
             if(assessmentType ==AssessmentType.FINANCIAL) {
                 assessmentViewModel.getFinancialAssessment(languageLocale).observe(this,{
-                    it.type = assessmentType
                     setView(assessmentType)
                     setData((it))
                 })
             }
             else if(assessmentType ==AssessmentType.PSYCHOLOGICAL){
                 assessmentViewModel.getPsychologicalAssessment(languageLocale).observe(this,{
-                    it.type = assessmentType
                     setView(assessmentType)
                     setData((it))
                 })
@@ -73,7 +73,7 @@ class AssessmentActivity : AppCompatActivity() {
         }
     }
     private fun setData(assessment:Assessment){
-        activityAssessmentBinding.assessmentNumTv.text = assessment.type.type.toString()
+        activityAssessmentBinding.assessmentNumTv.text = assessment.type.toString()
         activityAssessmentBinding.assessmentDescriptionTv.text = assessment.description
         activityAssessmentBinding.assessmentDurationTv.text = "  ${assessment.duration} ${getString(R.string.mint)}"
         activityAssessmentBinding.assessmentDurationTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_clock,0,0,0)
@@ -83,6 +83,13 @@ class AssessmentActivity : AppCompatActivity() {
         }
         activityAssessmentBinding.assessmentQuestionsTv.text = "  $numOfQuestions"
         activityAssessmentBinding.assessmentQuestionsTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_question,0,0,0)
+
+        activityAssessmentBinding.assessmentStartBtn?.setOnClickListener {
+            var intent = Intent(this,AssessmentQuestionActivity::class.java)
+            intent.putExtra(ASSESSMENT_TYPE,assessmentType)
+            startActivity(intent)
+            finish()
+        }
     }
 
 

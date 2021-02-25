@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.20" />
+                app:layout_constraintGuide_percent="0.18" />
 
             <ImageView
                 android:id="@+id/avatar_im"
@@ -55,7 +55,7 @@
                 style="@style/Text03_EntryField"
                 android:layout_width="250dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="50dp"
                 android:background="@drawable/blue_filled_button_border"
                 android:imeOptions="actionDone"
                 android:singleLine="true"
@@ -146,8 +146,9 @@
                     android:id="@+id/financial_assessment_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="18dp"
+                    android:paddingLeft="18dp"
                     android:paddingTop="18dp"
+                    android:paddingRight="18dp"
                     android:paddingBottom="18dp"
                     android:text="@string/assessement_financial_title"
                     android:textColor="@color/medium_gray" />

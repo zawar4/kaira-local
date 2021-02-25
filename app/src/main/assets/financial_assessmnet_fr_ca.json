@@ -6,7 +6,7 @@
     "number":2,
     "title":"Ton portrait financier",
     "description":"Ces 8 questions à choix multiples couvrent les 8 indicateurs de la santé financière. Tes réponses me permettront de mieux te connaître et personnaliser mes conseils.",
-    "mention":"Cette évaluation utilise le <i>FinHealth Score®</i> de <i>Financial Health Network</i>",
+    "mention":"Ce test utilise le FinHealth Score® du Financial Health Network",
     "questions": [
         {
             "id":1,

@@ -11,7 +11,8 @@
         android:label="${appName}"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaira">
-        <activity android:name=".assessment.AssessmentActivity"></activity>
+        <activity android:name=".assessment.AssessmentQuestionActivity"></activity>
+        <activity android:name=".assessment.AssessmentActivity" />
         <activity android:name=".introduction.IntroductionActivity" />
         <activity
             android:name=".termsconditions.PrivacyPolicyActivity"

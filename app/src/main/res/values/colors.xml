@@ -3,6 +3,7 @@
     <color name="kairaLabel">#2d393b</color>
     <color name="kairaSecLabel">#3c8999</color>
     <color name="kairaAccent">#45b8d1</color>
+    <color name="kairaAccentSemi">#e6f8fc</color>
     <color name="kairaFill">#dbf4f9</color>
     <color name="kairaSecFill">#c0e6e5</color>
     <color name="kairaThirdFillA">#ff6161</color>

@@ -3,28 +3,22 @@ package ai.kaira.app.application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.cancel
 import java.net.InetSocketAddress
 import java.net.Socket
+import javax.inject.Inject
 
-open class BaseViewModel : ViewModel() {
-
-
-    protected val loadLiveData : MutableLiveData<Boolean> = MutableLiveData()
-    protected val errorLiveData : MutableLiveData<String> = MutableLiveData()
-    protected val connectivityError : MutableLiveData<Boolean> = MutableLiveData()
+open class BaseViewModel @Inject constructor() : ViewModel() {
 
 
-    fun isConnectedToInternet(): Boolean {
-        return try {
-            val socket = Socket()
-            val socketAddress = InetSocketAddress("8.8.8.8", 53)
-            socket.connect(socketAddress, 2000)
-            socket.close()
-            true
-        } catch (e: Exception) {
-            false
-        }
-    }
+    private val loadLiveData : MutableLiveData<Boolean> = MutableLiveData()
+    private val errorLiveData : MutableLiveData<String> = MutableLiveData()
+    private val finishActivityLiveData : MutableLiveData<Unit> = MutableLiveData()
+    private val connectivityError : MutableLiveData<Boolean> = MutableLiveData()
+    private val viewModelCoroutineScope : CoroutineScope = viewModelScope
+
 
     fun onLoad() : LiveData<Boolean>{
         return loadLiveData
@@ -36,6 +30,10 @@ open class BaseViewModel : ViewModel() {
     fun onError() : LiveData<String>{
         return errorLiveData
     }
+
+    fun onActivityFinish():LiveData<Unit>{
+        return finishActivityLiveData
+    }
     fun showLoading(show:Boolean){
         loadLiveData.value = show
     }
@@ -44,7 +42,16 @@ open class BaseViewModel : ViewModel() {
         errorLiveData.value = error
     }
 
+    fun finishActivity(){
+        finishActivityLiveData.value = Unit
+    }
     fun showConnectivityError(){
         connectivityError.value = true
+    }
+
+
+    override fun onCleared(){
+        viewModelCoroutineScope.cancel()
+        super.onCleared()
     }
 }

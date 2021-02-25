@@ -1,17 +1,37 @@
 package ai.kaira.domain.assessment.usecase
 
 import ai.kaira.domain.assessment.model.Assessment
-import ai.kaira.domain.assessment.model.AssessmentType
-import ai.kaira.domain.assessment.respository.AssessmentRepository
+import ai.kaira.domain.assessment.model.AssessmentAnswer
+import ai.kaira.domain.assessment.model.AssessmentAnswerClick
 import androidx.lifecycle.MutableLiveData
 import javax.inject.Inject
 
-class AssessmentUseCase @Inject constructor(private val assessmentRepository: AssessmentRepository) {
-    fun getFinancialAssessment(locale:String): MutableLiveData<Assessment>{
-        return assessmentRepository.getFinancialAssessment(locale)
+class AssessmentUseCase @Inject constructor(val fetchFinancialAssessmentUseCase: FetchFinancialAssessment,
+                                            val fetchPsychologicalAssessmentUseCase: FetchPsychologicalAssessment,
+                                             val assessmentQuestionAnsweredUseCase: AssessmentQuestionAnswered,
+                                             val completeAssessment: CompleteAssessment,
+                                             val fetchUserSubmitAssessmentAnswer: FetchUserSubmitAssessmentAnswer) {
+    fun fetchFinancialAssessment(locale:String): MutableLiveData<Assessment>{
+        return fetchFinancialAssessmentUseCase(locale)
     }
 
-    fun getPsychologicalAssessment(locale:String): MutableLiveData<Assessment>{
-        return assessmentRepository.getPsychologicalAssessment(locale)
+    fun fetchPsychologicalAssessment(locale:String): MutableLiveData<Assessment>{
+        return fetchPsychologicalAssessmentUseCase(locale)
+    }
+
+    fun onAssessmentQuestionAnswered(screenVisibleTime: Double, assessmentAnswerClick: AssessmentAnswerClick, currentAssessmentAnswer: AssessmentAnswer?, newAssessmentAnswer: AssessmentAnswer):AssessmentAnswer{
+        return assessmentQuestionAnsweredUseCase.onAssessmentQuestionAnswered(screenVisibleTime,assessmentAnswerClick, currentAssessmentAnswer,newAssessmentAnswer)
+    }
+
+    fun saveSelectedAssessmentAnswer(assessmentId:Int,assessmentType:Int,questionId:Int,assessmentAnswerPosition:Int){
+        assessmentQuestionAnsweredUseCase.saveSelectedAssessmentAnswer(assessmentId,assessmentType,questionId,assessmentAnswerPosition)
+    }
+
+    fun isQuestionAlreadyAnswered(assessmentId:Int,assessmentType:Int,questionId:Int):Int{
+        return assessmentQuestionAnsweredUseCase.isQuestionAlreadyAnswered(assessmentId,assessmentType,questionId)
+    }
+
+    fun markAssessmentAsComplete(assessmentType: Int){
+        completeAssessment.markAssessmentAsComplete(assessmentType)
     }
 }
