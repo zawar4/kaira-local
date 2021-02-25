@@ -1,6 +1,9 @@
 package ai.kaira.app.utils
 
+import ai.kaira.app.utils.Extensions.Companion.increaseViewSize
+import android.animation.ValueAnimator
 import android.content.Context
+import android.view.View
 import java.net.HttpURLConnection
 import java.net.InetSocketAddress
 import java.net.Socket
@@ -23,6 +26,34 @@ class Extensions {
                 false
             }
         }
+
+        fun View.increaseViewSize(duration: Long, maxHeight: Int, minHeight: Int) {
+            val valueAnimator = ValueAnimator.ofInt(minHeight, maxHeight)
+            valueAnimator.duration = duration
+            valueAnimator.addUpdateListener {
+                val animatedValue = valueAnimator.animatedValue as Int
+                val layoutParams = this.layoutParams
+                layoutParams.height = animatedValue
+                layoutParams.width = animatedValue
+                this.layoutParams = layoutParams
+            }
+            valueAnimator.start()
+        }
+
+        fun View.decreaseViewSize(duration: Long, maxHeight: Int, minHeight: Int) {
+            val valueAnimator = ValueAnimator.ofInt(maxHeight, minHeight)
+            valueAnimator.duration = duration
+            valueAnimator.addUpdateListener {
+                val animatedValue = valueAnimator.animatedValue as Int
+                val layoutParams = this.layoutParams
+                layoutParams.height = animatedValue
+                layoutParams.width = animatedValue
+                this.layoutParams = layoutParams
+            }
+            valueAnimator.start()
+        }
+
+
     }
 
 }

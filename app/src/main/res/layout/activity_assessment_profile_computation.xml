@@ -52,22 +52,22 @@
 
             <ImageView
                 android:id="@+id/dot_one_im"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginRight="5dp"
                 android:src="@drawable/kaira_accent_circle" />
 
             <ImageView
                 android:id="@+id/dot_two_im"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginRight="5dp"
                 android:src="@drawable/kaira_accent_circle" />
 
             <ImageView
                 android:id="@+id/dot_three_im"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@drawable/kaira_accent_circle" />
         </LinearLayout>
 

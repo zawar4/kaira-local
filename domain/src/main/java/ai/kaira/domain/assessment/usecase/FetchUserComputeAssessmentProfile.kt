@@ -2,12 +2,11 @@ package ai.kaira.domain.assessment.usecase
 
 import ai.kaira.domain.BaseUseCase
 import ai.kaira.domain.Result
-import ai.kaira.domain.assessment.model.FinancialProfileResponse
-import ai.kaira.domain.assessment.model.PsychologicalProfileResponse
+import ai.kaira.domain.assessment.model.FinancialProfile
+import ai.kaira.domain.assessment.model.PsychologicalProfile
 import ai.kaira.domain.introduction.model.User
 import ai.kaira.domain.introduction.usecase.FetchUser
 import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
@@ -20,8 +19,8 @@ class FetchUserComputeAssessmentProfile @Inject constructor(private val fetchUse
 
 
 
-    fun computePsychologicalAssessmentProfile(assessmentType: Int) : MediatorLiveData<Result<PsychologicalProfileResponse>> {
-        val computePsychologicalProfileLiveData = MediatorLiveData<Result<PsychologicalProfileResponse>>()
+    fun computePsychologicalAssessmentProfile(assessmentType: Int) : MediatorLiveData<Result<PsychologicalProfile>> {
+        val computePsychologicalProfileLiveData = MediatorLiveData<Result<PsychologicalProfile>>()
         viewModelCoroutineScope.launch(IO) {
             val user : User = fetchUser()
             withContext(Dispatchers.Main){
@@ -38,8 +37,8 @@ class FetchUserComputeAssessmentProfile @Inject constructor(private val fetchUse
         return computePsychologicalProfileLiveData
     }
 
-    fun computeFinancialAssessmentProfile(assessmentType: Int) : MediatorLiveData<Result<FinancialProfileResponse>> {
-        val computeFinancialProfileLiveData = MediatorLiveData<Result<FinancialProfileResponse>>()
+    fun computeFinancialAssessmentProfile(assessmentType: Int) : MediatorLiveData<Result<FinancialProfile>> {
+        val computeFinancialProfileLiveData = MediatorLiveData<Result<FinancialProfile>>()
         viewModelCoroutineScope.launch(IO) {
             val user : User = fetchUser()
             withContext(Main){

@@ -3,8 +3,10 @@ package ai.kaira.data.webservice
 import ai.kaira.data.utils.APIConfig
 import ai.kaira.domain.Result
 import ai.kaira.data.assessment.model.AssessmentAnswerRequestParam
-import ai.kaira.domain.assessment.model.FinancialProfileResponse
-import ai.kaira.domain.assessment.model.PsychologicalProfileResponse
+import ai.kaira.data.assessment.model.FinancialProfileResponse
+import ai.kaira.data.assessment.model.PsychologicalProfileResponse
+import ai.kaira.domain.assessment.model.FinancialProfile
+import ai.kaira.domain.assessment.model.PsychologicalProfile
 import ai.kaira.data.introduction.model.UserResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

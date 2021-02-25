@@ -3,8 +3,8 @@ package ai.kaira.data.assessment.datasource.network
 import ai.kaira.data.webservice.RestApiRouter
 import ai.kaira.domain.Result
 import ai.kaira.data.assessment.model.AssessmentAnswerRequestParam
-import ai.kaira.domain.assessment.model.FinancialProfileResponse
-import ai.kaira.domain.assessment.model.PsychologicalProfileResponse
+import ai.kaira.domain.assessment.model.FinancialProfile
+import ai.kaira.domain.assessment.model.PsychologicalProfile
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
@@ -31,15 +31,15 @@ class AssessmentNetworkDataSourceImp @Inject constructor(val restApiRouter: Rest
         return submitAnswerLiveData
     }
 
-    override fun computeFinancialAssessmentProfile(assessmentType: Int,userId:String): MutableLiveData<Result<FinancialProfileResponse>> {
-        val financialAssessmentProfileLiveData = MutableLiveData<Result<FinancialProfileResponse>>()
+    override fun computeFinancialAssessmentProfile(assessmentType: Int,userId:String): MutableLiveData<Result<FinancialProfile>> {
+        val financialAssessmentProfileLiveData = MutableLiveData<Result<FinancialProfile>>()
         viewModelCoroutineScope.launch(IO) {
             val response = restApiRouter.computeFinancialAssessmentProfile(assessmentType,userId).execute()
             withContext(Main){
                 if(response.isSuccessful){
                     val financialProfileResponse = response.body()
                     financialProfileResponse?.let {
-                        financialAssessmentProfileLiveData.value = Result.success(data = financialProfileResponse)
+                        financialAssessmentProfileLiveData.value = Result.success(data = financialProfileResponse.toFinancialProfile())
                     }
                 }else{
                     val error : String? = response.errorBody()?.string()
@@ -53,15 +53,15 @@ class AssessmentNetworkDataSourceImp @Inject constructor(val restApiRouter: Rest
         return financialAssessmentProfileLiveData
     }
 
-    override fun computePsychologicalAssessmentProfile(assessmentType: Int,userId:String): MutableLiveData<Result<PsychologicalProfileResponse>> {
-        val psychologicalAssessmentProfileLiveData = MutableLiveData<Result<PsychologicalProfileResponse>>()
+    override fun computePsychologicalAssessmentProfile(assessmentType: Int,userId:String): MutableLiveData<Result<PsychologicalProfile>> {
+        val psychologicalAssessmentProfileLiveData = MutableLiveData<Result<PsychologicalProfile>>()
         viewModelCoroutineScope.launch(IO) {
             val response = restApiRouter.computePsychologicalAssessmentProfile(assessmentType,userId).execute()
             withContext(Main){
                 if(response.isSuccessful){
                     val psychologicalProfileResponse = response.body()
                     psychologicalProfileResponse?.let {
-                        psychologicalAssessmentProfileLiveData.value = Result.success(data = psychologicalProfileResponse)
+                        psychologicalAssessmentProfileLiveData.value = Result.success(data = psychologicalProfileResponse.toPsychologicalProfile())
                     }
                 }else{
                     val error : String? = response.errorBody()?.string()

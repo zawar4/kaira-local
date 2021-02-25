@@ -4,11 +4,14 @@ import ai.kaira.app.R
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityAssessmentProfileComputationBinding
 import ai.kaira.app.utils.Consts
+import ai.kaira.app.utils.Extensions.Companion.decreaseViewSize
+import ai.kaira.app.utils.Extensions.Companion.increaseViewSize
+import ai.kaira.app.utils.UIUtils
 import ai.kaira.domain.assessment.model.AssessmentType
-import android.animation.ValueAnimator
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.os.StrictMode
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -16,6 +19,7 @@ import androidx.transition.*
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class AssessmentProfileComputationActivity : AppCompatActivity() {
@@ -26,9 +30,9 @@ class AssessmentProfileComputationActivity : AppCompatActivity() {
 
     lateinit var activityAssessmentComputationBinding: ActivityAssessmentProfileComputationBinding
 
-    val animationDotThree = Timer()
-    val animationDotTwo = Timer()
-    val animationDotOne = Timer()
+    private val animationDotThree = Timer()
+    private val animationDotTwo = Timer()
+    private val animationDotOne = Timer()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,107 +52,106 @@ class AssessmentProfileComputationActivity : AppCompatActivity() {
                 assessmentViewModel.computePsychologicalAssessmentProfile(assessmentType.value)
             }
 
-            startLoadingAnimation(maxHeight,minHeight)
             assessmentViewModel.onFinancialAssessmentProfileComputed().observe(this){
-                stopLoading()
             }
             assessmentViewModel.onPsychologicalAssessmentProfileComputed().observe(this){
-                stopLoading()
+
             }
+
+            assessmentViewModel.onActivityFinish().observe(this){
+                finish()
+            }
+
+            assessmentViewModel.onError().observe(this){
+                UIUtils.networkCallAlert(this, it)
+            }
+
+            assessmentViewModel.onConnectivityError().observe(this){
+                UIUtils.networkConnectivityAlert(this)
+                stopLoadingAnimation()
+                resetLoadingAnimation(minHeight)
+            }
+
+            startLoadingAnimation(maxHeight, minHeight)
+            Handler(Looper.getMainLooper()).postDelayed({
+                stopLoadingAnimation()
+                resetLoadingAnimation(minHeight)
+            }, 5000)
+
         }
-
-
-
-
-
 
     }
 
-    fun startLoadingAnimation(maxHeight:Int,minHeight:Int){
+    private fun startLoadingAnimation(maxHeight: Int, minHeight: Int){
         var isDotOneDecreased = false
         animationDotOne.schedule(object : TimerTask() {
             override fun run() {
                 runOnUiThread {
-                    if(!isDotOneDecreased){
-                        decreaseViewSize(activityAssessmentComputationBinding.dotOneIm, 500,maxHeight,minHeight)
+                    if (!isDotOneDecreased) {
+                        activityAssessmentComputationBinding.dotOneIm.decreaseViewSize(500, maxHeight, minHeight)
                         isDotOneDecreased = true
-                    }else{
-                        increaseViewSize(activityAssessmentComputationBinding.dotOneIm, 500,maxHeight,minHeight)
+                    } else {
+                        activityAssessmentComputationBinding.dotOneIm.increaseViewSize( 500, maxHeight, minHeight)
                         isDotOneDecreased = false
                     }
 
                 }
             }
 
-        }, 0,500)
+        }, 0, 500)
 
         var isDotTwoDecreased = false
         animationDotTwo.schedule(object : TimerTask() {
             override fun run() {
                 runOnUiThread {
-                    if(!isDotTwoDecreased){
-                        decreaseViewSize(activityAssessmentComputationBinding.dotTwoIm, 500,maxHeight,minHeight)
+                    if (!isDotTwoDecreased) {
+                        activityAssessmentComputationBinding.dotTwoIm.decreaseViewSize(500, maxHeight, minHeight)
                         isDotTwoDecreased = true
-                    }else{
-                        increaseViewSize(activityAssessmentComputationBinding.dotTwoIm, 500,maxHeight,minHeight)
+                    } else {
+                        activityAssessmentComputationBinding.dotTwoIm.increaseViewSize( 500, maxHeight, minHeight)
                         isDotTwoDecreased = false
                     }
 
                 }
             }
 
-        }, 500,500)
-
-
-
+        }, 500, 500)
 
         var isDotThreeDecreased = false
         animationDotThree.schedule(object : TimerTask() {
             override fun run() {
                 runOnUiThread {
-                    if(!isDotThreeDecreased){
-                        decreaseViewSize(activityAssessmentComputationBinding.dotThreeIm, 500,maxHeight,minHeight)
+                    if (!isDotThreeDecreased) {
+                        activityAssessmentComputationBinding.dotThreeIm.decreaseViewSize(500, maxHeight, minHeight)
                         isDotThreeDecreased = true
-                    }else{
-                        increaseViewSize(activityAssessmentComputationBinding.dotThreeIm, 500,maxHeight,minHeight)
+                    } else {
+                        activityAssessmentComputationBinding.dotThreeIm.increaseViewSize( 500, maxHeight, minHeight)
                         isDotThreeDecreased = false
                     }
-
                 }
             }
 
-        }, 1000,500)
+        }, 0, 500)
     }
 
-    fun stopLoading(){
+    private fun resetLoadingAnimation(height:Int){
+        val fadeTransition : Transition = Fade()
+        val boundTransition : Transition = ChangeBounds()
+        fadeTransition.duration = 500
+        val transitionSet = TransitionSet()
+        transitionSet.addTransition(fadeTransition).addTransition(boundTransition)
+        TransitionManager.beginDelayedTransition(activityAssessmentComputationBinding.assessmentProfileComputationParent,transitionSet)
+        activityAssessmentComputationBinding.dotThreeIm.layoutParams.height = height
+        activityAssessmentComputationBinding.dotThreeIm.layoutParams.width = height
+        activityAssessmentComputationBinding.dotTwoIm.layoutParams.height = height
+        activityAssessmentComputationBinding.dotTwoIm.layoutParams.width = height
+        activityAssessmentComputationBinding.dotOneIm.layoutParams.height = height
+        activityAssessmentComputationBinding.dotOneIm.layoutParams.width = height
+    }
+    private fun stopLoadingAnimation(){
         animationDotThree.cancel()
         animationDotTwo.cancel()
         animationDotOne.cancel()
-    }
-    private fun increaseViewSize(view: View, duration: Long,maxHeight:Int,minHeight:Int) {
-        val valueAnimator = ValueAnimator.ofInt(minHeight, maxHeight)
-        valueAnimator.duration = duration
-        valueAnimator.addUpdateListener {
-            val animatedValue = valueAnimator.animatedValue as Int
-            val layoutParams = view.layoutParams
-            layoutParams.height = animatedValue
-            layoutParams.width = animatedValue
-            view.layoutParams = layoutParams
-        }
-        valueAnimator.start()
-    }
-
-    private fun decreaseViewSize(view: View, duration: Long,maxHeight:Int,minHeight:Int) {
-        val valueAnimator = ValueAnimator.ofInt(maxHeight, minHeight)
-        valueAnimator.duration = duration
-        valueAnimator.addUpdateListener {
-            val animatedValue = valueAnimator.animatedValue as Int
-            val layoutParams = view.layoutParams
-            layoutParams.height = animatedValue
-            layoutParams.width = animatedValue
-            view.layoutParams = layoutParams
-        }
-        valueAnimator.start()
     }
 
 

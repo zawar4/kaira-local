@@ -57,12 +57,20 @@ class AssessmentRepositoryImp @Inject constructor(private val assessmentLocalDat
         return assessmentLocalDataSource.isAssessmentCompleted(assessmentType)
     }
 
-    override fun computeFinancialAssessmentProfile(assessmentType: Int, userId: String): MutableLiveData<Result<FinancialProfileResponse>> {
+    override fun computeFinancialAssessmentProfile(assessmentType: Int, userId: String): MutableLiveData<Result<FinancialProfile>> {
         return assessmentNetworkDataSource.computeFinancialAssessmentProfile(assessmentType,userId)
     }
 
-    override fun computePsychologicalAssessmentProfile(assessmentType: Int, userId: String): MutableLiveData<Result<PsychologicalProfileResponse>> {
+    override fun computePsychologicalAssessmentProfile(assessmentType: Int, userId: String): MutableLiveData<Result<PsychologicalProfile>> {
         return assessmentNetworkDataSource.computePsychologicalAssessmentProfile(assessmentType,userId)
+    }
+
+    override fun savePsychologicalAssessmentProfile(psychologicalProfile: PsychologicalProfile) {
+        assessmentLocalDataSource.savePsychologicalAssessmentProfile(psychologicalProfile)
+    }
+
+    override fun saveFinancialAssessmentProfile(financialProfile: FinancialProfile) {
+        assessmentLocalDataSource.saveFinancialAssessmentProfile(financialProfile)
     }
 
 

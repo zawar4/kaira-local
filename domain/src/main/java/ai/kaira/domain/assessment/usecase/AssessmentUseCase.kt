@@ -32,11 +32,11 @@ class AssessmentUseCase @Inject constructor(private val fetchFinancialAssessment
         return assessmentQuestionAnsweredUseCase.isQuestionAlreadyAnswered(assessmentId,assessmentType,questionId)
     }
 
-    fun markAssessmentAsComplete(assessmentType: Int){
+    fun markAssessmentAsComplete(assessmentType: Int,){
         completeAssessment.markAssessmentAsComplete(assessmentType)
     }
 
-    fun computePsychologicalAssessmentProfile(assessmentType: Int): MediatorLiveData<Result<PsychologicalProfileResponse>> {
+    fun computePsychologicalAssessmentProfile(assessmentType: Int): MediatorLiveData<Result<PsychologicalProfile>> {
         return fetchUserComputeAssessmentProfile.computePsychologicalAssessmentProfile(assessmentType)
     }
 
@@ -44,7 +44,15 @@ class AssessmentUseCase @Inject constructor(private val fetchFinancialAssessment
         return fetchUserSubmitAssessmentAnswer(question,answer,assessment)
     }
 
-    fun computeFinancialAssessmentProfile(assessmentType: Int): MediatorLiveData<Result<FinancialProfileResponse>> {
+    fun computeFinancialAssessmentProfile(assessmentType: Int): MediatorLiveData<Result<FinancialProfile>> {
         return fetchUserComputeAssessmentProfile.computeFinancialAssessmentProfile(assessmentType)
+    }
+
+    fun savePsychologicalAssessmentProfile(psychologicalProfile: PsychologicalProfile) {
+        completeAssessment.savePsychologicalAssessmentProfile(psychologicalProfile)
+    }
+
+    fun saveFinancialAssessmentProfile(financialProfile: FinancialProfile) {
+        completeAssessment.saveFinancialAssessmentProfile(financialProfile)
     }
 }

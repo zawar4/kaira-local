@@ -28,8 +28,8 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
     private var enableSubmitButton : MutableLiveData<Boolean> = MutableLiveData()
     var submitAssessmentAnswerLiveData = MediatorLiveData<String>()
 
-    var financialAssessmentProfileComputeLiveData = MediatorLiveData<FinancialProfileResponse>()
-    var psychologicalAssessmentProfileComputeLiveData = MediatorLiveData<PsychologicalProfileResponse>()
+    var financialAssessmentProfileComputeLiveData = MediatorLiveData<FinancialProfile>()
+    var psychologicalAssessmentProfileComputeLiveData = MediatorLiveData<PsychologicalProfile>()
 
     var startComputeAssessmentProfileLiveData = MutableLiveData<AssessmentType>()
 
@@ -110,51 +110,77 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
     }
 
     fun computeFinancialAssessmentProfile(assessmentType: Int){
-        val liveDataSource = assessmentUseCase.computeFinancialAssessmentProfile(assessmentType)
-        financialAssessmentProfileComputeLiveData.addSource(liveDataSource){
-            it?.let{
-                when(it.status){
-                    ResultState.SUCCESS ->{
-
-                        financialAssessmentProfileComputeLiveData.removeSource(liveDataSource)
-                    }
-                    ResultState.ERROR ->{
-                        financialAssessmentProfileComputeLiveData.removeSource(liveDataSource)
-                    }
-                    ResultState.LOADING->{
-
+        if(isConnectedToInternet()){
+            val liveDataSource = assessmentUseCase.computeFinancialAssessmentProfile(assessmentType)
+            financialAssessmentProfileComputeLiveData.addSource(liveDataSource){
+                it?.let{
+                    when(it.status){
+                        ResultState.SUCCESS ->{
+                            showLoading(false)
+                            it.data?.let {it->
+                                assessmentUseCase.saveFinancialAssessmentProfile(it)
+                                finishActivity()
+                            }
+                            financialAssessmentProfileComputeLiveData.removeSource(liveDataSource)
+                        }
+                        ResultState.ERROR ->{
+                            it.message?.let { it2->
+                                showError(it2)
+                                showLoading(false)
+                            }
+                            financialAssessmentProfileComputeLiveData.removeSource(liveDataSource)
+                        }
+                        ResultState.LOADING->{
+                            showLoading(true)
+                        }
                     }
                 }
             }
+        }else{
+            showConnectivityError()
         }
+
     }
 
-    fun onFinancialAssessmentProfileComputed():MediatorLiveData<FinancialProfileResponse>{
+    fun onFinancialAssessmentProfileComputed():MediatorLiveData<FinancialProfile>{
         return financialAssessmentProfileComputeLiveData
     }
 
-    fun onPsychologicalAssessmentProfileComputed():MediatorLiveData<PsychologicalProfileResponse>{
+    fun onPsychologicalAssessmentProfileComputed():MediatorLiveData<PsychologicalProfile>{
         return psychologicalAssessmentProfileComputeLiveData
     }
 
     fun computePsychologicalAssessmentProfile(assessmentType: Int) {
-        val liveDataSource = assessmentUseCase.computePsychologicalAssessmentProfile(assessmentType)
-        psychologicalAssessmentProfileComputeLiveData.addSource(liveDataSource){
-            it?.let{
-                when(it.status){
-                    ResultState.SUCCESS ->{
-
-                        psychologicalAssessmentProfileComputeLiveData.removeSource(liveDataSource)
-                    }
-                    ResultState.ERROR ->{
-                        psychologicalAssessmentProfileComputeLiveData.removeSource(liveDataSource)
-                    }
-                    ResultState.LOADING->{
-
+        if(isConnectedToInternet()){
+            val liveDataSource = assessmentUseCase.computePsychologicalAssessmentProfile(assessmentType)
+            psychologicalAssessmentProfileComputeLiveData.addSource(liveDataSource){it ->
+                it?.let{
+                    when(it.status){
+                        ResultState.SUCCESS ->{
+                            showLoading(false)
+                            it.data?.let {it2->
+                                assessmentUseCase.savePsychologicalAssessmentProfile(it2)
+                                finishActivity()
+                            }
+                            psychologicalAssessmentProfileComputeLiveData.removeSource(liveDataSource)
+                        }
+                        ResultState.ERROR ->{
+                            it.message?.let { it2->
+                                showError(it2)
+                                showLoading(false)
+                            }
+                            psychologicalAssessmentProfileComputeLiveData.removeSource(liveDataSource)
+                        }
+                        ResultState.LOADING->{
+                            showLoading(true)
+                        }
                     }
                 }
             }
+        }else{
+            showConnectivityError()
         }
+
     }
 
     private fun rollBackAssessmentAnswerClick(){
@@ -224,16 +250,17 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
             populatePreselectedAnswers(assessment.id,assessment.type.value,currentQuestion.id)
             nextQuestionAnswers.value = currentQuestion.answers
         }else{
-            markAssessmentAsComplete(assessment.type.value)
             startComputeAssessmentProfileActivity()
 
         }
 
     }
 
-    private fun markAssessmentAsComplete(assessmentType: Int){
+   /* private fun markAssessmentAsComplete(assessmentType: Int){
         assessmentUseCase.markAssessmentAsComplete(assessmentType)
     }
+
+    */
     private fun saveSelectedAnswer(assessmentId:Int,assessmentType: Int,questionId:Int,assessmentAnswerPosition:Int){
         assessmentUseCase.saveSelectedAssessmentAnswer(assessmentId,assessmentType,questionId,assessmentAnswerPosition)
     }
