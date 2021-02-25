@@ -64,6 +64,8 @@ class AssessmentProfileComputationActivity : AppCompatActivity() {
 
             assessmentViewModel.onError().observe(this){
                 UIUtils.networkCallAlert(this, it)
+                stopLoadingAnimation()
+                resetLoadingAnimation(minHeight)
             }
 
             assessmentViewModel.onConnectivityError().observe(this){
