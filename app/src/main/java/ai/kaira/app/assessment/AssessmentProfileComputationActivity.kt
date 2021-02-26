@@ -72,13 +72,16 @@ class AssessmentProfileComputationActivity : AppCompatActivity() {
                 UIUtils.networkConnectivityAlert(this)
                 stopLoadingAnimation()
                 resetLoadingAnimation(minHeight)
+
             }
 
             startLoadingAnimation(maxHeight, minHeight)
             Handler(Looper.getMainLooper()).postDelayed({
                 stopLoadingAnimation()
                 resetLoadingAnimation(minHeight)
-            }, 5000)
+                assessmentViewModel.finishActivity()
+            }, 3000
+            )
 
         }
 

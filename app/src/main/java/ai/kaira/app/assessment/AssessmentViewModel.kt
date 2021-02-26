@@ -119,7 +119,6 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
                             showLoading(false)
                             it.data?.let {it->
                                 assessmentUseCase.saveFinancialAssessmentProfile(it)
-                                finishActivity()
                             }
                             financialAssessmentProfileComputeLiveData.removeSource(liveDataSource)
                         }
@@ -160,7 +159,6 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
                             showLoading(false)
                             it.data?.let {it2->
                                 assessmentUseCase.savePsychologicalAssessmentProfile(it2)
-                                finishActivity()
                             }
                             psychologicalAssessmentProfileComputeLiveData.removeSource(liveDataSource)
                         }
