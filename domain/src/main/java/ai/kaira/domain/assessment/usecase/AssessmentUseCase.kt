@@ -1,16 +1,17 @@
 package ai.kaira.domain.assessment.usecase
 
-import ai.kaira.domain.assessment.model.Assessment
-import ai.kaira.domain.assessment.model.AssessmentAnswer
-import ai.kaira.domain.assessment.model.AssessmentAnswerClick
+import ai.kaira.domain.Result
+import ai.kaira.domain.assessment.model.*
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import javax.inject.Inject
 
-class AssessmentUseCase @Inject constructor(val fetchFinancialAssessmentUseCase: FetchFinancialAssessment,
-                                            val fetchPsychologicalAssessmentUseCase: FetchPsychologicalAssessment,
-                                             val assessmentQuestionAnsweredUseCase: AssessmentQuestionAnswered,
-                                             val completeAssessment: CompleteAssessment,
-                                             val fetchUserSubmitAssessmentAnswer: FetchUserSubmitAssessmentAnswer) {
+class AssessmentUseCase @Inject constructor(private val fetchFinancialAssessmentUseCase: FetchFinancialAssessment,
+                                            private val fetchPsychologicalAssessmentUseCase: FetchPsychologicalAssessment,
+                                            private val assessmentQuestionAnsweredUseCase: AssessmentQuestionAnswered,
+                                            private val completeAssessment: CompleteAssessment,
+                                            private val fetchUserSubmitAssessmentAnswer: FetchUserSubmitAssessmentAnswer,
+                                            private val fetchUserComputeAssessmentProfile: FetchUserComputeAssessmentProfile) {
     fun fetchFinancialAssessment(locale:String): MutableLiveData<Assessment>{
         return fetchFinancialAssessmentUseCase(locale)
     }
@@ -31,7 +32,27 @@ class AssessmentUseCase @Inject constructor(val fetchFinancialAssessmentUseCase:
         return assessmentQuestionAnsweredUseCase.isQuestionAlreadyAnswered(assessmentId,assessmentType,questionId)
     }
 
-    fun markAssessmentAsComplete(assessmentType: Int){
+    fun markAssessmentAsComplete(assessmentType: Int,){
         completeAssessment.markAssessmentAsComplete(assessmentType)
+    }
+
+    fun computePsychologicalAssessmentProfile(assessmentType: Int): MediatorLiveData<Result<PsychologicalProfile>> {
+        return fetchUserComputeAssessmentProfile.computePsychologicalAssessmentProfile(assessmentType)
+    }
+
+    fun submitAssessmentAnswer(question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment):MediatorLiveData<Result<Unit>>{
+        return fetchUserSubmitAssessmentAnswer(question,answer,assessment)
+    }
+
+    fun computeFinancialAssessmentProfile(assessmentType: Int): MediatorLiveData<Result<FinancialProfile>> {
+        return fetchUserComputeAssessmentProfile.computeFinancialAssessmentProfile(assessmentType)
+    }
+
+    fun savePsychologicalAssessmentProfile(psychologicalProfile: PsychologicalProfile) {
+        completeAssessment.savePsychologicalAssessmentProfile(psychologicalProfile)
+    }
+
+    fun saveFinancialAssessmentProfile(financialProfile: FinancialProfile) {
+        completeAssessment.saveFinancialAssessmentProfile(financialProfile)
     }
 }

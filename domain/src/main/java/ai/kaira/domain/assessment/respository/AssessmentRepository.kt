@@ -1,9 +1,7 @@
 package ai.kaira.domain.assessment.respository
 
 import ai.kaira.domain.Result
-import ai.kaira.domain.assessment.model.Assessment
-import ai.kaira.domain.assessment.model.AssessmentAnswer
-import ai.kaira.domain.assessment.model.AssessmentQuestion
+import ai.kaira.domain.assessment.model.*
 import ai.kaira.domain.introduction.model.User
 import androidx.lifecycle.MutableLiveData
 
@@ -16,4 +14,8 @@ interface AssessmentRepository {
     fun deleteUserOldAssessmentsAnswers()
     fun markAssessmentAsComplete(assessmentType: Int)
     fun isAssessmentCompleted(assessmentType: Int):Boolean
+    fun computeFinancialAssessmentProfile(assessmentType: Int,userId:String) : MutableLiveData<Result<FinancialProfile>>
+    fun computePsychologicalAssessmentProfile(assessmentType: Int,userId:String) : MutableLiveData<Result<PsychologicalProfile>>
+    fun savePsychologicalAssessmentProfile(psychologicalProfile: PsychologicalProfile)
+    fun saveFinancialAssessmentProfile(financialProfile: FinancialProfile)
 }

@@ -3,7 +3,6 @@ package ai.kaira.app.application
 import ai.kaira.app.assessment.AssessmentViewModel
 import ai.kaira.app.introduction.IntroductionViewModel
 import ai.kaira.domain.assessment.usecase.AssessmentUseCase
-import ai.kaira.domain.assessment.usecase.FetchUserSubmitAssessmentAnswer
 import ai.kaira.domain.introduction.usecase.IntroductionUsecase
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -2,6 +2,9 @@ package ai.kaira.data.assessment.datasource.database
 
 import ai.kaira.data.utils.LanguageConfig
 import ai.kaira.domain.assessment.model.Assessment
+import ai.kaira.domain.assessment.model.AssessmentType
+import ai.kaira.domain.assessment.model.FinancialProfile
+import ai.kaira.domain.assessment.model.PsychologicalProfile
 import android.content.SharedPreferences
 import android.content.res.AssetManager
 import androidx.lifecycle.MutableLiveData
@@ -60,7 +63,18 @@ class AssessmentLocalDataSourceImp @Inject constructor(private val assetManager:
     }
 
     override fun isAssessmentCompleted(assessmentType: Int):Boolean {
-        return prefs.getBoolean("$assessmentType",false)
+        return prefs.contains("$assessmentType")
     }
+
+    override fun savePsychologicalAssessmentProfile(psychologicalProfile: PsychologicalProfile) {
+        val gson = Gson()
+        prefs.edit().putString("${AssessmentType.PSYCHOLOGICAL.value}",gson.toJson(psychologicalProfile)).apply()
+    }
+
+    override fun saveFinancialAssessmentProfile(financialProfile: FinancialProfile) {
+        val gson = Gson()
+        prefs.edit().putString("${AssessmentType.FINANCIAL.value}",gson.toJson(financialProfile)).apply()
+    }
+
 
 }

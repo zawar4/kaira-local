@@ -1,6 +1,8 @@
 package ai.kaira.domain.assessment.usecase
 
 import ai.kaira.domain.BaseUseCase
+import ai.kaira.domain.assessment.model.FinancialProfile
+import ai.kaira.domain.assessment.model.PsychologicalProfile
 import ai.kaira.domain.assessment.respository.AssessmentRepository
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
@@ -13,5 +15,13 @@ class CompleteAssessment @Inject constructor(private val assessmentRepository: A
 
     fun isAssessmentCompleted(assessmentType: Int): Boolean{
         return assessmentRepository.isAssessmentCompleted(assessmentType)
+    }
+
+    fun savePsychologicalAssessmentProfile(psychologicalProfile: PsychologicalProfile) {
+        assessmentRepository.savePsychologicalAssessmentProfile(psychologicalProfile)
+    }
+
+    fun saveFinancialAssessmentProfile(financialProfile: FinancialProfile) {
+        assessmentRepository.saveFinancialAssessmentProfile(financialProfile)
     }
 }

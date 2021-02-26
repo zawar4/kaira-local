@@ -9,6 +9,7 @@ import ai.kaira.app.utils.Consts.Companion.ASSESSMENT_TYPE
 import ai.kaira.domain.assessment.model.Assessment
 import ai.kaira.domain.assessment.model.AssessmentAnswerClick
 import ai.kaira.domain.assessment.model.AssessmentType
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.StrictMode
@@ -62,7 +63,7 @@ class AssessmentQuestionActivity : AppCompatActivity() {
         assessmentViewModel.loadFirstQuestion()
         activityAssessmentQuestionBinding.assessmentDisclaimerTv.text = assessment.mention
         lateinit var assessmentType : AssessmentType
-        if(assessment.type == AssessmentType.PSYCHOLOGICAL.value)
+        if(assessment.type == AssessmentType.PSYCHOLOGICAL)
             assessmentType =  AssessmentType.PSYCHOLOGICAL
         else{
             assessmentType =  AssessmentType.FINANCIAL
@@ -124,6 +125,11 @@ class AssessmentQuestionActivity : AppCompatActivity() {
             finish()
         }
 
+        assessmentViewModel.onStartComputeAssessmentProfileActivity().observe(this){
+            var intent = Intent(this,AssessmentProfileComputationActivity::class.java)
+            intent.putExtra(ASSESSMENT_TYPE,it)
+            startActivity(intent)
+        }
         assessmentViewModel.onSubmitAnswer().observe(this){
 
         }

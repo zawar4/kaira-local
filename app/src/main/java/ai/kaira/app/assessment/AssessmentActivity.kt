@@ -73,7 +73,7 @@ class AssessmentActivity : AppCompatActivity() {
         }
     }
     private fun setData(assessment:Assessment){
-        activityAssessmentBinding.assessmentNumTv.text = assessment.type.toString()
+        activityAssessmentBinding.assessmentNumTv.text = assessment.type.value.toString()
         activityAssessmentBinding.assessmentDescriptionTv.text = assessment.description
         activityAssessmentBinding.assessmentDurationTv.text = "  ${assessment.duration} ${getString(R.string.mint)}"
         activityAssessmentBinding.assessmentDurationTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_clock,0,0,0)
