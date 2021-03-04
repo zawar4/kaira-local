@@ -75,7 +75,6 @@ class IntroductionActivity : AppCompatActivity() {
         StrictMode.setThreadPolicy(policy)
 
         introductionViewModel = ViewModelProvider(this, viewModelFactory).get(IntroductionViewModel::class.java)
-        introductionViewModel.deleteUserOldAssessmentsAnswers()
         introductionBinding.firstNameEt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }

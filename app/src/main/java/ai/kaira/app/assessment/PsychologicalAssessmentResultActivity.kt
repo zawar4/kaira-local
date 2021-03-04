@@ -3,6 +3,7 @@ package ai.kaira.app.assessment
 import ai.kaira.app.R
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityPsychologicalAssessmentResultBinding
+import ai.kaira.app.introduction.IntroductionActivity
 import ai.kaira.domain.assessment.model.PsychologicalProfileType
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -53,7 +54,9 @@ class PsychologicalAssessmentResultActivity : AppCompatActivity() {
         }
 
         binding.closeBtn.setOnClickListener {
-            psychologicalAssessmentResultViewModel.finishActivity()
+            var intent = Intent(this, IntroductionActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
         }
 
         binding.backBtn.setOnClickListener {
@@ -70,7 +73,9 @@ class PsychologicalAssessmentResultActivity : AppCompatActivity() {
         }
 
         binding.submitBtn.setOnClickListener {
-            psychologicalAssessmentResultViewModel.finishActivity()
+            var intent = Intent(this, IntroductionActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
         }
     }
 }
