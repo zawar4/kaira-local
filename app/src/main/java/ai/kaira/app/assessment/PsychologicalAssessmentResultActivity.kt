@@ -3,6 +3,8 @@ package ai.kaira.app.assessment
 import ai.kaira.app.R
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityPsychologicalAssessmentResultBinding
+import ai.kaira.domain.assessment.model.PsychologicalProfileType
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -14,7 +16,7 @@ import javax.inject.Inject
 class PsychologicalAssessmentResultActivity : AppCompatActivity() {
 
 
-    lateinit var assessmentViewModel: AssessmentViewModel
+    lateinit var psychologicalAssessmentResultViewModel: PsychologicalAssessmentResultViewModel
     @Inject
     lateinit var viewModelFactory : ViewModelFactory
 
@@ -23,24 +25,52 @@ class PsychologicalAssessmentResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding  = DataBindingUtil.setContentView(this,R.layout.activity_psychological_assessment_result)
-        assessmentViewModel  = ViewModelProvider(this, viewModelFactory).get(AssessmentViewModel::class.java)
+        psychologicalAssessmentResultViewModel  = ViewModelProvider(this, viewModelFactory).get(PsychologicalAssessmentResultViewModel::class.java)
 
+
+        psychologicalAssessmentResultViewModel.fetchPsychologicalAssessmentProfile()
+
+
+        psychologicalAssessmentResultViewModel.onPsychologicalAssessmentProfileFetched().observe(this){
+            when(it.type){
+                 PsychologicalProfileType.SOCIAL_STATUS ->{
+                     binding.psychologicalTypeTitleTv.text = getString(R.string.psychological_profile_type_social_status)
+                     binding.psychologicalTypeDescriptionTv.text = getString(R.string.psychological_profile_description_social_status)
+                 }
+                PsychologicalProfileType.AUTONOMY ->{
+                    binding.psychologicalTypeTitleTv.text = getString(R.string.psychological_profile_type_autonomy)
+                    binding.psychologicalTypeDescriptionTv.text = getString(R.string.psychological_profile_description_autonomy)
+                }
+                PsychologicalProfileType.BENEVOLENCE ->{
+                    binding.psychologicalTypeTitleTv.text = getString(R.string.psychological_profile_type_benevolence)
+                    binding.psychologicalTypeDescriptionTv.text = getString(R.string.psychological_profile_description_benevolence)
+                }
+                PsychologicalProfileType.HEDONISM->{
+                    binding.psychologicalTypeTitleTv.text = getString(R.string.psychological_profile_type_hedonism)
+                    binding.psychologicalTypeDescriptionTv.text = getString(R.string.psychological_profile_description_hedonism)
+                }
+            }
+        }
 
         binding.closeBtn.setOnClickListener {
-            assessmentViewModel.finishActivity()
+            psychologicalAssessmentResultViewModel.finishActivity()
         }
 
         binding.backBtn.setOnClickListener {
-            assessmentViewModel.finishActivity()
+            psychologicalAssessmentResultViewModel.finishActivity()
         }
 
 
-        assessmentViewModel.onActivityFinish().observe(this){
+        psychologicalAssessmentResultViewModel.onActivityFinish().observe(this){
             finish()
         }
 
+        binding.detailBtn.setOnClickListener {
+            startActivity(Intent(this, PsychologicalProfilesActivity::class.java))
+        }
+
         binding.submitBtn.setOnClickListener {
-            assessmentViewModel.finishActivity()
+            psychologicalAssessmentResultViewModel.finishActivity()
         }
     }
 }

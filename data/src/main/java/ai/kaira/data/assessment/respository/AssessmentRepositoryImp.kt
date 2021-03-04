@@ -73,5 +73,13 @@ class AssessmentRepositoryImp @Inject constructor(private val assessmentLocalDat
         assessmentLocalDataSource.saveFinancialAssessmentProfile(financialProfile)
     }
 
+    override fun fetchPsychologicalAssessmentProfile(): MutableLiveData<PsychologicalProfile> {
+        return assessmentLocalDataSource.fetchPsychologicalAssessmentProfile()
+    }
+
+    override fun fetchFinancialAssessmentProfile(): MutableLiveData<FinancialProfile> {
+        return assessmentLocalDataSource.fetchFinancialAssessmentProfile()
+    }
+
 
 }
