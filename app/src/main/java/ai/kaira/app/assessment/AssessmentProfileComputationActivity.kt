@@ -8,6 +8,7 @@ import ai.kaira.app.utils.Extensions.Companion.decreaseViewSize
 import ai.kaira.app.utils.Extensions.Companion.increaseViewSize
 import ai.kaira.app.utils.UIUtils
 import ai.kaira.domain.assessment.model.AssessmentType
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -59,6 +60,9 @@ class AssessmentProfileComputationActivity : AppCompatActivity() {
             }
 
             assessmentViewModel.onActivityFinish().observe(this){
+                if(assessmentType == AssessmentType.PSYCHOLOGICAL){
+                    startActivity(Intent(this,PsychologicalAssessmentResultActivity::class.java))
+                }
                 finish()
             }
 
