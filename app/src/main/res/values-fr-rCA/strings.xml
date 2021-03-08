@@ -59,6 +59,19 @@
     <string name="psychological_assessment_disclaimer">Cette évaluation a été développée en partenariat avec l’Université de Sherbrooke.</string>
     <string name="financial_assessment_disclaimer">Cette évaluation utilise le FinHealth Score® du Financial Health Network.</string>
 
+    <string name="psychological_profile_type_social_status">La réussite</string>
+    <string name="psychological_profile_type_autonomy">L\'autonomie</string>
+    <string name="psychological_profile_type_benevolence">La générosité</string>
+    <string name="psychological_profile_type_hedonism">Le plaisir</string>
+
+    <string name="psychological_profile_description_social_status">Pour toi, l\'argent symbolise la réussite, reflète ton statut social et te permet d\'avoir de l’influence.</string>
+    <string name="psychological_profile_description_autonomy">Pour toi, une bonne situation financière te donne un sentiment de sécurité, d\'autonomie et de liberté.</string>
+    <string name="psychological_profile_description_benevolence">Pour toi, une bonne situation financière te permet d\'aider tes proches, de veiller au bien-être de ton entourage.</string>
+    <string name="psychological_profile_description_hedonism">Pour toi, une bonne situation financière te permet d\'abord et avant tout d\'avoir du plaisir dans la vie et de t\'amuser.</string>
+
+    <string name="psychological_profile_result_title">Ta motivation face à l’argent</string>
+    <string name="psychological_profile_detail_title">Brève description des différents profils de motivation face à l’argent selon les réponses</string>
+
     <string name = "mint" >mint</string>
 
 

@@ -2,6 +2,8 @@ package ai.kaira.app.splash
 
 import ai.kaira.app.onboarding.OnboardActivity
 import ai.kaira.app.R
+import ai.kaira.app.utils.Extensions.Companion.clearCache
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,6 +17,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        clearCache();
         Timer().schedule(SPLASH_TIME_OUT){
             //do something
             startActivity(Intent(applicationContext,OnboardActivity::class.java))

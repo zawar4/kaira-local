@@ -4,6 +4,7 @@ import ai.kaira.app.utils.Extensions.Companion.increaseViewSize
 import android.animation.ValueAnimator
 import android.content.Context
 import android.view.View
+import dagger.hilt.android.qualifiers.ApplicationContext
 import java.net.HttpURLConnection
 import java.net.InetSocketAddress
 import java.net.Socket
@@ -25,6 +26,10 @@ class Extensions {
             } catch (e: Exception) {
                 false
             }
+        }
+
+        fun Context.clearCache(){
+            getSharedPreferences("kaira", Context.MODE_PRIVATE).edit().clear().apply()
         }
 
         fun View.increaseViewSize(duration: Long, maxHeight: Int, minHeight: Int) {

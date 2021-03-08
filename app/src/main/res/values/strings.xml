@@ -62,6 +62,20 @@
     <string name="psychological_assessment_disclaimer">This assessment was developed in partnership with the University of Sherbrooke.</string>
     <string name="financial_assessment_disclaimer">This assessment uses the FinHealth Score® from the Financial Health Network</string>
 
+
+    <string name="psychological_profile_type_social_status">Social status</string>
+    <string name="psychological_profile_type_autonomy">Autonomy</string>
+    <string name="psychological_profile_type_benevolence">Benevolence</string>
+    <string name="psychological_profile_type_hedonism">Hedonism</string>
+
+    <string name="psychological_profile_description_social_status">The social status dimension refers to an individual for whom money means success, influence and a high social position.</string>
+    <string name="psychological_profile_description_autonomy">The autonomy dimension refers to an individual for whom money means freedom, financial security and stability.</string>
+    <string name="psychological_profile_description_benevolence">The benevolence dimension is said of a person for whom money represents a means of helping those close to them.</string>
+    <string name="psychological_profile_description_hedonism">The hedonism dimension is said of a person for whom money is a way to fulfill their desires and to have fun.</string>
+
+    <string name="psychological_profile_result_title">Your motivation for money</string>
+    <string name="psychological_profile_detail_title">Brief description of the different motivation profiles in the face of money according to the responses</string>
+
     <string name="_2" translatable="false">2</string>
     <string name="_1" translatable="false">1</string>
 

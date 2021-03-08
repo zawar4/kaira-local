@@ -277,10 +277,8 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
     private fun startComputeAssessmentProfileActivity(){
         if(AssessmentType.PSYCHOLOGICAL == assessment.type){
             startComputeAssessmentProfileLiveData.value = AssessmentType.PSYCHOLOGICAL
-            finishActivity()
         }else if(AssessmentType.FINANCIAL == assessment.type){
             startComputeAssessmentProfileLiveData.value = AssessmentType.FINANCIAL
-            finishActivity()
         }
 
     }

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".assessment.PsychologicalProfilesActivity"
+            android:padding="24dp">
+
+
+            <ImageView
+                android:id="@+id/back_btn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_back_button" />
+
+
+            <TextView
+                android:id="@+id/textView5"
+                style="@style/Text01"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/psychological_profile_detail_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/back_btn" />
+
+
+            <View
+                android:id="@+id/social_status_view"
+                android:layout_width="120dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="54dp"
+                android:background="@drawable/sec_fill_border"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <View
+                android:id="@+id/autonomy_view"
+                android:layout_width="120dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="24dp"
+                android:background="@drawable/sec_fill_round"
+                app:layout_constraintStart_toEndOf="@+id/social_status_view"
+                app:layout_constraintTop_toTopOf="@+id/social_status_view" />
+
+
+            <View
+                android:id="@+id/benevolence_view"
+                android:layout_width="120dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/sec_fill_round"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/social_status_view" />
+
+
+            <View
+                android:id="@+id/hedonism_view"
+                android:layout_width="120dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="24dp"
+                android:background="@drawable/sec_fill_round"
+                app:layout_constraintStart_toEndOf="@+id/benevolence_view"
+                app:layout_constraintTop_toTopOf="@+id/benevolence_view" />
+
+
+            <TextView
+                android:id="@+id/psychological_type_title_tv"
+                style="@style/Heading01"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/psychological_profile_type_social_status"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hedonism_view" />
+
+            <TextView
+                android:id="@+id/psychological_type_description_tv"
+                style="@style/Text01"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/psychological_profile_description_social_status"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/psychological_type_title_tv" />
+
+
+            <TextView
+                android:id="@+id/assessment_disclaimer_tv"
+                style="@style/Text04"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/psychological_assessment_disclaimer"
+                app:layout_constraintTop_toBottomOf="@+id/psychological_type_description_tv"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>

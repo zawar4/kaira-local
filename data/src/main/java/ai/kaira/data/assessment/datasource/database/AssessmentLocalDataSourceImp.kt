@@ -14,6 +14,8 @@ import javax.inject.Inject
 class AssessmentLocalDataSourceImp @Inject constructor(private val assetManager: AssetManager,private val prefs: SharedPreferences) : AssessmentLocalDataSource {
 
     private val assessmentLiveData : MutableLiveData<Assessment> = MutableLiveData()
+    private val psychologicalAssessmentProfileLiveData = MutableLiveData<PsychologicalProfile>()
+    private val financialAssessmentProfileLiveData = MutableLiveData<FinancialProfile>()
     override fun getFinancialAssessment(locale:String): MutableLiveData<Assessment> {
         var fileName = "financial_assessment_"
         if(locale == LanguageConfig.CANADIAN_FRENCH || locale == LanguageConfig.FRENCH){
@@ -74,6 +76,32 @@ class AssessmentLocalDataSourceImp @Inject constructor(private val assetManager:
     override fun saveFinancialAssessmentProfile(financialProfile: FinancialProfile) {
         val gson = Gson()
         prefs.edit().putString("${AssessmentType.FINANCIAL.value}",gson.toJson(financialProfile)).apply()
+    }
+
+    override fun fetchPsychologicalAssessmentProfile(): MutableLiveData<PsychologicalProfile> {
+
+        val psychologicalProfileText = prefs.getString("${AssessmentType.PSYCHOLOGICAL.value}","")
+        psychologicalProfileText?.let{
+            if(it?.isNotBlank()){
+                val gson = Gson()
+                val psychologicalProfile = gson.fromJson(psychologicalProfileText, PsychologicalProfile::class.java)
+                psychologicalAssessmentProfileLiveData.value = psychologicalProfile
+            }
+        }
+        return psychologicalAssessmentProfileLiveData
+
+    }
+
+    override fun fetchFinancialAssessmentProfile(): MutableLiveData<FinancialProfile> {
+        val financialProfileText = prefs.getString("${AssessmentType.FINANCIAL.value}","")
+        financialProfileText?.let{
+            if(it?.isNotBlank()){
+                val gson = Gson()
+                val financialProfile = gson.fromJson(financialProfileText, FinancialProfile::class.java)
+                financialAssessmentProfileLiveData.value = financialProfile
+            }
+        }
+        return financialAssessmentProfileLiveData
     }
 
 
