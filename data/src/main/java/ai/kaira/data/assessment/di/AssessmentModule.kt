@@ -16,7 +16,6 @@ import dagger.hilt.android.components.ActivityComponent
 @InstallIn(ActivityComponent::class)
 abstract class AssessmentModule {
 
-
     @Binds
     abstract fun bindAssessmentRepository(assessmentRepositoryImp: AssessmentRepositoryImp): AssessmentRepository
 

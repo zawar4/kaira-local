@@ -63,6 +63,7 @@
     <string name="financial_assessment_disclaimer">This assessment uses the FinHealth Score® from the Financial Health Network</string>
 
 
+    <!-- Psychological Profile !-->
     <string name="psychological_profile_type_social_status">Social status</string>
     <string name="psychological_profile_type_autonomy">Autonomy</string>
     <string name="psychological_profile_type_benevolence">Benevolence</string>
@@ -75,6 +76,21 @@
 
     <string name="psychological_profile_result_title">Your motivation for money</string>
     <string name="psychological_profile_detail_title">Brief description of the different motivation profiles in the face of money according to the responses</string>
+
+
+    <!-- Financial Profile !-->
+    <string name="financial_profile_type_spending">Spendings</string>
+    <string name="financial_profile_type_saving">Savings</string>
+    <string name="financial_profile_type_credit">Borrowings</string>
+    <string name="financial_profile_type_planning">Planning</string>
+    <string name="financial_profile_result_title">Your results</string>
+    <string name="financial_profile_detail_title">Brief description of the results of possible financial portraits according to the answers.</string>
+    <string name="financial_profile_title_good">You\'re financially healthy.</string>
+    <string name="financial_profile_title_ok">You\'re making it financially</string>
+    <string name="financial_profile_title_bad">You\'re financially vulnerable</string>
+    <string name="financial_profile_description_good">Your situation is healthy in all financial health indicators.</string>
+    <string name="financial_profile_description_ok">Your situation is relatively good. However, you could improve some financial health indicators.</string>
+    <string name="financial_profile_description_bad">Your situation requires significant effort in several financial health indicators.</string>
 
     <string name="_2" translatable="false">2</string>
     <string name="_1" translatable="false">1</string>

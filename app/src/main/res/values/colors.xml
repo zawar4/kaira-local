@@ -27,6 +27,9 @@
     <color name="financialProfileBad">#ff7800</color>
     <color name="financialProfileOk">#46d9e7</color>
     <color name="financialProfileGood">#2ac261</color>
+    <color name="financialProfileBad_Highlight">#fde4cd</color>
+    <color name="financialProfileOk_Highlight">#dbf7fa</color>
+    <color name="financialProfileGood_Highlight">#d5f2df</color>
     <color name="kairaDisabled">#d5cdc7</color>
 
     <!-- Primary brand color. -->

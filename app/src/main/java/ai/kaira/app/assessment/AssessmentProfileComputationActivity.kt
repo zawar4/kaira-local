@@ -2,6 +2,7 @@ package ai.kaira.app.assessment
 
 import ai.kaira.app.R
 import ai.kaira.app.application.ViewModelFactory
+import ai.kaira.app.assessment.viewmodel.AssessmentViewModel
 import ai.kaira.app.databinding.ActivityAssessmentProfileComputationBinding
 import ai.kaira.app.utils.Consts
 import ai.kaira.app.utils.Extensions.Companion.decreaseViewSize
@@ -62,6 +63,9 @@ class AssessmentProfileComputationActivity : AppCompatActivity() {
             assessmentViewModel.onActivityFinish().observe(this){
                 if(assessmentType == AssessmentType.PSYCHOLOGICAL){
                     startActivity(Intent(this,PsychologicalAssessmentResultActivity::class.java))
+                }
+                else if(assessmentType == AssessmentType.FINANCIAL){
+                    startActivity(Intent(this,FinancialAssessmentResultActivity::class.java))
                 }
                 finish()
             }
