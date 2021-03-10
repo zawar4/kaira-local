@@ -85,7 +85,7 @@
     <string name="financial_profile_type_planning">Planning</string>
     <string name="financial_profile_result_title">Your results</string>
     <string name="financial_profile_detail_title">Brief description of the results of possible financial portraits according to the answers.</string>
-    <string name="financial_profile_title_good">You\'re financially healthy.</string>
+    <string name="financial_profile_title_good">You\'re financially healthy</string>
     <string name="financial_profile_title_ok">You\'re making it financially</string>
     <string name="financial_profile_title_bad">You\'re financially vulnerable</string>
     <string name="financial_profile_description_good">Your situation is healthy in all financial health indicators.</string>

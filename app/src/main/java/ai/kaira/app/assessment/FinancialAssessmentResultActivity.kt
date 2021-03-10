@@ -137,7 +137,7 @@ class FinancialAssessmentResultActivity : AppCompatActivity() {
         }
 
         binding.detailBtn.setOnClickListener {
-            //startActivity(Intent(this, PsychologicalProfilesActivity::class.java))
+            startActivity(Intent(this, FinancialProfilesActivity::class.java))
         }
     }
 }
