@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".assessment.FinancialProfilesActivity"
+            android:padding="24dp">
+
+            <ImageView
+                android:id="@+id/back_btn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_back_button" />
+
+
+            <TextView
+                android:id="@+id/textView5"
+                style="@style/Text01"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/financial_profile_detail_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/back_btn" />
+
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:layout_marginTop="44dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="0dp"
+                android:layout_height="18dp"
+                android:background="@drawable/bad_fill_round"
+                app:layout_constraintBottom_toBottomOf="@+id/tile_one_tv"
+                app:layout_constraintEnd_toStartOf="@+id/tile_one_tv"
+                app:layout_constraintStart_toStartOf="@+id/view2" />
+
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="0dp"
+                android:layout_height="18dp"
+                android:background="@drawable/ok_fill_round"
+                app:layout_constraintBottom_toBottomOf="@+id/view2"
+                app:layout_constraintEnd_toStartOf="@+id/tile_two_tv"
+                app:layout_constraintStart_toEndOf="@+id/view3" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="18dp"
+                android:background="@drawable/good_fill_round"
+                app:layout_constraintBottom_toBottomOf="@+id/tile_two_tv"
+                app:layout_constraintEnd_toEndOf="@+id/view2"
+                app:layout_constraintStart_toEndOf="@+id/view4" />
+
+            <View
+                android:id="@+id/tile_one_tv"
+                android:layout_width="2dp"
+                android:layout_height="18dp"
+                android:background="@color/kairaSecLabel"
+                app:layout_constraintBottom_toBottomOf="@+id/view2"
+                app:layout_constraintEnd_toEndOf="@+id/view2"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintStart_toStartOf="@+id/view2"
+                app:layout_constraintTop_toTopOf="@+id/view2" />
+
+            <View
+                android:id="@+id/tile_two_tv"
+                android:layout_width="2dp"
+                android:layout_height="18dp"
+                android:background="@color/kairaSecLabel"
+                app:layout_constraintBottom_toBottomOf="@+id/view2"
+                app:layout_constraintEnd_toEndOf="@+id/view2"
+                app:layout_constraintHorizontal_bias="0.7"
+                app:layout_constraintStart_toStartOf="@+id/view2"
+                app:layout_constraintTop_toTopOf="@+id/view2" />
+
+            <TextView
+                android:id="@+id/financial_good_score_tv"
+                style="@style/Text02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="70 - 100"
+                android:textColor="@color/financialProfileGood"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view2"
+                android:layout_marginTop="60dp"/>
+
+            <TextView
+                android:id="@+id/financial_good_title_tv"
+                style="@style/Text01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/financial_profile_title_good"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/financial_good_score_tv"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/financial_good_description_tv"
+                style="@style/Text01"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/financial_profile_description_good"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/financial_good_title_tv" />
+
+
+            <TextView
+                android:id="@+id/financial_ok_score_tv"
+                style="@style/Text02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="30 - 69"
+                android:textColor="@color/financialProfileOk"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/financial_good_description_tv" />
+
+            <TextView
+                android:id="@+id/financial_ok_title_tv"
+                style="@style/Text01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/financial_profile_title_ok"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/financial_ok_score_tv"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/financial_ok_description_tv"
+                style="@style/Text01"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/financial_profile_description_ok"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/financial_ok_title_tv" />
+
+            <TextView
+                android:id="@+id/financial_bad_score_tv"
+                style="@style/Text02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="0 - 29"
+                android:textColor="@color/financialProfileBad"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/financial_ok_description_tv" />
+
+            <TextView
+                android:id="@+id/financial_bad_title_tv"
+                style="@style/Text01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/financial_profile_title_bad"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/financial_bad_score_tv"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/financial_bad_description_tv"
+                style="@style/Text01"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/financial_profile_description_bad"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/financial_bad_title_tv" />
+
+            <TextView
+                android:id="@+id/assessment_disclaimer_tv"
+                style="@style/Text04"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/financial_assessment_disclaimer"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/financial_bad_description_tv"
+                android:textStyle="italic"/>
+
+            <TextView
+                android:id="@+id/textView10"
+                style="@style/Text01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                app:layout_constraintStart_toStartOf="@+id/view2"
+                app:layout_constraintTop_toBottomOf="@+id/tile_one_tv" />
+
+            <TextView
+                android:id="@+id/textView11"
+                style="@style/Text01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30"
+                app:layout_constraintEnd_toEndOf="@+id/tile_one_tv"
+                app:layout_constraintStart_toStartOf="@+id/tile_one_tv"
+                app:layout_constraintTop_toBottomOf="@+id/tile_one_tv" />
+
+            <TextView
+                android:id="@+id/textView12"
+                style="@style/Text01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="70"
+                app:layout_constraintEnd_toEndOf="@+id/tile_two_tv"
+                app:layout_constraintStart_toStartOf="@+id/tile_two_tv"
+                app:layout_constraintTop_toBottomOf="@+id/tile_two_tv" />
+
+            <TextView
+                android:id="@+id/textView13"
+                style="@style/Text01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100"
+                app:layout_constraintEnd_toEndOf="@+id/view2"
+                app:layout_constraintTop_toBottomOf="@+id/tile_two_tv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>

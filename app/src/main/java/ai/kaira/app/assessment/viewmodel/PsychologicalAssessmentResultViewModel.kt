@@ -1,4 +1,4 @@
-package ai.kaira.app.assessment
+package ai.kaira.app.assessment.viewmodel
 
 import ai.kaira.app.application.BaseViewModel
 import ai.kaira.domain.assessment.model.PsychologicalProfile

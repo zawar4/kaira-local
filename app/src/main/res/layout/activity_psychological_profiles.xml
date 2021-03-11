@@ -101,7 +101,10 @@
                 android:text="@string/psychological_assessment_disclaimer"
                 app:layout_constraintTop_toBottomOf="@+id/psychological_type_description_tv"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                android:textStyle="italic"/>
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

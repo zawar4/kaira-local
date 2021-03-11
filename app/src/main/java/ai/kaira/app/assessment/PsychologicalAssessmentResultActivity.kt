@@ -2,6 +2,7 @@ package ai.kaira.app.assessment
 
 import ai.kaira.app.R
 import ai.kaira.app.application.ViewModelFactory
+import ai.kaira.app.assessment.viewmodel.PsychologicalAssessmentResultViewModel
 import ai.kaira.app.databinding.ActivityPsychologicalAssessmentResultBinding
 import ai.kaira.app.introduction.IntroductionActivity
 import ai.kaira.domain.assessment.model.PsychologicalProfileType

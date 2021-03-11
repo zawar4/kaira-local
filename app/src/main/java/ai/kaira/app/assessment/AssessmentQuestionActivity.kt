@@ -2,6 +2,7 @@ package ai.kaira.app.assessment
 
 import ai.kaira.app.R
 import ai.kaira.app.application.ViewModelFactory
+import ai.kaira.app.assessment.viewmodel.AssessmentViewModel
 import ai.kaira.app.databinding.ActivityAssessmentQuestionBinding
 import ai.kaira.app.utils.LanguageConfig
 import ai.kaira.app.utils.UIUtils
