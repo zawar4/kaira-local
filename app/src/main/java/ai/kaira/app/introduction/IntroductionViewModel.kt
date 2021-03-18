@@ -6,6 +6,7 @@ import ai.kaira.app.utils.Extensions.Companion.isConnectedToInternet
 import ai.kaira.domain.Result
 import ai.kaira.domain.ResultState
 import ai.kaira.domain.assessment.model.AssessmentType
+import ai.kaira.domain.assessment.model.Strategy
 import ai.kaira.domain.introduction.model.User
 import ai.kaira.domain.introduction.usecase.IntroductionUsecase
 import androidx.lifecycle.MediatorLiveData
@@ -21,6 +22,8 @@ class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase
     var displayAssessmentFieldsLiveData : MutableLiveData<User> = MutableLiveData()
     var displayIntroductionFieldsLiveData : MutableLiveData<Boolean> = MutableLiveData()
     var hideAssessmentFieldsLiveData : MutableLiveData<Unit> = MutableLiveData()
+    var assessmentProfilesProcessLiveData = MediatorLiveData<Unit>()
+    var processAssessmentProfilesLiveData = MediatorLiveData<Strategy>()
 
     lateinit var user : User
 
@@ -96,12 +99,38 @@ class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase
                         result.message?.let{it->
                             showError(it)
                         }
-
                         userResultLiveData.removeSource(createUserLiveData)
                     }
                 }
             }
         }
+    }
+
+
+    fun processAssessmentProfiles(languageLocale: String){
+        val liveDataSource = introductionUsecase.processAssessmentProfiles(languageLocale)
+        assessmentProfilesProcessLiveData.addSource(liveDataSource){ result ->
+            when(result.status){
+                ResultState.LOADING->{
+                    showLoading(true)
+                }
+                ResultState.ERROR->{
+                    showLoading(false)
+                    result.message?.let{it->
+                        showError(it)
+                    }
+                    assessmentProfilesProcessLiveData.removeSource(liveDataSource)
+                }
+                ResultState.SUCCESS ->{
+                    showLoading(false)
+                    assessmentProfilesProcessLiveData.removeSource(liveDataSource)
+                }
+            }
+        }
+    }
+
+    fun onAssessmentProfilesProcessed(): MediatorLiveData<Unit>{
+        return assessmentProfilesProcessLiveData
     }
 
     fun onCreateUser() : MediatorLiveData<User>{

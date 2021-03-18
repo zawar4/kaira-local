@@ -1,17 +1,17 @@
 package ai.kaira.domain.introduction.usecase
 
 import ai.kaira.domain.Result
-import ai.kaira.domain.assessment.model.AssessmentType
+import ai.kaira.domain.assessment.model.Strategy
 import ai.kaira.domain.assessment.usecase.AssessmentQuestionAnswered
 import ai.kaira.domain.assessment.usecase.CompleteAssessment
+import ai.kaira.domain.assessment.usecase.FetchUserProcessAssessmentProfiles
 import ai.kaira.domain.introduction.model.User
-import ai.kaira.domain.introduction.repository.IntroductionRepository
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import javax.inject.Inject
 
 
-class IntroductionUsecase @Inject constructor(val createUserUsecase: CreateUser,val fetchUserUsecase: FetchUser, val saveUserUsecase: SaveUser,val assessmentQuestionAnswered: AssessmentQuestionAnswered,val completeAssessment: CompleteAssessment) {
+class IntroductionUsecase @Inject constructor(val createUserUsecase: CreateUser,val fetchUserUsecase: FetchUser, val saveUserUsecase: SaveUser,val assessmentQuestionAnswered: AssessmentQuestionAnswered,val completeAssessment: CompleteAssessment, val fetchUserProcessAssessmentProfiles: FetchUserProcessAssessmentProfiles) {
 
     fun createUser(firstName:String, languageLocale: String) : MutableLiveData<Result<User>>{
         return createUserUsecase(firstName,languageLocale)
@@ -33,6 +33,9 @@ class IntroductionUsecase @Inject constructor(val createUserUsecase: CreateUser,
         assessmentQuestionAnswered.deleteUserOldAssessmentsAnswers()
     }
 
+    fun processAssessmentProfiles(languageLocale:String): MediatorLiveData<Result<Strategy>> {
+        return fetchUserProcessAssessmentProfiles(languageLocale)
+    }
     fun isAssessmentCompleted(assessmentType: Int):Boolean{
         return completeAssessment.isAssessmentCompleted(assessmentType)
     }

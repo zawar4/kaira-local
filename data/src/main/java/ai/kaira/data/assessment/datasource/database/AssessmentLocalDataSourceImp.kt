@@ -44,7 +44,7 @@ class AssessmentLocalDataSourceImp @Inject constructor(private val assetManager:
         val assessmentText = assetManager.open(fileName).bufferedReader().use { it.readText() }
         val gson = Gson()
         val assessment = gson.fromJson(assessmentText, Assessment::class.java)
-        assessmentLiveData.value = assessment
+        assessmentLiveData.value =(assessment)
         return assessmentLiveData
     }
 
@@ -93,9 +93,10 @@ class AssessmentLocalDataSourceImp @Inject constructor(private val assetManager:
     }
 
     override fun fetchFinancialAssessmentProfile(): MutableLiveData<FinancialProfile> {
+
         val financialProfileText = prefs.getString("${AssessmentType.FINANCIAL.value}","")
         financialProfileText?.let{
-            if(it?.isNotBlank()){
+            if(it.isNotBlank()){
                 val gson = Gson()
                 val financialProfile = gson.fromJson(financialProfileText, FinancialProfile::class.java)
                 financialAssessmentProfileLiveData.value = financialProfile

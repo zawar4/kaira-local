@@ -18,6 +18,10 @@ class APIConfig {
            }
        }
 
+       fun getAIBaseUrl():String{
+           return "http://3.97.210.97/"
+       }
+
        fun getAPIVersion():String{
            return "v1"
        }

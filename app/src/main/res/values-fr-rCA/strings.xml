@@ -40,21 +40,23 @@
 
     <string name="introduction_assessment_title_1">À toi de jouer maintenant %1$s!</string>
     <string name="introduction_assessment_title_2">La première évaluation est complétée!</string>
+    <string name="introduction_assessment_title_3">Les deux évaluations sont terminées!</string>
     <string name="introduction_assessment_detail_1">Pour m’aider à optimiser ton expérience et personnaliser mon coaching, réponds aux évaluations ci-dessous :</string>
     <string name="introduction_assessment_detail_2">Maintenant, clique et réponds à la 2e !</string>
+    <string name="introduction_assessment_detail_3">Maintenant, continuez!</string>
 
 
     <string name="ok">OK</string>
     <string name ="attention">Attention</string>
     <string name ="error_network">Ta connexion Internet n’est pas stable. Stp, corrige la situation avant de poursuivre.</string>
 
-    <!-- Assessements -->
-    <string name="action_assessement_start">Commencer l\'évaluation</string>
-    <string name="assessement_psychological_title">Ta motivation face à l’argent</string>
-    <string name="assessement_financial_title">Ton portrait financier</string>
+    <!-- assessments -->
+    <string name="action_assessment_start">Commencer l\'évaluation</string>
+    <string name="assessment_psychological_title">Ta motivation face à l’argent</string>
+    <string name="assessment_financial_title">Ton portrait financier</string>
 
-    <string name="assessement_computation_title">Je calcule ton résultat</string>
-    <string name="assessement_computation_message">Merci de patienter…</string>
+    <string name="assessment_computation_title">Je calcule ton résultat</string>
+    <string name="assessment_computation_message">Merci de patienter…</string>
 
     <!-- Psychological Profile !-->
     <string name="psychological_assessment_disclaimer">Cette évaluation a été développée en partenariat avec l’Université de Sherbrooke.</string>

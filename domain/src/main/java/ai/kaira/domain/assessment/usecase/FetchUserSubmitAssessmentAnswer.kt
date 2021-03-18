@@ -29,7 +29,7 @@ class FetchUserSubmitAssessmentAnswer @Inject constructor(val fetchUser: FetchUs
             val user : User = fetchUser()
             withContext(Main){
                 user.let {
-                    val liveDataSource = submitAssessmentAnswer(it,question,answer,assessment)
+                    val liveDataSource = submitAssessmentAnswer(it.id,question,answer,assessment)
                     submitAssessmentAnswerLiveData.addSource(liveDataSource){ it2 ->
                         submitAssessmentAnswerLiveData.value = it2
                         submitAssessmentAnswerLiveData.removeSource(liveDataSource)

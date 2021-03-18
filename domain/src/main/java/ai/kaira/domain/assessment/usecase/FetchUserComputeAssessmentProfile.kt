@@ -42,7 +42,7 @@ class FetchUserComputeAssessmentProfile @Inject constructor(private val fetchUse
         viewModelCoroutineScope.launch(IO) {
             val user : User = fetchUser()
             withContext(Main){
-                user?.let{ it ->
+                user.let{ it ->
                     val liveDataSource = computeFinancialAssessmentProfile(assessmentType,it.id)
                     computeFinancialProfileLiveData.addSource(liveDataSource){it2 ->
                         computeFinancialProfileLiveData.value = it2

@@ -75,7 +75,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/first_name_et" />
 
-
             <LinearLayout
                 android:id="@+id/psychological_assessment_layout"
                 android:layout_width="match_parent"
@@ -107,7 +106,7 @@
                     style="@style/Text01_Darkblue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/assessement_psychological_title"
+                    android:text="@string/assessment_psychological_title"
                     android:paddingLeft="18dp"
                     android:paddingTop="18dp"
                     android:paddingRight="18dp"
@@ -150,10 +149,23 @@
                     android:paddingTop="18dp"
                     android:paddingRight="18dp"
                     android:paddingBottom="18dp"
-                    android:text="@string/assessement_financial_title"
+                    android:text="@string/assessment_financial_title"
                     android:textColor="@color/medium_gray" />
 
             </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/next_btn"
+                style="@style/Text03_button"
+                android:layout_width="200dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/action_next"
+                android:textColor="@android:color/white"
+                app:cornerRadius="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/financial_assessment_layout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

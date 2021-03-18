@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData
 interface AssessmentRepository {
     fun getFinancialAssessment(locale:String): MutableLiveData<Assessment>
     fun getPsychologicalAssessment(locale:String): MutableLiveData<Assessment>
-    fun submitAssessmentAnswer(user: User, question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment): MutableLiveData<Result<Unit>>
+    fun submitAssessmentAnswer(userId: String, question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment): MutableLiveData<Result<Unit>>
     fun isQuestionAlreadyAnswered(assessmentId:Int,assessmentType:Int,questionId:Int):Int
     fun saveSelectedAssessmentAnswer(assessmentId:Int,assessmentType:Int,questionId:Int,assessmentAnswerPosition:Int)
     fun deleteUserOldAssessmentsAnswers()
@@ -20,4 +20,5 @@ interface AssessmentRepository {
     fun saveFinancialAssessmentProfile(financialProfile: FinancialProfile)
     fun fetchPsychologicalAssessmentProfile():MutableLiveData<PsychologicalProfile>
     fun fetchFinancialAssessmentProfile(): MutableLiveData<FinancialProfile>
+    fun processAssessmentProfiles(languageLocale:String,userId: String,financialAssessmentProfile: FinancialProfile,psychologicalAssessmentProfile: PsychologicalProfile): MutableLiveData<Result<Strategy>>
 }

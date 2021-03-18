@@ -92,7 +92,7 @@
             android:layout_height="55dp"
             android:layout_marginStart="18dp"
             android:layout_marginTop="24dp"
-            android:text="@string/action_assessement_start"
+            android:text="@string/action_assessment_start"
             android:textColor="@android:color/white"
             app:cornerRadius="8dp"
             app:layout_constraintStart_toStartOf="parent"

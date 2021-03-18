@@ -58,7 +58,7 @@ class AssessmentActivity : AppCompatActivity() {
     private fun setView(assessmentType: AssessmentType){
         if(assessmentType == AssessmentType.PSYCHOLOGICAL){
             activityAssessmentBinding.assessmentDisclaimerTv.text = getString(R.string.psychological_assessment_disclaimer)
-            activityAssessmentBinding.assessmentTitleTv.text = getString(R.string.assessement_psychological_title)
+            activityAssessmentBinding.assessmentTitleTv.text = getString(R.string.assessment_psychological_title)
             activityAssessmentBinding.background.setBackgroundColor(ContextCompat.getColor(applicationContext,R.color.kairaThirdFillASemiA))
             activityAssessmentBinding.assessmentNumTv.background = ContextCompat.getDrawable(applicationContext,R.drawable.kaira_third_filled_circle)
             activityAssessmentBinding.assessmentDurationTv.background = ContextCompat.getDrawable(applicationContext,R.drawable.karia_third_filled_a_semi_b_round_rectangle)
@@ -66,7 +66,7 @@ class AssessmentActivity : AppCompatActivity() {
 
         }else{
             activityAssessmentBinding.assessmentDisclaimerTv.text = getString(R.string.financial_assessment_disclaimer)
-            activityAssessmentBinding.assessmentTitleTv.text = getString(R.string.assessement_financial_title)
+            activityAssessmentBinding.assessmentTitleTv.text = getString(R.string.assessment_financial_title)
             activityAssessmentBinding.background.setBackgroundColor(ContextCompat.getColor(applicationContext,R.color.kairaFourthFillASemiA))
             activityAssessmentBinding.assessmentNumTv.background = ContextCompat.getDrawable(applicationContext,R.drawable.kaira_forth_filled_circle)
             activityAssessmentBinding.assessmentDurationTv.background = ContextCompat.getDrawable(applicationContext,R.drawable.karia_fourth_filled_a_semi_b_round_rectangle)

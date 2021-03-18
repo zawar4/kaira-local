@@ -59,6 +59,9 @@ class IntroductionActivity : AppCompatActivity() {
                     }
                     if(introductionViewModel.isAssessmentCompleted(AssessmentType.FINANCIAL.value)){
                         completeFinancialAssessment()
+                        introductionBinding.headingTv.text = getString(R.string.introduction_assessment_title_3)
+                        introductionBinding.descriptionTv.text = getString(R.string.introduction_assessment_detail_3)
+                        introductionBinding.nextBtn?.visibility = VISIBLE
                     }
 
                 }
@@ -150,6 +153,11 @@ class IntroductionActivity : AppCompatActivity() {
         introductionViewModel.onAvatarHeightChange().observe(this){
             onAvatarHeightChange(it)
         }
+
+        introductionBinding.nextBtn?.setOnClickListener({
+            val languageLocale: String = getLanguageLocale(applicationContext)
+            introductionViewModel.processAssessmentProfiles(languageLocale)
+        })
     }
 
     private fun submit(){
@@ -238,6 +246,7 @@ class IntroductionActivity : AppCompatActivity() {
     private fun hideAssessmentsFields(){
         introductionBinding.psychologicalAssessmentLayout?.visibility = INVISIBLE
         introductionBinding.financialAssessmentLayout.visibility = INVISIBLE
+        introductionBinding.nextBtn?.visibility = GONE
     }
 
     private fun completeFinancialAssessment(){
@@ -261,7 +270,6 @@ class IntroductionActivity : AppCompatActivity() {
             introductionViewModel.deleteUserOldAssessmentsAnswers()
             if(introductionViewModel.isAvatarHeightReduced())
                 introductionViewModel.reduceAvatarHeight(false)
-            hideAssessmentsFields()
         }else{
             super.onBackPressed();
         }
