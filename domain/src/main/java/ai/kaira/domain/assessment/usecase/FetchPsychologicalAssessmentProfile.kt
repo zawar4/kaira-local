@@ -9,11 +9,12 @@ import javax.inject.Inject
 
 class FetchPsychologicalAssessmentProfile @Inject constructor(private val assessmentRepository: AssessmentRepository, viewModelCoroutineScope: CoroutineScope) : BaseUseCase(viewModelCoroutineScope){
 
-    operator fun invoke(): MutableLiveData<PsychologicalProfile?> {
-        return fetchPsychologicalAssessmentProfile()
+
+    fun fetchPsychologicalAssessmentProfileAsync(): MutableLiveData<PsychologicalProfile?> {
+        return assessmentRepository.fetchPsychologicalAssessmentProfileAsync()
     }
 
-    fun fetchPsychologicalAssessmentProfile(): MutableLiveData<PsychologicalProfile?> {
-        return assessmentRepository.fetchPsychologicalAssessmentProfile()
+    fun fetchPsychologicalAssessmentProfileSync(): PsychologicalProfile? {
+        return assessmentRepository.fetchPsychologicalAssessmentProfileSync()
     }
 }

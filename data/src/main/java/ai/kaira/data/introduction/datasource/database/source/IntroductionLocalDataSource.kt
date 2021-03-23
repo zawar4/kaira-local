@@ -6,6 +6,6 @@ import androidx.lifecycle.MutableLiveData
 
 interface IntroductionLocalDataSource {
     fun insertUser(userEntity: UserEntity)
-    fun fetchUser(): UserEntity
+    fun fetchUser(): UserEntity?
     fun fetchUserAsync(): MutableLiveData<User?>
 }

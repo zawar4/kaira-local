@@ -74,12 +74,20 @@ class AssessmentRepositoryImp @Inject constructor(private val assessmentLocalDat
         assessmentLocalDataSource.saveFinancialAssessmentProfile(financialProfile)
     }
 
-    override fun fetchPsychologicalAssessmentProfile(): MutableLiveData<PsychologicalProfile?> {
-        return assessmentLocalDataSource.fetchPsychologicalAssessmentProfile()
+    override fun fetchPsychologicalAssessmentProfileSync(): PsychologicalProfile? {
+        return assessmentLocalDataSource.fetchPsychologicalAssessmentProfileSync()
     }
 
-    override fun fetchFinancialAssessmentProfile(): MutableLiveData<FinancialProfile?> {
-        return assessmentLocalDataSource.fetchFinancialAssessmentProfile()
+    override fun fetchPsychologicalAssessmentProfileAsync(): MutableLiveData<PsychologicalProfile?> {
+        return assessmentLocalDataSource.fetchPsychologicalAssessmentProfileAsync()
+    }
+
+    override fun fetchFinancialAssessmentProfileAsync(): MutableLiveData<FinancialProfile?> {
+        return assessmentLocalDataSource.fetchFinancialAssessmentProfileAsync()
+    }
+
+    override fun fetchFinancialAssessmentProfileSync(): FinancialProfile? {
+        return assessmentLocalDataSource.fetchFinancialAssessmentProfileSync()
     }
 
     override fun processAssessmentProfiles(languageLocale:String,userId: String,financialAssessmentProfile: FinancialProfile,psychologicalAssessmentProfile: PsychologicalProfile): MutableLiveData<Result<Strategy>> {

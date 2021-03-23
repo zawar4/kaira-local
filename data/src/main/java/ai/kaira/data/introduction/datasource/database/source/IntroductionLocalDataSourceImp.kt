@@ -19,14 +19,14 @@ class IntroductionLocalDataSourceImp @Inject constructor(val userDao: UserDao,pr
         }
     }
 
-    override fun fetchUser(): UserEntity {
+    override fun fetchUser(): UserEntity? {
         return userDao.fetchUser()
     }
 
     override fun fetchUserAsync(): MutableLiveData<User?> {
         val userEntityLiveData = MutableLiveData<User?>()
         viewModelCoroutineScope.launch(IO) {
-            val userEntity =  userDao.fetchUser()
+            val userEntity = fetchUser()
             withContext(Main){
                 if(userEntity == null){
                     userEntityLiveData.value = null

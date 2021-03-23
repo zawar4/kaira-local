@@ -16,8 +16,10 @@ interface AssessmentLocalDataSource {
     fun isAssessmentCompleted(assessmentType: Int):Boolean
     fun savePsychologicalAssessmentProfile(psychologicalProfile: PsychologicalProfile)
     fun saveFinancialAssessmentProfile(financialProfile: FinancialProfile)
-    fun fetchPsychologicalAssessmentProfile(): MutableLiveData<PsychologicalProfile?>
-    fun fetchFinancialAssessmentProfile(): MutableLiveData<FinancialProfile?>
+    fun fetchPsychologicalAssessmentProfileAsync(): MutableLiveData<PsychologicalProfile?>
+    fun fetchPsychologicalAssessmentProfileSync(): PsychologicalProfile?
+    fun fetchFinancialAssessmentProfileAsync(): MutableLiveData<FinancialProfile?>
+    fun fetchFinancialAssessmentProfileSync(): FinancialProfile?
     fun saveStrategy(strategy: Strategy)
     fun fetchStrategy():MutableLiveData<Strategy?>
 }

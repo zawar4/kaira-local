@@ -13,7 +13,7 @@ class PsychologicalAssessmentResultViewModel(private val fetchPsychologicalAsses
 
 
     fun fetchPsychologicalAssessmentProfile(){
-        val liveDataSource = fetchPsychologicalAssessmentProfile.fetchPsychologicalAssessmentProfile()
+        val liveDataSource = fetchPsychologicalAssessmentProfile.fetchPsychologicalAssessmentProfileAsync()
         psychologicalAssessmentProfileLiveData.addSource(liveDataSource){
             psychologicalAssessmentProfileLiveData.removeSource(liveDataSource)
             psychologicalAssessmentProfileLiveData.value = it

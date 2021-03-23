@@ -77,31 +77,46 @@ class AssessmentLocalDataSourceImp @Inject constructor(private val assetManager:
         prefs.edit().putString("${AssessmentType.FINANCIAL.value}",gson.toJson(financialProfile)).apply()
     }
 
-    override fun fetchPsychologicalAssessmentProfile(): MutableLiveData<PsychologicalProfile?> {
 
-        val psychologicalProfileText = prefs.getString("${AssessmentType.PSYCHOLOGICAL.value}","")
-        psychologicalProfileText?.let{
-            if(it?.isNotBlank()){
-                val gson = Gson()
-                val psychologicalProfile = gson.fromJson(psychologicalProfileText, PsychologicalProfile::class.java)
-                psychologicalAssessmentProfileLiveData.value = psychologicalProfile
-            }
+    override fun fetchPsychologicalAssessmentProfileAsync(): MutableLiveData<PsychologicalProfile?> {
+        fetchPsychologicalAssessmentProfileSync().let{
+            psychologicalAssessmentProfileLiveData.value = it
         }
         return psychologicalAssessmentProfileLiveData
 
     }
 
-    override fun fetchFinancialAssessmentProfile(): MutableLiveData<FinancialProfile?> {
 
+    override fun fetchPsychologicalAssessmentProfileSync(): PsychologicalProfile? {
+        val psychologicalProfileText = prefs.getString("${AssessmentType.PSYCHOLOGICAL.value}","")
+        psychologicalProfileText?.let{
+            if(it?.isNotBlank()){
+                val gson = Gson()
+                val psychologicalProfile = gson.fromJson(psychologicalProfileText, PsychologicalProfile::class.java)
+                return psychologicalProfile
+            }
+        }
+        return null
+
+    }
+
+    override fun fetchFinancialAssessmentProfileAsync(): MutableLiveData<FinancialProfile?> {
+        fetchFinancialAssessmentProfileSync()?.let{
+            financialAssessmentProfileLiveData.value = it
+        }
+        return financialAssessmentProfileLiveData
+    }
+
+    override fun fetchFinancialAssessmentProfileSync(): FinancialProfile? {
         val financialProfileText = prefs.getString("${AssessmentType.FINANCIAL.value}","")
         financialProfileText?.let{
             if(it.isNotBlank()){
                 val gson = Gson()
                 val financialProfile = gson.fromJson(financialProfileText, FinancialProfile::class.java)
-                financialAssessmentProfileLiveData.value = financialProfile
+                return financialProfile
             }
         }
-        return financialAssessmentProfileLiveData
+        return null
     }
 
     override fun saveStrategy(strategy: Strategy){

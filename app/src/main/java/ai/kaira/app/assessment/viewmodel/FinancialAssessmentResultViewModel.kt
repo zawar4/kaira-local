@@ -13,7 +13,7 @@ class FinancialAssessmentResultViewModel (private val fetchFinancialAssessmentPr
 
 
     fun fetchFinancialAssessmentProfile(){
-        val liveDataSource = fetchFinancialAssessmentProfile.fetchFinancialAssessmentProfile()
+        val liveDataSource = fetchFinancialAssessmentProfile.fetchFinancialAssessmentProfileAsync()
         financialAssessmentProfileLiveData.addSource(liveDataSource){
             financialAssessmentProfileLiveData.removeSource(liveDataSource)
             financialAssessmentProfileLiveData.value = it

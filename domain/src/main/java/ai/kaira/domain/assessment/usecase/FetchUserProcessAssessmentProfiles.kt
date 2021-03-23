@@ -23,16 +23,14 @@ class FetchUserProcessAssessmentProfiles @Inject constructor(private val fetchUs
 
     private fun fetchUserProcessAssessmentProfiles(languageLocale:String):MediatorLiveData<Result<Strategy>>{
         val processAssessmentProfilesLiveData = MediatorLiveData<Result<Strategy>>()
-        val financialAssessmentProfile = fetchFinancialAssessmentProfile().value
-        val psychologicalAssessmentProfile = fetchPsychologicalAssessmentProfile().value
-        //TODO check with JF for stress value
-        psychologicalAssessmentProfile?.stress?.value = true
         viewModelCoroutineScope.launch(IO){
             val user = fetchUser()
-            user.let{
-                //TODO remove hardcode language
+            val financialAssessmentProfile = fetchFinancialAssessmentProfile.fetchFinancialAssessmentProfileSync()
+            val psychologicalAssessmentProfile = fetchPsychologicalAssessmentProfile.fetchPsychologicalAssessmentProfileSync()
+            if(user != null && financialAssessmentProfile != null && psychologicalAssessmentProfile!= null){
+
                 withContext(Main){
-                    val liveDataSource = processAssessmentProfiles(languageLocale,it.id,financialAssessmentProfile!!,psychologicalAssessmentProfile!!)
+                    val liveDataSource = processAssessmentProfiles(languageLocale,user.id,financialAssessmentProfile!!,psychologicalAssessmentProfile!!)
                     processAssessmentProfilesLiveData.addSource(liveDataSource){ result ->
                         when(result.status){
                             ResultState.SUCCESS->{
@@ -49,7 +47,6 @@ class FetchUserProcessAssessmentProfiles @Inject constructor(private val fetchUs
                         }
                     }
                 }
-
             }
         }
         return processAssessmentProfilesLiveData

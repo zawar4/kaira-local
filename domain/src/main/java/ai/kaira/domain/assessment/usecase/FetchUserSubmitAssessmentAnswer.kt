@@ -26,9 +26,9 @@ class FetchUserSubmitAssessmentAnswer @Inject constructor(val fetchUser: FetchUs
     private fun fetchUserSubmitAssessmentAnswer(question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment):MediatorLiveData<Result<Unit>>{
         val submitAssessmentAnswerLiveData = MediatorLiveData<Result<Unit>>()
         viewModelCoroutineScope.launch(IO) {
-            val user : User = fetchUser()
+            val user : User? = fetchUser()
             withContext(Main){
-                user.let {
+                user?.let {
                     val liveDataSource = submitAssessmentAnswer(it.id,question,answer,assessment)
                     submitAssessmentAnswerLiveData.addSource(liveDataSource){ it2 ->
                         submitAssessmentAnswerLiveData.value = it2

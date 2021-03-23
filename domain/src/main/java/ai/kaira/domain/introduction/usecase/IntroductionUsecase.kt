@@ -28,7 +28,7 @@ class IntroductionUsecase @Inject constructor(val createUserUsecase: CreateUser,
         saveUserUsecase(user)
     }
 
-    fun fetchUser(): User{
+    fun fetchUser(): User? {
         return fetchUserUsecase()
     }
 
