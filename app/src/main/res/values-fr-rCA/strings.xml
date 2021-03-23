@@ -17,6 +17,8 @@
     <string name="action_details">Détails</string>
     <string name="action_finish">Terminer</string>
     <string name="action_information">Plus d\'info</string>
+    <string name="action_yes">Oui</string>
+    <string name="action_no">Non</string>
 
     <!-- Onboarding-->
     <string name="onboarding_title_1">L’appli pour atteindre ton bien-être financier</string>
@@ -89,7 +91,7 @@
     <!-- Strategy !-->
     <string name="introduction_conclusion_strategy_title">Tes évaluations sont complétées</string>
     <string name="introduction_conclusion_strategy_detail_title">Pourquoi cette stratégie ?</string>
-    <string name="introduction_conclusion_strategy_detail_description">%@\n\n%@\n\n%@\n\nEst-ce que cela t’intéresse?</string>
+    <string name="introduction_conclusion_strategy_detail_description">Est-ce que cela t’intéresse?</string>
 
 
     <!-- Account Creation Onboarding !-->

@@ -3,9 +3,8 @@ package ai.kaira.app.assessment
 import ai.kaira.app.R
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.assessment.viewmodel.AssessmentViewModel
-import ai.kaira.app.databinding.ActivityEvaluationCompletedBinding
+import ai.kaira.app.databinding.ActivityStrategyBinding
 import ai.kaira.app.utils.UIUtils
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -13,21 +12,23 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
-class EvaluationCompletedActivity : AppCompatActivity() {
 
-    lateinit var binding : ActivityEvaluationCompletedBinding
+@AndroidEntryPoint
+class StrategyActivity : AppCompatActivity() {
+    lateinit var binding: ActivityStrategyBinding
     @Inject
     lateinit var viewModelFactory : ViewModelFactory
     lateinit var assessmentViewModel: AssessmentViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_evaluation_completed)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_strategy)
         assessmentViewModel  = ViewModelProvider(this, viewModelFactory).get(AssessmentViewModel::class.java)
 
         assessmentViewModel.onStrategyFetch().observe(this){
             it?.let{ strategy ->
-                binding.strategySentenceTextview.text = strategy.strategy.sentence
+                binding.strategySentenceReasonTextview.text = strategy.strategy.sentenceReason
+                binding.stressSentenceTextview.text = strategy.stress.sentence
+                binding.strategySentenceTwoTextview.text = strategy.strategy.sentence2
             }?:run{
                 assessmentViewModel.finishActivity()
             }
@@ -42,8 +43,8 @@ class EvaluationCompletedActivity : AppCompatActivity() {
             UIUtils.networkConnectivityAlert(this)
         })
 
-        binding.continueBtn.setOnClickListener {
-            startActivity(Intent(this,StrategyActivity::class.java))
+        binding.yesButton.setOnClickListener {
+
         }
 
 

@@ -21,6 +21,8 @@
     <string name="action_details">Details</string>
     <string name="action_finish">Finish</string>
     <string name="action_information">More information</string>
+    <string name="action_yes">Yes</string>
+    <string name="action_no">No</string>
 
     <!-- Onboarding-->
     <string name="onboarding_title_1">The app to achieve your financial well-being</string>
@@ -98,7 +100,7 @@
     <!-- Strategy !-->
     <string name="introduction_conclusion_strategy_title">Your evaluations are completed</string>
     <string name="introduction_conclusion_strategy_detail_title">Why this strategy?</string>
-    <string name="introduction_conclusion_strategy_detail_description">%@\n\n%@\n\n%@\n\nAre you interested?</string>
+    <string name="introduction_conclusion_strategy_detail_description">Are you interested?</string>
 
     <!-- Account Creation Onboarding !-->
     <string name="introduction_conclusion_account_title">Awesome! On the road to your financial well-being!</string>
