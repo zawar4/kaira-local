@@ -86,6 +86,24 @@
     <string name="financial_profile_description_ok">Ta situation est relativement bonne.Tu pourrais toutefois améliorer certains indicateurs de santé financière.</string>
     <string name="financial_profile_description_bad">Ta situation nécessite des efforts importants dans plusieurs indicateurs de santé financière.</string>
 
+    <!-- Strategy !-->
+    <string name="introduction_conclusion_strategy_title">Tes évaluations sont complétées</string>
+    <string name="introduction_conclusion_strategy_detail_title">Pourquoi cette stratégie ?</string>
+    <string name="introduction_conclusion_strategy_detail_description">%@\n\n%@\n\n%@\n\nEst-ce que cela t’intéresse?</string>
+
+
+    <!-- Account Creation Onboarding !-->
+    <string name="introduction_conclusion_account_title">Génial! En route vers ton bien-être financier !</string>
+    <string name="introduction_conclusion_account_subtitle">Créer ton compte te permet de:</string>
+    <string name="introduction_conclusion_account_assessments">Sauvegarder tes évaluations</string>
+    <string name="introduction_conclusion_account_coach">Accéder à mon coaching personnalisé</string>
+
+
+    <!-- Last Chance !-->
+    <string name="introduction_conclusion_survey_title">Ça ne t’intéresse pas?</string>
+    <string name="introduction_conclusion_survey_warning">Je dois te dire que sans la création de ton compte Kaira, tes informations seront malheureusement perdues quand tu quitteras l‘appli. Créer ton compte nous permet de rester en contact.</string>
+    <string name="introduction_conclusion_survey_text">Tu ne veux pas poursuivre? D’accord ! Tu veux bien répondre à un court sondage qui m’expliquera pourquoi ? Je serai ici si tu reviens. Bonne continuation.</string>
+
 
     <string name = "mint" >mint</string>
 

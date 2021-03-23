@@ -22,7 +22,6 @@ class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase
     var displayAssessmentFieldsLiveData : MutableLiveData<User> = MutableLiveData()
     var displayIntroductionFieldsLiveData : MutableLiveData<Boolean> = MutableLiveData()
     var hideAssessmentFieldsLiveData : MutableLiveData<Unit> = MutableLiveData()
-    var assessmentProfilesProcessLiveData = MediatorLiveData<Unit>()
     var processAssessmentProfilesLiveData = MediatorLiveData<Strategy>()
 
     lateinit var user : User
@@ -109,7 +108,7 @@ class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase
 
     fun processAssessmentProfiles(languageLocale: String){
         val liveDataSource = introductionUsecase.processAssessmentProfiles(languageLocale)
-        assessmentProfilesProcessLiveData.addSource(liveDataSource){ result ->
+        processAssessmentProfilesLiveData.addSource(liveDataSource){ result ->
             when(result.status){
                 ResultState.LOADING->{
                     showLoading(true)
@@ -119,18 +118,23 @@ class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase
                     result.message?.let{it->
                         showError(it)
                     }
-                    assessmentProfilesProcessLiveData.removeSource(liveDataSource)
+                    processAssessmentProfilesLiveData.removeSource(liveDataSource)
                 }
                 ResultState.SUCCESS ->{
+                    result.data?.let{
+                        introductionUsecase.saveStrategy(it)
+                        processAssessmentProfilesLiveData.value = it
+                    }
                     showLoading(false)
-                    assessmentProfilesProcessLiveData.removeSource(liveDataSource)
+                    processAssessmentProfilesLiveData.removeSource(liveDataSource)
                 }
             }
         }
     }
 
-    fun onAssessmentProfilesProcessed(): MediatorLiveData<Unit>{
-        return assessmentProfilesProcessLiveData
+
+    fun onAssessmentProfilesProcessed(): MediatorLiveData<Strategy> {
+        return processAssessmentProfilesLiveData
     }
 
     fun onCreateUser() : MediatorLiveData<User>{

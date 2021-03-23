@@ -12,21 +12,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaira"
         android:usesCleartextTraffic="true">
-        <activity android:name=".assessment.FinancialProfilesActivity"
+        <activity android:name=".assessment.EvaluationCompletedActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".assessment.FinancialAssessmentResultActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".assessment.PsychologicalProfilesActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".assessment.PsychologicalAssessmentResultActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".assessment.AssessmentProfileComputationActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".assessment.AssessmentQuestionActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".assessment.FinancialProfilesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".assessment.FinancialAssessmentResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".assessment.PsychologicalProfilesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".assessment.PsychologicalAssessmentResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".assessment.AssessmentProfileComputationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".assessment.AssessmentQuestionActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".assessment.AssessmentActivity" />
-        <activity android:name=".introduction.IntroductionActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".introduction.IntroductionActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".termsconditions.PrivacyPolicyActivity"
             android:screenOrientation="portrait" />

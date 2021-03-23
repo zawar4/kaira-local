@@ -18,7 +18,9 @@ interface AssessmentRepository {
     fun computePsychologicalAssessmentProfile(assessmentType: Int,userId:String) : MutableLiveData<Result<PsychologicalProfile>>
     fun savePsychologicalAssessmentProfile(psychologicalProfile: PsychologicalProfile)
     fun saveFinancialAssessmentProfile(financialProfile: FinancialProfile)
-    fun fetchPsychologicalAssessmentProfile():MutableLiveData<PsychologicalProfile>
-    fun fetchFinancialAssessmentProfile(): MutableLiveData<FinancialProfile>
+    fun fetchPsychologicalAssessmentProfile(): MutableLiveData<PsychologicalProfile?>
+    fun fetchFinancialAssessmentProfile(): MutableLiveData<FinancialProfile?>
     fun processAssessmentProfiles(languageLocale:String,userId: String,financialAssessmentProfile: FinancialProfile,psychologicalAssessmentProfile: PsychologicalProfile): MutableLiveData<Result<Strategy>>
+    fun saveStrategy(strategy: Strategy)
+    fun fetchStrategy():MutableLiveData<Strategy?>
 }

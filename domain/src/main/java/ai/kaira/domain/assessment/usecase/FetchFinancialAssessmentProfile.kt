@@ -9,11 +9,11 @@ import javax.inject.Inject
 
 class FetchFinancialAssessmentProfile @Inject constructor(private val assessmentRepository: AssessmentRepository, viewModelCoroutineScope: CoroutineScope) : BaseUseCase(viewModelCoroutineScope) {
 
-    operator fun invoke():MutableLiveData<FinancialProfile>{
+    operator fun invoke():MutableLiveData<FinancialProfile?>{
         return fetchFinancialAssessmentProfile()
     }
 
-    fun fetchFinancialAssessmentProfile():MutableLiveData<FinancialProfile>{
+    fun fetchFinancialAssessmentProfile(): MutableLiveData<FinancialProfile?> {
         return assessmentRepository.fetchFinancialAssessmentProfile()
     }
 }

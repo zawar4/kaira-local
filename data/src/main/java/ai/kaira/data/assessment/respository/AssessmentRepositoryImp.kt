@@ -74,11 +74,11 @@ class AssessmentRepositoryImp @Inject constructor(private val assessmentLocalDat
         assessmentLocalDataSource.saveFinancialAssessmentProfile(financialProfile)
     }
 
-    override fun fetchPsychologicalAssessmentProfile(): MutableLiveData<PsychologicalProfile> {
+    override fun fetchPsychologicalAssessmentProfile(): MutableLiveData<PsychologicalProfile?> {
         return assessmentLocalDataSource.fetchPsychologicalAssessmentProfile()
     }
 
-    override fun fetchFinancialAssessmentProfile(): MutableLiveData<FinancialProfile> {
+    override fun fetchFinancialAssessmentProfile(): MutableLiveData<FinancialProfile?> {
         return assessmentLocalDataSource.fetchFinancialAssessmentProfile()
     }
 
@@ -87,5 +87,11 @@ class AssessmentRepositoryImp @Inject constructor(private val assessmentLocalDat
         return assessmentNetworkDataSource.processAssessmentProfiles(processAssessmentAnswersParam,languageLocale)
     }
 
+    override fun saveStrategy(strategy: Strategy) {
+        assessmentLocalDataSource.saveStrategy(strategy)
+    }
 
+    override fun fetchStrategy(): MutableLiveData<Strategy?> {
+        return assessmentLocalDataSource.fetchStrategy()
+    }
 }

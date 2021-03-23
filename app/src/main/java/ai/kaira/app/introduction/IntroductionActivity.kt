@@ -3,6 +3,7 @@ package ai.kaira.app.introduction
 import ai.kaira.app.R
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.assessment.AssessmentActivity
+import ai.kaira.app.assessment.EvaluationCompletedActivity
 import ai.kaira.app.databinding.ActivityIntroductionBinding
 import ai.kaira.app.utils.LanguageConfig.Companion.getLanguageLocale
 import ai.kaira.app.utils.UIUtils.Companion.networkCallAlert
@@ -154,10 +155,26 @@ class IntroductionActivity : AppCompatActivity() {
             onAvatarHeightChange(it)
         }
 
-        introductionBinding.nextBtn?.setOnClickListener({
+        introductionBinding.nextBtn?.setOnClickListener {
             val languageLocale: String = getLanguageLocale(applicationContext)
             introductionViewModel.processAssessmentProfiles(languageLocale)
-        })
+        }
+
+
+        introductionViewModel.onAssessmentProfilesProcessed().observe(this){
+            startActivity(Intent(this,EvaluationCompletedActivity::class.java))
+        }
+
+        introductionViewModel.onLoad().observe(this){
+            it?.let{ visible ->
+                if(visible){
+                    introductionBinding.progressBar?.visibility = VISIBLE
+                }else{
+                    introductionBinding.progressBar?.visibility = GONE
+                }
+            }
+        }
+
     }
 
     private fun submit(){

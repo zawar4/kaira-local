@@ -283,6 +283,11 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
 
     }
 
+
+    fun fetchStrategy() : MutableLiveData<Strategy?>{
+        return assessmentUseCase.fetchStrategy()
+    }
+
     fun onStartComputeAssessmentProfileActivity():MutableLiveData<AssessmentType>{
         return startComputeAssessmentProfileLiveData
     }

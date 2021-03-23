@@ -80,6 +80,9 @@ class AssessmentNetworkDataSourceImp @Inject constructor(private val kairaApiRou
     override fun processAssessmentProfiles(processAssessmentAnswersParam: ProcessAssessmentAnswersParam,languageLocale: String): MutableLiveData<Result<Strategy>> {
         val strategyAssessmentLiveData = MutableLiveData<Result<Strategy>>()
         viewModelCoroutineScope.launch(IO) {
+            withContext(Main){
+                strategyAssessmentLiveData.value = Result.loading()
+            }
             val response = aiApiRouter.processAssessmentProfiles(languageLocale,processAssessmentAnswersParam).execute()
             withContext(Main){
                 if(response.isSuccessful){

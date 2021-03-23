@@ -11,7 +11,7 @@
     <string name="action_validate">Validate</string>
     <string name="action_start">Start</string>
     <string name="action_next">Next</string>
-    <string name="action_continue">To pursue</string>
+    <string name="action_continue">Continue</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_send">Send</string>
     <string name="action_resend">Resend</string>
@@ -93,6 +93,24 @@
     <string name="financial_profile_description_good">Your situation is healthy in all financial health indicators.</string>
     <string name="financial_profile_description_ok">Your situation is relatively good. However, you could improve some financial health indicators.</string>
     <string name="financial_profile_description_bad">Your situation requires significant effort in several financial health indicators.</string>
+
+
+    <!-- Strategy !-->
+    <string name="introduction_conclusion_strategy_title">Your evaluations are completed</string>
+    <string name="introduction_conclusion_strategy_detail_title">Why this strategy?</string>
+    <string name="introduction_conclusion_strategy_detail_description">%@\n\n%@\n\n%@\n\nAre you interested?</string>
+
+    <!-- Account Creation Onboarding !-->
+    <string name="introduction_conclusion_account_title">Awesome! On the road to your financial well-being!</string>
+    <string name="introduction_conclusion_account_subtitle">Creating your account allows you to:</string>
+    <string name="introduction_conclusion_account_assessments">Save your evaluations</string>
+    <string name="introduction_conclusion_account_coach">Access my personalized coaching</string>
+
+
+    <!-- Last Chance !-->
+    <string name="introduction_conclusion_survey_title">Doesn\'t that interest you?</string>
+    <string name="introduction_conclusion_survey_warning">I must tell you that without creating your Kaira account, your information will unfortunately be lost when you leave the app. Creating your account keeps us in touch.</string>
+    <string name="introduction_conclusion_survey_text">You don\'t want to continue? Okay! Would you like to take a short survey that will explain why? I\'ll be here if you come back. Good continuation.</string>
 
     <string name="_2" translatable="false">2</string>
     <string name="_1" translatable="false">1</string>

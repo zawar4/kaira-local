@@ -31,22 +31,25 @@ class FetchUserProcessAssessmentProfiles @Inject constructor(private val fetchUs
             val user = fetchUser()
             user.let{
                 //TODO remove hardcode language
-                val liveDataSource = processAssessmentProfiles("fr-CA",it.id,financialAssessmentProfile!!,psychologicalAssessmentProfile!!)
-                processAssessmentProfilesLiveData.addSource(liveDataSource){ result ->
-                    when(result.status){
-                        ResultState.SUCCESS->{
-                            processAssessmentProfilesLiveData.value = result
-                            processAssessmentProfilesLiveData.removeSource(liveDataSource)
-                        }
-                        ResultState.ERROR->{
-                            processAssessmentProfilesLiveData.value = result
-                            processAssessmentProfilesLiveData.removeSource(liveDataSource)
-                        }
-                        ResultState.LOADING->{
-                            processAssessmentProfilesLiveData.value = result
+                withContext(Main){
+                    val liveDataSource = processAssessmentProfiles(languageLocale,it.id,financialAssessmentProfile!!,psychologicalAssessmentProfile!!)
+                    processAssessmentProfilesLiveData.addSource(liveDataSource){ result ->
+                        when(result.status){
+                            ResultState.SUCCESS->{
+                                processAssessmentProfilesLiveData.value = result
+                                processAssessmentProfilesLiveData.removeSource(liveDataSource)
+                            }
+                            ResultState.ERROR->{
+                                processAssessmentProfilesLiveData.value = result
+                                processAssessmentProfilesLiveData.removeSource(liveDataSource)
+                            }
+                            ResultState.LOADING->{
+                                processAssessmentProfilesLiveData.value = result
+                            }
                         }
                     }
                 }
+
             }
         }
         return processAssessmentProfilesLiveData

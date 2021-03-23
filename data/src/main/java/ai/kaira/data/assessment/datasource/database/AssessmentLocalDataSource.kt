@@ -3,6 +3,7 @@ package ai.kaira.data.assessment.datasource.database
 import ai.kaira.domain.assessment.model.Assessment
 import ai.kaira.domain.assessment.model.FinancialProfile
 import ai.kaira.domain.assessment.model.PsychologicalProfile
+import ai.kaira.domain.assessment.model.Strategy
 import androidx.lifecycle.MutableLiveData
 
 interface AssessmentLocalDataSource {
@@ -15,6 +16,8 @@ interface AssessmentLocalDataSource {
     fun isAssessmentCompleted(assessmentType: Int):Boolean
     fun savePsychologicalAssessmentProfile(psychologicalProfile: PsychologicalProfile)
     fun saveFinancialAssessmentProfile(financialProfile: FinancialProfile)
-    fun fetchPsychologicalAssessmentProfile():MutableLiveData<PsychologicalProfile>
-    fun fetchFinancialAssessmentProfile():MutableLiveData<FinancialProfile>
+    fun fetchPsychologicalAssessmentProfile(): MutableLiveData<PsychologicalProfile?>
+    fun fetchFinancialAssessmentProfile(): MutableLiveData<FinancialProfile?>
+    fun saveStrategy(strategy: Strategy)
+    fun fetchStrategy():MutableLiveData<Strategy?>
 }

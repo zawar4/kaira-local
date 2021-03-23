@@ -1,10 +1,7 @@
 package ai.kaira.data.assessment.datasource.database
 
 import ai.kaira.data.utils.LanguageConfig
-import ai.kaira.domain.assessment.model.Assessment
-import ai.kaira.domain.assessment.model.AssessmentType
-import ai.kaira.domain.assessment.model.FinancialProfile
-import ai.kaira.domain.assessment.model.PsychologicalProfile
+import ai.kaira.domain.assessment.model.*
 import android.content.SharedPreferences
 import android.content.res.AssetManager
 import androidx.lifecycle.MutableLiveData
@@ -14,8 +11,9 @@ import javax.inject.Inject
 class AssessmentLocalDataSourceImp @Inject constructor(private val assetManager: AssetManager,private val prefs: SharedPreferences) : AssessmentLocalDataSource {
 
     private val assessmentLiveData : MutableLiveData<Assessment> = MutableLiveData()
-    private val psychologicalAssessmentProfileLiveData = MutableLiveData<PsychologicalProfile>()
-    private val financialAssessmentProfileLiveData = MutableLiveData<FinancialProfile>()
+    private val psychologicalAssessmentProfileLiveData = MutableLiveData<PsychologicalProfile?>()
+    private val financialAssessmentProfileLiveData = MutableLiveData<FinancialProfile?>()
+    private val strategyLiveData = MutableLiveData<Strategy?>()
     override fun getFinancialAssessment(locale:String): MutableLiveData<Assessment> {
         var fileName = "financial_assessment_"
         if(locale == LanguageConfig.CANADIAN_FRENCH || locale == LanguageConfig.FRENCH){
@@ -78,7 +76,7 @@ class AssessmentLocalDataSourceImp @Inject constructor(private val assetManager:
         prefs.edit().putString("${AssessmentType.FINANCIAL.value}",gson.toJson(financialProfile)).apply()
     }
 
-    override fun fetchPsychologicalAssessmentProfile(): MutableLiveData<PsychologicalProfile> {
+    override fun fetchPsychologicalAssessmentProfile(): MutableLiveData<PsychologicalProfile?> {
 
         val psychologicalProfileText = prefs.getString("${AssessmentType.PSYCHOLOGICAL.value}","")
         psychologicalProfileText?.let{
@@ -92,7 +90,7 @@ class AssessmentLocalDataSourceImp @Inject constructor(private val assetManager:
 
     }
 
-    override fun fetchFinancialAssessmentProfile(): MutableLiveData<FinancialProfile> {
+    override fun fetchFinancialAssessmentProfile(): MutableLiveData<FinancialProfile?> {
 
         val financialProfileText = prefs.getString("${AssessmentType.FINANCIAL.value}","")
         financialProfileText?.let{
@@ -103,6 +101,25 @@ class AssessmentLocalDataSourceImp @Inject constructor(private val assetManager:
             }
         }
         return financialAssessmentProfileLiveData
+    }
+
+    override fun saveStrategy(strategy: Strategy){
+        val gson = Gson()
+        prefs.edit().putString("STRATEGY",gson.toJson(strategy)).apply()
+    }
+
+    override fun fetchStrategy(): MutableLiveData<Strategy?> {
+        val strategyText = prefs.getString("STRATEGY","")
+        strategyText?.let{
+            if(it.isNotBlank()){
+                val gson = Gson()
+                val strategy = gson.fromJson(strategyText, Strategy::class.java)
+                strategyLiveData.value = strategy
+            }else{
+                strategyLiveData.value = null
+            }
+        }
+        return strategyLiveData
     }
 
 

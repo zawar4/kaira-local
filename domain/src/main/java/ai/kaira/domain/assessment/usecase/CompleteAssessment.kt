@@ -16,12 +16,4 @@ class CompleteAssessment @Inject constructor(private val assessmentRepository: A
     fun isAssessmentCompleted(assessmentType: Int): Boolean{
         return assessmentRepository.isAssessmentCompleted(assessmentType)
     }
-
-    fun savePsychologicalAssessmentProfile(psychologicalProfile: PsychologicalProfile) {
-        assessmentRepository.savePsychologicalAssessmentProfile(psychologicalProfile)
-    }
-
-    fun saveFinancialAssessmentProfile(financialProfile: FinancialProfile) {
-        assessmentRepository.saveFinancialAssessmentProfile(financialProfile)
-    }
 }
