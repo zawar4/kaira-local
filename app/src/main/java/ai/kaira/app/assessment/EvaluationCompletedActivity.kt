@@ -4,6 +4,7 @@ import ai.kaira.app.R
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.assessment.viewmodel.AssessmentViewModel
 import ai.kaira.app.databinding.ActivityEvaluationCompletedBinding
+import ai.kaira.app.utils.UIUtils
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -23,11 +24,22 @@ class EvaluationCompletedActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_evaluation_completed)
         assessmentViewModel  = ViewModelProvider(this, viewModelFactory).get(AssessmentViewModel::class.java)
 
-        assessmentViewModel.fetchStrategy().observe(this){
+        assessmentViewModel.onStrategyFetch().observe(this){
             it?.let{ strategy ->
                 binding.strategySentenceTextview.text = strategy.strategy.sentence
+            }?:run{
+                assessmentViewModel.finishActivity()
             }
         }
+        assessmentViewModel.fetchStrategy()
+
+        assessmentViewModel.onError().observe(this){
+            UIUtils.networkCallAlert(this,it)
+        }
+
+        assessmentViewModel.onConnectivityError().observe(this, {
+            UIUtils.networkConnectivityAlert(this)
+        })
 
         binding.continueBtn.setOnClickListener {
 

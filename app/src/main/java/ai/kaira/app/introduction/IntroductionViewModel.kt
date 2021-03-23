@@ -107,29 +107,34 @@ class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase
 
 
     fun processAssessmentProfiles(languageLocale: String){
-        val liveDataSource = introductionUsecase.processAssessmentProfiles(languageLocale)
-        processAssessmentProfilesLiveData.addSource(liveDataSource){ result ->
-            when(result.status){
-                ResultState.LOADING->{
-                    showLoading(true)
-                }
-                ResultState.ERROR->{
-                    showLoading(false)
-                    result.message?.let{it->
-                        showError(it)
+        if(isConnectedToInternet()){
+            val liveDataSource = introductionUsecase.processAssessmentProfiles(languageLocale)
+            processAssessmentProfilesLiveData.addSource(liveDataSource){ result ->
+                when(result.status){
+                    ResultState.LOADING->{
+                        showLoading(true)
                     }
-                    processAssessmentProfilesLiveData.removeSource(liveDataSource)
-                }
-                ResultState.SUCCESS ->{
-                    result.data?.let{
-                        introductionUsecase.saveStrategy(it)
-                        processAssessmentProfilesLiveData.value = it
+                    ResultState.ERROR->{
+                        showLoading(false)
+                        result.message?.let{it->
+                            showError(it)
+                        }
+                        processAssessmentProfilesLiveData.removeSource(liveDataSource)
                     }
-                    showLoading(false)
-                    processAssessmentProfilesLiveData.removeSource(liveDataSource)
+                    ResultState.SUCCESS ->{
+                        result.data?.let{
+                            introductionUsecase.saveStrategy(it)
+                            processAssessmentProfilesLiveData.value = it
+                        }
+                        showLoading(false)
+                        processAssessmentProfilesLiveData.removeSource(liveDataSource)
+                    }
                 }
             }
+        }else{
+            showConnectivityError()
         }
+
     }
 
 

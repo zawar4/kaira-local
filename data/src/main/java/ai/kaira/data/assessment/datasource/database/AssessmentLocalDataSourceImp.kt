@@ -1,5 +1,6 @@
 package ai.kaira.data.assessment.datasource.database
 
+import ai.kaira.data.utils.Consts
 import ai.kaira.data.utils.LanguageConfig
 import ai.kaira.domain.assessment.model.*
 import android.content.SharedPreferences
@@ -105,11 +106,11 @@ class AssessmentLocalDataSourceImp @Inject constructor(private val assetManager:
 
     override fun saveStrategy(strategy: Strategy){
         val gson = Gson()
-        prefs.edit().putString("STRATEGY",gson.toJson(strategy)).apply()
+        prefs.edit().putString(Consts.STRATEGY,gson.toJson(strategy)).apply()
     }
 
     override fun fetchStrategy(): MutableLiveData<Strategy?> {
-        val strategyText = prefs.getString("STRATEGY","")
+        val strategyText = prefs.getString(Consts.STRATEGY,"")
         strategyText?.let{
             if(it.isNotBlank()){
                 val gson = Gson()
