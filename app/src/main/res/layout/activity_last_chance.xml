@@ -78,7 +78,7 @@
 
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/privacy_policy_btn"
+                android:id="@+id/survey_button"
                 style="@style/Text02_button"
                 android:layout_width="170dp"
                 android:layout_height="45dp"
