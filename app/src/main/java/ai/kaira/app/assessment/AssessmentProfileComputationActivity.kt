@@ -36,6 +36,9 @@ class AssessmentProfileComputationActivity : AppCompatActivity() {
     private val animationDotTwo = Timer()
     private val animationDotOne = Timer()
 
+
+    lateinit var postDelayedRunnable : Runnable
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityAssessmentComputationBinding = DataBindingUtil.setContentView(this, R.layout.activity_assessment_profile_computation)
@@ -47,6 +50,14 @@ class AssessmentProfileComputationActivity : AppCompatActivity() {
         val maxHeight = activityAssessmentComputationBinding.dotOneIm.layoutParams.height
         val minHeight = activityAssessmentComputationBinding.dotOneIm.layoutParams.height/2
         if(intent != null && intent.hasExtra(Consts.ASSESSMENT_TYPE)) {
+
+            var handler = Handler(Looper.getMainLooper())
+            postDelayedRunnable = Runnable{
+                stopLoadingAnimation()
+                resetLoadingAnimation(minHeight)
+                assessmentViewModel.finishActivity()
+            }
+
             assessmentType = intent.getSerializableExtra(Consts.ASSESSMENT_TYPE) as AssessmentType
             if(assessmentType == AssessmentType.FINANCIAL){
                 assessmentViewModel.computeFinancialAssessmentProfile(assessmentType.value)
@@ -71,12 +82,14 @@ class AssessmentProfileComputationActivity : AppCompatActivity() {
             }
 
             assessmentViewModel.onError().observe(this){
+                handler.removeCallbacks(postDelayedRunnable)
                 UIUtils.networkCallAlert(this, it)
                 stopLoadingAnimation()
                 resetLoadingAnimation(minHeight)
             }
 
             assessmentViewModel.onConnectivityError().observe(this){
+                handler.removeCallbacks(postDelayedRunnable)
                 UIUtils.networkConnectivityAlert(this)
                 stopLoadingAnimation()
                 resetLoadingAnimation(minHeight)
@@ -84,16 +97,13 @@ class AssessmentProfileComputationActivity : AppCompatActivity() {
             }
 
             startLoadingAnimation(maxHeight, minHeight)
-            Handler(Looper.getMainLooper()).postDelayed({
-                stopLoadingAnimation()
-                resetLoadingAnimation(minHeight)
-                assessmentViewModel.finishActivity()
-            }, 3000
-            )
+            handler.postDelayed(postDelayedRunnable, 3000)
 
         }
 
     }
+
+
 
     private fun startLoadingAnimation(maxHeight: Int, minHeight: Int){
         var isDotOneDecreased = false
