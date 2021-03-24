@@ -12,9 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaira"
         android:usesCleartextTraffic="true">
-        <activity android:name=".survey.SurveyActivity"></activity>
-        <activity android:name=".assessment.LastChanceActivity" />
-        <activity android:name=".assessment.StrategyActivity" />
+        <activity android:name=".account.AccountCreationOnboardingActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".survey.SurveyActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".assessment.LastChanceActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".assessment.StrategyActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".assessment.EvaluationCompletedActivity"
             android:screenOrientation="portrait" />
