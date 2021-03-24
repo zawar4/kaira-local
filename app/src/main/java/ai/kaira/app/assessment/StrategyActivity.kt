@@ -5,6 +5,7 @@ import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.assessment.viewmodel.AssessmentViewModel
 import ai.kaira.app.databinding.ActivityStrategyBinding
 import ai.kaira.app.utils.UIUtils
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -46,6 +47,10 @@ class StrategyActivity : AppCompatActivity() {
         binding.yesButton.setOnClickListener {
 
         }
+
+        binding.noButton.setOnClickListener({
+            startActivity(Intent(this,LastChanceActivity::class.java))
+        })
 
 
         binding.backBtn.setOnClickListener {

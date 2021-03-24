@@ -23,6 +23,7 @@
     <string name="action_information">More information</string>
     <string name="action_yes">Yes</string>
     <string name="action_no">No</string>
+    <string name="action_survey">Survey</string>
 
     <!-- Onboarding-->
     <string name="onboarding_title_1">The app to achieve your financial well-being</string>

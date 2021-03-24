@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaira"
         android:usesCleartextTraffic="true">
-        <activity android:name=".assessment.StrategyActivity"></activity>
+        <activity android:name=".assessment.LastChanceActivity"></activity>
+        <activity android:name=".assessment.StrategyActivity" />
         <activity
             android:name=".assessment.EvaluationCompletedActivity"
             android:screenOrientation="portrait" />
