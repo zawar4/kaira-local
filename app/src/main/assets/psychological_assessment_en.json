@@ -4,7 +4,7 @@
     "type":1,
     "duration":6,
     "number":1,
-    "title":"Ta motivation face à l’argent",
+    "title":"Pour toi, c'est quoi l'argent ?",
     "description":"Tes réponses à ces 10 questions à choix multiples me permettront de déterminer le profil qui reflète le mieux ta motivation et personnaliser mon coaching.",
     "mention":"Cette évaluation a été développée en partenariat avec l’Université de Sherbrooke.",
     "questions": [
@@ -270,27 +270,27 @@
             "title":"Ma situation financière me stresse au quotidien.",
             "answers": [
                 {
-                    "id":1,
+                    "id":10001,
                     "value":5,
                     "title":"Fortement d'accord"
                 },
                 {
-                    "id":2,
+                    "id":10002,
                     "value":4,
                     "title":"Plutôt d'accord"
                 },
                 {
-                    "id":3,
+                    "id":10003,
                     "value":3,
                     "title":"Ni d’accord ni en désaccord"
                 },
                 {
-                    "id":4,
+                    "id":10004,
                     "value":2,
                     "title":"Un peu en désaccord"
                 },
                 {
-                    "id":5,
+                    "id":10005,
                     "value":1,
                     "title":"Fortement en désaccord"
                 }
@@ -302,27 +302,27 @@
             "title":"Je pense souvent à mes finances lorsque je suis au travail.",
             "answers": [
                 {
-                    "id":1,
+                    "id":10011,
                     "value":5,
                     "title":"Fortement d'accord"
                 },
                 {
-                    "id":2,
+                    "id":10012,
                     "value":4,
                     "title":"Plutôt d'accord"
                 },
                 {
-                    "id":3,
+                    "id":10013,
                     "value":3,
                     "title":"Ni d’accord ni en désaccord"
                 },
                 {
-                    "id":4,
+                    "id":10014,
                     "value":2,
                     "title":"Un peu en désaccord"
                 },
                 {
-                    "id":5,
+                    "id":10015,
                     "value":1,
                     "title":"Fortement en désaccord"
                 }
@@ -330,5 +330,3 @@
         }
     ]
 }
-
-
