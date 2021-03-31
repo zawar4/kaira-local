@@ -5,6 +5,7 @@ import ai.kaira.app.account.AccountCreationOnboardingActivity
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.assessment.viewmodel.AssessmentViewModel
 import ai.kaira.app.databinding.ActivityStrategyBinding
+import ai.kaira.app.utils.Extensions.Companion.setHtmlText
 import ai.kaira.app.utils.UIUtils
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -28,9 +29,9 @@ class StrategyActivity : AppCompatActivity() {
 
         assessmentViewModel.onStrategyFetch().observe(this){
             it?.let{ strategy ->
-                binding.strategySentenceReasonTextview.text = strategy.strategy.sentenceReason
-                binding.stressSentenceTextview.text = strategy.stress.sentence
-                binding.strategySentenceTwoTextview.text = strategy.strategy.sentence2
+                binding.strategySentenceReasonTextview.setHtmlText(strategy.strategy.sentenceReason)
+                binding.stressSentenceTextview.setHtmlText(strategy.stress.sentence)
+                binding.strategySentenceTwoTextview.setHtmlText(strategy.strategy.sentence2)
             }?:run{
                 assessmentViewModel.finishActivity()
             }
