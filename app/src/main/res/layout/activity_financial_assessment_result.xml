@@ -124,7 +124,7 @@
                 android:background="@color/kairaSecLabel"
                 app:layout_constraintBottom_toBottomOf="@+id/spending_progress_bar"
                 app:layout_constraintEnd_toEndOf="@+id/spending_progress_bar"
-                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintHorizontal_bias="0.4"
                 app:layout_constraintStart_toStartOf="@+id/spending_progress_bar"
                 app:layout_constraintTop_toTopOf="@+id/spending_progress_bar" />
 
@@ -136,7 +136,7 @@
                 android:background="@color/kairaSecLabel"
                 app:layout_constraintBottom_toBottomOf="@+id/spending_progress_bar"
                 app:layout_constraintEnd_toEndOf="@+id/spending_progress_bar"
-                app:layout_constraintHorizontal_bias="0.7"
+                app:layout_constraintHorizontal_bias="0.8"
                 app:layout_constraintStart_toStartOf="@+id/spending_progress_bar"
                 app:layout_constraintTop_toTopOf="@+id/spending_progress_bar" />
             <TextView
@@ -185,7 +185,7 @@
                 android:background="@color/kairaSecLabel"
                 app:layout_constraintBottom_toBottomOf="@+id/saving_progress_bar"
                 app:layout_constraintEnd_toEndOf="@+id/saving_progress_bar"
-                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintHorizontal_bias="0.4"
                 app:layout_constraintStart_toStartOf="@+id/saving_progress_bar"
                 app:layout_constraintTop_toTopOf="@+id/saving_progress_bar" />
 
@@ -197,7 +197,7 @@
                 android:background="@color/kairaSecLabel"
                 app:layout_constraintBottom_toBottomOf="@+id/saving_progress_bar"
                 app:layout_constraintEnd_toEndOf="@+id/saving_progress_bar"
-                app:layout_constraintHorizontal_bias="0.7"
+                app:layout_constraintHorizontal_bias="0.8"
                 app:layout_constraintStart_toStartOf="@+id/saving_progress_bar"
                 app:layout_constraintTop_toTopOf="@+id/saving_progress_bar" />
 
@@ -249,7 +249,7 @@
                 android:background="@color/kairaSecLabel"
                 app:layout_constraintBottom_toBottomOf="@+id/borrowing_progress_bar"
                 app:layout_constraintEnd_toEndOf="@+id/borrowing_progress_bar"
-                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintHorizontal_bias="0.4"
                 app:layout_constraintStart_toStartOf="@+id/borrowing_progress_bar"
                 app:layout_constraintTop_toTopOf="@+id/borrowing_progress_bar" />
 
@@ -261,7 +261,7 @@
                 android:background="@color/kairaSecLabel"
                 app:layout_constraintBottom_toBottomOf="@+id/borrowing_progress_bar"
                 app:layout_constraintEnd_toEndOf="@+id/borrowing_progress_bar"
-                app:layout_constraintHorizontal_bias="0.7"
+                app:layout_constraintHorizontal_bias="0.8"
                 app:layout_constraintStart_toStartOf="@+id/borrowing_progress_bar"
                 app:layout_constraintTop_toTopOf="@+id/borrowing_progress_bar" />
 
@@ -312,7 +312,7 @@
                 android:background="@color/kairaSecLabel"
                 app:layout_constraintBottom_toBottomOf="@+id/planning_progress_bar"
                 app:layout_constraintEnd_toEndOf="@+id/planning_progress_bar"
-                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintHorizontal_bias="0.4"
                 app:layout_constraintStart_toStartOf="@+id/planning_progress_bar"
                 app:layout_constraintTop_toTopOf="@+id/planning_progress_bar" />
 
@@ -324,7 +324,7 @@
                 android:background="@color/kairaSecLabel"
                 app:layout_constraintBottom_toBottomOf="@+id/planning_progress_bar"
                 app:layout_constraintEnd_toEndOf="@+id/planning_progress_bar"
-                app:layout_constraintHorizontal_bias="0.70"
+                app:layout_constraintHorizontal_bias="0.8"
                 app:layout_constraintStart_toStartOf="@+id/planning_progress_bar"
                 app:layout_constraintTop_toTopOf="@+id/planning_progress_bar" />
             <TextView

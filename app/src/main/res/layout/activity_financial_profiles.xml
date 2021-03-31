@@ -74,7 +74,7 @@
                 android:background="@color/kairaSecLabel"
                 app:layout_constraintBottom_toBottomOf="@+id/view2"
                 app:layout_constraintEnd_toEndOf="@+id/view2"
-                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintHorizontal_bias="0.4"
                 app:layout_constraintStart_toStartOf="@+id/view2"
                 app:layout_constraintTop_toTopOf="@+id/view2" />
 
@@ -85,7 +85,7 @@
                 android:background="@color/kairaSecLabel"
                 app:layout_constraintBottom_toBottomOf="@+id/view2"
                 app:layout_constraintEnd_toEndOf="@+id/view2"
-                app:layout_constraintHorizontal_bias="0.7"
+                app:layout_constraintHorizontal_bias="0.8"
                 app:layout_constraintStart_toStartOf="@+id/view2"
                 app:layout_constraintTop_toTopOf="@+id/view2" />
 
@@ -94,7 +94,7 @@
                 style="@style/Text02"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="70 - 100"
+                android:text="80 - 100"
                 android:textColor="@color/financialProfileGood"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view2"
@@ -128,7 +128,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="30 - 69"
+                android:text="40 - 79"
                 android:textColor="@color/financialProfileOk"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/financial_good_description_tv" />
@@ -160,7 +160,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="0 - 29"
+                android:text="0 - 3q9"
                 android:textColor="@color/financialProfileBad"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/financial_ok_description_tv" />
@@ -212,7 +212,7 @@
                 style="@style/Text01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="30"
+                android:text="40"
                 app:layout_constraintEnd_toEndOf="@+id/tile_one_tv"
                 app:layout_constraintStart_toStartOf="@+id/tile_one_tv"
                 app:layout_constraintTop_toBottomOf="@+id/tile_one_tv" />
@@ -222,7 +222,7 @@
                 style="@style/Text01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="70"
+                android:text="80"
                 app:layout_constraintEnd_toEndOf="@+id/tile_two_tv"
                 app:layout_constraintStart_toStartOf="@+id/tile_two_tv"
                 app:layout_constraintTop_toBottomOf="@+id/tile_two_tv" />
