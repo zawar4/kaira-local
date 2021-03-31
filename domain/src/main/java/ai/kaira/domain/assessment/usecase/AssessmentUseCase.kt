@@ -11,7 +11,10 @@ class AssessmentUseCase @Inject constructor(private val fetchFinancialAssessment
                                             private val assessmentQuestionAnsweredUseCase: AssessmentQuestionAnswered,
                                             private val completeAssessment: CompleteAssessment,
                                             private val fetchUserSubmitAssessmentAnswer: FetchUserSubmitAssessmentAnswer,
-                                            private val fetchUserComputeAssessmentProfile: FetchUserComputeAssessmentProfile) {
+                                            private val fetchUserComputeAssessmentProfile: FetchUserComputeAssessmentProfile,
+                                            private val saveAssessmentProfile: SaveAssessmentProfile,
+                                            private val fetchStrategy: FetchStrategy) {
+
     fun fetchFinancialAssessment(locale:String): MutableLiveData<Assessment>{
         return fetchFinancialAssessmentUseCase(locale)
     }
@@ -49,10 +52,14 @@ class AssessmentUseCase @Inject constructor(private val fetchFinancialAssessment
     }
 
     fun savePsychologicalAssessmentProfile(psychologicalProfile: PsychologicalProfile) {
-        completeAssessment.savePsychologicalAssessmentProfile(psychologicalProfile)
+        saveAssessmentProfile.savePsychologicalAssessmentProfile(psychologicalProfile)
     }
 
     fun saveFinancialAssessmentProfile(financialProfile: FinancialProfile) {
-        completeAssessment.saveFinancialAssessmentProfile(financialProfile)
+        saveAssessmentProfile.saveFinancialAssessmentProfile(financialProfile)
+    }
+
+    fun fetchStrategy(): MutableLiveData<Strategy?> {
+        return fetchStrategy.fetchStrategy()
     }
 }

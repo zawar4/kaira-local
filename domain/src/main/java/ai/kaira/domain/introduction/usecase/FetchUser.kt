@@ -7,14 +7,14 @@ import javax.inject.Inject
 
 class FetchUser @Inject constructor(private val introductionRepository: IntroductionRepository) {
 
-    operator fun invoke (): User {
+    operator fun invoke (): User? {
         return fetchUser()
     }
     fun fetchUserAsync(): MutableLiveData<User?> {
         return introductionRepository.fetchUserAsync()
     }
 
-    fun fetchUser(): User {
+    fun fetchUser(): User? {
         return introductionRepository.fetchUser()
     }
 }

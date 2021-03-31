@@ -4,6 +4,8 @@ import ai.kaira.app.utils.Extensions.Companion.increaseViewSize
 import android.animation.ValueAnimator
 import android.content.Context
 import android.view.View
+import android.widget.TextView
+import androidx.core.text.HtmlCompat
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.net.HttpURLConnection
 import java.net.InetSocketAddress
@@ -58,6 +60,9 @@ class Extensions {
             valueAnimator.start()
         }
 
+        fun TextView.setHtmlText(source: String) {
+            this.text = HtmlCompat.fromHtml(source, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        }
 
     }
 

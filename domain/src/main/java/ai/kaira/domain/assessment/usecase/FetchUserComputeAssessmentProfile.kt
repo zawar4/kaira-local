@@ -22,9 +22,9 @@ class FetchUserComputeAssessmentProfile @Inject constructor(private val fetchUse
     fun computePsychologicalAssessmentProfile(assessmentType: Int) : MediatorLiveData<Result<PsychologicalProfile>> {
         val computePsychologicalProfileLiveData = MediatorLiveData<Result<PsychologicalProfile>>()
         viewModelCoroutineScope.launch(IO) {
-            val user : User = fetchUser()
+            val user : User? = fetchUser()
             withContext(Dispatchers.Main){
-                user.let{ it ->
+                user?.let{ it ->
                     val liveDataSource = computePsychologicalAssessmentProfile(assessmentType,it.id)
                     computePsychologicalProfileLiveData.addSource(liveDataSource){it->
                         computePsychologicalProfileLiveData.value = it
@@ -40,7 +40,7 @@ class FetchUserComputeAssessmentProfile @Inject constructor(private val fetchUse
     fun computeFinancialAssessmentProfile(assessmentType: Int) : MediatorLiveData<Result<FinancialProfile>> {
         val computeFinancialProfileLiveData = MediatorLiveData<Result<FinancialProfile>>()
         viewModelCoroutineScope.launch(IO) {
-            val user : User = fetchUser()
+            val user : User? = fetchUser()
             withContext(Main){
                 user?.let{ it ->
                     val liveDataSource = computeFinancialAssessmentProfile(assessmentType,it.id)

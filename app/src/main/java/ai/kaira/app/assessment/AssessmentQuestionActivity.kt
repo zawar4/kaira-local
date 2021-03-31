@@ -7,6 +7,7 @@ import ai.kaira.app.databinding.ActivityAssessmentQuestionBinding
 import ai.kaira.app.utils.LanguageConfig
 import ai.kaira.app.utils.UIUtils
 import ai.kaira.app.utils.Consts.Companion.ASSESSMENT_TYPE
+import ai.kaira.app.utils.Extensions.Companion.setHtmlText
 import ai.kaira.domain.assessment.model.Assessment
 import ai.kaira.domain.assessment.model.AssessmentAnswerClick
 import ai.kaira.domain.assessment.model.AssessmentType
@@ -62,12 +63,13 @@ class AssessmentQuestionActivity : AppCompatActivity() {
     private fun setAssessmentQuestionsData(assessment:Assessment){
 
         assessmentViewModel.loadFirstQuestion()
-        activityAssessmentQuestionBinding.assessmentDisclaimerTv.text = assessment.mention
-        lateinit var assessmentType : AssessmentType
-        if(assessment.type == AssessmentType.PSYCHOLOGICAL)
-            assessmentType =  AssessmentType.PSYCHOLOGICAL
+        assessment.mention?.let {
+            activityAssessmentQuestionBinding.assessmentDisclaimerTv.setHtmlText(it)
+        }
+        var assessmentType : AssessmentType = if(assessment.type == AssessmentType.PSYCHOLOGICAL)
+            AssessmentType.PSYCHOLOGICAL
         else{
-            assessmentType =  AssessmentType.FINANCIAL
+            AssessmentType.FINANCIAL
         }
         val answersAdapter = AnswersRecyclerViewAdapter(ArrayList(),answerClickCallback,assessmentType)
         activityAssessmentQuestionBinding.answerRecyclerView.layoutManager = LinearLayoutManager(this)

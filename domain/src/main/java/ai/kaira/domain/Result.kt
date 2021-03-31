@@ -7,6 +7,6 @@ data class Result<T>(val data: T?,val status: ResultState, val message: String?)
 
         fun <T> error(data: T? = null, message: String): Result<T> = Result(status = ResultState.ERROR, data = data, message = message)
 
-        fun <T> loading(data: T?): Result<T> = Result(status = ResultState.LOADING, data = data, message = null)
+        fun <T> loading(data: T? = null): Result<T> = Result(status = ResultState.LOADING, data = data, message = null)
     }
 }

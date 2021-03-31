@@ -10,7 +10,12 @@ import dagger.hilt.android.components.ActivityComponent
 class WebModule {
 
     @Provides
-    fun providesRestApiRouter():RestApiRouter{
-        return RestApiRouter.getRouter()
+    fun providesKairaRestApiRouter():KairaApiRouter{
+        return KairaRetrofit.getKairaRouter()
+    }
+
+    @Provides
+    fun providesAIRestApiRouter():AIApiRouter {
+        return AIRetrofit.getAIRouter()
     }
 }

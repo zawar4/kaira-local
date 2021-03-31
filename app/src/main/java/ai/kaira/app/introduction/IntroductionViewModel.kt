@@ -6,6 +6,7 @@ import ai.kaira.app.utils.Extensions.Companion.isConnectedToInternet
 import ai.kaira.domain.Result
 import ai.kaira.domain.ResultState
 import ai.kaira.domain.assessment.model.AssessmentType
+import ai.kaira.domain.assessment.model.Strategy
 import ai.kaira.domain.introduction.model.User
 import ai.kaira.domain.introduction.usecase.IntroductionUsecase
 import androidx.lifecycle.MediatorLiveData
@@ -21,6 +22,7 @@ class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase
     var displayAssessmentFieldsLiveData : MutableLiveData<User> = MutableLiveData()
     var displayIntroductionFieldsLiveData : MutableLiveData<Boolean> = MutableLiveData()
     var hideAssessmentFieldsLiveData : MutableLiveData<Unit> = MutableLiveData()
+    var processAssessmentProfilesLiveData = MediatorLiveData<Strategy>()
 
     lateinit var user : User
 
@@ -96,12 +98,48 @@ class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase
                         result.message?.let{it->
                             showError(it)
                         }
-
                         userResultLiveData.removeSource(createUserLiveData)
                     }
                 }
             }
         }
+    }
+
+
+    fun processAssessmentProfiles(languageLocale: String){
+        if(isConnectedToInternet()){
+            val liveDataSource = introductionUsecase.processAssessmentProfiles(languageLocale)
+            processAssessmentProfilesLiveData.addSource(liveDataSource){ result ->
+                when(result.status){
+                    ResultState.LOADING->{
+                        showLoading(true)
+                    }
+                    ResultState.ERROR->{
+                        showLoading(false)
+                        result.message?.let{it->
+                            showError(it)
+                        }
+                        processAssessmentProfilesLiveData.removeSource(liveDataSource)
+                    }
+                    ResultState.SUCCESS ->{
+                        result.data?.let{
+                            introductionUsecase.saveStrategy(it)
+                            processAssessmentProfilesLiveData.value = it
+                        }
+                        showLoading(false)
+                        processAssessmentProfilesLiveData.removeSource(liveDataSource)
+                    }
+                }
+            }
+        }else{
+            showConnectivityError()
+        }
+
+    }
+
+
+    fun onAssessmentProfilesProcessed(): MediatorLiveData<Strategy> {
+        return processAssessmentProfilesLiveData
     }
 
     fun onCreateUser() : MediatorLiveData<User>{

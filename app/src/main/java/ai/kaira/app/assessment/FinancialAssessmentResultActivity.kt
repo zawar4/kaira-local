@@ -37,11 +37,11 @@ class FinancialAssessmentResultActivity : AppCompatActivity() {
         financialAssessmentResultViewModel.onFinancialAssessmentProfileFetched().observe(this){
             it?.let { profile ->
                 binding.financialProfileScoreProgress.progress = profile.average.toInt()
-                if(profile.average <= 30){
+                if(profile.average <= 39){
                     binding.financialProfileTitleTv.text = getString(R.string.financial_profile_title_bad)
                     binding.financialProfileScoreProgressSecondary.background = ContextCompat.getDrawable(this,R.drawable.secondary_ring_bad)
                     binding.financialProfileScoreProgress.progressTintList = (ColorStateList.valueOf(ContextCompat.getColor(this,R.color.financialProfileBad)))
-                }else if(profile.average > 30 && profile.average <=70){
+                }else if(profile.average > 39 && profile.average <=79){
                     binding.financialProfileTitleTv.text = getString(R.string.financial_profile_title_ok)
                     binding.financialProfileScoreProgressSecondary.background = ContextCompat.getDrawable(this,R.drawable.secondary_ring_ok)
                     binding.financialProfileScoreProgress.progressTintList = (ColorStateList.valueOf(ContextCompat.getColor(this,R.color.financialProfileOk)))
@@ -56,10 +56,10 @@ class FinancialAssessmentResultActivity : AppCompatActivity() {
                         FinancialProfileType.SAVING ->{
                             binding.savingScoreTv.text = profileValue.average.toInt().toString()
                             binding.savingProgressBar.progress = profileValue.average.toInt()
-                            if(profileValue.average <= 30){
+                            if(profileValue.average <= 39){
                                 binding.savingProgressBar.progressBackgroundTintList = (ColorStateList.valueOf(ContextCompat.getColor(this,R.color.financialProfileBad)))
                                 binding.savingProgressBar.progressTintList = (ColorStateList.valueOf(ContextCompat.getColor(this,R.color.financialProfileBad)))
-                            }else if(profileValue.average > 30 && profileValue.average <=70){
+                            }else if(profileValue.average > 39 && profileValue.average <=79){
                                 binding.savingProgressBar.progressBackgroundTintList = (ColorStateList.valueOf(ContextCompat.getColor(this,R.color.financialProfileOk)))
                                 binding.savingProgressBar.progressTintList = (ColorStateList.valueOf(ContextCompat.getColor(this,R.color.financialProfileOk)))
                             }else{
@@ -70,10 +70,10 @@ class FinancialAssessmentResultActivity : AppCompatActivity() {
                         FinancialProfileType.CREDIT ->{
                             binding.borrowingScoreTv.text = profileValue.average.toInt().toString()
                             binding.borrowingProgressBar.progress = profileValue.average.toInt()
-                            if(profileValue.average <= 30){
+                            if(profileValue.average <= 39){
                                 binding.borrowingProgressBar.progressBackgroundTintList = (ColorStateList.valueOf(ContextCompat.getColor(this,R.color.financialProfileBad)))
                                 binding.borrowingProgressBar.progressTintList = (ColorStateList.valueOf(ContextCompat.getColor(this,R.color.financialProfileBad)))
-                            }else if(profileValue.average > 30 && profileValue.average <=70){
+                            }else if(profileValue.average > 39 && profileValue.average <=79){
                                 binding.borrowingProgressBar.progressBackgroundTintList = (ColorStateList.valueOf(ContextCompat.getColor(this,R.color.financialProfileOk)))
                                 binding.borrowingProgressBar.progressTintList = (ColorStateList.valueOf(ContextCompat.getColor(this,R.color.financialProfileOk)))
                             }else{
@@ -84,10 +84,10 @@ class FinancialAssessmentResultActivity : AppCompatActivity() {
                         FinancialProfileType.PLANNING ->{
                             binding.planningScoreTv.text = profileValue.average.toInt().toString()
                             binding.planningProgressBar.progress = profileValue.average.toInt()
-                            if(profileValue.average <= 30){
+                            if(profileValue.average <= 39){
                                 binding.planningProgressBar.progressBackgroundTintList = (ColorStateList.valueOf(ContextCompat.getColor(this,R.color.financialProfileBad)))
                                 binding.planningProgressBar.progressTintList = (ColorStateList.valueOf(ContextCompat.getColor(this,R.color.financialProfileBad)))
-                            }else if(profileValue.average > 30 && profileValue.average <=70){
+                            }else if(profileValue.average > 39 && profileValue.average <=79){
                                 binding.planningProgressBar.progressBackgroundTintList = (ColorStateList.valueOf(ContextCompat.getColor(this,R.color.financialProfileOk)))
                                 binding.planningProgressBar.progressTintList = (ColorStateList.valueOf(ContextCompat.getColor(this,R.color.financialProfileOk)))
                             }else{
@@ -98,10 +98,10 @@ class FinancialAssessmentResultActivity : AppCompatActivity() {
                         FinancialProfileType.SPENDING ->{
                             binding.spendingScoreTv.text = profileValue.average.toInt().toString()
                             binding.spendingProgressBar.progress = profileValue.average.toInt()
-                            if(profileValue.average <= 30){
+                            if(profileValue.average <= 39){
                                 binding.spendingProgressBar.progressBackgroundTintList = (ColorStateList.valueOf(ContextCompat.getColor(this,R.color.financialProfileBad)))
                                 binding.spendingProgressBar.progressTintList = (ColorStateList.valueOf(ContextCompat.getColor(this,R.color.financialProfileBad)))
-                            }else if(profileValue.average > 30 && profileValue.average <=70){
+                            }else if(profileValue.average > 39 && profileValue.average <=79){
                                 binding.spendingProgressBar.progressBackgroundTintList = (ColorStateList.valueOf(ContextCompat.getColor(this,R.color.financialProfileOk)))
                                 binding.spendingProgressBar.progressTintList = (ColorStateList.valueOf(ContextCompat.getColor(this,R.color.financialProfileOk)))
                             }else{

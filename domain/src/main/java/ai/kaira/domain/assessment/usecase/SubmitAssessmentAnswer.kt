@@ -14,11 +14,11 @@ import javax.inject.Inject
 
 class SubmitAssessmentAnswer @Inject constructor(private val assessmentRepository: AssessmentRepository, viewModelCoroutineScope: CoroutineScope) : BaseUseCase(viewModelCoroutineScope) {
 
-    operator fun invoke(user:User,question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment): MutableLiveData<Result<Unit>> {
-        return submitAssessmentAnswer(user,question,answer,assessment)
+    operator fun invoke(userId:String,question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment): MutableLiveData<Result<Unit>> {
+        return submitAssessmentAnswer(userId,question,answer,assessment)
     }
 
-    private fun submitAssessmentAnswer(user: User, question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment): MutableLiveData<Result<Unit>> {
-        return assessmentRepository.submitAssessmentAnswer(user,question,answer,assessment)
+    private fun submitAssessmentAnswer(userId: String, question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment): MutableLiveData<Result<Unit>> {
+        return assessmentRepository.submitAssessmentAnswer(userId,question,answer,assessment)
     }
 }

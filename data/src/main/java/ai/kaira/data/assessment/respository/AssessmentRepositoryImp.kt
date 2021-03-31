@@ -3,6 +3,7 @@ package ai.kaira.data.assessment.respository
 import ai.kaira.data.assessment.datasource.database.AssessmentLocalDataSource
 import ai.kaira.data.assessment.datasource.network.AssessmentNetworkDataSource
 import ai.kaira.data.assessment.model.AssessmentAnswerRequestParam
+import ai.kaira.data.assessment.model.ProcessAssessmentAnswersParam
 import ai.kaira.domain.Result
 import ai.kaira.domain.assessment.respository.AssessmentRepository
 import ai.kaira.domain.introduction.model.User
@@ -22,9 +23,9 @@ class AssessmentRepositoryImp @Inject constructor(private val assessmentLocalDat
     }
 
 
-    override fun submitAssessmentAnswer(user: User, question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment): MutableLiveData<Result<Unit>> {
+    override fun submitAssessmentAnswer(userId: String, question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment): MutableLiveData<Result<Unit>> {
         var answeredAt = UtilityFunctions.iso8601FormatDate(answer!!.time.toLong())
-        var assessmentAnswerRequestParam = AssessmentAnswerRequestParam(user.id,
+        var assessmentAnswerRequestParam = AssessmentAnswerRequestParam(userId,
                 assessment.id,
                 assessment.version,
                 assessment.type.value,
@@ -73,13 +74,32 @@ class AssessmentRepositoryImp @Inject constructor(private val assessmentLocalDat
         assessmentLocalDataSource.saveFinancialAssessmentProfile(financialProfile)
     }
 
-    override fun fetchPsychologicalAssessmentProfile(): MutableLiveData<PsychologicalProfile> {
-        return assessmentLocalDataSource.fetchPsychologicalAssessmentProfile()
+    override fun fetchPsychologicalAssessmentProfileSync(): PsychologicalProfile? {
+        return assessmentLocalDataSource.fetchPsychologicalAssessmentProfileSync()
     }
 
-    override fun fetchFinancialAssessmentProfile(): MutableLiveData<FinancialProfile> {
-        return assessmentLocalDataSource.fetchFinancialAssessmentProfile()
+    override fun fetchPsychologicalAssessmentProfileAsync(): MutableLiveData<PsychologicalProfile?> {
+        return assessmentLocalDataSource.fetchPsychologicalAssessmentProfileAsync()
     }
 
+    override fun fetchFinancialAssessmentProfileAsync(): MutableLiveData<FinancialProfile?> {
+        return assessmentLocalDataSource.fetchFinancialAssessmentProfileAsync()
+    }
 
+    override fun fetchFinancialAssessmentProfileSync(): FinancialProfile? {
+        return assessmentLocalDataSource.fetchFinancialAssessmentProfileSync()
+    }
+
+    override fun processAssessmentProfiles(languageLocale:String,userId: String,financialAssessmentProfile: FinancialProfile,psychologicalAssessmentProfile: PsychologicalProfile): MutableLiveData<Result<Strategy>> {
+        val processAssessmentAnswersParam = ProcessAssessmentAnswersParam(userId, financialAssessmentProfile, psychologicalAssessmentProfile)
+        return assessmentNetworkDataSource.processAssessmentProfiles(processAssessmentAnswersParam,languageLocale)
+    }
+
+    override fun saveStrategy(strategy: Strategy) {
+        assessmentLocalDataSource.saveStrategy(strategy)
+    }
+
+    override fun fetchStrategy(): MutableLiveData<Strategy?> {
+        return assessmentLocalDataSource.fetchStrategy()
+    }
 }

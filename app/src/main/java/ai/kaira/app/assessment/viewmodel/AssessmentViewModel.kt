@@ -33,6 +33,8 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
 
     var startComputeAssessmentProfileLiveData = MutableLiveData<AssessmentType>()
 
+    var strategyLiveData = MediatorLiveData<Strategy?>()
+
     fun getFinancialAssessment(locale:String):MutableLiveData<Assessment>{
         return assessmentUseCase.fetchFinancialAssessment(locale)
     }
@@ -281,6 +283,24 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
             startComputeAssessmentProfileLiveData.value = AssessmentType.FINANCIAL
         }
 
+    }
+
+
+    fun onStrategyFetch(): MutableLiveData<Strategy?>{
+        return strategyLiveData
+    }
+    fun fetchStrategy(){
+        if(isConnectedToInternet()){
+            val liveDataSource = assessmentUseCase.fetchStrategy()
+            strategyLiveData.addSource(liveDataSource){
+                it?.let{
+                    strategyLiveData.value = it
+                }
+                strategyLiveData.removeSource(liveDataSource)
+            }
+        }else{
+            showConnectivityError()
+        }
     }
 
     fun onStartComputeAssessmentProfileActivity():MutableLiveData<AssessmentType>{

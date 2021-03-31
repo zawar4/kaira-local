@@ -4,9 +4,9 @@
     "type":2,
     "duration":10,
     "number":2,
-    "title":"Financial profile",
-    "description":"Ces 8 questions à choix multiples couvrent les 8 indicateurs de la santé financière. Tes réponses me permettront de mieux te connaître et personnaliser mes conseils.",
-    "mention":"Ce test utilise le FinHealth Score® du Financial Health Network",
+    "title":"Your financial picture",
+    "description":"Yours answers will help assess your financiel health.",
+	"mention":"This assessment uses the <i>Financial Health Score®</i> of the <i>Financial Health Network</i>",
     "questions": [
         {
             "id":1,

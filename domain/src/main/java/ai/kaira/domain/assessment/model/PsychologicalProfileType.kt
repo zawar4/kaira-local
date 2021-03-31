@@ -10,9 +10,7 @@ enum class PsychologicalProfileType (val rawValue: Int) {
     @SerializedName("2")
     BENEVOLENCE(2),
     @SerializedName("3")
-    HEDONISM(3),
-    @SerializedName("999")
-    STRESS(999);
+    HEDONISM(3);
 
     companion object {
         operator fun invoke(rawValue: Int) = PsychologicalProfileType.values().firstOrNull { it.rawValue == rawValue }

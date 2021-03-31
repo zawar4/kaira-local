@@ -11,7 +11,7 @@
     <string name="action_validate">Validate</string>
     <string name="action_start">Start</string>
     <string name="action_next">Next</string>
-    <string name="action_continue">To pursue</string>
+    <string name="action_continue">Continue</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_send">Send</string>
     <string name="action_resend">Resend</string>
@@ -21,6 +21,9 @@
     <string name="action_details">Details</string>
     <string name="action_finish">Finish</string>
     <string name="action_information">More information</string>
+    <string name="action_yes">Yes</string>
+    <string name="action_no">No</string>
+    <string name="action_survey">Survey</string>
 
     <!-- Onboarding-->
     <string name="onboarding_title_1">The app to achieve your financial well-being</string>
@@ -45,20 +48,22 @@
 
     <string name="introduction_assessment_title_1">It\'s your turn now %1$s!</string>
     <string name="introduction_assessment_title_2">The first evaluation is completed!</string>
+    <string name="introduction_assessment_title_3">Both evaluations are completed!</string>
     <string name="introduction_assessment_detail_1">Help me optimize your experience and personalize my coaching. Respond to the evaluations below:</string>
     <string name="introduction_assessment_detail_2">Now please click and respond to the 2nd one!</string>
+    <string name="introduction_assessment_detail_3">Now please proceed!</string>
 
     <string name="ok">OK</string>
     <string name="attention">Attention</string>
     <string name="error_network">Your internet connection is not stable. Please correct the situation before continuing.</string>
 
-    <!-- Assessements -->
-    <string name="action_assessement_start">Start the test</string>
-    <string name="assessement_psychological_title">Your motivation for money</string>
-    <string name="assessement_financial_title">Your financial assessment</string>
+    <!-- Assessments -->
+    <string name="action_assessment_start">Start the test</string>
+    <string name="assessment_psychological_title">Your motivation for money</string>
+    <string name="assessment_financial_title">Your financial assessment</string>
 
-    <string name="assessement_computation_title">I\'m calculating your result</string>
-    <string name="assessement_computation_message">Thank you for your patience…</string>
+    <string name="assessment_computation_title">I\'m calculating your result</string>
+    <string name="assessment_computation_message">Thank you for your patience…</string>
     <string name="psychological_assessment_disclaimer">This assessment was developed in partnership with the University of Sherbrooke.</string>
     <string name="financial_assessment_disclaimer">This assessment uses the FinHealth Score® from the Financial Health Network</string>
 
@@ -91,6 +96,24 @@
     <string name="financial_profile_description_good">Your situation is healthy in all financial health indicators.</string>
     <string name="financial_profile_description_ok">Your situation is relatively good. However, you could improve some financial health indicators.</string>
     <string name="financial_profile_description_bad">Your situation requires significant effort in several financial health indicators.</string>
+
+
+    <!-- Strategy !-->
+    <string name="introduction_conclusion_strategy_title">Your evaluations are completed</string>
+    <string name="introduction_conclusion_strategy_detail_title">Why this strategy?</string>
+    <string name="introduction_conclusion_strategy_detail_description">Are you interested?</string>
+
+    <!-- Account Creation Onboarding !-->
+    <string name="introduction_conclusion_account_title">Awesome! On the road to your financial well-being!</string>
+    <string name="introduction_conclusion_account_subtitle">Creating your account allows you to:</string>
+    <string name="introduction_conclusion_account_assessments">Save your evaluations</string>
+    <string name="introduction_conclusion_account_coach">Access my personalized coaching</string>
+
+
+    <!-- Last Chance !-->
+    <string name="introduction_conclusion_survey_title">Doesn\'t that interest you?</string>
+    <string name="introduction_conclusion_survey_warning">I must tell you that without creating your Kaira account, your information will unfortunately be lost when you leave the app. Creating your account keeps us in touch.</string>
+    <string name="introduction_conclusion_survey_text">You don\'t want to continue? Okay! Would you like to take a short survey that will explain why? I\'ll be here if you come back. Good continuation.</string>
 
     <string name="_2" translatable="false">2</string>
     <string name="_1" translatable="false">1</string>

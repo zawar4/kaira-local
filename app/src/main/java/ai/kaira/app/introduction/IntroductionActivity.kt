@@ -3,6 +3,7 @@ package ai.kaira.app.introduction
 import ai.kaira.app.R
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.assessment.AssessmentActivity
+import ai.kaira.app.assessment.EvaluationCompletedActivity
 import ai.kaira.app.databinding.ActivityIntroductionBinding
 import ai.kaira.app.utils.LanguageConfig.Companion.getLanguageLocale
 import ai.kaira.app.utils.UIUtils.Companion.networkCallAlert
@@ -59,6 +60,9 @@ class IntroductionActivity : AppCompatActivity() {
                     }
                     if(introductionViewModel.isAssessmentCompleted(AssessmentType.FINANCIAL.value)){
                         completeFinancialAssessment()
+                        introductionBinding.headingTv.text = getString(R.string.introduction_assessment_title_3)
+                        introductionBinding.descriptionTv.text = getString(R.string.introduction_assessment_detail_3)
+                        introductionBinding.nextBtn?.visibility = VISIBLE
                     }
 
                 }
@@ -150,6 +154,27 @@ class IntroductionActivity : AppCompatActivity() {
         introductionViewModel.onAvatarHeightChange().observe(this){
             onAvatarHeightChange(it)
         }
+
+        introductionBinding.nextBtn?.setOnClickListener {
+            val languageLocale: String = getLanguageLocale(applicationContext)
+            introductionViewModel.processAssessmentProfiles(languageLocale)
+        }
+
+
+        introductionViewModel.onAssessmentProfilesProcessed().observe(this){
+            startActivity(Intent(this,EvaluationCompletedActivity::class.java))
+        }
+
+        introductionViewModel.onLoad().observe(this){
+            it?.let{ visible ->
+                if(visible){
+                    introductionBinding.progressBar?.visibility = VISIBLE
+                }else{
+                    introductionBinding.progressBar?.visibility = GONE
+                }
+            }
+        }
+
     }
 
     private fun submit(){
@@ -238,6 +263,7 @@ class IntroductionActivity : AppCompatActivity() {
     private fun hideAssessmentsFields(){
         introductionBinding.psychologicalAssessmentLayout?.visibility = INVISIBLE
         introductionBinding.financialAssessmentLayout.visibility = INVISIBLE
+        introductionBinding.nextBtn?.visibility = GONE
     }
 
     private fun completeFinancialAssessment(){
@@ -261,7 +287,6 @@ class IntroductionActivity : AppCompatActivity() {
             introductionViewModel.deleteUserOldAssessmentsAnswers()
             if(introductionViewModel.isAvatarHeightReduced())
                 introductionViewModel.reduceAvatarHeight(false)
-            hideAssessmentsFields()
         }else{
             super.onBackPressed();
         }

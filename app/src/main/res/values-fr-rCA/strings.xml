@@ -17,6 +17,10 @@
     <string name="action_details">Détails</string>
     <string name="action_finish">Terminer</string>
     <string name="action_information">Plus d\'info</string>
+    <string name="action_yes">Oui</string>
+    <string name="action_no">Non</string>
+    <string name="action_survey">Sondage</string>
+
 
     <!-- Onboarding-->
     <string name="onboarding_title_1">L’appli pour atteindre ton bien-être financier</string>
@@ -40,21 +44,23 @@
 
     <string name="introduction_assessment_title_1">À toi de jouer maintenant %1$s!</string>
     <string name="introduction_assessment_title_2">La première évaluation est complétée!</string>
+    <string name="introduction_assessment_title_3">Les deux évaluations sont terminées!</string>
     <string name="introduction_assessment_detail_1">Pour m’aider à optimiser ton expérience et personnaliser mon coaching, réponds aux évaluations ci-dessous :</string>
     <string name="introduction_assessment_detail_2">Maintenant, clique et réponds à la 2e !</string>
+    <string name="introduction_assessment_detail_3">Maintenant, continuez!</string>
 
 
     <string name="ok">OK</string>
     <string name ="attention">Attention</string>
     <string name ="error_network">Ta connexion Internet n’est pas stable. Stp, corrige la situation avant de poursuivre.</string>
 
-    <!-- Assessements -->
-    <string name="action_assessement_start">Commencer l\'évaluation</string>
-    <string name="assessement_psychological_title">Ta motivation face à l’argent</string>
-    <string name="assessement_financial_title">Ton portrait financier</string>
+    <!-- assessments -->
+    <string name="action_assessment_start">Commencer l\'évaluation</string>
+    <string name="assessment_psychological_title">Ta motivation face à l’argent</string>
+    <string name="assessment_financial_title">Ton portrait financier</string>
 
-    <string name="assessement_computation_title">Je calcule ton résultat</string>
-    <string name="assessement_computation_message">Merci de patienter…</string>
+    <string name="assessment_computation_title">Je calcule ton résultat</string>
+    <string name="assessment_computation_message">Merci de patienter…</string>
 
     <!-- Psychological Profile !-->
     <string name="psychological_assessment_disclaimer">Cette évaluation a été développée en partenariat avec l’Université de Sherbrooke.</string>
@@ -83,6 +89,24 @@
     <string name="financial_profile_description_good">Ta situation est saine dans tous les indicateurs de santé financière.</string>
     <string name="financial_profile_description_ok">Ta situation est relativement bonne.Tu pourrais toutefois améliorer certains indicateurs de santé financière.</string>
     <string name="financial_profile_description_bad">Ta situation nécessite des efforts importants dans plusieurs indicateurs de santé financière.</string>
+
+    <!-- Strategy !-->
+    <string name="introduction_conclusion_strategy_title">Tes évaluations sont complétées</string>
+    <string name="introduction_conclusion_strategy_detail_title">Pourquoi cette stratégie ?</string>
+    <string name="introduction_conclusion_strategy_detail_description">Est-ce que cela t’intéresse?</string>
+
+
+    <!-- Account Creation Onboarding !-->
+    <string name="introduction_conclusion_account_title">Génial! En route vers ton bien-être financier !</string>
+    <string name="introduction_conclusion_account_subtitle">Créer ton compte te permet de:</string>
+    <string name="introduction_conclusion_account_assessments">Sauvegarder tes évaluations</string>
+    <string name="introduction_conclusion_account_coach">Accéder à mon coaching personnalisé</string>
+
+
+    <!-- Last Chance !-->
+    <string name="introduction_conclusion_survey_title">Ça ne t’intéresse pas?</string>
+    <string name="introduction_conclusion_survey_warning">Je dois te dire que sans la création de ton compte Kaira, tes informations seront malheureusement perdues quand tu quitteras l‘appli. Créer ton compte nous permet de rester en contact.</string>
+    <string name="introduction_conclusion_survey_text">Tu ne veux pas poursuivre? D’accord ! Tu veux bien répondre à un court sondage qui m’expliquera pourquoi ? Je serai ici si tu reviens. Bonne continuation.</string>
 
 
     <string name = "mint" >mint</string>
