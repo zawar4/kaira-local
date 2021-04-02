@@ -12,13 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaira"
         android:usesCleartextTraffic="true">
-        <activity android:name=".account.AccountCreationOnboardingActivity"
+        <activity android:name=".account.create.UserCredentialsCreateAccountActivity"></activity>
+        <activity android:name=".account.create.UserIdentityCreateAccountActivity" />
+        <activity android:name=".account.create.InfoCreateAccountActivity" />
+        <activity
+            android:name=".account.onboard.AccountCreationOnboardingActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".survey.SurveyActivity"
+        <activity
+            android:name=".survey.SurveyActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".assessment.LastChanceActivity"
+        <activity
+            android:name=".assessment.LastChanceActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".assessment.StrategyActivity"
+        <activity
+            android:name=".assessment.StrategyActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".assessment.EvaluationCompletedActivity"

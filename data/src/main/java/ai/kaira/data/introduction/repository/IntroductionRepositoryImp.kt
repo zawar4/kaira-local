@@ -23,7 +23,7 @@ class IntroductionRepositoryImp @Inject constructor(private val introductionNetw
     override fun fetchUser(): User? {
         val userEntity : UserEntity? = introductionLocalDataSource.fetchUser()
         userEntity?.let {
-            return User(userEntity.id,userEntity.firstName,userEntity.language,userEntity.createdAt,userEntity.verified,userEntity.validGroupCode)
+            return User(id =userEntity.id,firstName = userEntity.firstName, language = userEntity.language, createdAt = userEntity.createdAt, verified = userEntity.verified, validGroupCode = userEntity.validGroupCode)
         }?:run{
             return null
         }

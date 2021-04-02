@@ -105,17 +105,25 @@
 
     <!-- Authentication !-->
 
+
     <string name="authentication_creation_welcome_title">Crée un compte Kaira gratuitement</string>
     <string name="authentication_creation_welcome_description">En créant un compte Kaira, tu peux optimiser ton expérience et sauvegarder définitivement tes données bancaires. Dans le cas échéant, elles s’effaceront après 24 heures.\n\nTu peux aussi créer un compte sans synchroniser tes données bancaires.</string>
     <string name="authentication_creation_identity_title">Création de compte</string>
     <string name="authentication_creation_identity_description">Complète les informations</string>
     <string name="authentication_creation_identity_create">Créer un compte</string>
     <string name="authentication_creation_identity_already_exist">Ce courriel est déjà utilisé pour un compte Kaira</string>
-    <string name="authentication_creation_group_invalide">Le code entré n\'est pas valide.\nContinuer malgré tout?</string>
+    <string name="authentication_creation_group_invalide">Le code entré n\'est pas valide. Continuer malgré tout?</string>
+    <string name="authentication_first_name_title">Prénom</string>
+    <string name="authentication_last_name_title">Nom</string>
     <string name="authentication_creation_group_title">Code de groupe (facultatif)</string>
     <string name="authentication_creation_group_rules">Constitué de 4 lettres et 4 chiffres</string>
+    <string name="authentication_action_next">Suivant \u2192</string>
+    <string name="authentication_email_title">Courriel</string>
+    <string name="authentication_password_title">Mot de passe</string>
+    <string name="authentication_confirm_password_title">Confirme le mot de passe</string>
     <string name="authentication_creation_credential_email_rules">Le mot de passe doit contenir au moins 8 caractères dont au moins 1 majuscule, 1 minuscule, 1 chiffre et 1 symbole.</string>
-    <string name="authentication_creation_credential_email_not_identical">Les mots de passe ne sont pas identiques</string>
+    <string name="authentication_creation_credential_password_not_identical">Les mots de passe ne sont pas identiques</string>
+    <string name="authentication_creation_credential_email_invalid">Courriel invalide</string>
     <string name="authentication_creation_email_title">Ton compte Kaira est créé !</string>
     <string name="authentication_creation_email_description">Je t’ai envoyé un courriel pour valider la création de ton compte.\n\nUne fois confirmé, complète la dernière étape pour accéder à ton coaching.</string>
     <string name="authentication_creation_email_open">Ouvrir les courriels</string>

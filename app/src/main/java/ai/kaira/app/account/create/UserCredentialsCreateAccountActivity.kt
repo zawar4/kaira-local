@@ -1,0 +1,141 @@
+package ai.kaira.app.account.create
+
+import ai.kaira.app.R
+import ai.kaira.app.account.create.viewmodel.AccountCreateViewModel
+import ai.kaira.app.application.ViewModelFactory
+import ai.kaira.app.databinding.ActivityUserCredentialsCreateAccountBinding
+import ai.kaira.app.utils.LanguageConfig
+import ai.kaira.app.utils.UIUtils
+import android.graphics.Color
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
+import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+
+
+@AndroidEntryPoint
+class UserCredentialsCreateAccountActivity : AppCompatActivity() {
+
+    private lateinit var binding : ActivityUserCredentialsCreateAccountBinding
+    @Inject
+    lateinit var viewModelFactory : ViewModelFactory
+    lateinit var accountCreateViewModel: AccountCreateViewModel
+
+    private val textWatcher: TextWatcher = object: TextWatcher{
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            val email = binding.emailTv.text.toString()
+            val password = binding.passwordEt.text.toString()
+            val confirmPassword = binding.confirmPasswordEt.text.toString()
+            binding.submitBtn.isEnabled = accountCreateViewModel.isValidEmail(email) &&
+                    accountCreateViewModel.isValidPassword(password) &&
+                    accountCreateViewModel.isValidPassword(confirmPassword) &&
+                    accountCreateViewModel.arePasswordsSame(password,confirmPassword)
+
+            if(accountCreateViewModel.isValidEmail(email)){
+                //binding.emailTv.setTextColor(ContextCompat.getColor(applicationContext,R.color.kairaSecLabel))
+                binding.emailInvalidErrorTv.visibility = INVISIBLE
+            }else{
+                //binding.emailTv.setTextColor(Color.RED)
+                binding.emailInvalidErrorTv.visibility = VISIBLE
+            }
+
+            if(accountCreateViewModel.isValidPassword(password)){
+                binding.passwordRuleTv.setTextColor(ContextCompat.getColor(applicationContext,R.color.kairaSecLabel))
+                //binding.passwordEt.setTextColor(ContextCompat.getColor(applicationContext,R.color.kairaSecLabel))
+
+                if(accountCreateViewModel.arePasswordsSame(password,confirmPassword)){
+                    //binding.confirmPasswordEt.setTextColor(ContextCompat.getColor(applicationContext,R.color.kairaSecLabel))
+                    binding.confirmPasswordErrorTv.visibility = INVISIBLE
+                }else{
+                    binding.confirmPasswordErrorTv.visibility = VISIBLE
+                    //binding.confirmPasswordEt.setTextColor(Color.RED)
+                }
+            }else{
+                binding.passwordRuleTv.setTextColor(Color.RED)
+                //binding.passwordEt.setTextColor(Color.RED)
+            }
+
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+
+        }
+
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_user_credentials_create_account)
+
+        var firstName = ""
+        var lastName = ""
+        var groupCode = ""
+        if(intent !=null){
+            if(intent.hasExtra("firstName")){
+                firstName = intent.getStringExtra("firstName").toString()
+            }
+            if(intent.hasExtra("lastName")){
+                lastName = intent.getStringExtra("lastName").toString()
+            }
+            if(intent.hasExtra("groupCode")){
+                groupCode = intent.getStringExtra("groupCode").toString()
+            }
+        }
+        accountCreateViewModel = ViewModelProvider(this, viewModelFactory).get(AccountCreateViewModel::class.java)
+
+        binding.emailTv.addTextChangedListener(textWatcher)
+
+        binding.passwordEt.addTextChangedListener(textWatcher)
+
+        binding.confirmPasswordEt.addTextChangedListener(textWatcher)
+
+
+        val currentLanguageLocale = LanguageConfig.getLanguageLocale(applicationContext)
+        binding.submitBtn.setOnClickListener {
+            val email = binding.emailTv.text.toString()
+            accountCreateViewModel.emailExists(email)
+        }
+        accountCreateViewModel.onEmailExists().observe(this){ exists ->
+            if(exists){
+                UIUtils.networkCallAlert(this,getString(R.string.authentication_creation_identity_already_exist),getString(R.string.action_login),getString(R.string.action_cancel)) {
+                    // TODO open login activity
+                }
+            } else{
+                val email = binding.emailTv.text.toString()
+                val password = binding.passwordEt.text.toString()
+                accountCreateViewModel.createAccount(firstName,lastName,currentLanguageLocale,email,password,groupCode)
+
+            }
+        }
+
+        accountCreateViewModel.onAccountCreated().observe(this){
+            //TODO open email activity
+        }
+        accountCreateViewModel.onLoad().observe(this){ loading ->
+            if(loading){
+                binding.progressBar.visibility = View.VISIBLE
+            }else{
+                binding.progressBar.visibility = View.GONE
+            }
+        }
+
+        accountCreateViewModel.onError().observe(this){ error ->
+            UIUtils.networkCallAlert(this, error)
+        }
+
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
+    }
+}
