@@ -180,14 +180,9 @@ class IntroductionActivity : AppCompatActivity() {
     private fun submit(){
         val firstName: String = introductionBinding.firstNameEt.text.toString()
         val languageLocale: String = getLanguageLocale(applicationContext)
-        if(isConnectedToInternet()){
-            if(firstName.isNotBlank()){
-                introductionViewModel.createUser(firstName, languageLocale)
-                introductionViewModel.deleteUserOldAssessmentsAnswers()
-            }
-
-        }else{
-            networkConnectivityAlert(this)
+        if(firstName.isNotBlank()){
+            introductionViewModel.createUser(firstName, languageLocale)
+            introductionViewModel.deleteUserOldAssessmentsAnswers()
         }
     }
 

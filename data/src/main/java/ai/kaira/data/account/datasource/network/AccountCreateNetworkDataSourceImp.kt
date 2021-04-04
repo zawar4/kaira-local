@@ -28,7 +28,11 @@ class AccountCreateNetworkDataSourceImp @Inject constructor(private val kairaApi
                     } else {
                         val error: String? = response.errorBody()?.string()
                         error?.let {
-                            groupCodeExistsLiveData.value = KairaResult.error(false, error)
+                            if(error.isEmpty()){
+                                groupCodeExistsLiveData.value = KairaResult.success(false)
+                            }else{
+                                groupCodeExistsLiveData.value = KairaResult.error(false, error)
+                            }
                         }
 
                     }

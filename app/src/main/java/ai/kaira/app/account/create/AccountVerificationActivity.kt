@@ -35,6 +35,10 @@ class AccountVerificationActivity : AppCompatActivity() {
                             UIUtils.networkCallAlert(this,getString(R.string.authentication_creation_email_resent))
                         }
                 }
+
+                binding.backBtn.setOnClickListener {
+                    finish()
+                }
                 binding.sendAnotherEmailBtn.setOnClickListener {
                     accountCreateViewModel.sendVerificationEmail(email)
                 }
@@ -45,6 +49,10 @@ class AccountVerificationActivity : AppCompatActivity() {
                     }else{
                         binding.progressBar.visibility = View.GONE
                     }
+                }
+
+                accountCreateViewModel.onConnectivityError().observe(this){
+                    UIUtils.networkConnectivityAlert(this)
                 }
 
                 accountCreateViewModel.onError().observe(this){ error ->

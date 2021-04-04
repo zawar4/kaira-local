@@ -6,6 +6,8 @@ import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityUserCredentialsCreateAccountBinding
 import ai.kaira.app.utils.LanguageConfig
 import ai.kaira.app.utils.UIUtils
+import ai.kaira.app.utils.UIUtils.Companion.networkCallAlert
+import ai.kaira.app.utils.UIUtils.Companion.networkConnectivityAlert
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -117,6 +119,10 @@ class UserCredentialsCreateAccountActivity : AppCompatActivity() {
                     accountCreateViewModel.createAccount(firstName,lastName,currentLanguageLocale,email,password,groupCode)
 
                 }
+            }
+
+            accountCreateViewModel.onConnectivityError().observe(this){
+                networkConnectivityAlert(this)
             }
 
             accountCreateViewModel.onAccountCreated().observe(this){

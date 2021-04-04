@@ -33,7 +33,7 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
             when(result.status){
                 ResultState.SUCCESS -> {
                     showLoading(false)
-                    groupCodeExistsLiveData.value = true
+                    groupCodeExistsLiveData.value = result.data
                     groupCodeExistsLiveData.removeSource(liveDataSource)
                 }
                 ResultState.LOADING -> {
@@ -46,7 +46,10 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
                 }
                 ResultState.EXCEPTION -> {
                     showLoading(false)
+                    /*
                     result.message?.let { showError(it) }
+                     */
+                    showConnectivityError()
                     groupCodeExistsLiveData.removeSource(liveDataSource)
                 }
             }
@@ -76,7 +79,8 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
                 }
                 ResultState.EXCEPTION -> {
                     showLoading(false)
-                    result.message?.let { showError(it) }
+                    //result.message?.let { showError(it) }
+                    showConnectivityError()
                     emailExistsLiveData.removeSource(liveDataSource)
                 }
             }
@@ -104,9 +108,10 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
                     showLoading(false)
                 }
                 ResultState.EXCEPTION ->{
-                    result.message?.let{ it->
+                    /*result.message?.let{ it->
                         showError(it)
-                    }
+                    }*/
+                    showConnectivityError()
                     createAccountLiveData.removeSource(liveDataSource)
                     showLoading(false)
                 }
@@ -134,9 +139,10 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
                     showLoading(false)
                 }
                 ResultState.EXCEPTION ->{
-                    result.message?.let{ it->
+                    /*result.message?.let{ it->
                         showError(it)
-                    }
+                    }*/
+                    showConnectivityError()
                     sendVerificationEmailLiveData.removeSource(liveDataSource)
                     showLoading(false)
                 }

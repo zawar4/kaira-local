@@ -78,34 +78,30 @@ class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase
     }
 
     fun createUser(firstName: String, languageLocale: String){
-        if(!isConnectedToInternet()){
-            showConnectivityError()
-        }else{
-            var createUserLiveData = introductionUsecase.createUser(firstName, languageLocale)
-            userResultLiveData.addSource(createUserLiveData) { t ->
-                val result: KairaResult<User>? = t
-                when (result?.status) {
-                    ResultState.SUCCESS -> {
-                        result.data?.let { it ->
-                            user = it
-                            userResultLiveData.value = result.data
-                            introductionUsecase.saveUser(it)
-                            userResultLiveData.removeSource(createUserLiveData)
-                        }
+        var createUserLiveData = introductionUsecase.createUser(firstName, languageLocale)
+        userResultLiveData.addSource(createUserLiveData) { t ->
+            val result: KairaResult<User>? = t
+            when (result?.status) {
+                ResultState.SUCCESS -> {
+                    result.data?.let { it ->
+                        user = it
+                        userResultLiveData.value = result.data
+                        introductionUsecase.saveUser(it)
+                        userResultLiveData.removeSource(createUserLiveData)
+                    }
 
+                }
+                ResultState.ERROR -> {
+                    result.message?.let{it->
+                        showError(it)
                     }
-                    ResultState.ERROR -> {
-                        result.message?.let{it->
-                            showError(it)
-                        }
-                        userResultLiveData.removeSource(createUserLiveData)
+                    userResultLiveData.removeSource(createUserLiveData)
+                }
+                ResultState.EXCEPTION -> {
+                    result.message?.let{it->
+                        showConnectivityError()
                     }
-                    ResultState.EXCEPTION -> {
-                        result.message?.let{it->
-                            showError(it)
-                        }
-                        userResultLiveData.removeSource(createUserLiveData)
-                    }
+                    userResultLiveData.removeSource(createUserLiveData)
                 }
             }
         }
@@ -113,39 +109,36 @@ class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase
 
 
     fun processAssessmentProfiles(languageLocale: String){
-        if(isConnectedToInternet()){
-            val liveDataSource = introductionUsecase.processAssessmentProfiles(languageLocale)
-            processAssessmentProfilesLiveData.addSource(liveDataSource){ result ->
-                when(result.status){
-                    ResultState.LOADING->{
-                        showLoading(true)
+        val liveDataSource = introductionUsecase.processAssessmentProfiles(languageLocale)
+        processAssessmentProfilesLiveData.addSource(liveDataSource){ result ->
+            when(result.status){
+                ResultState.LOADING->{
+                    showLoading(true)
+                }
+                ResultState.EXCEPTION->{
+                    showLoading(false)
+                    /*result.message?.let{it->
+                        showError(it)
+                    }*/
+                    showConnectivityError()
+                    processAssessmentProfilesLiveData.removeSource(liveDataSource)
+                }
+                ResultState.ERROR->{
+                    showLoading(false)
+                    result.message?.let{it->
+                        showError(it)
                     }
-                    ResultState.EXCEPTION->{
-                        showLoading(false)
-                        result.message?.let{it->
-                            showError(it)
-                        }
-                        processAssessmentProfilesLiveData.removeSource(liveDataSource)
+                    processAssessmentProfilesLiveData.removeSource(liveDataSource)
+                }
+                ResultState.SUCCESS ->{
+                    result.data?.let{
+                        introductionUsecase.saveStrategy(it)
+                        processAssessmentProfilesLiveData.value = it
                     }
-                    ResultState.ERROR->{
-                        showLoading(false)
-                        result.message?.let{it->
-                            showError(it)
-                        }
-                        processAssessmentProfilesLiveData.removeSource(liveDataSource)
-                    }
-                    ResultState.SUCCESS ->{
-                        result.data?.let{
-                            introductionUsecase.saveStrategy(it)
-                            processAssessmentProfilesLiveData.value = it
-                        }
-                        showLoading(false)
-                        processAssessmentProfilesLiveData.removeSource(liveDataSource)
-                    }
+                    showLoading(false)
+                    processAssessmentProfilesLiveData.removeSource(liveDataSource)
                 }
             }
-        }else{
-            showConnectivityError()
         }
 
     }

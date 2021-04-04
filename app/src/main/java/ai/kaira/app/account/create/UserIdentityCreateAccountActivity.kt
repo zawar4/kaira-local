@@ -94,6 +94,10 @@ class UserIdentityCreateAccountActivity : AppCompatActivity() {
 
         })
 
+        accountCreateViewModel.onConnectivityError().observe(this){
+            UIUtils.networkConnectivityAlert(this)
+            }
+
         accountCreateViewModel.onError().observe(this) { error ->
             UIUtils.networkCallAlert(this,error)
         }
