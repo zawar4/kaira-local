@@ -12,7 +12,7 @@
     <string name="action_send">Envoyer</string>
     <string name="action_resend">Renvoyer</string>
     <string name="action_reset">Réinitialiser</string>
-    <string name="action_email_send_again">Envoyer un autre courriel</string>
+    <string name="action_email_send_again">Envoyer un autre courriel \u2192</string>
     <string name="action_confirm">Confirmer</string>
     <string name="action_details">Détails</string>
     <string name="action_finish">Terminer</string>

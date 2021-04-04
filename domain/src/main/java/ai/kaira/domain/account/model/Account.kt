@@ -1,4 +1,4 @@
 package ai.kaira.domain.account.model
 
-data class Account(val firstName:String, val lastName:String, val language:String,val email:String,val password:String,val groupCode:String,val createContact:Boolean = true) {
+data class Account(var firstName:String, var lastName:String, var language:String,var email:String,var password:String,var groupCode:String,var createContact:Boolean = true,var id:String = "") {
 }

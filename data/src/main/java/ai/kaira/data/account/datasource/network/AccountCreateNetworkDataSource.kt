@@ -10,4 +10,5 @@ interface AccountCreateNetworkDataSource {
     fun groupCodeExists(groupCode:String): MutableLiveData<Result<Boolean>>
     fun emailExists(email:String): MutableLiveData<Result<Boolean>>
     fun createAccount(accountDetails: Account): MutableLiveData<Result<User>>
+    fun sendVerificationEmail(email:String):MutableLiveData<Result<Void>>
 }

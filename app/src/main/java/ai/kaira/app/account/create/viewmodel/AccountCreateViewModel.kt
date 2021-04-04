@@ -18,6 +18,8 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
 
     private val createAccountLiveData = MediatorLiveData<User>()
 
+    private val sendVerificationEmailLiveData = MediatorLiveData<Unit>()
+
     fun fetchUser(): MutableLiveData<User?> {
         return accountCreateUseCase.fetchUser.fetchUserAsync()
     }
@@ -76,8 +78,7 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
     }
 
     fun createAccount(firstName:String,lastName:String,language:String,email:String,password:String,groupCode:String){
-        val accountDetails = Account(firstName,lastName,language,email,password,groupCode)
-        val liveDataSource = accountCreateUseCase.createAccount(accountDetails)
+        val liveDataSource = accountCreateUseCase.fetchUserCreateAccount(firstName,lastName,language, email, password, groupCode)
         createAccountLiveData.addSource(liveDataSource){ result ->
             when(result.status){
                 ResultState.SUCCESS ->{
@@ -97,6 +98,33 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
                 }
             }
         }
+    }
+
+    fun sendVerificationEmail(email:String){
+        val liveDataSource = accountCreateUseCase.sendVerificationEmail(email)
+        sendVerificationEmailLiveData.addSource(liveDataSource){ result ->
+            when(result.status){
+                ResultState.SUCCESS ->{
+                    showLoading(false)
+                    createAccountLiveData.removeSource(liveDataSource)
+                    sendVerificationEmailLiveData.value = Unit
+                }
+                ResultState.ERROR ->{
+                    result.message?.let{ it->
+                        showError(it)
+                    }
+                    sendVerificationEmailLiveData.removeSource(liveDataSource)
+                    showLoading(false)
+                }
+                ResultState.LOADING ->{
+                    showLoading(true)
+                }
+            }
+        }
+    }
+
+    fun onVerificationEmailSent(): MediatorLiveData<Unit> {
+        return sendVerificationEmailLiveData
     }
 
     fun validateGroupCode(groupCode:String):Boolean{

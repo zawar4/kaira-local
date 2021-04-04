@@ -1,5 +1,6 @@
 package ai.kaira.data.webservice
 
+import ai.kaira.data.account.EmailBody
 import ai.kaira.data.assessment.model.*
 import ai.kaira.data.utils.APIConfig
 import ai.kaira.domain.Result
@@ -44,4 +45,7 @@ interface KairaApiRouter {
     @POST("users/account")
     fun createAccount(@Body accountDetails:Account):Call<User>
 
+
+    @POST("users/verify/new")
+    fun sendVerificationEmail(@Body emailBody: EmailBody):Call<Void>
 }

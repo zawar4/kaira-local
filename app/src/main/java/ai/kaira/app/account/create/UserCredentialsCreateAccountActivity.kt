@@ -6,6 +6,7 @@ import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityUserCredentialsCreateAccountBinding
 import ai.kaira.app.utils.LanguageConfig
 import ai.kaira.app.utils.UIUtils
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -91,51 +92,57 @@ class UserCredentialsCreateAccountActivity : AppCompatActivity() {
             if(intent.hasExtra("groupCode")){
                 groupCode = intent.getStringExtra("groupCode").toString()
             }
-        }
-        accountCreateViewModel = ViewModelProvider(this, viewModelFactory).get(AccountCreateViewModel::class.java)
+            accountCreateViewModel = ViewModelProvider(this, viewModelFactory).get(AccountCreateViewModel::class.java)
 
-        binding.emailTv.addTextChangedListener(textWatcher)
+            binding.emailTv.addTextChangedListener(textWatcher)
 
-        binding.passwordEt.addTextChangedListener(textWatcher)
+            binding.passwordEt.addTextChangedListener(textWatcher)
 
-        binding.confirmPasswordEt.addTextChangedListener(textWatcher)
+            binding.confirmPasswordEt.addTextChangedListener(textWatcher)
 
 
-        val currentLanguageLocale = LanguageConfig.getLanguageLocale(applicationContext)
-        binding.submitBtn.setOnClickListener {
-            val email = binding.emailTv.text.toString()
-            accountCreateViewModel.emailExists(email)
-        }
-        accountCreateViewModel.onEmailExists().observe(this){ exists ->
-            if(exists){
-                UIUtils.networkCallAlert(this,getString(R.string.authentication_creation_identity_already_exist),getString(R.string.action_login),getString(R.string.action_cancel)) {
-                    // TODO open login activity
-                }
-            } else{
+            val currentLanguageLocale = LanguageConfig.getLanguageLocale(applicationContext)
+            binding.submitBtn.setOnClickListener {
                 val email = binding.emailTv.text.toString()
-                val password = binding.passwordEt.text.toString()
-                accountCreateViewModel.createAccount(firstName,lastName,currentLanguageLocale,email,password,groupCode)
-
+                accountCreateViewModel.emailExists(email)
             }
-        }
+            accountCreateViewModel.onEmailExists().observe(this){ exists ->
+                if(exists){
+                    UIUtils.networkCallAlert(this,getString(R.string.authentication_creation_identity_already_exist),getString(R.string.action_login),getString(R.string.action_cancel)) {
+                        // TODO open login activity
+                    }
+                } else{
+                    val email = binding.emailTv.text.toString()
+                    val password = binding.passwordEt.text.toString()
+                    accountCreateViewModel.createAccount(firstName,lastName,currentLanguageLocale,email,password,groupCode)
 
-        accountCreateViewModel.onAccountCreated().observe(this){
-            //TODO open email activity
-        }
-        accountCreateViewModel.onLoad().observe(this){ loading ->
-            if(loading){
-                binding.progressBar.visibility = View.VISIBLE
-            }else{
-                binding.progressBar.visibility = View.GONE
+                }
             }
-        }
 
-        accountCreateViewModel.onError().observe(this){ error ->
-            UIUtils.networkCallAlert(this, error)
-        }
+            accountCreateViewModel.onAccountCreated().observe(this){
+                val email = binding.emailTv.text.toString()
+                val intent = Intent(this,AccountVerificationActivity::class.java)
+                intent.putExtra("email",email)
+                startActivity(intent)
+            }
+            accountCreateViewModel.onLoad().observe(this){ loading ->
+                if(loading){
+                    binding.progressBar.visibility = View.VISIBLE
+                }else{
+                    binding.progressBar.visibility = View.GONE
+                }
+            }
 
-        binding.backBtn.setOnClickListener {
+            accountCreateViewModel.onError().observe(this){ error ->
+                UIUtils.networkCallAlert(this, error)
+            }
+
+            binding.backBtn.setOnClickListener {
+                finish()
+            }
+        }else{
             finish()
         }
+
     }
 }

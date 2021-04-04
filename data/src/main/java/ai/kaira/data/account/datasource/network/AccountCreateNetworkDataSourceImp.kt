@@ -1,5 +1,6 @@
 package ai.kaira.data.account.datasource.network
 
+import ai.kaira.data.account.EmailBody
 import ai.kaira.data.webservice.KairaApiRouter
 import ai.kaira.domain.Result
 import ai.kaira.domain.account.model.Account
@@ -49,7 +50,7 @@ class AccountCreateNetworkDataSourceImp @Inject constructor(private val kairaApi
                 }else{
                     val error : String? = response.errorBody()?.string()
                     error?.let{
-                        emailExistsLiveData.value = Result.error(message =error)
+                        emailExistsLiveData.value = Result.error(message = error)
                     }
                 }
             }
@@ -78,5 +79,26 @@ class AccountCreateNetworkDataSourceImp @Inject constructor(private val kairaApi
             }
         }
         return createAccountLiveData
+    }
+
+    override fun sendVerificationEmail(email: String): MutableLiveData<Result<Void>> {
+        val sendVerificationEmailLiveData = MutableLiveData<Result<Void>>()
+        viewModelCoroutineScope.launch(IO) {
+            withContext(Main){
+                sendVerificationEmailLiveData.value = Result.loading()
+            }
+            val response = kairaApiRouter.sendVerificationEmail(EmailBody(email)).execute()
+            withContext(Main){
+                if(response.isSuccessful){
+                    sendVerificationEmailLiveData.value = Result.success()
+                }else{
+                    val error : String? = response.errorBody()?.string()
+                    error?.let{
+                        sendVerificationEmailLiveData.value = Result.error(message = error)
+                    }
+                }
+            }
+        }
+        return sendVerificationEmailLiveData
     }
 }

@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaira"
         android:usesCleartextTraffic="true">
-        <activity android:name=".account.create.UserCredentialsCreateAccountActivity"></activity>
+        <activity android:name=".account.create.AccountVerificationActivity">
+        </activity>
+        <activity android:name=".account.create.UserCredentialsCreateAccountActivity" />
         <activity android:name=".account.create.UserIdentityCreateAccountActivity" />
         <activity android:name=".account.create.InfoCreateAccountActivity" />
         <activity
