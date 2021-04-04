@@ -1,6 +1,6 @@
 package ai.kaira.domain.introduction.usecase
 
-import ai.kaira.domain.Result
+import ai.kaira.domain.KairaResult
 import ai.kaira.domain.assessment.model.Strategy
 import ai.kaira.domain.assessment.usecase.AssessmentQuestionAnswered
 import ai.kaira.domain.assessment.usecase.CompleteAssessment
@@ -20,7 +20,7 @@ class IntroductionUsecase @Inject constructor(val createUserUsecase: CreateUser,
                                               val fetchUserProcessAssessmentProfiles: FetchUserProcessAssessmentProfiles,
                                               val saveStrategy: SaveStrategy) {
 
-    fun createUser(firstName:String, languageLocale: String) : MutableLiveData<Result<User>>{
+    fun createUser(firstName:String, languageLocale: String) : MutableLiveData<KairaResult<User>>{
         return createUserUsecase(firstName,languageLocale)
     }
 
@@ -40,7 +40,7 @@ class IntroductionUsecase @Inject constructor(val createUserUsecase: CreateUser,
         assessmentQuestionAnswered.deleteUserOldAssessmentsAnswers()
     }
 
-    fun processAssessmentProfiles(languageLocale:String): MediatorLiveData<Result<Strategy>> {
+    fun processAssessmentProfiles(languageLocale:String): MediatorLiveData<KairaResult<Strategy>> {
         return fetchUserProcessAssessmentProfiles(languageLocale)
     }
     fun isAssessmentCompleted(assessmentType: Int):Boolean{

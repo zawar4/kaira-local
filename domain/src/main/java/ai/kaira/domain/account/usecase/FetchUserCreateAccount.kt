@@ -1,6 +1,6 @@
 package ai.kaira.domain.account.usecase
 
-import ai.kaira.domain.Result
+import ai.kaira.domain.KairaResult
 import ai.kaira.domain.ResultState
 import ai.kaira.domain.account.model.Account
 import ai.kaira.domain.introduction.model.User
@@ -11,12 +11,12 @@ import javax.inject.Inject
 
 class FetchUserCreateAccount @Inject constructor(val createAccount:CreateAccount,val fetchUser: FetchUser) {
 
-    private val createAccountLiveData = MediatorLiveData<Result<User>>()
-    operator fun invoke(firstName:String,lastName:String,language:String,email:String,password:String,groupCode:String): MediatorLiveData<Result<User>> {
+    private val createAccountLiveData = MediatorLiveData<KairaResult<User>>()
+    operator fun invoke(firstName:String,lastName:String,language:String,email:String,password:String,groupCode:String): MediatorLiveData<KairaResult<User>> {
         return fetchUserCreateAccount(firstName, lastName, language, email, password, groupCode)
     }
 
-    fun fetchUserCreateAccount(firstName:String,lastName:String,language:String,email:String,password:String,groupCode:String): MediatorLiveData<Result<User>> {
+    fun fetchUserCreateAccount(firstName:String,lastName:String,language:String,email:String,password:String,groupCode:String): MediatorLiveData<KairaResult<User>> {
         val liveDataSource = fetchUser.fetchUserAsync()
         createAccountLiveData.addSource(liveDataSource){ user ->
             createAccountLiveData.removeSource(liveDataSource)
@@ -29,6 +29,10 @@ class FetchUserCreateAccount @Inject constructor(val createAccount:CreateAccount
                         createAccountLiveData.value = result
                     }
                     ResultState.ERROR -> {
+                        createAccountLiveData.removeSource(createAccountLiveDataSource)
+                        createAccountLiveData.value = result
+                    }
+                    ResultState.EXCEPTION ->{
                         createAccountLiveData.removeSource(createAccountLiveDataSource)
                         createAccountLiveData.value = result
                     }

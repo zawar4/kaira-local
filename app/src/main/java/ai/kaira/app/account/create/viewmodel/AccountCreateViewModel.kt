@@ -44,6 +44,11 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
                     result.message?.let { showError(it) }
                     groupCodeExistsLiveData.removeSource(liveDataSource)
                 }
+                ResultState.EXCEPTION -> {
+                    showLoading(false)
+                    result.message?.let { showError(it) }
+                    groupCodeExistsLiveData.removeSource(liveDataSource)
+                }
             }
         }
     }
@@ -65,6 +70,11 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
                     showLoading(true)
                 }
                 ResultState.ERROR -> {
+                    showLoading(false)
+                    result.message?.let { showError(it) }
+                    emailExistsLiveData.removeSource(liveDataSource)
+                }
+                ResultState.EXCEPTION -> {
                     showLoading(false)
                     result.message?.let { showError(it) }
                     emailExistsLiveData.removeSource(liveDataSource)
@@ -93,6 +103,13 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
                     createAccountLiveData.removeSource(liveDataSource)
                     showLoading(false)
                 }
+                ResultState.EXCEPTION ->{
+                    result.message?.let{ it->
+                        showError(it)
+                    }
+                    createAccountLiveData.removeSource(liveDataSource)
+                    showLoading(false)
+                }
                 ResultState.LOADING ->{
                     showLoading(true)
                 }
@@ -110,6 +127,13 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
                     sendVerificationEmailLiveData.value = Unit
                 }
                 ResultState.ERROR ->{
+                    result.message?.let{ it->
+                        showError(it)
+                    }
+                    sendVerificationEmailLiveData.removeSource(liveDataSource)
+                    showLoading(false)
+                }
+                ResultState.EXCEPTION ->{
                     result.message?.let{ it->
                         showError(it)
                     }

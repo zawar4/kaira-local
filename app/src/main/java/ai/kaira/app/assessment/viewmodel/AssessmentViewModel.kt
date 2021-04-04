@@ -131,6 +131,13 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
                             }
                             financialAssessmentProfileComputeLiveData.removeSource(liveDataSource)
                         }
+                        ResultState.EXCEPTION ->{
+                            it.message?.let { it2->
+                                showError(it2)
+                                showLoading(false)
+                            }
+                            financialAssessmentProfileComputeLiveData.removeSource(liveDataSource)
+                        }
                         ResultState.LOADING->{
                             showLoading(true)
                         }
@@ -171,6 +178,13 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
                             }
                             psychologicalAssessmentProfileComputeLiveData.removeSource(liveDataSource)
                         }
+                        ResultState.EXCEPTION ->{
+                            it.message?.let { it2->
+                                showError(it2)
+                                showLoading(false)
+                            }
+                            psychologicalAssessmentProfileComputeLiveData.removeSource(liveDataSource)
+                        }
                         ResultState.LOADING->{
                             showLoading(true)
                         }
@@ -193,15 +207,21 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
         }else{
             enableSubmitButton.value = true
             currentAnswer?.let{
-                val liveDataSource : MediatorLiveData<ai.kaira.domain.Result<Unit>>  = assessmentUseCase.submitAssessmentAnswer(currentQuestion,it,assessment)
+                val liveDataSource : MediatorLiveData<ai.kaira.domain.KairaResult<Unit>>  = assessmentUseCase.submitAssessmentAnswer(currentQuestion,it,assessment)
                 submitAssessmentAnswerLiveData.addSource(liveDataSource) { it2 ->
-                    val result: ai.kaira.domain.Result<Unit>? = it2
+                    val result: ai.kaira.domain.KairaResult<Unit>? = it2
                     when(result?.status){
                         ResultState.SUCCESS -> {
                             // Do nothing
                             submitAssessmentAnswerLiveData.removeSource(liveDataSource)
                         }
                         ResultState.ERROR ->{
+                            result.message?.let {it ->
+                                showError(it)
+                            }
+                            submitAssessmentAnswerLiveData.removeSource(liveDataSource)
+                        }
+                        ResultState.EXCEPTION ->{
                             result.message?.let {it ->
                                 showError(it)
                             }

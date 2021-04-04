@@ -20,11 +20,11 @@ import kotlin.reflect.KProperty
 
 class FetchUserSubmitAssessmentAnswer @Inject constructor(val fetchUser: FetchUser, private val submitAssessmentAnswer: SubmitAssessmentAnswer,private val viewModelCoroutineScope: CoroutineScope) : BaseUseCase(viewModelCoroutineScope) {
 
-    operator fun invoke(question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment):MediatorLiveData<Result<Unit>>{
+    operator fun invoke(question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment):MediatorLiveData<KairaResult<Unit>>{
         return fetchUserSubmitAssessmentAnswer(question,answer,assessment)
     }
-    private fun fetchUserSubmitAssessmentAnswer(question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment):MediatorLiveData<Result<Unit>>{
-        val submitAssessmentAnswerLiveData = MediatorLiveData<Result<Unit>>()
+    private fun fetchUserSubmitAssessmentAnswer(question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment):MediatorLiveData<KairaResult<Unit>>{
+        val submitAssessmentAnswerLiveData = MediatorLiveData<KairaResult<Unit>>()
         viewModelCoroutineScope.launch(IO) {
             val user : User? = fetchUser()
             withContext(Main){

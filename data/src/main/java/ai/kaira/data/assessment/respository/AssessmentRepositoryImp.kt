@@ -4,7 +4,7 @@ import ai.kaira.data.assessment.datasource.database.AssessmentLocalDataSource
 import ai.kaira.data.assessment.datasource.network.AssessmentNetworkDataSource
 import ai.kaira.data.assessment.model.AssessmentAnswerRequestParam
 import ai.kaira.data.assessment.model.ProcessAssessmentAnswersParam
-import ai.kaira.domain.Result
+import ai.kaira.domain.KairaResult
 import ai.kaira.domain.assessment.respository.AssessmentRepository
 import ai.kaira.domain.introduction.model.User
 import ai.kaira.data.utils.UtilityFunctions
@@ -23,7 +23,7 @@ class AssessmentRepositoryImp @Inject constructor(private val assessmentLocalDat
     }
 
 
-    override fun submitAssessmentAnswer(userId: String, question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment): MutableLiveData<Result<Unit>> {
+    override fun submitAssessmentAnswer(userId: String, question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment): MutableLiveData<KairaResult<Unit>> {
         var answeredAt = UtilityFunctions.iso8601FormatDate(answer!!.time.toLong())
         var assessmentAnswerRequestParam = AssessmentAnswerRequestParam(userId,
                 assessment.id,
@@ -58,11 +58,11 @@ class AssessmentRepositoryImp @Inject constructor(private val assessmentLocalDat
         return assessmentLocalDataSource.isAssessmentCompleted(assessmentType)
     }
 
-    override fun computeFinancialAssessmentProfile(assessmentType: Int, userId: String): MutableLiveData<Result<FinancialProfile>> {
+    override fun computeFinancialAssessmentProfile(assessmentType: Int, userId: String): MutableLiveData<KairaResult<FinancialProfile>> {
         return assessmentNetworkDataSource.computeFinancialAssessmentProfile(assessmentType,userId)
     }
 
-    override fun computePsychologicalAssessmentProfile(assessmentType: Int, userId: String): MutableLiveData<Result<PsychologicalProfile>> {
+    override fun computePsychologicalAssessmentProfile(assessmentType: Int, userId: String): MutableLiveData<KairaResult<PsychologicalProfile>> {
         return assessmentNetworkDataSource.computePsychologicalAssessmentProfile(assessmentType,userId)
     }
 
@@ -90,7 +90,7 @@ class AssessmentRepositoryImp @Inject constructor(private val assessmentLocalDat
         return assessmentLocalDataSource.fetchFinancialAssessmentProfileSync()
     }
 
-    override fun processAssessmentProfiles(languageLocale:String,userId: String,financialAssessmentProfile: FinancialProfile,psychologicalAssessmentProfile: PsychologicalProfile): MutableLiveData<Result<Strategy>> {
+    override fun processAssessmentProfiles(languageLocale:String,userId: String,financialAssessmentProfile: FinancialProfile,psychologicalAssessmentProfile: PsychologicalProfile): MutableLiveData<KairaResult<Strategy>> {
         val processAssessmentAnswersParam = ProcessAssessmentAnswersParam(userId, financialAssessmentProfile, psychologicalAssessmentProfile)
         return assessmentNetworkDataSource.processAssessmentProfiles(processAssessmentAnswersParam,languageLocale)
     }

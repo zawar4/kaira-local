@@ -3,7 +3,7 @@ package ai.kaira.app.introduction
 
 import ai.kaira.app.application.BaseViewModel
 import ai.kaira.app.utils.Extensions.Companion.isConnectedToInternet
-import ai.kaira.domain.Result
+import ai.kaira.domain.KairaResult
 import ai.kaira.domain.ResultState
 import ai.kaira.domain.assessment.model.AssessmentType
 import ai.kaira.domain.assessment.model.Strategy
@@ -83,7 +83,7 @@ class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase
         }else{
             var createUserLiveData = introductionUsecase.createUser(firstName, languageLocale)
             userResultLiveData.addSource(createUserLiveData) { t ->
-                val result: Result<User>? = t
+                val result: KairaResult<User>? = t
                 when (result?.status) {
                     ResultState.SUCCESS -> {
                         result.data?.let { it ->
@@ -95,6 +95,12 @@ class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase
 
                     }
                     ResultState.ERROR -> {
+                        result.message?.let{it->
+                            showError(it)
+                        }
+                        userResultLiveData.removeSource(createUserLiveData)
+                    }
+                    ResultState.EXCEPTION -> {
                         result.message?.let{it->
                             showError(it)
                         }
@@ -113,6 +119,13 @@ class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase
                 when(result.status){
                     ResultState.LOADING->{
                         showLoading(true)
+                    }
+                    ResultState.EXCEPTION->{
+                        showLoading(false)
+                        result.message?.let{it->
+                            showError(it)
+                        }
+                        processAssessmentProfilesLiveData.removeSource(liveDataSource)
                     }
                     ResultState.ERROR->{
                         showLoading(false)

@@ -3,7 +3,7 @@ package ai.kaira.data.webservice
 import ai.kaira.data.account.EmailBody
 import ai.kaira.data.assessment.model.*
 import ai.kaira.data.utils.APIConfig
-import ai.kaira.domain.Result
+import ai.kaira.domain.KairaResult
 import ai.kaira.domain.assessment.model.FinancialProfile
 import ai.kaira.domain.assessment.model.PsychologicalProfile
 import ai.kaira.data.introduction.model.UserResponse
@@ -34,7 +34,7 @@ interface KairaApiRouter {
     fun computeFinancialAssessmentProfile(@Path("assessment_type") assessmentType: Int,@Path("user_id") userId:String) : Call<FinancialProfileResponse>
 
     @POST("assessments/answer")
-    fun submitAnswer(@Body assessmentAnswerRequestParam: AssessmentAnswerRequestParam) : Call<Result<Unit>>
+    fun submitAnswer(@Body assessmentAnswerRequestParam: AssessmentAnswerRequestParam) : Call<KairaResult<Unit>>
 
     @GET("groups/{group_code}")
     fun groupCodeExists(@Path("group_code")groupCode:String): Call<Unit>
