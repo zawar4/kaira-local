@@ -5,13 +5,17 @@ import ai.kaira.app.account.create.viewmodel.AccountCreateViewModel
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityAccountVerificationBinding
 import ai.kaira.app.utils.UIUtils
-import androidx.appcompat.app.AppCompatActivity
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class AccountVerificationActivity : AppCompatActivity() {
@@ -39,6 +43,20 @@ class AccountVerificationActivity : AppCompatActivity() {
                 binding.backBtn.setOnClickListener {
                     finish()
                 }
+
+                binding.openEmailBtn.setOnClickListener {
+                    try {
+                        val intent = Intent(Intent.ACTION_MAIN)
+                        intent.addCategory(Intent.CATEGORY_APP_EMAIL)
+                        this.startActivity(intent)
+                    } catch (e: ActivityNotFoundException) {
+                        Toast.makeText(
+                            this,
+                            "There is no email client installed.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
                 binding.sendAnotherEmailBtn.setOnClickListener {
                     accountCreateViewModel.sendVerificationEmail(email)
                 }
@@ -63,4 +81,6 @@ class AccountVerificationActivity : AppCompatActivity() {
             finish()
         }
     }
+
+
 }
