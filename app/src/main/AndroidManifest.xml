@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaira"
         android:usesCleartextTraffic="true">
-        <activity android:name=".account.create.EmptyEmailActivity">
+        <activity android:name=".account.create.EmptyEmailActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -24,14 +25,16 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
-        <activity android:name=".account.create.AccountVerifiedActivity"></activity>
-        <activity
-            android:name=".account.create.AccountVerificationActivity"
-            android:launchMode="singleTask">
-        </activity>
-        <activity android:name=".account.create.UserCredentialsCreateAccountActivity" />
-        <activity android:name=".account.create.UserIdentityCreateAccountActivity" />
-        <activity android:name=".account.create.InfoCreateAccountActivity" />
+        <activity android:name=".account.create.AccountVerifiedActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".account.create.AccountVerificationActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".account.create.UserCredentialsCreateAccountActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".account.create.UserIdentityCreateAccountActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".account.create.InfoCreateAccountActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".account.onboard.AccountCreationOnboardingActivity"
             android:screenOrientation="portrait" />

@@ -11,5 +11,5 @@ interface AccountCreateNetworkDataSource {
     fun emailExists(email:String): MutableLiveData<KairaResult<Boolean>>
     fun createAccount(accountDetails: Account): MutableLiveData<KairaResult<User>>
     fun sendVerificationEmail(email:String):MutableLiveData<KairaResult<Void>>
-    fun verifyAccount(url:String):MutableLiveData<KairaResult<Void>>
+    fun verifyAccount(token:String):MutableLiveData<KairaResult<Void>>
 }

@@ -9,10 +9,10 @@ import javax.inject.Inject
 
 class VerifyAccount@Inject constructor(private val accountCreateRepository: AccountCreateRepository, viewModelCoroutineScope: CoroutineScope): BaseUseCase(viewModelCoroutineScope) {
 
-    operator fun invoke(url:String):MutableLiveData<KairaResult<Void>>{
-        return verifyAccount(url)
+    operator fun invoke(token:String):MutableLiveData<KairaResult<Void>>{
+        return verifyAccount(token)
     }
-    private fun verifyAccount(url:String):MutableLiveData<KairaResult<Void>>{
-        return accountCreateRepository.verifyAccount(url)
+    private fun verifyAccount(token:String):MutableLiveData<KairaResult<Void>>{
+        return accountCreateRepository.verifyAccount(token)
     }
 }

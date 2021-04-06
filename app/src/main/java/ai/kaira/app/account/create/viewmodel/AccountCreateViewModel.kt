@@ -130,8 +130,8 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
         return verifyAccountLiveData
     }
 
-    fun verifyAccount(url:String){
-        val liveDataSource = accountCreateUseCase.verifyAccount(url)
+    fun verifyAccount(token:String){
+        val liveDataSource = accountCreateUseCase.verifyAccount(token)
         verifyAccountLiveData.addSource(liveDataSource){ result ->
             when(result.status){
                 ResultState.SUCCESS ->{

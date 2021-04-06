@@ -78,23 +78,10 @@ class AccountVerificationActivity : AppCompatActivity() {
                 accountCreateViewModel.onError().observe(this) { error ->
                     UIUtils.networkCallAlert(this, error)
                 }
-
-                accountCreateViewModel.onAccountVerified().observe(this){
-                        startActivity(Intent(this,AccountVerifiedActivity::class.java))
-                }
             }
         }?: run {
             finish()
         }
     }
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-
-        intent?.data?.let{ uri ->
-            accountCreateViewModel.verifyAccount(uri.toString())
-        }
-    }
-
 
 }

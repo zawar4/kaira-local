@@ -1,6 +1,7 @@
 package ai.kaira.data.account.datasource.network
 
 import ai.kaira.data.account.EmailBody
+import ai.kaira.data.account.TokenBody
 import ai.kaira.data.webservice.KairaApiRouter
 import ai.kaira.domain.KairaResult
 import ai.kaira.domain.account.model.Account
@@ -150,14 +151,14 @@ class AccountCreateNetworkDataSourceImp @Inject constructor(private val kairaApi
         return sendVerificationEmailLiveData
     }
 
-    override fun verifyAccount(url: String): MutableLiveData<KairaResult<Void>> {
+    override fun verifyAccount(token: String): MutableLiveData<KairaResult<Void>> {
         val verifyAccountLiveData = MutableLiveData<KairaResult<Void>>()
         viewModelCoroutineScope.launch(IO) {
             withContext(Main) {
                 verifyAccountLiveData.value = KairaResult.loading()
             }
             try {
-                val response = kairaApiRouter.verifyAccount(url).execute()
+                val response = kairaApiRouter.verifyAccount(TokenBody(token)).execute()
                 withContext(Main) {
                     if (response.isSuccessful) {
                         verifyAccountLiveData.value = KairaResult.success()
