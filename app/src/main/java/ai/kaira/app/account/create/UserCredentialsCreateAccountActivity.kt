@@ -6,17 +6,17 @@ import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityUserCredentialsCreateAccountBinding
 import ai.kaira.app.utils.LanguageConfig
 import ai.kaira.app.utils.UIUtils
-import ai.kaira.app.utils.UIUtils.Companion.networkCallAlert
 import ai.kaira.app.utils.UIUtils.Companion.networkConnectivityAlert
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -123,6 +123,27 @@ class UserCredentialsCreateAccountActivity : AppCompatActivity() {
 
             accountCreateViewModel.onConnectivityError().observe(this){
                 networkConnectivityAlert(this)
+            }
+
+            binding.passwordVisibilityBtn.setOnClickListener {
+                if(binding.passwordEt.transformationMethod == null){
+                    binding.passwordEt.transformationMethod = PasswordTransformationMethod.getInstance()
+                    binding.passwordVisibilityBtn.setImageResource(R.drawable.visibility_off)
+                }else{
+                    binding.passwordEt.transformationMethod = null
+                    binding.passwordVisibilityBtn.setImageResource(R.drawable.visibility_on)
+                }
+                binding.passwordEt.setSelection(binding.passwordEt.text.length)
+            }
+            binding.confirmPasswordVisibilityBtn.setOnClickListener {
+                if(binding.confirmPasswordEt.transformationMethod == null){
+                    binding.confirmPasswordEt.transformationMethod = PasswordTransformationMethod()
+                    binding.confirmPasswordVisibilityBtn.setImageResource(R.drawable.visibility_off)
+                }else{
+                    binding.confirmPasswordEt.transformationMethod = null
+                    binding.confirmPasswordVisibilityBtn.setImageResource(R.drawable.visibility_on)
+                }
+                binding.confirmPasswordEt.setSelection(binding.confirmPasswordEt.text.length)
             }
 
             accountCreateViewModel.onAccountCreated().observe(this){
