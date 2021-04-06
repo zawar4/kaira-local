@@ -22,6 +22,8 @@
     <string name="action_survey">Sondage</string>
 
 
+    <string name="no_email_application_installed">Aucun client de messagerie n\'est installé.</string>
+
     <!-- Onboarding-->
     <string name="onboarding_title_1">L’appli pour atteindre ton bien-être financier</string>
     <string name="onboarding_description_1">Je suis Kaira, ton coach financier personnel. Je m’intéresse d’abord à toi, tes émotions, tes comportements et tes motivations.</string>

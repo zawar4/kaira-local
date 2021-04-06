@@ -47,21 +47,23 @@ class AccountVerificationActivity : AppCompatActivity() {
                 binding.openEmailBtn.setOnClickListener {
                     try {
                         val intent = Intent(Intent.ACTION_MAIN)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.addCategory(Intent.CATEGORY_APP_EMAIL)
                         this.startActivity(intent)
                     } catch (e: ActivityNotFoundException) {
                         Toast.makeText(
                             this,
-                            "There is no email client installed.",
+                            R.string.no_email_application_installed,
                             Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
+
                 binding.sendAnotherEmailBtn.setOnClickListener {
                     accountCreateViewModel.sendVerificationEmail(email)
                 }
 
-                accountCreateViewModel.onLoad().observe(this){ loading ->
+                accountCreateViewModel.onLoad().observe(this) { loading ->
                     if(loading){
                         binding.progressBar.visibility = View.VISIBLE
                     }else{
@@ -69,16 +71,28 @@ class AccountVerificationActivity : AppCompatActivity() {
                     }
                 }
 
-                accountCreateViewModel.onConnectivityError().observe(this){
+                accountCreateViewModel.onConnectivityError().observe(this) {
                     UIUtils.networkConnectivityAlert(this)
                 }
 
-                accountCreateViewModel.onError().observe(this){ error ->
+                accountCreateViewModel.onError().observe(this) { error ->
                     UIUtils.networkCallAlert(this, error)
+                }
+
+                accountCreateViewModel.onAccountVerified().observe(this){
+                        startActivity(Intent(this,AccountVerifiedActivity::class.java))
                 }
             }
         }?: run {
             finish()
+        }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+
+        intent?.data?.let{ uri ->
+            accountCreateViewModel.verifyAccount(uri.toString())
         }
     }
 

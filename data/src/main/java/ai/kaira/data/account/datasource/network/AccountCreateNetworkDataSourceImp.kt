@@ -149,4 +149,37 @@ class AccountCreateNetworkDataSourceImp @Inject constructor(private val kairaApi
         }
         return sendVerificationEmailLiveData
     }
+
+    override fun verifyAccount(url: String): MutableLiveData<KairaResult<Void>> {
+        val verifyAccountLiveData = MutableLiveData<KairaResult<Void>>()
+        viewModelCoroutineScope.launch(IO) {
+            withContext(Main) {
+                verifyAccountLiveData.value = KairaResult.loading()
+            }
+            try {
+                val response = kairaApiRouter.verifyAccount(url).execute()
+                withContext(Main) {
+                    if (response.isSuccessful) {
+                        verifyAccountLiveData.value = KairaResult.success()
+                    } else {
+                        val error: String? = response.errorBody()?.string()
+                        error?.let {
+                            verifyAccountLiveData.value = KairaResult.error(message = error)
+                        }
+                    }
+                }
+            }
+            catch(exception:Exception){
+                withContext(Main) {
+                    exception.message?.let { message ->
+                        verifyAccountLiveData.value =
+                            KairaResult.exception(message = message)
+                    }
+                }
+                exception.printStackTrace()
+            }
+
+        }
+        return verifyAccountLiveData
+    }
 }

@@ -11,9 +11,15 @@ class EmptyEmailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_empty_email)
         val intent = getIntent()
-        intent.flags = FLAG_ACTIVITY_SINGLE_TOP
-        intent.setClass(this, AccountVerificationActivity::class.java)
-        startActivity(intent)
-        finish()
+
+        if(isTaskRoot){
+            intent.flags = FLAG_ACTIVITY_SINGLE_TOP
+            intent.setClass(this, AccountVerificationActivity::class.java)
+            startActivity(intent)
+            finish()
+        }else{
+            finish()
+        }
+
     }
 }

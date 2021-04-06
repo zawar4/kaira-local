@@ -46,6 +46,10 @@ interface KairaApiRouter {
     fun createAccount(@Body accountDetails:Account):Call<User>
 
 
+    @POST
+    fun verifyAccount(@Url url: String):Call<Void>
+
+
     @POST("users/verify/new")
     fun sendVerificationEmail(@Body emailBody: EmailBody):Call<Void>
 }

@@ -8,5 +8,6 @@ class AccountCreateUseCase @Inject constructor(val groupCodeExists: GroupCodeExi
                                                val emailExists: EmailExists,
                                                val createAccount: CreateAccount,
                                                val fetchUserCreateAccount: FetchUserCreateAccount,
-                                               val sendVerificationEmail: SendVerificationEmail) {
+                                               val sendVerificationEmail: SendVerificationEmail,
+                                               val verifyAccount: VerifyAccount) {
 }

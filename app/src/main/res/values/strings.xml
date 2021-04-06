@@ -26,6 +26,7 @@
     <string name="action_survey">Survey</string>
 
 
+    <string name="no_email_application_installed">There is no email client installed.</string>
     <!-- Onboarding-->
     <string name="onboarding_title_1">The app to achieve your financial well-being</string>
     <string name="onboarding_description_1">I\'m Kaira, your personal financial coach. I am first interested in you, your emotions, your behaviors and your motivations.</string>

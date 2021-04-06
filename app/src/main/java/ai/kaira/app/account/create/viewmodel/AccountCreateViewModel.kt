@@ -20,6 +20,8 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
 
     private val sendVerificationEmailLiveData = MediatorLiveData<Unit>()
 
+    private val verifyAccountLiveData = MediatorLiveData<Unit>()
+
     fun fetchUser(): MutableLiveData<User?> {
         return accountCreateUseCase.fetchUser.fetchUserAsync()
     }
@@ -113,6 +115,43 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
                     }*/
                     showConnectivityError()
                     createAccountLiveData.removeSource(liveDataSource)
+                    showLoading(false)
+                }
+                ResultState.LOADING ->{
+                    showLoading(true)
+                }
+            }
+        }
+    }
+
+
+
+    fun onAccountVerified():MediatorLiveData<Unit>{
+        return verifyAccountLiveData
+    }
+
+    fun verifyAccount(url:String){
+        val liveDataSource = accountCreateUseCase.verifyAccount(url)
+        verifyAccountLiveData.addSource(liveDataSource){ result ->
+            when(result.status){
+                ResultState.SUCCESS ->{
+                    showLoading(false)
+                    verifyAccountLiveData.removeSource(liveDataSource)
+                    verifyAccountLiveData.value = Unit
+                }
+                ResultState.ERROR ->{
+                    result.message?.let{ it->
+                        showError(it)
+                    }
+                    verifyAccountLiveData.removeSource(liveDataSource)
+                    showLoading(false)
+                }
+                ResultState.EXCEPTION ->{
+                    /*result.message?.let{ it->
+                        showError(it)
+                    }*/
+                    showConnectivityError()
+                    verifyAccountLiveData.removeSource(liveDataSource)
                     showLoading(false)
                 }
                 ResultState.LOADING ->{
