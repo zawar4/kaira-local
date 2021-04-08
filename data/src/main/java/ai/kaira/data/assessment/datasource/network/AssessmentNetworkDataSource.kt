@@ -2,10 +2,9 @@ package ai.kaira.data.assessment.datasource.network
 
 import ai.kaira.data.assessment.model.AssessmentAnswerRequestParam
 import ai.kaira.data.assessment.model.ProcessAssessmentAnswersParam
-import ai.kaira.data.assessment.model.StrategyResponse
+import ai.kaira.domain.KairaResult
 import ai.kaira.domain.assessment.model.FinancialProfile
 import ai.kaira.domain.assessment.model.PsychologicalProfile
-import ai.kaira.domain.KairaResult
 import ai.kaira.domain.assessment.model.Strategy
 import androidx.lifecycle.MutableLiveData
 

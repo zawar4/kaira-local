@@ -29,9 +29,7 @@ class StrategyActivity : AppCompatActivity() {
 
         assessmentViewModel.onStrategyFetch().observe(this){
             it?.let{ strategy ->
-                binding.strategySentenceReasonTextview.setHtmlText(strategy.strategy.sentenceReason)
-                binding.stressSentenceTextview.setHtmlText(strategy.stress.sentence)
-                binding.strategySentenceTwoTextview.setHtmlText(strategy.strategy.sentence2)
+                binding.strategySentenceReasonTextview.setHtmlText(strategy.screen2)
             }?:run{
                 assessmentViewModel.finishActivity()
             }

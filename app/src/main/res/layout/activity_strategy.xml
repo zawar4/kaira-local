@@ -54,26 +54,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-            <TextView
-                android:id="@+id/strategy_sentence_two_textview"
-                style="@style/Text01"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:text="To be defined"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/strategy_sentence_reason_textview" />
-
-            <TextView
-                android:id="@+id/stress_sentence_textview"
-                style="@style/Text01"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:text="To be defined"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/strategy_sentence_two_textview" />
-
 
             <TextView
                 android:id="@+id/are_you_interested_textview"
@@ -83,7 +63,7 @@
                 android:layout_marginTop="40dp"
                 android:text="@string/introduction_conclusion_strategy_detail_description"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/stress_sentence_textview" />
+                app:layout_constraintTop_toBottomOf="@+id/strategy_sentence_reason_textview" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/yes_button"
