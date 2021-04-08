@@ -4,7 +4,6 @@ import ai.kaira.app.R
 import ai.kaira.app.termsconditions.TermsConditionActivity
 import ai.kaira.app.utils.SwipeDetector
 import ai.kaira.app.databinding.ActivityOnboardingBinding
-import ai.kaira.app.introduction.IntroductionActivity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -25,7 +24,7 @@ class OnboardActivity : AppCompatActivity() {
 
         onboardingBinding?.skipBtn?.setOnClickListener {
             finish()
-            startActivity(Intent(this,IntroductionActivity::class.java))
+            startActivity(Intent(this,TermsConditionActivity::class.java))
         }
 
         onboardingBinding?.loginBtn?.setOnClickListener {
@@ -47,7 +46,7 @@ class OnboardActivity : AppCompatActivity() {
 
             override fun onStartActivity() {
                 finish()
-                startActivity(Intent(this@OnboardActivity,IntroductionActivity::class.java))
+                startActivity(Intent(this@OnboardActivity,TermsConditionActivity::class.java))
             }
         })
     }
