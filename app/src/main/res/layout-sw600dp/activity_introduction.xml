@@ -2,181 +2,197 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/introduction_layout_parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/introduction_layout_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingBottom="24dp"
+        tools:context=".introduction.IntroductionActivity"
+        android:alpha="0.1">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
-            android:paddingBottom="24dp"
-            tools:context=".introduction.IntroductionActivity"
-            android:alpha="0.1">
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.20" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_top"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.20" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_left"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.15" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_right"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.85" />
+        <ImageView
+            android:id="@+id/avatar_im"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toTopOf="@+id/guideline_top"
+            app:srcCompat="@drawable/icon_coach" />
 
-            <ImageView
-                android:id="@+id/avatar_im"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                app:layout_constraintStart_toStartOf="@+id/guideline_left"
-                app:layout_constraintTop_toTopOf="@+id/guideline_top"
-                app:srcCompat="@drawable/icon_coach" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/heading_tv"
+            style="@style/Heading01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/introduction_welcome_title"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/avatar_im" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/description_tv"
+            style="@style/Text01"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="start"
+            android:text="@string/introduction_welcome_description"
+            app:layout_constraintEnd_toStartOf="@id/guideline_right" Of="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/heading_tv" />
+
+        <EditText
+            android:id="@+id/first_name_et"
+            style="@style/Text03_EntryField"
+            android:layout_width="250dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/blue_filled_button_border"
+            android:imeOptions="actionDone"
+            android:singleLine="true"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/description_tv" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/submit_button"
+            style="@style/Text02_button"
+            android:layout_width="200dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/blue_button_border"
+            android:gravity="center"
+            android:text="@string/introduction_welcome_next"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@id/first_name_et" />
+
+
+        <LinearLayout
+            android:id="@+id/psychological_assessment_layout"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/karia_third_filled_a_semi_round_rectangle"
+            android:gravity="center|start"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/description_tv">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/heading_tv"
-                style="@style/Heading01"
+                android:id="@+id/psychological_assessment_num_tv"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="18dp"
+                android:background="@drawable/kaira_third_filled_circle"
+                android:fontFamily="@font/avenir_next_bold"
+                android:gravity="center"
+                android:text="@string/_1"
+                android:textColor="@android:color/white"
+                android:textSize="24sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/psychological_assessment_tv"
+                style="@style/Text01_Darkblue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="@string/introduction_welcome_title"
-                app:layout_constraintStart_toStartOf="@+id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@+id/avatar_im" />
+                android:paddingLeft="18dp"
+                android:paddingTop="18dp"
+                android:paddingRight="18dp"
+                android:paddingBottom="18dp"
+                android:text="@string/assessment_psychological_title" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/financial_assessment_layout"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/light_gray_round_rectangle"
+            android:gravity="center|start"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/psychological_assessment_layout"
+            android:visibility="gone">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/description_tv"
-                style="@style/Text01"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:gravity="start"
-                android:text="@string/introduction_welcome_description"
-                app:layout_constraintEnd_toStartOf="@id/guideline_right" Of="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@+id/heading_tv" />
-
-            <EditText
-                android:id="@+id/first_name_et"
-                style="@style/Text03_EntryField"
-                android:layout_width="250dp"
+                android:id="@+id/financial_assessment_num_tv"
+                android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="36dp"
-                android:background="@drawable/blue_filled_button_border"
-                android:imeOptions="actionDone"
-                android:singleLine="true"
-                app:layout_constraintStart_toStartOf="@+id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@+id/description_tv" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/submit_button"
-                style="@style/Text02_button"
-                android:layout_width="200dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/blue_button_border"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="18dp"
+                android:background="@drawable/dark_gray_circle"
+                android:fontFamily="@font/avenir_next_bold"
                 android:gravity="center"
-                android:text="@string/introduction_welcome_next"
-                android:visibility="invisible"
-                app:layout_constraintStart_toStartOf="@+id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@id/first_name_et" />
+                android:text="@string/_2"
+                android:textColor="@android:color/white"
+                android:textSize="24sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/financial_assessment_tv"
+                style="@style/Text01_Darkblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="18dp"
+                android:paddingTop="18dp"
+                android:paddingBottom="18dp"
+                android:text="@string/assessment_financial_title"
+                android:textColor="@color/medium_gray" />
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/next_btn"
+            style="@style/Text03_button"
+            android:layout_width="200dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/action_next"
+            android:textColor="@android:color/white"
+            app:cornerRadius="8dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/financial_assessment_layout" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            style="?android:attr/progressBarStyle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"/>
 
 
-            <LinearLayout
-                android:id="@+id/money_motivation_assessment_layout"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="36dp"
-                android:background="@drawable/karia_third_filled_a_semi_round_rectangle"
-                android:gravity="center|start"
-                android:orientation="horizontal"
-                android:visibility="gone"
-                app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-                app:layout_constraintStart_toStartOf="@+id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@+id/description_tv">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/money_motivation_assessment_num_tv"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginBottom="18dp"
-                    android:background="@drawable/kaira_third_filled_circle"
-                    android:fontFamily="@font/avenir_next_bold"
-                    android:gravity="center"
-                    android:text="@string/_1"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/money_motivation_assessment_tv"
-                    style="@style/Text01_Darkblue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="18dp"
-                    android:paddingTop="18dp"
-                    android:paddingRight="18dp"
-                    android:paddingBottom="18dp"
-                    android:text="@string/assessment_psychological_title" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/financial_assessment_layout"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/light_gray_round_rectangle"
-                android:gravity="center|start"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-                app:layout_constraintStart_toStartOf="@+id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@+id/money_motivation_assessment_layout"
-                android:visibility="gone">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/fininacial_assessment_num_tv"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginBottom="18dp"
-                    android:background="@drawable/dark_gray_circle"
-                    android:fontFamily="@font/avenir_next_bold"
-                    android:gravity="center"
-                    android:text="@string/_2"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/fininacial_assessment_tv"
-                    style="@style/Text01_Darkblue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="18dp"
-                    android:paddingTop="18dp"
-                    android:paddingBottom="18dp"
-                    android:text="@string/assessment_financial_title"
-                    android:textColor="@color/medium_gray" />
-
-            </LinearLayout>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
-
-
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
