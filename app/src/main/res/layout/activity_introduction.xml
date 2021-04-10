@@ -12,7 +12,8 @@
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
             android:paddingBottom="24dp"
-            tools:context=".introduction.IntroductionActivity">
+            tools:context=".introduction.IntroductionActivity"
+            android:alpha="0.1">
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_top"
