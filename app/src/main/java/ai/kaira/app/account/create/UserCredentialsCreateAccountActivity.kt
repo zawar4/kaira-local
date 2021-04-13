@@ -2,6 +2,7 @@ package ai.kaira.app.account.create
 
 import ai.kaira.app.R
 import ai.kaira.app.account.create.viewmodel.AccountCreateViewModel
+import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityUserCredentialsCreateAccountBinding
 import ai.kaira.app.utils.LanguageConfig
@@ -112,6 +113,7 @@ class UserCredentialsCreateAccountActivity : AppCompatActivity() {
                 if(exists){
                     UIUtils.networkCallAlert(this,getString(R.string.authentication_creation_identity_already_exist),getString(R.string.action_login),getString(R.string.action_cancel)) {
                         // TODO open login activity
+                        startActivity(Intent(this, LoginActivity::class.java))
                     }
                 } else{
                     val email = binding.emailTv.text.toString()

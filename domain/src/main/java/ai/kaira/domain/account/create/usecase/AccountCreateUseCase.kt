@@ -1,4 +1,4 @@
-package ai.kaira.domain.account.usecase
+package ai.kaira.domain.account.create.usecase
 
 import ai.kaira.domain.introduction.usecase.FetchUser
 import javax.inject.Inject

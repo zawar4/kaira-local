@@ -1,6 +1,7 @@
 package ai.kaira.app.onboarding
 
 import ai.kaira.app.R
+import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.termsconditions.TermsConditionActivity
 import ai.kaira.app.utils.SwipeDetector
 import ai.kaira.app.databinding.ActivityOnboardingBinding
@@ -29,6 +30,7 @@ class OnboardActivity : AppCompatActivity() {
 
         onboardingBinding?.loginBtn?.setOnClickListener {
             //TODO start Login Activity
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 

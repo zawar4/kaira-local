@@ -1,7 +1,7 @@
-package ai.kaira.domain.account.repository
+package ai.kaira.domain.account.create.repository
 
 import ai.kaira.domain.KairaResult
-import ai.kaira.domain.account.model.Account
+import ai.kaira.domain.account.create.model.Account
 import ai.kaira.domain.introduction.model.User
 import androidx.lifecycle.MutableLiveData
 

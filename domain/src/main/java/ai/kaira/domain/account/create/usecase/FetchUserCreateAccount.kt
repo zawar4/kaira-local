@@ -1,12 +1,11 @@
-package ai.kaira.domain.account.usecase
+package ai.kaira.domain.account.create.usecase
 
 import ai.kaira.domain.KairaResult
 import ai.kaira.domain.ResultState
-import ai.kaira.domain.account.model.Account
+import ai.kaira.domain.account.create.model.Account
 import ai.kaira.domain.introduction.model.User
 import ai.kaira.domain.introduction.usecase.FetchUser
 import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
 import javax.inject.Inject
 
 class FetchUserCreateAccount @Inject constructor(val createAccount:CreateAccount,val fetchUser: FetchUser) {

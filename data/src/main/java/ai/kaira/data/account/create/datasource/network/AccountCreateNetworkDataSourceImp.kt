@@ -1,10 +1,10 @@
-package ai.kaira.data.account.datasource.network
+package ai.kaira.data.account.create.datasource.network
 
-import ai.kaira.data.account.EmailBody
-import ai.kaira.data.account.TokenBody
+import ai.kaira.data.account.create.EmailBody
+import ai.kaira.data.account.create.TokenBody
 import ai.kaira.data.webservice.KairaApiRouter
 import ai.kaira.domain.KairaResult
-import ai.kaira.domain.account.model.Account
+import ai.kaira.domain.account.create.model.Account
 import ai.kaira.domain.introduction.model.User
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
@@ -14,7 +14,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class AccountCreateNetworkDataSourceImp @Inject constructor(private val kairaApiRouter: KairaApiRouter,private val viewModelCoroutineScope: CoroutineScope) : AccountCreateNetworkDataSource {
+class AccountCreateNetworkDataSourceImp @Inject constructor(private val kairaApiRouter: KairaApiRouter,private val viewModelCoroutineScope: CoroutineScope) :
+    AccountCreateNetworkDataSource {
     override fun groupCodeExists(groupCode: String): MutableLiveData<KairaResult<Boolean>> {
         val groupCodeExistsLiveData = MutableLiveData<KairaResult<Boolean>>()
         viewModelCoroutineScope.launch(IO){

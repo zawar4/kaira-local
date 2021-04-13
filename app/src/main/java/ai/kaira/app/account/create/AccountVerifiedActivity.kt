@@ -2,6 +2,7 @@ package ai.kaira.app.account.create
 
 import ai.kaira.app.R
 import ai.kaira.app.account.create.viewmodel.AccountCreateViewModel
+import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityAccountVerifiedBinding
 import ai.kaira.app.utils.UIUtils
@@ -43,7 +44,7 @@ class AccountVerifiedActivity : AppCompatActivity() {
         }
 
         accountCreateViewModel.onAccountVerified().observe(this){
-
+            startActivity(Intent(this, LoginActivity::class.java))
         }
 
         accountCreateViewModel.onConnectivityError().observe(this) {
@@ -54,8 +55,5 @@ class AccountVerifiedActivity : AppCompatActivity() {
             UIUtils.networkCallAlert(this, error)
         }
 
-        accountCreateViewModel.onAccountVerified().observe(this){
-            startActivity(Intent(this,AccountVerifiedActivity::class.java))
-        }
     }
 }

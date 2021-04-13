@@ -1,9 +1,9 @@
-package ai.kaira.domain.account.usecase
+package ai.kaira.domain.account.create.usecase
 
 import ai.kaira.domain.BaseUseCase
 import ai.kaira.domain.KairaResult
-import ai.kaira.domain.account.model.Account
-import ai.kaira.domain.account.repository.AccountCreateRepository
+import ai.kaira.domain.account.create.model.Account
+import ai.kaira.domain.account.create.repository.AccountCreateRepository
 import ai.kaira.domain.introduction.model.User
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
