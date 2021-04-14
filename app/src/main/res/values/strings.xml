@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Kaira</string>
     <string name="app_name_staging" translatable="false">(S) Kaira</string>
+    <string name="app_name_development" translatable="false">(D) Kaira</string>
     <string name="app_name_local" translatable="false">(L) Kaira</string>
 
 
