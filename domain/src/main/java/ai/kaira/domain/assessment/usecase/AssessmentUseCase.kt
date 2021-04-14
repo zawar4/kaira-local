@@ -1,6 +1,6 @@
 package ai.kaira.domain.assessment.usecase
 
-import ai.kaira.domain.Result
+import ai.kaira.domain.KairaResult
 import ai.kaira.domain.assessment.model.*
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -39,15 +39,15 @@ class AssessmentUseCase @Inject constructor(private val fetchFinancialAssessment
         completeAssessment.markAssessmentAsComplete(assessmentType)
     }
 
-    fun computePsychologicalAssessmentProfile(assessmentType: Int): MediatorLiveData<Result<PsychologicalProfile>> {
+    fun computePsychologicalAssessmentProfile(assessmentType: Int): MediatorLiveData<KairaResult<PsychologicalProfile>> {
         return fetchUserComputeAssessmentProfile.computePsychologicalAssessmentProfile(assessmentType)
     }
 
-    fun submitAssessmentAnswer(question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment):MediatorLiveData<Result<Unit>>{
+    fun submitAssessmentAnswer(question: AssessmentQuestion, answer: AssessmentAnswer?, assessment: Assessment):MediatorLiveData<KairaResult<Unit>>{
         return fetchUserSubmitAssessmentAnswer(question,answer,assessment)
     }
 
-    fun computeFinancialAssessmentProfile(assessmentType: Int): MediatorLiveData<Result<FinancialProfile>> {
+    fun computeFinancialAssessmentProfile(assessmentType: Int): MediatorLiveData<KairaResult<FinancialProfile>> {
         return fetchUserComputeAssessmentProfile.computeFinancialAssessmentProfile(assessmentType)
     }
 

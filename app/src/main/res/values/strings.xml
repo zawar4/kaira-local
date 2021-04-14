@@ -16,7 +16,7 @@
     <string name="action_send">Send</string>
     <string name="action_resend">Resend</string>
     <string name="action_reset">Reset</string>
-    <string name="action_email_send_again">Send another email</string>
+    <string name="action_email_send_again">Send another email \u2192</string>
     <string name="action_confirm">Confirm</string>
     <string name="action_details">Details</string>
     <string name="action_finish">Finish</string>
@@ -25,6 +25,8 @@
     <string name="action_no">No</string>
     <string name="action_survey">Survey</string>
 
+
+    <string name="no_email_application_installed">There is no email client installed.</string>
     <!-- Onboarding-->
     <string name="onboarding_title_1">The app to achieve your financial well-being</string>
     <string name="onboarding_description_1">I\'m Kaira, your personal financial coach. I am first interested in you, your emotions, your behaviors and your motivations.</string>
@@ -108,6 +110,51 @@
     <string name="introduction_conclusion_account_subtitle">Creating your account allows you to:</string>
     <string name="introduction_conclusion_account_assessments">Save your evaluations</string>
     <string name="introduction_conclusion_account_coach">Access my personalized coaching</string>
+
+
+    <!-- Authentication !-->
+
+    <string name="authentication_creation_welcome_title">Create a free Kaira account</string>
+    <string name="authentication_creation_welcome_description">By creating a Kaira account, you can optimize your experience and permanently save your bank details. In this case, they will be erased after 24 hours.\n\nYou can also create an account without synchronizing your bank details.</string>
+    <string name="authentication_creation_identity_title">Account creation</string>
+    <string name="authentication_creation_identity_description">Complete this information to create your account</string>
+    <string name="authentication_creation_identity_create">Create Account</string>
+    <string name="authentication_creation_identity_already_exist">This email is already used for a Kaira account</string>
+    <string name="authentication_creation_group_invalide">The code is not valid. Continue anyway?</string>
+    <string name="authentication_first_name_title">First Name</string>
+    <string name="authentication_last_name_title">Last Name</string>
+    <string name="authentication_creation_group_title">Group code (optional)</string>
+    <string name="authentication_creation_group_rules">Consists of 4 letters and 4 numbers</string>
+    <string name="authentication_action_next">Next \u2192</string>
+    <string name="authentication_email_title">Email</string>
+    <string name="authentication_password_title">Password</string>
+    <string name="authentication_confirm_password_title">Confirm password</string>
+    <string name="authentication_creation_credential_email_rules">The password must contain at least 8 characters including at least 1 uppercase, 1 lowercase, 1 number and 1 symbol.</string>
+    <string name="authentication_creation_credential_email_invalid">Invalid email</string>
+    <string name="authentication_creation_credential_password_not_identical">Passwords are not the same</string>
+    <string name="authentication_creation_email_title">Your Kaira account is created!</string>
+    <string name="authentication_creation_email_description">We have sent you an email to confirm your account creation.\n\nClick on the link in the email to complete your Kaira account creation.</string>
+    <string name="authentication_creation_email_open">Open emails</string>
+    <string name="authentication_creation_email_resent">A new email has been sent</string>
+    <string name="authentication_creation_validated_title">Congratulations!\nYou have now created your Kaira account</string>
+    <string name="authentication_creation_validated_description">You now have access more features and view your data from your dashboard.</string>
+
+    <string name="authentication_creation_invalid_title">The validation code has expired.</string>
+    <string name="authentication_creation_invalid_description">Calvinouche de charrue de christie de ciboire de saint-cimonaque de mosus de marde</string>
+
+    <string name="authentication_login_title">Login</string>
+    <string name="authentication_login_description">Enter your login information</string>
+    <string name="authentication_login_forgotten_password">Forgot your password ?</string>
+    <string name="authentication_login_remember_me">Remember me</string>
+
+    <string name="authentication_forgotten_password_title">Forgot your password ?</string>
+    <string name="authentication_forgotten_password_description">Enter the email associated with your Kaira account to receive instructions for creating your new password.</string>
+    <string name="authentication_forgotten_password_found">Password found ?</string>
+    <string name="authentication_forgotten_password_sent_title">Email sent !</string>
+    <string name="authentication_forgotten_password_sent_description">Check your email inbox and click on the received link to reset your password.</string>
+    <string name="authentication_forgotten_password_sent_not_received">Email not received ?</string>
+    <string name="authentication_forgotten_password_new_title">New password</string>
+    <string name="authentication_forgotten_password_new_description">Please enter your new password</string>
 
 
     <!-- Last Chance !-->

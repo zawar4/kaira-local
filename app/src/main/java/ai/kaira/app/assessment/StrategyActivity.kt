@@ -1,7 +1,7 @@
 package ai.kaira.app.assessment
 
 import ai.kaira.app.R
-import ai.kaira.app.account.AccountCreationOnboardingActivity
+import ai.kaira.app.account.onboard.AccountCreationOnboardingActivity
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.assessment.viewmodel.AssessmentViewModel
 import ai.kaira.app.databinding.ActivityStrategyBinding
@@ -29,9 +29,7 @@ class StrategyActivity : AppCompatActivity() {
 
         assessmentViewModel.onStrategyFetch().observe(this){
             it?.let{ strategy ->
-                binding.strategySentenceReasonTextview.setHtmlText(strategy.strategy.sentenceReason)
-                binding.stressSentenceTextview.setHtmlText(strategy.stress.sentence)
-                binding.strategySentenceTwoTextview.setHtmlText(strategy.strategy.sentence2)
+                binding.strategySentenceReasonTextview.setHtmlText(strategy.screen2)
             }?:run{
                 assessmentViewModel.finishActivity()
             }
@@ -47,7 +45,7 @@ class StrategyActivity : AppCompatActivity() {
         })
 
         binding.yesButton.setOnClickListener {
-            startActivity(Intent(this,AccountCreationOnboardingActivity::class.java))
+            startActivity(Intent(this, AccountCreationOnboardingActivity::class.java))
         }
 
         binding.noButton.setOnClickListener {

@@ -112,35 +112,38 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
     }
 
     fun computeFinancialAssessmentProfile(assessmentType: Int){
-        if(isConnectedToInternet()){
-            val liveDataSource = assessmentUseCase.computeFinancialAssessmentProfile(assessmentType)
-            financialAssessmentProfileComputeLiveData.addSource(liveDataSource){
-                it?.let{
-                    when(it.status){
-                        ResultState.SUCCESS ->{
+        val liveDataSource = assessmentUseCase.computeFinancialAssessmentProfile(assessmentType)
+        financialAssessmentProfileComputeLiveData.addSource(liveDataSource){
+            it?.let{
+                when(it.status){
+                    ResultState.SUCCESS ->{
+                        showLoading(false)
+                        it.data?.let {it->
+                            assessmentUseCase.saveFinancialAssessmentProfile(it)
+                        }
+                        financialAssessmentProfileComputeLiveData.removeSource(liveDataSource)
+                    }
+                    ResultState.ERROR ->{
+                        it.message?.let { it2->
+                            showError(it2)
                             showLoading(false)
-                            it.data?.let {it->
-                                assessmentUseCase.saveFinancialAssessmentProfile(it)
-                            }
-                            financialAssessmentProfileComputeLiveData.removeSource(liveDataSource)
                         }
-                        ResultState.ERROR ->{
-                            it.message?.let { it2->
-                                showError(it2)
-                                showLoading(false)
-                            }
-                            financialAssessmentProfileComputeLiveData.removeSource(liveDataSource)
+                        financialAssessmentProfileComputeLiveData.removeSource(liveDataSource)
+                    }
+                    ResultState.EXCEPTION ->{
+                        it.message?.let { it2->
+                            //showError(it2)
+                            showConnectivityError()
+                            showLoading(false)
                         }
-                        ResultState.LOADING->{
-                            showLoading(true)
-                        }
+                        financialAssessmentProfileComputeLiveData.removeSource(liveDataSource)
+                    }
+                    ResultState.LOADING->{
+                        showLoading(true)
                     }
                 }
             }
-        }else{
-            showConnectivityError()
         }
-
     }
 
     fun onFinancialAssessmentProfileComputed():MediatorLiveData<FinancialProfile>{
@@ -152,35 +155,38 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
     }
 
     fun computePsychologicalAssessmentProfile(assessmentType: Int) {
-        if(isConnectedToInternet()){
-            val liveDataSource = assessmentUseCase.computePsychologicalAssessmentProfile(assessmentType)
-            psychologicalAssessmentProfileComputeLiveData.addSource(liveDataSource){it ->
-                it?.let{
-                    when(it.status){
-                        ResultState.SUCCESS ->{
+        val liveDataSource = assessmentUseCase.computePsychologicalAssessmentProfile(assessmentType)
+        psychologicalAssessmentProfileComputeLiveData.addSource(liveDataSource){it ->
+            it?.let{
+                when(it.status){
+                    ResultState.SUCCESS ->{
+                        showLoading(false)
+                        it.data?.let {it2->
+                            assessmentUseCase.savePsychologicalAssessmentProfile(it2)
+                        }
+                        psychologicalAssessmentProfileComputeLiveData.removeSource(liveDataSource)
+                    }
+                    ResultState.ERROR ->{
+                        it.message?.let { it2->
+                            showError(it2)
                             showLoading(false)
-                            it.data?.let {it2->
-                                assessmentUseCase.savePsychologicalAssessmentProfile(it2)
-                            }
-                            psychologicalAssessmentProfileComputeLiveData.removeSource(liveDataSource)
                         }
-                        ResultState.ERROR ->{
-                            it.message?.let { it2->
-                                showError(it2)
-                                showLoading(false)
-                            }
-                            psychologicalAssessmentProfileComputeLiveData.removeSource(liveDataSource)
+                        psychologicalAssessmentProfileComputeLiveData.removeSource(liveDataSource)
+                    }
+                    ResultState.EXCEPTION ->{
+                        it.message?.let { it2->
+                            //showError(it2)
+                            showConnectivityError()
+                            showLoading(false)
                         }
-                        ResultState.LOADING->{
-                            showLoading(true)
-                        }
+                        psychologicalAssessmentProfileComputeLiveData.removeSource(liveDataSource)
+                    }
+                    ResultState.LOADING->{
+                        showLoading(true)
                     }
                 }
             }
-        }else{
-            showConnectivityError()
         }
-
     }
 
     private fun rollBackAssessmentAnswerClick(){
@@ -193,9 +199,9 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
         }else{
             enableSubmitButton.value = true
             currentAnswer?.let{
-                val liveDataSource : MediatorLiveData<ai.kaira.domain.Result<Unit>>  = assessmentUseCase.submitAssessmentAnswer(currentQuestion,it,assessment)
+                val liveDataSource : MediatorLiveData<ai.kaira.domain.KairaResult<Unit>>  = assessmentUseCase.submitAssessmentAnswer(currentQuestion,it,assessment)
                 submitAssessmentAnswerLiveData.addSource(liveDataSource) { it2 ->
-                    val result: ai.kaira.domain.Result<Unit>? = it2
+                    val result: ai.kaira.domain.KairaResult<Unit>? = it2
                     when(result?.status){
                         ResultState.SUCCESS -> {
                             // Do nothing
@@ -205,6 +211,13 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
                             result.message?.let {it ->
                                 showError(it)
                             }
+                            submitAssessmentAnswerLiveData.removeSource(liveDataSource)
+                        }
+                        ResultState.EXCEPTION ->{
+                            /*result.message?.let {it ->
+                                showError(it)
+                            }*/
+                            showConnectivityError()
                             submitAssessmentAnswerLiveData.removeSource(liveDataSource)
                         }
                         else ->  submitAssessmentAnswerLiveData.removeSource(liveDataSource)
@@ -290,16 +303,12 @@ class AssessmentViewModel(private val assessmentUseCase: AssessmentUseCase) : Ba
         return strategyLiveData
     }
     fun fetchStrategy(){
-        if(isConnectedToInternet()){
-            val liveDataSource = assessmentUseCase.fetchStrategy()
-            strategyLiveData.addSource(liveDataSource){
-                it?.let{
-                    strategyLiveData.value = it
-                }
-                strategyLiveData.removeSource(liveDataSource)
+        val liveDataSource = assessmentUseCase.fetchStrategy()
+        strategyLiveData.addSource(liveDataSource){
+            it?.let{
+                strategyLiveData.value = it
             }
-        }else{
-            showConnectivityError()
+            strategyLiveData.removeSource(liveDataSource)
         }
     }
 

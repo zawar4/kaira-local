@@ -4,6 +4,7 @@ import ai.kaira.app.R
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.assessment.viewmodel.AssessmentViewModel
 import ai.kaira.app.databinding.ActivityEvaluationCompletedBinding
+import ai.kaira.app.utils.Extensions.Companion.setHtmlText
 import ai.kaira.app.utils.UIUtils
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -27,7 +28,7 @@ class EvaluationCompletedActivity : AppCompatActivity() {
 
         assessmentViewModel.onStrategyFetch().observe(this){
             it?.let{ strategy ->
-                binding.strategySentenceTextview.text = strategy.strategy.sentence
+                binding.strategySentenceTextview.setHtmlText(strategy.screen1)
             }?:run{
                 assessmentViewModel.finishActivity()
             }

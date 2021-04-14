@@ -62,7 +62,7 @@ class IntroductionActivity : AppCompatActivity() {
                         completeFinancialAssessment()
                         introductionBinding.headingTv.text = getString(R.string.introduction_assessment_title_3)
                         introductionBinding.descriptionTv.text = getString(R.string.introduction_assessment_detail_3)
-                        introductionBinding.nextBtn?.visibility = VISIBLE
+                        introductionBinding.nextBtn.visibility = VISIBLE
                     }
 
                 }
@@ -114,7 +114,7 @@ class IntroductionActivity : AppCompatActivity() {
             networkConnectivityAlert(this)
         })
 
-        introductionBinding.psychologicalAssessmentLayout?.setOnClickListener {
+        introductionBinding.psychologicalAssessmentLayout.setOnClickListener {
             val intent = Intent(this,AssessmentActivity::class.java)
             intent.putExtra(ASSESSMENT_TYPE,AssessmentType.PSYCHOLOGICAL)
             startActivity(intent)
@@ -155,7 +155,7 @@ class IntroductionActivity : AppCompatActivity() {
             onAvatarHeightChange(it)
         }
 
-        introductionBinding.nextBtn?.setOnClickListener {
+        introductionBinding.nextBtn.setOnClickListener {
             val languageLocale: String = getLanguageLocale(applicationContext)
             introductionViewModel.processAssessmentProfiles(languageLocale)
         }
@@ -168,9 +168,9 @@ class IntroductionActivity : AppCompatActivity() {
         introductionViewModel.onLoad().observe(this){
             it?.let{ visible ->
                 if(visible){
-                    introductionBinding.progressBar?.visibility = VISIBLE
+                    introductionBinding.progressBar.visibility = VISIBLE
                 }else{
-                    introductionBinding.progressBar?.visibility = GONE
+                    introductionBinding.progressBar.visibility = GONE
                 }
             }
         }
@@ -180,14 +180,9 @@ class IntroductionActivity : AppCompatActivity() {
     private fun submit(){
         val firstName: String = introductionBinding.firstNameEt.text.toString()
         val languageLocale: String = getLanguageLocale(applicationContext)
-        if(isConnectedToInternet()){
-            if(firstName.isNotBlank()){
-                introductionViewModel.createUser(firstName, languageLocale)
-                introductionViewModel.deleteUserOldAssessmentsAnswers()
-            }
-
-        }else{
-            networkConnectivityAlert(this)
+        if(firstName.isNotBlank()){
+            introductionViewModel.createUser(firstName, languageLocale)
+            introductionViewModel.deleteUserOldAssessmentsAnswers()
         }
     }
 
@@ -207,16 +202,16 @@ class IntroductionActivity : AppCompatActivity() {
         TransitionManager.beginDelayedTransition(introductionBinding.introductionLayoutParent,transitionSet)
 
 
-        introductionBinding.psychologicalAssessmentLayout?.visibility = VISIBLE
+        introductionBinding.psychologicalAssessmentLayout.visibility = VISIBLE
         introductionBinding.financialAssessmentLayout.visibility = VISIBLE
 
         introductionBinding.financialAssessmentLayout.setBackgroundResource(R.drawable.light_gray_round_rectangle)
-        introductionBinding.financialAssessmentNumTv?.setBackgroundResource(R.drawable.dark_gray_circle)
-        introductionBinding.financialAssessmentNumTv?.setTextColor(ContextCompat.getColor(applicationContext,android.R.color.white))
-        introductionBinding.financialAssessmentNumTv?.setText(R.string._2)
-        introductionBinding.financialAssessmentTv?.setTextColor(ContextCompat.getColor(applicationContext,R.color.medium_gray))
+        introductionBinding.financialAssessmentNumTv.setBackgroundResource(R.drawable.dark_gray_circle)
+        introductionBinding.financialAssessmentNumTv.setTextColor(ContextCompat.getColor(applicationContext,android.R.color.white))
+        introductionBinding.financialAssessmentNumTv.setText(R.string._2)
+        introductionBinding.financialAssessmentTv.setTextColor(ContextCompat.getColor(applicationContext,R.color.medium_gray))
         introductionBinding.financialAssessmentLayout.isEnabled = false
-        introductionBinding.psychologicalAssessmentNumTv?.setText(R.string._1)
+        introductionBinding.psychologicalAssessmentNumTv.setText(R.string._1)
 
         introductionBinding.headingTv.text = getString(R.string.introduction_assessment_title_1, user.firstName)
         introductionBinding.descriptionTv.text = getString(R.string.introduction_assessment_detail_1)
@@ -261,23 +256,23 @@ class IntroductionActivity : AppCompatActivity() {
     }
 
     private fun hideAssessmentsFields(){
-        introductionBinding.psychologicalAssessmentLayout?.visibility = INVISIBLE
+        introductionBinding.psychologicalAssessmentLayout.visibility = INVISIBLE
         introductionBinding.financialAssessmentLayout.visibility = INVISIBLE
-        introductionBinding.nextBtn?.visibility = GONE
+        introductionBinding.nextBtn.visibility = GONE
     }
 
     private fun completeFinancialAssessment(){
-        introductionBinding.financialAssessmentNumTv?.setText(R.string.tick)
+        introductionBinding.financialAssessmentNumTv.setText(R.string.tick)
     }
     private fun enableFinancialAssessment(){
         introductionBinding.financialAssessmentLayout.setBackgroundResource(R.drawable.fourth_filled_b_round_rectangle)
-        introductionBinding.financialAssessmentNumTv?.setBackgroundResource(R.drawable.kaira_forth_filled_circle)
-        introductionBinding.financialAssessmentNumTv?.setTextColor(ContextCompat.getColor(this,android.R.color.white))
-        introductionBinding.financialAssessmentTv?.setTextColor(ContextCompat.getColor(this,android.R.color.black))
+        introductionBinding.financialAssessmentNumTv.setBackgroundResource(R.drawable.kaira_forth_filled_circle)
+        introductionBinding.financialAssessmentNumTv.setTextColor(ContextCompat.getColor(this,android.R.color.white))
+        introductionBinding.financialAssessmentTv.setTextColor(ContextCompat.getColor(this,android.R.color.black))
     }
 
     private fun completePsychologicalAssessment(){
-        introductionBinding.psychologicalAssessmentNumTv?.setText(R.string.tick)
+        introductionBinding.psychologicalAssessmentNumTv.setText(R.string.tick)
     }
 
     override fun onBackPressed() {

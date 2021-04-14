@@ -12,7 +12,7 @@
     <string name="action_send">Envoyer</string>
     <string name="action_resend">Renvoyer</string>
     <string name="action_reset">Réinitialiser</string>
-    <string name="action_email_send_again">Envoyer un autre courriel</string>
+    <string name="action_email_send_again">Envoyer un autre courriel \u2192</string>
     <string name="action_confirm">Confirmer</string>
     <string name="action_details">Détails</string>
     <string name="action_finish">Terminer</string>
@@ -21,6 +21,8 @@
     <string name="action_no">Non</string>
     <string name="action_survey">Sondage</string>
 
+
+    <string name="no_email_application_installed">Aucun client de messagerie n\'est installé.</string>
 
     <!-- Onboarding-->
     <string name="onboarding_title_1">L’appli pour atteindre ton bien-être financier</string>
@@ -102,6 +104,51 @@
     <string name="introduction_conclusion_account_assessments">Sauvegarder tes évaluations</string>
     <string name="introduction_conclusion_account_coach">Accéder à mon coaching personnalisé</string>
 
+
+    <!-- Authentication !-->
+
+
+    <string name="authentication_creation_welcome_title">Crée un compte Kaira gratuitement</string>
+    <string name="authentication_creation_welcome_description">En créant un compte Kaira, tu peux optimiser ton expérience et sauvegarder définitivement tes données bancaires. Dans le cas échéant, elles s’effaceront après 24 heures.\n\nTu peux aussi créer un compte sans synchroniser tes données bancaires.</string>
+    <string name="authentication_creation_identity_title">Création de compte</string>
+    <string name="authentication_creation_identity_description">Complète les informations</string>
+    <string name="authentication_creation_identity_create">Créer un compte</string>
+    <string name="authentication_creation_identity_already_exist">Ce courriel est déjà utilisé pour un compte Kaira</string>
+    <string name="authentication_creation_group_invalide">Le code entré n\'est pas valide. Continuer malgré tout?</string>
+    <string name="authentication_first_name_title">Prénom</string>
+    <string name="authentication_last_name_title">Nom</string>
+    <string name="authentication_creation_group_title">Code de groupe (facultatif)</string>
+    <string name="authentication_creation_group_rules">Constitué de 4 lettres et 4 chiffres</string>
+    <string name="authentication_action_next">Suivant \u2192</string>
+    <string name="authentication_email_title">Courriel</string>
+    <string name="authentication_password_title">Mot de passe</string>
+    <string name="authentication_confirm_password_title">Confirme le mot de passe</string>
+    <string name="authentication_creation_credential_email_rules">Le mot de passe doit contenir au moins 8 caractères dont au moins 1 majuscule, 1 minuscule, 1 chiffre et 1 symbole.</string>
+    <string name="authentication_creation_credential_password_not_identical">Les mots de passe ne sont pas identiques</string>
+    <string name="authentication_creation_credential_email_invalid">Courriel invalide</string>
+    <string name="authentication_creation_email_title">Ton compte Kaira est créé !</string>
+    <string name="authentication_creation_email_description">Je t’ai envoyé un courriel pour valider la création de ton compte.\n\nUne fois confirmé, complète la dernière étape pour accéder à ton coaching.</string>
+    <string name="authentication_creation_email_open">Ouvrir les courriels</string>
+    <string name="authentication_creation_email_resent">Un nouveau courriel a été envoyé</string>
+    <string name="authentication_creation_validated_title">Félicitations!\nTu as maintenant créé ton compte Kaira</string>
+    <string name="authentication_creation_validated_description">Tu peux maintenant accéder à davantage de fonctionnalités et consulter tes données depuis ton tableau de bord.</string>
+
+    <string name="authentication_creation_invalid_title">Le code de validation a expiré.</string>
+    <string name="authentication_creation_invalid_description">Calvinouche de charrue de christie de ciboire de saint-cimonaque de mosus de marde</string>
+
+    <string name="authentication_login_title">Me connecter</string>
+    <string name="authentication_login_description">Entre les informations</string>
+    <string name="authentication_login_forgotten_password">Mot de passe oublié ?</string>
+    <string name="authentication_login_remember_me">Se souvenir de moi</string>
+
+    <string name="authentication_forgotten_password_title">Mot de passe oublié ?</string>
+    <string name="authentication_forgotten_password_description">Entre le courriel associé à ton compte Kaira pour recevoir les instructions et créer un nouveau mot de passe.</string>
+    <string name="authentication_forgotten_password_found">Mot de passe retrouvé ?</string>
+    <string name="authentication_forgotten_password_sent_title">Courriel envoyé !</string>
+    <string name="authentication_forgotten_password_sent_description">Vérifie tes courriels et clique sur le lien reçu pour réinitialiser ton mot de passe.</string>
+    <string name="authentication_forgotten_password_sent_not_received">Courriel non reçu ?</string>
+    <string name="authentication_forgotten_password_new_title">Nouveau mot de passe</string>
+    <string name="authentication_forgotten_password_new_description">Veuillez entrer votre nouveau mot de passe</string>
 
     <!-- Last Chance !-->
     <string name="introduction_conclusion_survey_title">Ça ne t’intéresse pas?</string>

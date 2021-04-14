@@ -19,7 +19,7 @@ class APIConfig {
        }
 
        fun getAIBaseUrl():String{
-           return "http://3.97.210.97/"
+           return "https://staging.kaira-engine-api.com/"
        }
 
        fun getAPIVersion():String{

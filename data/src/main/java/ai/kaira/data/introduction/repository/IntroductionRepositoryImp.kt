@@ -3,7 +3,7 @@ package ai.kaira.data.introduction.repository
 import ai.kaira.data.introduction.datasource.database.entity.UserEntity
 import ai.kaira.data.introduction.datasource.database.source.IntroductionLocalDataSource
 import ai.kaira.data.introduction.datasource.network.IntroductionNetworkDataSource
-import ai.kaira.domain.Result
+import ai.kaira.domain.KairaResult
 import ai.kaira.domain.introduction.model.User
 import ai.kaira.domain.introduction.repository.IntroductionRepository
 import androidx.lifecycle.MutableLiveData
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class IntroductionRepositoryImp @Inject constructor(private val introductionNetworkDataSource: IntroductionNetworkDataSource, private val introductionLocalDataSource: IntroductionLocalDataSource) : IntroductionRepository {
 
-    override fun createUser(firstName: String, languageLocale: String): MutableLiveData<Result<User>> {
+    override fun createUser(firstName: String, languageLocale: String): MutableLiveData<KairaResult<User>> {
         return introductionNetworkDataSource.createUser(firstName,languageLocale)
     }
 
@@ -23,7 +23,7 @@ class IntroductionRepositoryImp @Inject constructor(private val introductionNetw
     override fun fetchUser(): User? {
         val userEntity : UserEntity? = introductionLocalDataSource.fetchUser()
         userEntity?.let {
-            return User(userEntity.id,userEntity.firstName,userEntity.language,userEntity.createdAt,userEntity.verified,userEntity.validGroupCode)
+            return User(id =userEntity.id,firstName = userEntity.firstName, language = userEntity.language, createdAt = userEntity.createdAt, verified = userEntity.verified, validGroupCode = userEntity.validGroupCode)
         }?:run{
             return null
         }

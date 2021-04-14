@@ -1,7 +1,7 @@
 package ai.kaira.domain.assessment.usecase
 
 import ai.kaira.domain.BaseUseCase
-import ai.kaira.domain.Result
+import ai.kaira.domain.KairaResult
 import ai.kaira.domain.assessment.model.FinancialProfile
 import ai.kaira.domain.assessment.model.PsychologicalProfile
 import ai.kaira.domain.introduction.model.User
@@ -19,8 +19,8 @@ class FetchUserComputeAssessmentProfile @Inject constructor(private val fetchUse
 
 
 
-    fun computePsychologicalAssessmentProfile(assessmentType: Int) : MediatorLiveData<Result<PsychologicalProfile>> {
-        val computePsychologicalProfileLiveData = MediatorLiveData<Result<PsychologicalProfile>>()
+    fun computePsychologicalAssessmentProfile(assessmentType: Int) : MediatorLiveData<KairaResult<PsychologicalProfile>> {
+        val computePsychologicalProfileLiveData = MediatorLiveData<KairaResult<PsychologicalProfile>>()
         viewModelCoroutineScope.launch(IO) {
             val user : User? = fetchUser()
             withContext(Dispatchers.Main){
@@ -37,8 +37,8 @@ class FetchUserComputeAssessmentProfile @Inject constructor(private val fetchUse
         return computePsychologicalProfileLiveData
     }
 
-    fun computeFinancialAssessmentProfile(assessmentType: Int) : MediatorLiveData<Result<FinancialProfile>> {
-        val computeFinancialProfileLiveData = MediatorLiveData<Result<FinancialProfile>>()
+    fun computeFinancialAssessmentProfile(assessmentType: Int) : MediatorLiveData<KairaResult<FinancialProfile>> {
+        val computeFinancialProfileLiveData = MediatorLiveData<KairaResult<FinancialProfile>>()
         viewModelCoroutineScope.launch(IO) {
             val user : User? = fetchUser()
             withContext(Main){

@@ -1,6 +1,7 @@
 package ai.kaira.app.assessment
 
 import ai.kaira.app.R
+import ai.kaira.app.account.create.InfoCreateAccountActivity
 import ai.kaira.app.databinding.ActivityLastChanceBinding
 import ai.kaira.app.survey.SurveyActivity
 import ai.kaira.app.utils.Consts.Companion.SURVEY_URL
@@ -22,6 +23,10 @@ class LastChanceActivity : AppCompatActivity() {
            startActivity(Intent(this,SurveyActivity::class.java))
         }
 
+
+        binding.createAccountButton.setOnClickListener {
+            startActivity(Intent(this,InfoCreateAccountActivity::class.java))
+        }
         binding.backBtn.setOnClickListener {
             finish()
         }

@@ -5,9 +5,9 @@ import ai.kaira.domain.assessment.model.StrategySentence
 import ai.kaira.domain.assessment.model.Stress
 import com.google.gson.annotations.SerializedName
 
-data class StrategyResponse(val strategy: StrategySentence, val stress: Stress){
+data class StrategyResponse(val screen1:String, val screen2:String, @SerializedName("proposed_strategy") val proposedStrategy:String){
 
     fun toStrategy():Strategy{
-        return Strategy(strategy, stress)
+        return Strategy(screen1, screen2,proposedStrategy)
     }
 }
