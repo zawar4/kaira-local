@@ -77,5 +77,15 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 binding.progressBar.visibility = View.GONE
             }
         }
+
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
+
+        binding.passwordFoundBtn.setOnClickListener {
+            finish()
+        }
+
+
     }
 }
