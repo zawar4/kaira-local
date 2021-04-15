@@ -9,9 +9,13 @@ class APIConfig {
                "staging" -> {
                    "https://api.staging.kaira.ai/"
                }
+               "development" -> {
+                   "https://api.dev.kaira.ai/"
+               }
                "production" -> {
                    "https://api.kaira.ai/"
                }
+
                else -> {
                    "http://localhost:8080"
                }
@@ -30,6 +34,9 @@ class APIConfig {
            return when (FLAVOR) {
                "staging" -> {
                    "a327ca7f-c00f-4fc5-b26f-3337e14b27c5"
+               }
+               "development" -> {
+                   "e8bf2af8-9d45-11eb-b79d-9fd1bd5a80f7"
                }
                "production" -> {
                    "c7baeacf-ea34-4aab-8fc0-40f545376979"
