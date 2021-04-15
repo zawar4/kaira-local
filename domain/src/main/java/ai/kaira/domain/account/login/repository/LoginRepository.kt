@@ -9,5 +9,5 @@ import androidx.lifecycle.MutableLiveData
 interface LoginRepository {
 
     fun login(loginBody:LoginBody) : MutableLiveData<KairaResult<User>>
-    fun forgotPassword(emailBody: EmailBody):MutableLiveData<KairaResult<Void>>
+    fun forgotPassword(emailBody: EmailBody):MutableLiveData<KairaResult<EmailBody>>
 }

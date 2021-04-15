@@ -19,10 +19,10 @@ interface KairaApiRouter {
     fun login(@Body loginBody: LoginBody): Call<UserResponse>
 
     @POST("users/password/forgot")
-    fun forgotPassword(@Body emailBody: EmailBody) : Call<Void>
+    fun forgotPassword(@Body emailBody: EmailBody) : Call<EmailBody>
 
     @POST("users/password/reset")
-    fun resetPassword(@Body resetPasswordBody: ResetPasswordBody)
+    fun resetPassword(@Body resetPasswordBody: ResetPasswordBody) : Call<Unit>
     @FormUrlEncoded
     @POST("users")
     fun createUser(@Field("firstName") firstName: String, @Field("language") language: String): Call<UserResponse>

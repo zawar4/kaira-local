@@ -49,8 +49,8 @@ class LoginNetworkDataSourceImp @Inject constructor(private val kairaApiRouter: 
         return loginLiveData
     }
 
-    override fun forgotPassword(emailBody: EmailBody):MutableLiveData<KairaResult<Void>>{
-        val forgotPasswordLiveData = MutableLiveData<KairaResult<Void>>()
+    override fun forgotPassword(emailBody: EmailBody):MutableLiveData<KairaResult<EmailBody>>{
+        val forgotPasswordLiveData = MutableLiveData<KairaResult<EmailBody>>()
         viewModelCoroutineScope.launch(IO) {
             withContext(Main){
                 forgotPasswordLiveData.value = KairaResult.loading()

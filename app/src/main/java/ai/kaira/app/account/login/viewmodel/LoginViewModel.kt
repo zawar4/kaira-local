@@ -14,8 +14,44 @@ import androidx.lifecycle.MutableLiveData
 class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseViewModel() {
 
     private val loginLiveData = MediatorLiveData<User>()
-    private val forgotPasswordLiveData = MediatorLiveData<Void>()
+    private val forgotPasswordLiveData = MediatorLiveData<EmailBody>()
+    private val sendForgotPasswordVerificationEmailLiveData = MediatorLiveData<EmailBody>()
 
+
+    fun sendVerificationEmail(email:String){
+        val liveDataSource = loginUseCase.forgotPassword(EmailBody(email))
+        sendForgotPasswordVerificationEmailLiveData.addSource(liveDataSource){ result ->
+            when(result.status){
+                ResultState.SUCCESS ->{
+                    showLoading(false)
+                    sendForgotPasswordVerificationEmailLiveData.removeSource(liveDataSource)
+                    sendForgotPasswordVerificationEmailLiveData.value = result.data
+                }
+                ResultState.ERROR ->{
+                    result.message?.let{ it->
+                        showError(it)
+                    }
+                    sendForgotPasswordVerificationEmailLiveData.removeSource(liveDataSource)
+                    showLoading(false)
+                }
+                ResultState.EXCEPTION ->{
+                    /*result.message?.let{ it->
+                        showError(it)
+                    }*/
+                    showConnectivityError()
+                    sendForgotPasswordVerificationEmailLiveData.removeSource(liveDataSource)
+                    showLoading(false)
+                }
+                ResultState.LOADING ->{
+                    showLoading(true)
+                }
+            }
+        }
+    }
+
+    fun onVerificationEmailSent(): MediatorLiveData<EmailBody> {
+        return sendForgotPasswordVerificationEmailLiveData
+    }
     fun forgotPassword(email: String){
         val liveDataSource = loginUseCase.forgotPassword(EmailBody(email))
         forgotPasswordLiveData.addSource(liveDataSource){ result ->
@@ -23,6 +59,7 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseV
                 ResultState.SUCCESS ->{
                     showLoading(false)
                     forgotPasswordLiveData.removeSource(liveDataSource)
+                    forgotPasswordLiveData.value = result.data
                 }
                 ResultState.LOADING ->{
                     showLoading(true)
@@ -44,7 +81,7 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseV
         }
     }
 
-    fun onForgotPassword():MediatorLiveData<Void>{
+    fun onForgotPassword():MediatorLiveData<EmailBody>{
         return forgotPasswordLiveData
     }
     fun login(email:String,password:String){

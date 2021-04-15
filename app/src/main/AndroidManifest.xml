@@ -11,13 +11,15 @@
         android:label="${appName}"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaira">
-        <activity android:name=".account.forgotpassword.ForgotPasswordActivity"
+        <activity android:name=".account.forgotpassword.ForgotPasswordEmailVerificationActivity"></activity>
+        <activity
+            android:name=".account.forgotpassword.ForgotPasswordActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".account.login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".account.create.EmptyEmailActivity"
+            android:name=".account.create.AccountVerificationDeepLinkingActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

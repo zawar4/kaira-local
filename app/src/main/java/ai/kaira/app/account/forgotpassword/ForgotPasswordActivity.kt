@@ -5,6 +5,7 @@ import ai.kaira.app.account.login.viewmodel.LoginViewModel
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityForgotPasswordBinding
 import ai.kaira.app.utils.UIUtils
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -63,7 +64,10 @@ class ForgotPasswordActivity : AppCompatActivity() {
         }
 
         loginViewModel.onForgotPassword().observe(this){
-
+            val email = binding.emailTv.text.toString()
+            val intent = Intent(this,ForgotPasswordEmailVerificationActivity::class.java)
+            intent.putExtra("email",email)
+            startActivity(intent)
         }
 
         loginViewModel.onError().observe(this){ error ->
