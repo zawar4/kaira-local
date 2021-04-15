@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="api.staging.kaira.ai"
+                    android:host="@string/base_url"
                     android:pathPrefix="/users"
                     android:scheme="https" />
             </intent-filter>
