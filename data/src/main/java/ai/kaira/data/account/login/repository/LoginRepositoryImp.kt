@@ -1,5 +1,6 @@
 package ai.kaira.data.account.login.repository
 
+import ai.kaira.domain.account.create.EmailBody
 import ai.kaira.data.account.login.datasource.LoginNetworkDataSource
 import ai.kaira.domain.KairaResult
 import ai.kaira.domain.account.login.LoginBody
@@ -13,4 +14,9 @@ class LoginRepositoryImp @Inject constructor(private val loginNetworkDataSource:
     override fun login(loginBody: LoginBody): MutableLiveData<KairaResult<User>> {
         return loginNetworkDataSource.login(loginBody)
     }
+
+    override fun forgotPassword(emailBody: EmailBody):MutableLiveData<KairaResult<Void>>{
+        return loginNetworkDataSource.forgotPassword(emailBody)
+    }
+
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ai.kaira.app" >
+    package="ai.kaira.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,12 +10,15 @@
         android:icon="@mipmap/ic_launcher"
         android:label="${appName}"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Kaira" >
-        <activity android:name=".account.login.LoginActivity"
-            android:screenOrientation="portrait"/>
+        android:theme="@style/Theme.Kaira">
+        <activity android:name=".account.forgotpassword.ForgotPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".account.login.LoginActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".account.create.EmptyEmailActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -94,7 +97,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".splash.SplashActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

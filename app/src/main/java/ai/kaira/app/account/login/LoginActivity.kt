@@ -2,10 +2,13 @@ package ai.kaira.app.account.login
 
 import ai.kaira.app.R
 import ai.kaira.app.account.create.viewmodel.AccountCreateViewModel
+import ai.kaira.app.account.forgotpassword.ForgotPasswordActivity
 import ai.kaira.app.account.login.viewmodel.LoginViewModel
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityLoginBinding
 import ai.kaira.app.utils.UIUtils
+import ai.kaira.domain.account.login.usecase.ForgotPassword
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -65,8 +68,15 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.passwordEt.text.toString()
             loginViewModel.login(email,password)
         }
-        loginViewModel.onUserLoggedIn().observe(this){
 
+
+        binding.forgotPasswordBtn.setOnClickListener {
+            startActivity(Intent(this,ForgotPasswordActivity::class.java))
+        }
+        loginViewModel.onUserLoggedIn().observe(this){ user ->
+            user?.let{
+                // TODO save credentials
+            }
         }
 
         loginViewModel.onLoad().observe(this){ loading ->

@@ -1,3 +1,3 @@
-package ai.kaira.data.account.create
+package ai.kaira.domain.account.create
 
 data class TokenBody(val token:String)

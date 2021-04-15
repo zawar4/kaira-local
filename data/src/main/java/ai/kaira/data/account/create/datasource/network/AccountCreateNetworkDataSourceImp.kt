@@ -1,7 +1,7 @@
 package ai.kaira.data.account.create.datasource.network
 
-import ai.kaira.data.account.create.EmailBody
-import ai.kaira.data.account.create.TokenBody
+import ai.kaira.domain.account.create.EmailBody
+import ai.kaira.domain.account.create.TokenBody
 import ai.kaira.data.webservice.KairaApiRouter
 import ai.kaira.domain.KairaResult
 import ai.kaira.domain.account.create.model.Account

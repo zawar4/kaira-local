@@ -1,5 +1,6 @@
 package ai.kaira.data.account.login.datasource
 
+import ai.kaira.domain.account.create.EmailBody
 import ai.kaira.data.introduction.model.UserResponse
 import ai.kaira.domain.account.login.LoginBody
 import ai.kaira.data.webservice.KairaApiRouter
@@ -46,5 +47,36 @@ class LoginNetworkDataSourceImp @Inject constructor(private val kairaApiRouter: 
             }
         }
         return loginLiveData
+    }
+
+    override fun forgotPassword(emailBody: EmailBody):MutableLiveData<KairaResult<Void>>{
+        val forgotPasswordLiveData = MutableLiveData<KairaResult<Void>>()
+        viewModelCoroutineScope.launch(IO) {
+            withContext(Main){
+                forgotPasswordLiveData.value = KairaResult.loading()
+            }
+            try{
+                val response = kairaApiRouter.forgotPassword(emailBody).execute()
+                withContext(Main){
+                    if(response.isSuccessful){
+                        forgotPasswordLiveData.value = KairaResult.success()
+                    }else{
+                        val error: String? = response.errorBody()?.string()
+                        error?.let{
+                            forgotPasswordLiveData.value = KairaResult.error(message = error)
+                        }
+                    }
+                }
+            }
+            catch (exception : Exception){
+                withContext(Dispatchers.Main) {
+                    exception.message?.let { message ->
+                        forgotPasswordLiveData.value = KairaResult.exception(message = message)
+                    }
+                }
+                exception.printStackTrace()
+            }
+        }
+        return forgotPasswordLiveData
     }
 }
