@@ -1,6 +1,7 @@
 package ai.kaira.app.account.login.viewmodel
 
 import ai.kaira.app.application.BaseViewModel
+import ai.kaira.domain.ErrorAction
 import ai.kaira.domain.KairaResult
 import ai.kaira.domain.ResultState
 import ai.kaira.domain.account.create.EmailBody
@@ -66,8 +67,14 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseV
                     resetPasswordLiveData.value = Unit
                 }
                 ResultState.ERROR ->{
-                    result.message?.let{ it->
-                        showError(it)
+                    if(result.kairaAction != null){
+                        result.kairaAction?.let{ it ->
+                            errorAction(ErrorAction(result.message.toString(),it))
+                        }
+                    }else {
+                        result.message?.let{ error ->
+                            showError(error)
+                        }
                     }
                     resetPasswordLiveData.removeSource(liveDataSource)
                     showLoading(false)
@@ -172,7 +179,7 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseV
                 ResultState.ERROR ->{
                     if(result.kairaAction != null){
                         result.kairaAction?.let{ it ->
-                            errorAction(it)
+                            errorAction(ErrorAction(result.message.toString(),it))
                         }
                     }else {
                         result.message?.let{ error ->

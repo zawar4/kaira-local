@@ -43,7 +43,6 @@ class LoginNetworkDataSourceImp @Inject constructor(private val kairaApiRouter: 
                                 loginLiveData.value = KairaResult.error(message = error)
                             }
                         }
-
                     }
                 }
             }
@@ -102,9 +101,16 @@ class LoginNetworkDataSourceImp @Inject constructor(private val kairaApiRouter: 
                     if(response.isSuccessful){
                         resetPasswordLiveData.value = KairaResult.success()
                     }else{
-                        val error: String? = response.errorBody()?.string()
-                        error?.let{
-                            resetPasswordLiveData.value = KairaResult.error(message = error)
+                        if(response.code() == 403){
+                            val error: String? = response.errorBody()?.string()
+                            error?.let{
+                                resetPasswordLiveData.value = KairaResult.error(message = error,kairaAction = KairaAction.UNVERIFIED_REDIRECT)
+                            }
+                        }else {
+                            val error: String? = response.errorBody()?.string()
+                            error?.let{
+                                resetPasswordLiveData.value = KairaResult.error(message = error)
+                            }
                         }
                     }
                 }

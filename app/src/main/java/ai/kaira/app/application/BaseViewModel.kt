@@ -17,7 +17,7 @@ open class BaseViewModel @Inject constructor() : ViewModel() {
 
     private val loadLiveData : MutableLiveData<Boolean> = MutableLiveData()
     private val errorLiveData : MutableLiveData<String> = MutableLiveData()
-    private val errorActionLiveData : MutableLiveData<KairaAction> = MutableLiveData()
+    private val errorActionLiveData : MutableLiveData<ErrorAction> = MutableLiveData()
     private val finishActivityLiveData : MutableLiveData<Unit> = MutableLiveData()
     private val connectivityError : MutableLiveData<Boolean> = MutableLiveData()
     private val viewModelCoroutineScope : CoroutineScope = viewModelScope
@@ -45,11 +45,11 @@ open class BaseViewModel @Inject constructor() : ViewModel() {
         errorLiveData.value = error
     }
 
-    fun errorAction(kairaAction: KairaAction){
-        errorActionLiveData.value = kairaAction
+    fun errorAction(errorAction: ErrorAction){
+        errorActionLiveData.value = errorAction
     }
 
-    fun onErrorAction():LiveData<KairaAction>{
+    fun onErrorAction():LiveData<ErrorAction>{
         return errorActionLiveData
     }
     fun finishActivity(){

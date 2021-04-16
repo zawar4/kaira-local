@@ -16,11 +16,15 @@ class UIUtils {
             MaterialAlertDialogBuilder(context).setTitle(context.getString(R.string.attention)).setMessage(message).setPositiveButton(context.getText(R.string.ok),null).show()
         }
 
+        fun networkCallAlert(context: Context,message: String,runnable: ()->Unit){
+            MaterialAlertDialogBuilder(context).setTitle(context.getString(R.string.attention)).setMessage(message).setPositiveButton(context.getText(R.string.ok),{ dialog, which -> runnable() }).show()
+        }
+
         fun networkCallAlert(context: Context,message: String,positive:String, negative:String, runnable: ()->Unit){
             MaterialAlertDialogBuilder(context).setTitle(context.getString(R.string.attention))
                 .setMessage(message)
                 .setNegativeButton(negative,null)
-                .setPositiveButton(positive, { dialog, which -> runnable() }).show()
+                .setPositiveButton(positive, { _, _ -> runnable() }).show()
         }
         fun networkConnectivityAlert(context: Context){
             alert(context,context.getString(R.string.attention),context.getString(R.string.error_network))

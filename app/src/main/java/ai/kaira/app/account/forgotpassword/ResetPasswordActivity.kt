@@ -7,6 +7,7 @@ import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityForgotPasswordEmailVerificationBinding
 import ai.kaira.app.databinding.ActivityResetPasswordBinding
 import ai.kaira.app.utils.UIUtils
+import ai.kaira.domain.KairaAction
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -82,6 +83,16 @@ class ResetPasswordActivity : AppCompatActivity() {
 
             loginViewModel.onError().observe(this){ error ->
                 UIUtils.networkCallAlert(this, error)
+            }
+
+            loginViewModel.onErrorAction().observe(this){ action ->
+                if(action.kairaAction == KairaAction.UNVERIFIED_REDIRECT){
+                    val runnable : () -> Unit = {
+                        startActivity(Intent(this,ForgotPasswordActivity::class.java))
+                        finish()
+                    }
+                    UIUtils.networkCallAlert(this, action.message,runnable)
+                }
             }
 
             loginViewModel.onLoad().observe(this){ loading ->

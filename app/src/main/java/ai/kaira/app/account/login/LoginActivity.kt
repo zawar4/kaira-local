@@ -103,7 +103,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginViewModel.onErrorAction().observe(this){ action ->
-            if(action == KairaAction.UNVERIFIED_REDIRECT){
+            if(action.kairaAction == KairaAction.UNVERIFIED_REDIRECT){
                 val email = binding.emailTv.text.toString()
                 loginViewModel.sendVerificationEmail(email)
             }
