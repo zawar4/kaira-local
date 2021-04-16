@@ -117,7 +117,9 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.createAccountBtn.setOnClickListener {
-            startActivity(Intent(this, InfoCreateAccountActivity::class.java))
+            val intent = Intent(this, InfoCreateAccountActivity::class.java)
+            intent.putExtra("showLoginBtn",true)
+            startActivity(intent)
         }
 
         loginViewModel.onConnectivityError().observe(this){
