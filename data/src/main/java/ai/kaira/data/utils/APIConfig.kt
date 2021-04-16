@@ -23,7 +23,21 @@ class APIConfig {
        }
 
        fun getAIBaseUrl():String{
-           return "https://staging.kaira-engine-api.com/"
+           return when (FLAVOR) {
+               "staging" -> {
+                   "https://staging.kaira-engine-api.com/"
+               }
+               "development" -> {
+                   "https://dev.kaira-engine-api.com/"
+               }
+               "production" -> {
+                   "https://kaira-engine-api.com/"
+               }
+
+               else -> {
+                   "http://localhost:8080"
+               }
+           }
        }
 
        fun getAPIVersion():String{
