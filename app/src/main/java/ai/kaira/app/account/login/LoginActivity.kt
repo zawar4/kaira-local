@@ -2,6 +2,7 @@ package ai.kaira.app.account.login
 
 import ai.kaira.app.R
 import ai.kaira.app.account.create.AccountVerificationActivity
+import ai.kaira.app.account.create.InfoCreateAccountActivity
 import ai.kaira.app.account.create.viewmodel.AccountCreateViewModel
 import ai.kaira.app.account.forgotpassword.ForgotPasswordActivity
 import ai.kaira.app.account.login.viewmodel.LoginViewModel
@@ -104,10 +105,19 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.onErrorAction().observe(this){ action ->
             if(action == KairaAction.UNVERIFIED_REDIRECT){
                 val email = binding.emailTv.text.toString()
-                val intent = Intent(this, AccountVerificationActivity::class.java)
-                intent.putExtra("email",email)
-                startActivity(intent)
+                loginViewModel.sendVerificationEmail(email)
             }
+        }
+
+        loginViewModel.onVerificationEmailSent().observe(this){
+            val email = binding.emailTv.text.toString()
+            val intent = Intent(this, AccountVerificationActivity::class.java)
+            intent.putExtra("email",email)
+            startActivity(intent)
+        }
+
+        binding.createAccountBtn.setOnClickListener {
+            startActivity(Intent(this, InfoCreateAccountActivity::class.java))
         }
 
         loginViewModel.onConnectivityError().observe(this){

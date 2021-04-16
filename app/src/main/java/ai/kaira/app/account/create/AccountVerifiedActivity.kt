@@ -37,6 +37,7 @@ class AccountVerifiedActivity : AppCompatActivity() {
 
         binding.loginBtn.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
         accountCreateViewModel.onLoad().observe(this) { loading ->
             if(loading){

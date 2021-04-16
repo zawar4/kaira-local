@@ -17,8 +17,44 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseV
     private val loginLiveData = MediatorLiveData<User>()
     private val forgotPasswordLiveData = MediatorLiveData<EmailBody>()
     private val sendForgotPasswordVerificationEmailLiveData = MediatorLiveData<EmailBody>()
+    private val sendVerificationEmailLiveData = MediatorLiveData<Unit>()
     private val resetPasswordLiveData = MediatorLiveData<Unit>()
 
+
+    fun sendVerificationEmail(email:String){
+        val liveDataSource = loginUseCase.sendVerificationEmail(email)
+        sendVerificationEmailLiveData.addSource(liveDataSource){ result ->
+            when(result.status){
+                ResultState.SUCCESS ->{
+                    showLoading(false)
+                    sendVerificationEmailLiveData.removeSource(liveDataSource)
+                    sendVerificationEmailLiveData.value = Unit
+                }
+                ResultState.ERROR ->{
+                    result.message?.let{ it->
+                        showError(it)
+                    }
+                    sendVerificationEmailLiveData.removeSource(liveDataSource)
+                    showLoading(false)
+                }
+                ResultState.EXCEPTION ->{
+                    /*result.message?.let{ it->
+                        showError(it)
+                    }*/
+                    showConnectivityError()
+                    sendVerificationEmailLiveData.removeSource(liveDataSource)
+                    showLoading(false)
+                }
+                ResultState.LOADING ->{
+                    showLoading(true)
+                }
+            }
+        }
+    }
+
+    fun onVerificationEmailSent(): MediatorLiveData<Unit> {
+        return sendVerificationEmailLiveData
+    }
 
     fun resetPassword(password:String,token:String){
         val liveDataSource = loginUseCase.resetPassword(ResetPasswordBody(password,token))
@@ -56,7 +92,7 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseV
     }
 
 
-    fun sendVerificationEmail(email:String){
+    fun sendForgotPasswordVerificationEmail(email:String){
         val liveDataSource = loginUseCase.forgotPassword(EmailBody(email))
         sendForgotPasswordVerificationEmailLiveData.addSource(liveDataSource){ result ->
             when(result.status){
@@ -87,7 +123,7 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseV
         }
     }
 
-    fun onVerificationEmailSent(): MediatorLiveData<EmailBody> {
+    fun onForgotPasswordVerificationEmailSent(): MediatorLiveData<EmailBody> {
         return sendForgotPasswordVerificationEmailLiveData
     }
     fun forgotPassword(email: String){

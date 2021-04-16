@@ -33,7 +33,7 @@ class ForgotPasswordEmailVerificationActivity : AppCompatActivity() {
             if(intent.hasExtra("email")){
                 email = intent.getStringExtra("email").toString()
 
-                loginViewModel.onVerificationEmailSent().observe(this){ sent ->
+                loginViewModel.onForgotPasswordVerificationEmailSent().observe(this){ sent ->
                     sent.let{
                         UIUtils.networkCallAlert(this,getString(R.string.authentication_creation_email_resent))
                     }
@@ -59,7 +59,7 @@ class ForgotPasswordEmailVerificationActivity : AppCompatActivity() {
                 }
 
                 binding.sendAnotherEmailBtn.setOnClickListener {
-                    loginViewModel.sendVerificationEmail(email)
+                    loginViewModel.sendForgotPasswordVerificationEmail(email)
                 }
 
                 loginViewModel.onLoad().observe(this) { loading ->
