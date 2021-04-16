@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.text.method.PasswordTransformationMethod
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -94,6 +95,28 @@ class ResetPasswordActivity : AppCompatActivity() {
                     UIUtils.networkCallAlert(this, action.message,runnable)
                 }
             }
+
+            binding.passwordVisibilityBtn.setOnClickListener {
+                if(binding.passwordEt.transformationMethod == null){
+                    binding.passwordEt.transformationMethod = PasswordTransformationMethod.getInstance()
+                    binding.passwordVisibilityBtn.setImageResource(R.drawable.visibility_off)
+                }else{
+                    binding.passwordEt.transformationMethod = null
+                    binding.passwordVisibilityBtn.setImageResource(R.drawable.visibility_on)
+                }
+                binding.passwordEt.setSelection(binding.passwordEt.text.length)
+            }
+            binding.confirmPasswordVisibilityBtn.setOnClickListener {
+                if(binding.confirmPasswordEt.transformationMethod == null){
+                    binding.confirmPasswordEt.transformationMethod = PasswordTransformationMethod()
+                    binding.confirmPasswordVisibilityBtn.setImageResource(R.drawable.visibility_off)
+                }else{
+                    binding.confirmPasswordEt.transformationMethod = null
+                    binding.confirmPasswordVisibilityBtn.setImageResource(R.drawable.visibility_on)
+                }
+                binding.confirmPasswordEt.setSelection(binding.confirmPasswordEt.text.length)
+            }
+
 
             loginViewModel.onLoad().observe(this){ loading ->
                 if(loading){
