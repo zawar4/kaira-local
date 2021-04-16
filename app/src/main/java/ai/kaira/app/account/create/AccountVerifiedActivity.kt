@@ -35,6 +35,9 @@ class AccountVerifiedActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.loginBtn.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
         accountCreateViewModel.onLoad().observe(this) { loading ->
             if(loading){
                 binding.progressBar.visibility = View.VISIBLE
@@ -44,7 +47,6 @@ class AccountVerifiedActivity : AppCompatActivity() {
         }
 
         accountCreateViewModel.onAccountVerified().observe(this){
-            startActivity(Intent(this, LoginActivity::class.java))
         }
 
         accountCreateViewModel.onConnectivityError().observe(this) {

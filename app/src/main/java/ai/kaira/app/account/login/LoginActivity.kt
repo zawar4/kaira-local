@@ -1,12 +1,14 @@
 package ai.kaira.app.account.login
 
 import ai.kaira.app.R
+import ai.kaira.app.account.create.AccountVerificationActivity
 import ai.kaira.app.account.create.viewmodel.AccountCreateViewModel
 import ai.kaira.app.account.forgotpassword.ForgotPasswordActivity
 import ai.kaira.app.account.login.viewmodel.LoginViewModel
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityLoginBinding
 import ai.kaira.app.utils.UIUtils
+import ai.kaira.domain.KairaAction
 import ai.kaira.domain.account.login.usecase.ForgotPassword
 import android.content.Intent
 import android.graphics.Color
@@ -97,6 +99,15 @@ class LoginActivity : AppCompatActivity() {
                 binding.passwordVisibilityBtn.setImageResource(R.drawable.visibility_on)
             }
             binding.passwordEt.setSelection(binding.passwordEt.text.length)
+        }
+
+        loginViewModel.onErrorAction().observe(this){ action ->
+            if(action == KairaAction.UNVERIFIED_REDIRECT){
+                val email = binding.emailTv.text.toString()
+                val intent = Intent(this, AccountVerificationActivity::class.java)
+                intent.putExtra("email",email)
+                startActivity(intent)
+            }
         }
 
         loginViewModel.onConnectivityError().observe(this){
