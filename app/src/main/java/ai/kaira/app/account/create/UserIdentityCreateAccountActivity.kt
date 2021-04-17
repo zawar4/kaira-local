@@ -32,14 +32,13 @@ class UserIdentityCreateAccountActivity : AppCompatActivity() {
         accountCreateViewModel = ViewModelProvider(this, viewModelFactory).get(AccountCreateViewModel::class.java)
 
 
+        binding.nextBtn.isClickable = false
         binding.backBtn.setOnClickListener {
             finish()
         }
         accountCreateViewModel.fetchUser().observe(this){ user ->
              user?.let{
                  binding.firstNameEt.setText(user.firstName)
-             }?:run{
-                 finish()
              }
         }
 

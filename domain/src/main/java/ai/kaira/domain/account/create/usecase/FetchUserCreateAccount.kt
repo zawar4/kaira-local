@@ -19,7 +19,8 @@ class FetchUserCreateAccount @Inject constructor(val createAccount:CreateAccount
         val liveDataSource = fetchUser.fetchUserAsync()
         createAccountLiveData.addSource(liveDataSource){ user ->
             createAccountLiveData.removeSource(liveDataSource)
-            val accountDetails = Account(firstName = firstName,lastName = lastName,language = language,email = email, password = password, groupCode = groupCode,id = user?.id.toString())
+            val userId = user?.id ?: ""
+            var accountDetails = Account(firstName = firstName,lastName = lastName,language = language,email = email, password = password, groupCode = groupCode,id = userId)
             val createAccountLiveDataSource = createAccount(accountDetails)
             createAccountLiveData.addSource(createAccountLiveDataSource){ result ->
                 when(result.status){
