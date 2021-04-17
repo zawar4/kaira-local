@@ -6,6 +6,7 @@ import ai.kaira.app.account.login.viewmodel.LoginViewModel
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityForgotPasswordEmailVerificationBinding
 import ai.kaira.app.databinding.ActivityResetPasswordBinding
+import ai.kaira.app.utils.Extensions.Companion.dismissKeyboard
 import ai.kaira.app.utils.UIUtils
 import ai.kaira.domain.KairaAction
 import android.content.Intent
@@ -63,6 +64,9 @@ class ResetPasswordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= DataBindingUtil.setContentView(this,R.layout.activity_reset_password)
+        binding.parent.setOnClickListener {
+            dismissKeyboard()
+        }
         loginViewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
 
         binding.passwordEt.addTextChangedListener(textWatcher)

@@ -8,6 +8,7 @@ import ai.kaira.app.account.forgotpassword.ForgotPasswordActivity
 import ai.kaira.app.account.login.viewmodel.LoginViewModel
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityLoginBinding
+import ai.kaira.app.utils.Extensions.Companion.dismissKeyboard
 import ai.kaira.app.utils.UIUtils
 import ai.kaira.domain.KairaAction
 import ai.kaira.domain.account.login.usecase.ForgotPassword
@@ -62,6 +63,9 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        binding.parent.setOnClickListener {
+            dismissKeyboard()
+        }
         loginViewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
         binding.emailTv.addTextChangedListener(textWatcher)
 

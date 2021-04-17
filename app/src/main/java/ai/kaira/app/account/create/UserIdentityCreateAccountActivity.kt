@@ -5,6 +5,7 @@ import ai.kaira.app.account.create.viewmodel.AccountCreateViewModel
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.assessment.viewmodel.AssessmentViewModel
 import ai.kaira.app.databinding.ActivityUserIdentityCreateAccountBinding
+import ai.kaira.app.utils.Extensions.Companion.dismissKeyboard
 import ai.kaira.app.utils.UIUtils
 import android.accounts.Account
 import android.content.Intent
@@ -29,9 +30,10 @@ class UserIdentityCreateAccountActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_user_identity_create_account)
+        binding.parent.setOnClickListener {
+            dismissKeyboard()
+        }
         accountCreateViewModel = ViewModelProvider(this, viewModelFactory).get(AccountCreateViewModel::class.java)
-
-
         binding.nextBtn.isClickable = false
         binding.backBtn.setOnClickListener {
             finish()

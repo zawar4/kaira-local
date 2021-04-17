@@ -5,6 +5,7 @@ import ai.kaira.app.account.create.viewmodel.AccountCreateViewModel
 import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityUserCredentialsCreateAccountBinding
+import ai.kaira.app.utils.Extensions.Companion.dismissKeyboard
 import ai.kaira.app.utils.LanguageConfig
 import ai.kaira.app.utils.UIUtils
 import ai.kaira.app.utils.UIUtils.Companion.networkConnectivityAlert
@@ -81,7 +82,9 @@ class UserCredentialsCreateAccountActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_user_credentials_create_account)
-
+        binding.parent.setOnClickListener {
+            dismissKeyboard()
+        }
         var firstName = ""
         var lastName = ""
         var groupCode = ""
