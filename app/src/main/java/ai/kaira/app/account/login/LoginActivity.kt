@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -69,7 +70,8 @@ class LoginActivity : AppCompatActivity() {
         binding.loginBtn.setOnClickListener {
             val email = binding.emailTv.text.toString()
             val password = binding.passwordEt.text.toString()
-            loginViewModel.login(email,password)
+            val timezone = TimeZone.getDefault().id
+            loginViewModel.login(email,password,timezone)
         }
 
 

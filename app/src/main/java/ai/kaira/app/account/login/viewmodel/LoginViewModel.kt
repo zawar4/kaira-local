@@ -165,8 +165,8 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseV
     fun onForgotPassword():MediatorLiveData<EmailBody>{
         return forgotPasswordLiveData
     }
-    fun login(email:String,password:String){
-        val liveDataSource = loginUseCase.login(LoginBody(email,password))
+    fun login(email:String,password:String,timeZone:String){
+        val liveDataSource = loginUseCase.login(LoginBody(email,password,timeZone))
         loginLiveData.addSource(liveDataSource){ result ->
             when(result.status){
                 ResultState.SUCCESS ->{
