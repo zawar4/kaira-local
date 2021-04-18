@@ -11,28 +11,58 @@
         android:label="${appName}"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaira">
-        <activity android:name=".account.create.EmptyEmailActivity"
+        <activity android:name=".account.forgotpassword.ResetPasswordActivity"></activity>
+        <activity android:name=".account.forgotpassword.ForgotPasswordEmailVerificationActivity" />
+        <activity
+            android:name=".account.forgotpassword.ForgotPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".account.login.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".account.create.AccountVerificationDeepLinkingActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="@string/base_url"
                     android:pathPrefix="/users"
                     android:scheme="https" />
             </intent-filter>
         </activity>
-        <activity android:name=".account.create.AccountVerifiedActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".account.create.AccountVerificationActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".account.create.UserCredentialsCreateAccountActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".account.create.UserIdentityCreateAccountActivity"
+        <activity
+            android:name=".account.forgotpassword.ForgotPasswordVerificationDeepLinkingActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="@string/base_url"
+                    android:pathPrefix="/users/password"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".account.create.AccountVerifiedActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".account.create.InfoCreateAccountActivity"
+        <activity
+            android:name=".account.create.AccountVerificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".account.create.UserCredentialsCreateAccountActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".account.create.UserIdentityCreateAccountActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".account.create.InfoCreateAccountActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".account.onboard.AccountCreationOnboardingActivity"

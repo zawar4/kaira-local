@@ -1,32 +1,31 @@
 package ai.kaira.data.webservice
 
-import ai.kaira.data.account.EmailBody
-import ai.kaira.data.account.TokenBody
+import ai.kaira.domain.account.create.EmailBody
+import ai.kaira.domain.account.create.TokenBody
+import ai.kaira.domain.account.login.LoginBody
 import ai.kaira.data.assessment.model.*
-import ai.kaira.data.utils.APIConfig
 import ai.kaira.domain.KairaResult
-import ai.kaira.domain.assessment.model.FinancialProfile
-import ai.kaira.domain.assessment.model.PsychologicalProfile
 import ai.kaira.data.introduction.model.UserResponse
-import ai.kaira.domain.account.model.Account
+import ai.kaira.domain.account.create.model.Account
+import ai.kaira.domain.account.login.ResetPasswordBody
 import ai.kaira.domain.introduction.model.User
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
 
 interface KairaApiRouter {
 
+    @POST("users/login")
+    fun login(@Body loginBody: LoginBody): Call<UserResponse>
+
+    @POST("users/password/forgot")
+    fun forgotPassword(@Body emailBody: EmailBody) : Call<EmailBody>
+
+    @POST("users/password/reset")
+    fun resetPassword(@Body resetPasswordBody: ResetPasswordBody) : Call<Unit>
     @FormUrlEncoded
     @POST("users")
     fun createUser(@Field("firstName") firstName: String, @Field("language") language: String): Call<UserResponse>
-
 
     @GET("assessments/{assessment_type}/profile/{user_id}")
     fun computePsychologicalAssessmentProfile(@Path("assessment_type") assessmentType: Int,@Path("user_id")userId:String) : Call<PsychologicalProfileResponse>

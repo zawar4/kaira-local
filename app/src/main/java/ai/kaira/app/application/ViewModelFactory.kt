@@ -1,11 +1,13 @@
 package ai.kaira.app.application
 
 import ai.kaira.app.account.create.viewmodel.AccountCreateViewModel
+import ai.kaira.app.account.login.viewmodel.LoginViewModel
 import ai.kaira.app.assessment.viewmodel.AssessmentViewModel
 import ai.kaira.app.assessment.viewmodel.FinancialAssessmentResultViewModel
 import ai.kaira.app.assessment.viewmodel.PsychologicalAssessmentResultViewModel
 import ai.kaira.app.introduction.IntroductionViewModel
-import ai.kaira.domain.account.usecase.AccountCreateUseCase
+import ai.kaira.domain.account.create.usecase.AccountCreateUseCase
+import ai.kaira.domain.account.login.usecase.LoginUseCase
 import ai.kaira.domain.assessment.usecase.AssessmentUseCase
 import ai.kaira.domain.assessment.usecase.FetchFinancialAssessmentProfile
 import ai.kaira.domain.assessment.usecase.FetchPsychologicalAssessmentProfile
@@ -33,6 +35,9 @@ class ViewModelFactory @Inject constructor() : ViewModelProvider.Factory {
     @Inject
     lateinit var accountCreateUseCase: AccountCreateUseCase
 
+    @Inject
+    lateinit var loginUseCase: LoginUseCase
+
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(IntroductionViewModel::class.java.isAssignableFrom(modelClass)){
             return IntroductionViewModel(introductionUsecase) as T
@@ -44,6 +49,8 @@ class ViewModelFactory @Inject constructor() : ViewModelProvider.Factory {
             return FinancialAssessmentResultViewModel(fetchFinancialAssessmentProfile) as T
         } else if(AccountCreateViewModel::class.java.isAssignableFrom(modelClass)){
             return AccountCreateViewModel(accountCreateUseCase) as T
+        }else if(LoginViewModel::class.java.isAssignableFrom(modelClass)){
+            return LoginViewModel(loginUseCase) as T
         }
         return create(modelClass)
     }

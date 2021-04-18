@@ -2,8 +2,7 @@ package ai.kaira.app.account.create.viewmodel
 
 import ai.kaira.app.application.BaseViewModel
 import ai.kaira.domain.ResultState
-import ai.kaira.domain.account.model.Account
-import ai.kaira.domain.account.usecase.AccountCreateUseCase
+import ai.kaira.domain.account.create.usecase.AccountCreateUseCase
 import ai.kaira.domain.introduction.model.User
 import android.util.Patterns
 import androidx.lifecycle.MediatorLiveData

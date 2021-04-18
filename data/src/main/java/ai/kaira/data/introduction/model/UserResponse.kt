@@ -4,8 +4,11 @@ import ai.kaira.domain.introduction.model.User
 
 data class UserResponse(private val id:String = "",
                         private val firstName:String = "",
+                        private val lastName:String ="",
                         private val language:String = "",
+                        private val email:String="",
                         private val createdAt:String = "",
+                        private val groupCode:String="",
                         private val verified:Boolean = false,
                         private val validGroupCode:Boolean = false){
 

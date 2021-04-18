@@ -53,7 +53,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/open_email_btn"
                 style="@style/Text03_button"
-                android:layout_width="210dp"
+                android:layout_width="230dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="35dp"
                 android:text="@string/authentication_creation_email_open"

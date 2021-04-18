@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".account.login.LoginActivity"
+            android:padding="24dp">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/icon_coach" />
+
+            <TextView
+                android:id="@+id/textView20"
+                style="@style/Heading01"
+                android:layout_width="0dp"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:text="@string/authentication_login_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+
+            <TextView
+                style="@style/Text01"
+                android:id="@+id/textView21"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/authentication_login_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+            <EditText
+                android:id="@+id/email_tv"
+                style="@style/Text03_EntryField"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/blue_filled_button_border"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+            <TextView
+                android:id="@+id/email_invalid_error_tv"
+                style="@style/Text04"
+                android:textColor="@android:color/holo_red_light"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:text="@string/authentication_creation_credential_email_invalid"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/email_tv"
+                app:layout_constraintStart_toStartOf="@+id/email_tv"
+                app:layout_constraintTop_toBottomOf="@+id/email_tv"
+                android:visibility="invisible"/>
+
+            <TextView
+                style="@style/Text04"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:text="@string/authentication_email_title"
+                app:layout_constraintBottom_toTopOf="@+id/email_tv"
+                app:layout_constraintEnd_toEndOf="@+id/email_tv"
+                app:layout_constraintStart_toStartOf="@+id/email_tv" />
+
+
+            <EditText
+                android:id="@+id/password_et"
+                style="@style/Text03_EntryField"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/blue_filled_button_border"
+                android:inputType="textPassword"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/email_tv"
+                android:paddingRight="45dp" />
+
+            <TextView
+                android:id="@+id/textView22"
+                style="@style/Text04"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/authentication_password_title"
+                app:layout_constraintBottom_toTopOf="@+id/password_et"
+                app:layout_constraintEnd_toEndOf="@+id/password_et"
+                app:layout_constraintStart_toStartOf="@+id/password_et" />
+            <ImageView
+                android:id="@+id/password_visibility_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/password_et"
+                app:layout_constraintEnd_toEndOf="@+id/password_et"
+                app:layout_constraintTop_toTopOf="@+id/password_et"
+                app:srcCompat="@drawable/visibility_off"
+                android:layout_marginRight="10dp"/>
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/remember_me_checkbox"
+                style="@style/Text04"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="@string/authentication_login_remember_me"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/forgot_password_btn" />
+
+            <TextView
+                android:id="@+id/forgot_password_btn"
+                style="@style/Text02"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/authentication_forgotten_password_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/password_et" />
+
+
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/login_btn"
+                style="@style/Text03_button"
+                android:layout_width="200dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="12dp"
+                app:cornerRadius="8dp"
+                android:enabled="false"
+                android:text="@string/action_login"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/remember_me_checkbox" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/create_account_btn"
+                style="@style/Text02_button"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/blue_button_border"
+                android:gravity="center"
+                android:text="@string/action_create_account"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/login_btn" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</layout>

@@ -1,15 +1,13 @@
 package ai.kaira.app.utils
 
-import ai.kaira.app.utils.Extensions.Companion.increaseViewSize
 import android.animation.ValueAnimator
+import android.app.Activity
 import android.content.Context
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
-import dagger.hilt.android.qualifiers.ApplicationContext
 import java.net.HttpURLConnection
-import java.net.InetSocketAddress
-import java.net.Socket
 import java.net.URL
 
 class Extensions {
@@ -62,6 +60,13 @@ class Extensions {
 
         fun TextView.setHtmlText(source: String) {
             this.text = HtmlCompat.fromHtml(source, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        }
+
+        fun Activity.dismissKeyboard() {
+            val v: View? = window.currentFocus
+            if (v != null) {
+                (this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(v.windowToken, 0)
+            }
         }
 
     }

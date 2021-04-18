@@ -1,5 +1,7 @@
 package ai.kaira.app.application
 
+import ai.kaira.domain.ErrorAction
+import ai.kaira.domain.KairaAction
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,6 +17,7 @@ open class BaseViewModel @Inject constructor() : ViewModel() {
 
     private val loadLiveData : MutableLiveData<Boolean> = MutableLiveData()
     private val errorLiveData : MutableLiveData<String> = MutableLiveData()
+    private val errorActionLiveData : MutableLiveData<ErrorAction> = MutableLiveData()
     private val finishActivityLiveData : MutableLiveData<Unit> = MutableLiveData()
     private val connectivityError : MutableLiveData<Boolean> = MutableLiveData()
     private val viewModelCoroutineScope : CoroutineScope = viewModelScope
@@ -42,6 +45,13 @@ open class BaseViewModel @Inject constructor() : ViewModel() {
         errorLiveData.value = error
     }
 
+    fun errorAction(errorAction: ErrorAction){
+        errorActionLiveData.value = errorAction
+    }
+
+    fun onErrorAction():LiveData<ErrorAction>{
+        return errorActionLiveData
+    }
     fun finishActivity(){
         finishActivityLiveData.value = Unit
     }

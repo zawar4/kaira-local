@@ -9,6 +9,7 @@ import ai.kaira.app.utils.LanguageConfig.Companion.getLanguageLocale
 import ai.kaira.app.utils.UIUtils.Companion.networkCallAlert
 import ai.kaira.app.utils.UIUtils.Companion.networkConnectivityAlert
 import ai.kaira.app.utils.Consts.Companion.ASSESSMENT_TYPE
+import ai.kaira.app.utils.Extensions.Companion.dismissKeyboard
 import ai.kaira.app.utils.Extensions.Companion.isConnectedToInternet
 import ai.kaira.domain.assessment.model.AssessmentType
 import ai.kaira.domain.introduction.model.User
@@ -74,6 +75,10 @@ class IntroductionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         introductionBinding = DataBindingUtil.setContentView(this, R.layout.activity_introduction)
+
+        introductionBinding.parent.setOnClickListener {
+            dismissKeyboard()
+        }
 
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
@@ -199,7 +204,7 @@ class IntroductionActivity : AppCompatActivity() {
         fadeTransition.duration = 500
         val transitionSet = TransitionSet()
         transitionSet.addTransition(fadeTransition).addTransition(boundTransition)
-        TransitionManager.beginDelayedTransition(introductionBinding.introductionLayoutParent,transitionSet)
+        TransitionManager.beginDelayedTransition(introductionBinding.parent,transitionSet)
 
 
         introductionBinding.psychologicalAssessmentLayout.visibility = VISIBLE
@@ -225,7 +230,7 @@ class IntroductionActivity : AppCompatActivity() {
         fadeTransition.duration = 1000
         val transitionSet = TransitionSet()
         transitionSet.addTransition(fadeTransition).addTransition(boundTransition)
-        TransitionManager.beginDelayedTransition(introductionBinding.introductionLayoutParent,transitionSet)
+        TransitionManager.beginDelayedTransition(introductionBinding.parent,transitionSet)
         if(reduce){
             val imageHeight = introductionBinding.avatarIm.layoutParams.height
             introductionBinding.avatarIm.layoutParams.height = imageHeight/2
@@ -244,7 +249,7 @@ class IntroductionActivity : AppCompatActivity() {
         fadeTransition.duration = 500
         val transitionSet = TransitionSet()
         transitionSet.addTransition(fadeTransition).addTransition(boundTransition)
-        TransitionManager.beginDelayedTransition(introductionBinding.introductionLayoutParent,transitionSet)
+        TransitionManager.beginDelayedTransition(introductionBinding.parent,transitionSet)
         introductionBinding.firstNameEt.visibility = VISIBLE
         if(introductionBinding.firstNameEt.text.toString().isNotBlank()){
             introductionBinding.submitButton.visibility = VISIBLE
@@ -287,7 +292,7 @@ class IntroductionActivity : AppCompatActivity() {
         }
     }
     private fun displayLayoutVisibleAnimation(){
-        introductionBinding.introductionLayoutParent.animate().alpha(1.0f).duration = 800
+        introductionBinding.parent.animate().alpha(1.0f).duration = 800
     }
 
 }
