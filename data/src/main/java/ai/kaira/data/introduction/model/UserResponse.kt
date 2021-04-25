@@ -1,5 +1,6 @@
 package ai.kaira.data.introduction.model
 
+import ai.kaira.domain.account.Token
 import ai.kaira.domain.introduction.model.User
 
 data class UserResponse(private val id:String = "",
@@ -10,7 +11,9 @@ data class UserResponse(private val id:String = "",
                         private val createdAt:String = "",
                         private val groupCode:String="",
                         private val verified:Boolean = false,
-                        private val validGroupCode:Boolean = false){
+                        private val validGroupCode:Boolean = false,
+                        var timezone:String = "",
+                        var token: Token?= null){
 
     fun maptoUser():User{
         var user = User()
@@ -20,7 +23,8 @@ data class UserResponse(private val id:String = "",
         user.language = language
         user.validGroupCode = validGroupCode
         user.verified = verified
-
+        user.timezone = timezone
+        user.token = token
         return user
     }
 

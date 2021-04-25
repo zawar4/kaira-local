@@ -1,4 +1,4 @@
-package ai.kaira.data.account.login.datasource
+package ai.kaira.data.account.login.datasource.network
 
 import ai.kaira.domain.account.create.EmailBody
 import ai.kaira.domain.account.login.LoginBody

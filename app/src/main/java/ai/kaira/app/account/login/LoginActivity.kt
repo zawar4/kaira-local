@@ -83,12 +83,9 @@ class LoginActivity : AppCompatActivity() {
         binding.forgotPasswordBtn.setOnClickListener {
             startActivity(Intent(this,ForgotPasswordActivity::class.java))
         }
-        loginViewModel.onUserLoggedIn().observe(this){ user ->
-            user?.let{
-                // TODO save credentials and start Invite user to connect banck account
-                startActivity(Intent(this, BankAccountInvitationActivity::class.java))
 
-            }
+        loginViewModel.onUserLoggedIn().observe(this){
+            startActivity(Intent(this, BankAccountInvitationActivity::class.java))
         }
 
         loginViewModel.onLoad().observe(this){ loading ->
