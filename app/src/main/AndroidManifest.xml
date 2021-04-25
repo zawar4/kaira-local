@@ -11,8 +11,16 @@
         android:label="${appName}"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaira">
-        <activity android:name=".account.forgotpassword.ResetPasswordActivity"></activity>
-        <activity android:name=".account.forgotpassword.ForgotPasswordEmailVerificationActivity" />
+        <activity android:name=".banking.SecurityInfoActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".banking.BankAccountConnectLastChanceActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".banking.BankAccountInvitationActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".account.forgotpassword.ResetPasswordActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".account.forgotpassword.ForgotPasswordEmailVerificationActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".account.forgotpassword.ForgotPasswordActivity"
             android:screenOrientation="portrait" />

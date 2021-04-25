@@ -170,6 +170,7 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseV
         loginLiveData.addSource(liveDataSource){ result ->
             when(result.status){
                 ResultState.SUCCESS ->{
+                    loginLiveData.value = result.data
                     showLoading(false)
                     loginLiveData.removeSource(liveDataSource)
                 }

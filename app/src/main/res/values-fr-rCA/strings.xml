@@ -20,7 +20,11 @@
     <string name="action_yes">Oui</string>
     <string name="action_no">Non</string>
     <string name="action_survey">Sondage</string>
-
+    <string name="action_logout">Se déconnecter</string>
+    <string name="action_add">Ajouter</string>
+    <string name="action_modify">Modifier</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_erase">Effacer</string>
 
     <string name="no_email_application_installed">Aucun client de messagerie n\'est installé.</string>
 
@@ -155,6 +159,33 @@
     <string name="introduction_conclusion_survey_warning">Je dois te dire que sans la création de ton compte Kaira, tes informations seront malheureusement perdues quand tu quitteras l‘appli. Créer ton compte nous permet de rester en contact.</string>
     <string name="introduction_conclusion_survey_text">Tu ne veux pas poursuivre? D’accord ! Tu veux bien répondre à un court sondage qui m’expliquera pourquoi ? Je serai ici si tu reviens. Bonne continuation.</string>
 
+
+    <!-- Banking !-->
+    <string name="banking_onboarding_title">Je t’invite maintenant à synchroniser tes comptes bancaires</string>
+    <string name="banking_onboarding_description">Ta confiance et ta tranquilité d’esprit sont une priorité pour moi. Kaira est une application confidentielle et sécuritaire.</string>
+    <string name="banking_onboarding_decline_button">Je ne souhaite pas synchroniser mes comptes bancaires</string>
+
+    <string name="banking_onboarding_detail_title">Ta sécurité, c’est sérieux</string>
+    <string name="banking_onboarding_detail_description">Kaira utilise un double cryptage 256 bits et une sécurité de niveau bancaire pour la protection de tes données.\n\nNous ne vendons pas tes données personnelles et nous les protégeons et utilisons un cryptage pour assurer l’anonymat.\n\nL’infrastructure de notre sécurité est régulièrement testée et des audits robustes sont effectués par des experts en cybersécurité.</string>
+
+    <string name="banking_onboarding_declined_title">Ça ne t’intéresse pas?</string>
+    <string name="banking_onboarding_declined_warning">La synchronisation de tes comptes bancaires est requise pour vivre la pleine expérience Kaira. Suite à l’étude de tes données, je pourrai te proposer la meilleure stratégie adaptée à tes besoins.</string>
+    <string name="banking_onboarding_declined_sync_button">Synchroniser mes comptes</string>
+    <string name="banking_onboarding_declined_survey">Tu ne veux pas poursuivre? D’accord ! Tu veux bien répondre à un court sondage qui m’expliquera pourquoi ? Je serai ici si tu reviens. Bonne continuation.</string>
+
+    <string name="banking_institutions_title">Choisir une institution</string>
+    <string name="banking_institutions_others_placeholder">Autre institution</string>
+
+    <string name="banking_institutions_account_credential_title">Connexion institution</string>
+    <string name="banking_institutions_account_credential_username">Identifiant</string>
+    <string name="banking_institutions_account_credential_security">Les informations sont cryptées pour en assurer la protection. (dans nos systèmes)</string>
+
+    <string name="banking_institutions_connecting_title">Connexion aux données</string>
+    <string name="banking_institutions_connecting_subtitle">La synchronisation prend un certain temps. Merci de ta patience!</string>
+    <string name="banking_institutions_connection_success">La connexion aux données est complétée!</string>
+    <string name="banking_institutions_connection_success_add_other">Connexion à une autre institution</string>
+
+    <string name="banking_institutions_security_title">Question de sécurité</string>
 
     <string name = "mint" >mint</string>
 
