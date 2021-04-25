@@ -32,6 +32,10 @@ class Extensions {
             getSharedPreferences("kaira", Context.MODE_PRIVATE).edit().clear().apply()
         }
 
+        fun Context.isLoggedIn():Boolean{
+            return getSharedPreferences("kaira", Context.MODE_PRIVATE).contains("token")
+        }
+
         fun View.increaseViewSize(duration: Long, maxHeight: Int, minHeight: Int) {
             val valueAnimator = ValueAnimator.ofInt(minHeight, maxHeight)
             valueAnimator.duration = duration
