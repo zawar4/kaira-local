@@ -7,6 +7,7 @@ import ai.kaira.app.account.create.viewmodel.AccountCreateViewModel
 import ai.kaira.app.account.forgotpassword.ForgotPasswordActivity
 import ai.kaira.app.account.login.viewmodel.LoginViewModel
 import ai.kaira.app.application.ViewModelFactory
+import ai.kaira.app.banking.BankAccountInvitationActivity
 import ai.kaira.app.databinding.ActivityLoginBinding
 import ai.kaira.app.utils.Extensions.Companion.dismissKeyboard
 import ai.kaira.app.utils.UIUtils
@@ -82,10 +83,9 @@ class LoginActivity : AppCompatActivity() {
         binding.forgotPasswordBtn.setOnClickListener {
             startActivity(Intent(this,ForgotPasswordActivity::class.java))
         }
-        loginViewModel.onUserLoggedIn().observe(this){ user ->
-            user?.let{
-                // TODO save credentials
-            }
+
+        loginViewModel.onUserLoggedIn().observe(this){
+            startActivity(Intent(this, BankAccountInvitationActivity::class.java))
         }
 
         loginViewModel.onLoad().observe(this){ loading ->

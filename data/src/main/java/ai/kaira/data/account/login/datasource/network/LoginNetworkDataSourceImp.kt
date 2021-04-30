@@ -1,4 +1,4 @@
-package ai.kaira.data.account.login.datasource
+package ai.kaira.data.account.login.datasource.network
 
 import ai.kaira.domain.account.create.EmailBody
 import ai.kaira.data.introduction.model.UserResponse
@@ -17,7 +17,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class LoginNetworkDataSourceImp @Inject constructor(private val kairaApiRouter: KairaApiRouter, private val viewModelCoroutineScope: CoroutineScope) : LoginNetworkDataSource {
+class LoginNetworkDataSourceImp @Inject constructor(private val kairaApiRouter: KairaApiRouter, private val viewModelCoroutineScope: CoroutineScope) :
+    LoginNetworkDataSource {
 
     override fun login(loginBody: LoginBody): MutableLiveData<KairaResult<User>> {
         val loginLiveData = MutableLiveData<KairaResult<User>>()

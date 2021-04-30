@@ -15,7 +15,7 @@ import androidx.lifecycle.MutableLiveData
 
 class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseViewModel() {
 
-    private val loginLiveData = MediatorLiveData<User>()
+    private val loginLiveData = MediatorLiveData<Unit>()
     private val forgotPasswordLiveData = MediatorLiveData<EmailBody>()
     private val sendForgotPasswordVerificationEmailLiveData = MediatorLiveData<EmailBody>()
     private val sendVerificationEmailLiveData = MediatorLiveData<Unit>()
@@ -170,6 +170,10 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseV
         loginLiveData.addSource(liveDataSource){ result ->
             when(result.status){
                 ResultState.SUCCESS ->{
+                    loginLiveData.value = Unit
+                    result.data?.let {
+                        loginUseCase.saveToken(it)
+                    }
                     showLoading(false)
                     loginLiveData.removeSource(liveDataSource)
                 }
@@ -198,7 +202,7 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseV
         }
     }
 
-    fun onUserLoggedIn(): MediatorLiveData<User>{
+    fun onUserLoggedIn(): MediatorLiveData<Unit>{
         return loginLiveData
     }
 
