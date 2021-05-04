@@ -24,13 +24,18 @@
     <color name="dark_gray">#d5cdc7</color>
     
     <color name="lightPeach">#ffd8b3</color>
-    <color name="financialProfileBad">#ff7800</color>
-    <color name="financialProfileOk">#46d9e7</color>
-    <color name="financialProfileGood">#2ac261</color>
-    <color name="financialProfileBad_Highlight">#fde4cd</color>
-    <color name="financialProfileOk_Highlight">#dbf7fa</color>
-    <color name="financialProfileGood_Highlight">#d5f2df</color>
+    <color name="financialProfileBad">#ffb15d</color>
+    <color name="financialProfileOk">#b95ccd</color>
+    <color name="financialProfileGood">#6b96ff</color>
+    <color name="bankingLeeway">#ff7800</color>
+    <color name="bankingSpending">#46d9e7</color>
+    <color name="bankingRevenue">#2ac261</color>
+    <color name="financialProfileBad_Highlight">#ffe4c7</color>
+    <color name="financialProfileOk_Highlight">#c09fc7</color>
+    <color name="financialProfileGood_Highlight">#bacdff</color>
     <color name="kairaDisabled">#d5cdc7</color>
+
+    <color name="divider">#d5cdc7</color>
 
     <!-- Primary brand color. -->
     <color name="colorPrimary">@color/kairaAccent</color>
