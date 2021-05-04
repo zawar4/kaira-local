@@ -122,12 +122,6 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.createAccountBtn.setOnClickListener {
-            val intent = Intent(this, InfoCreateAccountActivity::class.java)
-            intent.putExtra("showLoginBtn",true)
-            startActivity(intent)
-        }
-
         loginViewModel.onConnectivityError().observe(this){
             UIUtils.networkConnectivityAlert(this)
         }
