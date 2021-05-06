@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import io.sentry.Sentry
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -18,12 +19,12 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
-
+        )
         Timer().schedule(SPLASH_TIME_OUT){
             //do something
             if(isLoggedIn()){
                 startActivity(Intent(applicationContext, BankAccountInvitationActivity::class.java))
+                finish()
             }else{
                 clearCache();
                 startActivity(Intent(applicationContext,OnboardActivity::class.java))

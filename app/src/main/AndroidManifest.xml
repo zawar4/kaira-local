@@ -11,6 +11,9 @@
         android:label="${appName}"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaira">
+
+
+        <meta-data android:name="io.sentry.dsn" android:value="@string/sentry_url" />
         <activity android:name=".banking.SecurityInfoActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".banking.BankAccountConnectLastChanceActivity"
