@@ -32,43 +32,55 @@
                 app:layout_constraintTop_toBottomOf="@id/back_btn" />
 
 
-            <View
+            <ImageView
                 android:id="@+id/social_status_view"
                 android:layout_width="120dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="54dp"
-                android:background="@drawable/sec_fill_border"
+                android:src="@drawable/social_status"
+                android:background="@drawable/sec_fill_round"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"/>
 
-            <View
+            <ImageView
                 android:id="@+id/autonomy_view"
                 android:layout_width="120dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="24dp"
+                android:src="@drawable/autonomy"
                 android:background="@drawable/sec_fill_round"
                 app:layout_constraintStart_toEndOf="@+id/social_status_view"
-                app:layout_constraintTop_toTopOf="@+id/social_status_view" />
+                app:layout_constraintTop_toTopOf="@+id/social_status_view"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"/>
 
 
-            <View
+            <ImageView
                 android:id="@+id/benevolence_view"
                 android:layout_width="120dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="24dp"
+                android:src="@drawable/benevolence"
                 android:background="@drawable/sec_fill_round"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/social_status_view" />
+                app:layout_constraintTop_toBottomOf="@+id/social_status_view"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"/>
 
 
-            <View
+            <ImageView
                 android:id="@+id/hedonism_view"
                 android:layout_width="120dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="24dp"
+                android:src="@drawable/hedonism"
                 android:background="@drawable/sec_fill_round"
                 app:layout_constraintStart_toEndOf="@+id/benevolence_view"
-                app:layout_constraintTop_toTopOf="@+id/benevolence_view" />
+                app:layout_constraintTop_toTopOf="@+id/benevolence_view"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"/>
 
 
             <TextView

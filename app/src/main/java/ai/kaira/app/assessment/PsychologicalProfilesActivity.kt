@@ -37,14 +37,14 @@ class PsychologicalProfilesActivity : AppCompatActivity() {
         binding.psychologicalTypeDescriptionTv.text = getString(R.string.psychological_profile_description_autonomy)
         }
 
-        binding.hedonismView?.setOnClickListener {
+        binding.hedonismView.setOnClickListener {
             binding.socialStatusView.background = ContextCompat.getDrawable(this,R.drawable.sec_fill_round)
             binding.benevolenceView.background = ContextCompat.getDrawable(this,R.drawable.sec_fill_round)
             binding.hedonismView.background = ContextCompat.getDrawable(this,R.drawable.sec_fill_border)
             binding.autonomyView.background = ContextCompat.getDrawable(this,R.drawable.sec_fill_round)
 
-        binding.psychologicalTypeTitleTv.text = getString(R.string.psychological_profile_type_hedonism)
-        binding.psychologicalTypeDescriptionTv.text = getString(R.string.psychological_profile_description_hedonism)
+            binding.psychologicalTypeTitleTv.text = getString(R.string.psychological_profile_type_hedonism)
+            binding.psychologicalTypeDescriptionTv.text = getString(R.string.psychological_profile_description_hedonism)
         }
 
         binding.benevolenceView?.setOnClickListener {

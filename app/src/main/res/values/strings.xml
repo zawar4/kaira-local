@@ -3,6 +3,12 @@
     <string name="app_name_staging" translatable="false">(S) Kaira</string>
     <string name="app_name_development" translatable="false">(D) Kaira</string>
     <string name="app_name_local" translatable="false">(L) Kaira</string>
+    <string name="app_base_url_staging" translatable="false">api.staging.kaira.ai</string>
+    <string name="app_base_url_development" translatable="false">api.dev.kaira.ai</string>
+    <string name="app_base_url_production" translatable="false">api.kaira.ai</string>
+    <string name="app_sentry_url_staging" translatable="false">https://fd9811d56e3845c4ba7ecaaa9e537102@o583579.ingest.sentry.io/5738060</string>
+    <string name="app_sentry_url_development" translatable="false">https://793279277d4547bdb721b65f16ce8503@o583579.ingest.sentry.io/5738053</string>
+    <string name="app_sentry_url_production" translatable="false">https://c321b64b677b4d3291fb5c9ffd6cbac8@o583579.ingest.sentry.io/5738062</string>
 
 
     <!-- Basic Actions -->

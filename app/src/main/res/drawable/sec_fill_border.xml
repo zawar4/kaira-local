@@ -5,6 +5,6 @@
     <stroke android:color="@color/kairaAccent"
         android:width="1dp"/>
     <corners android:radius="8dp"/>
-    <solid android:color="@color/kairaSecFill"/>
+    <solid android:color="#d5f2f7"/>
 
 </shape>

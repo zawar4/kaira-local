@@ -36,18 +36,22 @@ class PsychologicalAssessmentResultActivity : AppCompatActivity() {
         psychologicalAssessmentResultViewModel.onPsychologicalAssessmentProfileFetched().observe(this){
             when(it.type){
                  PsychologicalProfileType.SOCIAL_STATUS ->{
+                     binding.psychologicalImageView.setImageResource(R.drawable.social_status)
                      binding.psychologicalTypeTitleTv.text = getString(R.string.psychological_profile_type_social_status)
                      binding.psychologicalTypeDescriptionTv.text = getString(R.string.psychological_profile_description_social_status)
                  }
                 PsychologicalProfileType.AUTONOMY ->{
+                    binding.psychologicalImageView.setImageResource(R.drawable.autonomy)
                     binding.psychologicalTypeTitleTv.text = getString(R.string.psychological_profile_type_autonomy)
                     binding.psychologicalTypeDescriptionTv.text = getString(R.string.psychological_profile_description_autonomy)
                 }
                 PsychologicalProfileType.BENEVOLENCE ->{
+                    binding.psychologicalImageView.setImageResource(R.drawable.benevolence)
                     binding.psychologicalTypeTitleTv.text = getString(R.string.psychological_profile_type_benevolence)
                     binding.psychologicalTypeDescriptionTv.text = getString(R.string.psychological_profile_description_benevolence)
                 }
                 PsychologicalProfileType.HEDONISM->{
+                    binding.psychologicalImageView.setImageResource(R.drawable.hedonism)
                     binding.psychologicalTypeTitleTv.text = getString(R.string.psychological_profile_type_hedonism)
                     binding.psychologicalTypeDescriptionTv.text = getString(R.string.psychological_profile_description_hedonism)
                 }

@@ -38,21 +38,24 @@ android {
         flavorDimensions "branding"
         production {
             dimension "branding"
-            resValue 'string', 'base_url', 'api.kaira.ai'
+            resValue 'string', 'base_url', '@string/app_base_url_production'
+            resValue 'string', 'sentry_url', '@string/app_sentry_url_production'
             manifestPlaceholders = [
                     appName: "@string/app_name"
             ]
         }
         development {
             dimension "branding"
-            resValue 'string', 'base_url', 'api.dev.kaira.ai'
+            resValue 'string', 'base_url', '@string/app_base_url_development'
+            resValue 'string', 'sentry_url', '@string/app_sentry_url_development'
             manifestPlaceholders = [
                     appName: "@string/app_name_development"
             ]
         }
         staging {
             dimension "branding"
-            resValue 'string', 'base_url', 'api.staging.kaira.ai'
+            resValue 'string', 'base_url', '@string/app_sentry_url_staging'
+            resValue 'string', 'sentry_url', '@string/app_sentry_url_staging'
             manifestPlaceholders = [
                     appName: "@string/app_name_staging"
             ]
@@ -85,9 +88,8 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
-    def lifecycle_version = "2.2.0"
-    def arch_version = "2.1.0"
+    implementation 'io.sentry:sentry-android:4.3.0'
+    def lifecycle_version = "2.3.1"
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.concurrent:concurrent-futures-ktx:1.1.0"
@@ -99,7 +101,7 @@ dependencies {
     // Saved state module for ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
 
-    def room_version = "2.2.6"
+    def room_version = "2.3.0"
 
     api "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
