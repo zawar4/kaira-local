@@ -1,7 +1,7 @@
-package ai.kaira.app.banking
+package ai.kaira.app.banking.onboard
 
 import ai.kaira.app.R
-import ai.kaira.app.account.create.InfoCreateAccountActivity
+import ai.kaira.app.banking.institution.BankInstitutionsHostActivity
 import ai.kaira.app.databinding.ActivityBankAccountConnectLastChanceBinding
 import ai.kaira.app.survey.SurveyActivity
 import android.content.Intent
@@ -21,7 +21,7 @@ class BankAccountConnectLastChanceActivity : AppCompatActivity() {
 
 
         binding.connectBankAccountButton.setOnClickListener {
-            //TODO connect bank account activity
+            startActivity(Intent(this, BankInstitutionsHostActivity::class.java))
         }
 
         binding.backBtn.setOnClickListener {

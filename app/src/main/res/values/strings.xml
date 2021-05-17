@@ -189,7 +189,7 @@
     <string name="banking_onboarding_declined_survey">Don\'t you want to continue? Okay ! Will you take a short survey that will explain why? I\'ll be here if you come back. Good continuation.</string>
 
     <string name="banking_institutions_title">Choose your institution</string>
-    <string name="banking_institutions_others_placeholder">Others institutions</string>
+    <string name="banking_institutions_others_placeholder">Another institutions</string>
 
     <string name="banking_institutions_account_credential_title">Connect your account</string>
     <string name="banking_institutions_account_credential_username">Username</string>

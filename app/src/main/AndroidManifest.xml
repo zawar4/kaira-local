@@ -11,19 +11,27 @@
         android:label="${appName}"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaira">
+        <activity android:name=".banking.institution.BankInstitutionsHostActivity"></activity>
 
+        <meta-data
+            android:name="io.sentry.dsn"
+            android:value="@string/sentry_url" />
 
-        <meta-data android:name="io.sentry.dsn" android:value="@string/sentry_url" />
-        <activity android:name=".banking.SecurityInfoActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".banking.BankAccountConnectLastChanceActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".banking.BankAccountInvitationActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".account.forgotpassword.ResetPasswordActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".account.forgotpassword.ForgotPasswordEmailVerificationActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".banking.onboard.SecurityInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".banking.onboard.BankAccountConnectLastChanceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".banking.onboard.BankAccountInvitationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".account.forgotpassword.ResetPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".account.forgotpassword.ForgotPasswordEmailVerificationActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".account.forgotpassword.ForgotPasswordActivity"
             android:screenOrientation="portrait" />
