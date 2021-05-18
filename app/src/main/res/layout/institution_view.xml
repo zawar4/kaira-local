@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:id="@+id/parent">
 
     <View
         android:background="@drawable/round"
@@ -42,5 +43,5 @@
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/institution_im" />
+        app:layout_constraintTop_toBottomOf="@id/institution_im" />
 </androidx.constraintlayout.widget.ConstraintLayout>

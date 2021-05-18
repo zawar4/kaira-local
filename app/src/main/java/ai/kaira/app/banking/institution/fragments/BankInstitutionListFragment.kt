@@ -17,6 +17,8 @@ import android.text.TextWatcher
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +35,7 @@ class BankInstitutionListFragment : Fragment() {
 
     lateinit var binding : FragmentBankInstitutionListBinding
 
-    var institutionClickCallback: MutableLiveData<Unit> = MutableLiveData()
+    var institutionClickCallback: MutableLiveData<Int> = MutableLiveData()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         institutionViewModel = ViewModelProvider(this, viewModelFactory).get(InstitutionViewModel::class.java)
@@ -111,6 +113,11 @@ class BankInstitutionListFragment : Fragment() {
             binding.resultNumTv.visibility = View.GONE
             binding.resultView.visibility = View.GONE
             binding.institutionEt.clearFocus()
+        }
+
+        institutionClickCallback.observe(viewLifecycleOwner){
+            findNavController().navigate(R.id.loginToBankInstitutionFragment)
+           Navigation.createNavigateOnClickListener(R.id.action_bankInstitutionListFragment_to_loginToBankInstitutionFragment,null)
         }
     }
 }

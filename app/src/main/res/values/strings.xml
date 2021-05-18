@@ -193,19 +193,18 @@
 
     <string name="banking_institutions_account_credential_title">Connect your account</string>
     <string name="banking_institutions_account_credential_username">Username</string>
-    <string name="banking_institutions_account_credential_security">We protect your information by encrypting it when it’s stored in our systems.</string>
+    <string name="banking_institutions_account_credential_security">The information is encrypted to protect it in our systems.</string>
 
-    <string name="banking_institutions_connecting_title">Data connection</string>
-    <string name="banking_institutions_connecting_subtitle">Synchronization takes some time. Thank you for your patience!</string>
-    <string name="banking_institutions_connection_success">Data connection is complete!</string>
-    <string name="banking_institutions_connection_success_add_other">Connection to another institution</string>
+    <string name="banking_institutions_connecting_title">Connecting to data</string>
+    <string name="banking_institutions_connecting_subtitle">Synchronization takes a little while.\n\n Thanks for your patience!</string>
+    <string name="banking_institutions_connection_success">The process is underway!</string>
+    <string name="banking_institutions_connection_success_add_other">Do you want to synchronize another account?</string>
 
     <string name="banking_institutions_security_title">Security Question</string>
 
 
     <string name="_2" translatable="false">2</string>
     <string name="_1" translatable="false">1</string>
-
 
     <string name="clock" translatable="false">\u23F0</string>
     <string name="question" translatable="false">\u2753</string>

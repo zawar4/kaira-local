@@ -8,5 +8,13 @@
         android:id="@+id/bankInstitutionListFragment"
         android:name="ai.kaira.app.banking.institution.fragments.BankInstitutionListFragment"
         android:label="fragment_bank_institution_list"
-        tools:layout="@layout/fragment_bank_institution_list" />
+        tools:layout="@layout/fragment_bank_institution_list" >
+        <action
+            android:id="@+id/action_bankInstitutionListFragment_to_loginToBankInstitutionFragment"
+            app:destination="@id/loginToBankInstitutionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginToBankInstitutionFragment"
+        android:name="ai.kaira.app.banking.institution.fragments.LoginToBankInstitutionFragment"
+        android:label="LoginToBankInstitutionFragment" />
 </navigation>

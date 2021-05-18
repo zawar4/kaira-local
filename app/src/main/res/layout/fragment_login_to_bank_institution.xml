@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp">
+
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="104dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/investdirect" />
+
+            <TextView
+                android:id="@+id/user_pin_heading_et"
+                style="@style/Text04"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:text="@string/authentication_email_title"
+                app:layout_constraintBottom_toTopOf="@+id/user_pin_et"
+                app:layout_constraintEnd_toEndOf="@+id/user_pin_et"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/user_pin_et" />
+
+            <EditText
+                android:id="@+id/user_pin_et"
+                style="@style/Text03_EntryField"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/blue_filled_button_border"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/instruction_tv" />
+
+
+            <TextView
+                android:id="@+id/user_password_heading_et"
+                style="@style/Text04"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:text="@string/authentication_password_title"
+                app:layout_constraintBottom_toTopOf="@+id/user_password_et"
+                app:layout_constraintEnd_toEndOf="@+id/user_password_et"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/user_password_et" />
+
+            <EditText
+                android:id="@+id/user_password_et"
+                style="@style/Text03_EntryField"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/blue_filled_button_border"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/user_pin_et"
+                android:paddingRight="45dp"/>
+
+            <ImageView
+                android:id="@+id/password_visibility_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/user_password_et"
+                app:layout_constraintEnd_toEndOf="@+id/user_password_et"
+                app:layout_constraintTop_toTopOf="@+id/user_password_et"
+                app:srcCompat="@drawable/visibility_off"
+                android:layout_marginRight="10dp"/>
+
+            <TextView
+                android:visibility="gone"
+                style="@style/Text04"
+                android:id="@+id/instruction_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/ic_info_white_24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/submit_btn"
+                style="@style/Text03_button"
+                android:layout_width="250dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="36dp"
+                android:enabled="false"
+                android:text="@string/action_login"
+                android:textColor="@android:color/white"
+                app:cornerRadius="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/user_password_et" />
+
+
+            <TextView
+                android:drawableLeft="@drawable/ic_lock_white_24dp"
+                style="@style/Text04"
+                android:textColor="@android:color/darker_gray"
+                android:drawablePadding="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/banking_institutions_account_credential_security"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/submit_btn" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
