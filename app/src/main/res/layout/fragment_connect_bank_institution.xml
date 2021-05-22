@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20dp">
 
 
             <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
+                android:id="@+id/institution_im"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginTop="104dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView23"
                 app:srcCompat="@drawable/investdirect" />
 
             <TextView
@@ -28,24 +28,25 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:text="@string/authentication_email_title"
+                android:text="@string/banking_institutions_account_credential_username"
                 app:layout_constraintBottom_toTopOf="@+id/user_pin_et"
                 app:layout_constraintEnd_toEndOf="@+id/user_pin_et"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/user_pin_et" />
+
 
             <EditText
                 android:id="@+id/user_pin_et"
                 style="@style/Text03_EntryField"
                 android:layout_width="300dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="92dp"
                 android:background="@drawable/blue_filled_button_border"
                 android:imeOptions="actionDone"
                 android:singleLine="true"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/instruction_tv" />
-
+                app:layout_constraintTop_toBottomOf="@+id/instruction_tv"
+                android:text = "wealthica"/>
 
             <TextView
                 android:id="@+id/user_password_heading_et"
@@ -64,13 +65,14 @@
                 style="@style/Text03_EntryField"
                 android:layout_width="300dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="60dp"
                 android:background="@drawable/blue_filled_button_border"
                 android:imeOptions="actionDone"
+                android:paddingRight="45dp"
                 android:singleLine="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/user_pin_et"
-                android:paddingRight="45dp"/>
+                android:text = "wealthica"/>
 
             <ImageView
                 android:id="@+id/password_visibility_btn"
@@ -93,10 +95,10 @@
                 android:drawableLeft="@drawable/ic_info_white_24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+                app:layout_constraintTop_toBottomOf="@+id/institution_im" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/submit_btn"
+                android:id="@+id/login_btn"
                 style="@style/Text03_button"
                 android:layout_width="250dp"
                 android:layout_height="55dp"
@@ -120,7 +122,28 @@
                 android:text="@string/banking_institutions_account_credential_security"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/submit_btn" />
+                app:layout_constraintTop_toBottomOf="@+id/login_btn" />
+
+            <TextView
+                style="@style/Heading01"
+                android:id="@+id/textView23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/banking_institutions_account_credential_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                style="?android:attr/progressBarStyle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

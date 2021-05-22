@@ -955,7 +955,8 @@
 		"name":"Libro Credit Union",
 		"main":false,
 		"usernameInformations":{
-			"label":"Account Number"
+			"label":"Account Number",
+			"type":0
 		},
 		"passwordInformations":{
 			"label":"Personal Access Code"

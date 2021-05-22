@@ -23,7 +23,7 @@ import com.bumptech.glide.request.RequestOptions
 import java.util.*
 import kotlin.collections.ArrayList
 
-class InstitutionsRecyclerViewAdapter(var institutions : ArrayList<Institution>, var institutionClickCallback: MutableLiveData<Int>,val layout:Int) : RecyclerView.Adapter<InstitutionsRecyclerViewAdapter.InstitutionViewHolder>() {
+class InstitutionsRecyclerViewAdapter(var institutions : ArrayList<Institution>, var institutionClickCallback: OnInstitutionClickListener,val layout:Int) : RecyclerView.Adapter<InstitutionsRecyclerViewAdapter.InstitutionViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InstitutionViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -38,12 +38,13 @@ class InstitutionsRecyclerViewAdapter(var institutions : ArrayList<Institution>,
         val url = "https://app.wealthica.com/images/institutions/"+institution.type+".png"
         Glide.with(holder.imageView.context).load(url).apply(RequestOptions.bitmapTransform(RoundedCorners(15))).into(holder.imageView);
         holder.parent.setOnClickListener {
-            institutionClickCallback.value = position
+            institutionClickCallback.onInstitutionClick(institution)
         }
     }
 
     fun addInstitutions(institutions : ArrayList<Institution>){
         this.institutions = institutions
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
@@ -58,5 +59,9 @@ class InstitutionsRecyclerViewAdapter(var institutions : ArrayList<Institution>,
         init {
             // Define click listener for the ViewHolder's View.
         }
+    }
+
+    interface OnInstitutionClickListener {
+        fun onInstitutionClick(institution: Institution)
     }
 }

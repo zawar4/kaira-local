@@ -2,6 +2,8 @@ package ai.kaira.data.banking.institution.di
 
 import ai.kaira.data.banking.institution.datasource.local.InstitutionLocalDataSource
 import ai.kaira.data.banking.institution.datasource.local.InstitutionLocalDataSourceImp
+import ai.kaira.data.banking.institution.datasource.network.InstitutionNetworkDataSource
+import ai.kaira.data.banking.institution.datasource.network.InstitutionNetworkDataSourceImp
 import ai.kaira.data.banking.institution.repository.InstitutionRepositoryImp
 import ai.kaira.domain.banking.institution.repository.InstitutionRepository
 import dagger.Binds
@@ -19,4 +21,7 @@ abstract class InstitutionModule {
 
     @Binds
     abstract fun bindInstitutionsRepository(institutionRepositoryImp: InstitutionRepositoryImp):InstitutionRepository
+
+    @Binds
+    abstract fun bindInstitutionNetworkDataSource(institutionNetworkDataSourceImp: InstitutionNetworkDataSourceImp):InstitutionNetworkDataSource
 }

@@ -1,23 +1,19 @@
 package ai.kaira.app.banking.institution.fragments
 
+import ai.kaira.app.R
+import ai.kaira.app.application.ViewModelFactory
+import ai.kaira.app.banking.institution.fragments.viewmodel.InstitutionViewModel
+import ai.kaira.app.databinding.FragmentBankInstitutionListBinding
+import ai.kaira.domain.banking.institution.model.Institution
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import ai.kaira.app.R
-import ai.kaira.app.application.ViewModelFactory
-import ai.kaira.app.assessment.viewmodel.AssessmentViewModel
-import ai.kaira.app.banking.institution.fragments.viewmodel.InstitutionViewModel
-import ai.kaira.app.databinding.FragmentBankInstitutionListBinding
-import ai.kaira.domain.assessment.model.AssessmentAnswerClick
-import ai.kaira.domain.banking.institution.model.Institution
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.MutableLiveData
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,7 +22,7 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class BankInstitutionListFragment : Fragment() {
+class BankInstitutionListFragment : Fragment(),InstitutionsRecyclerViewAdapter.OnInstitutionClickListener {
 
     @Inject
     lateinit var viewModelFactory : ViewModelFactory
@@ -35,7 +31,7 @@ class BankInstitutionListFragment : Fragment() {
 
     lateinit var binding : FragmentBankInstitutionListBinding
 
-    var institutionClickCallback: MutableLiveData<Int> = MutableLiveData()
+    lateinit var adapter : InstitutionsRecyclerViewAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         institutionViewModel = ViewModelProvider(this, viewModelFactory).get(InstitutionViewModel::class.java)
@@ -72,11 +68,13 @@ class BankInstitutionListFragment : Fragment() {
         institutions.sortWith(
             compareBy(String.CASE_INSENSITIVE_ORDER, { it.name.toString() })
         )
-        binding.institutionsRecyclerView.adapter = InstitutionsRecyclerViewAdapter(defaultInstitutions,institutionClickCallback,R.layout.institution_view)
+        adapter = InstitutionsRecyclerViewAdapter(defaultInstitutions,this,R.layout.institution_view)
+        binding.institutionsRecyclerView.adapter = adapter
         binding.institutionsRecyclerView.layoutManager = GridLayoutManager(context,2)
         binding.institutionEt.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                binding.institutionsRecyclerView.adapter = InstitutionsRecyclerViewAdapter(institutions,institutionClickCallback,R.layout.institution_view_linear)
+                adapter = InstitutionsRecyclerViewAdapter(institutions,this,R.layout.institution_view_linear)
+                binding.institutionsRecyclerView.adapter = adapter
                 binding.institutionsRecyclerView.layoutManager = LinearLayoutManager(context)
                 binding.cancelButton.visibility = View.VISIBLE
                 binding.resultNumTv.visibility = View.VISIBLE
@@ -93,12 +91,16 @@ class BankInstitutionListFragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val list = institutions.filter { it.name.toString().toLowerCase().contains(s.toString().toLowerCase()) }
-                binding.institutionsRecyclerView.adapter = InstitutionsRecyclerViewAdapter(list as ArrayList<Institution>,institutionClickCallback,R.layout.institution_view_linear)
-                binding.cancelButton.visibility = View.VISIBLE
-                binding.resultNumTv.visibility = View.VISIBLE
-                binding.resultView.visibility = View.VISIBLE
-                binding.resultNumTv.text = list.size.toString()+" results"
+                if(s.toString().isBlank() && s.toString().length ==  before){
+
+                } else {
+                    val list = institutions.filter { it.name.toString().toLowerCase().contains(s.toString().toLowerCase()) }
+                    adapter.addInstitutions(list as ArrayList<Institution>)
+                    binding.cancelButton.visibility = View.VISIBLE
+                    binding.resultNumTv.visibility = View.VISIBLE
+                    binding.resultView.visibility = View.VISIBLE
+                    binding.resultNumTv.text = list.size.toString()+" results"
+                }
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -107,7 +109,7 @@ class BankInstitutionListFragment : Fragment() {
         })
         binding.cancelButton.setOnClickListener {
             binding.institutionEt.text.clear()
-            binding.institutionsRecyclerView.adapter = InstitutionsRecyclerViewAdapter(defaultInstitutions,institutionClickCallback,R.layout.institution_view)
+            binding.institutionsRecyclerView.adapter = InstitutionsRecyclerViewAdapter(defaultInstitutions,this,R.layout.institution_view)
             binding.institutionsRecyclerView.layoutManager = GridLayoutManager(context,2)
             binding.cancelButton.visibility = View.GONE
             binding.resultNumTv.visibility = View.GONE
@@ -115,9 +117,12 @@ class BankInstitutionListFragment : Fragment() {
             binding.institutionEt.clearFocus()
         }
 
-        institutionClickCallback.observe(viewLifecycleOwner){
-            findNavController().navigate(R.id.loginToBankInstitutionFragment)
-           Navigation.createNavigateOnClickListener(R.id.action_bankInstitutionListFragment_to_loginToBankInstitutionFragment,null)
-        }
     }
+
+    override fun onInstitutionClick(institution: Institution) {
+        val bundle = Bundle()
+        bundle.putSerializable("institution",institution)
+        findNavController().navigate(R.id.loginToBankInstitutionFragment,bundle)
+    }
+
 }

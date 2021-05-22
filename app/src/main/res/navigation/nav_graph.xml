@@ -15,6 +15,10 @@
     </fragment>
     <fragment
         android:id="@+id/loginToBankInstitutionFragment"
-        android:name="ai.kaira.app.banking.institution.fragments.LoginToBankInstitutionFragment"
-        android:label="LoginToBankInstitutionFragment" />
+        android:name="ai.kaira.app.banking.institution.fragments.ConnectBankInstitutionFragment"
+        android:label="LoginToBankInstitutionFragment" >
+        <action
+            android:id="@+id/action_loginToBankInstitutionFragment_to_bankInstitutionListFragment"
+            app:popUpTo="@id/bankInstitutionListFragment" />
+    </fragment>
 </navigation>
