@@ -19,6 +19,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -97,7 +98,10 @@ class ConnectBankInstitutionFragment : Fragment() {
         }
         binding.loginBtn.setOnClickListener {
             val institutionParam = InstitutionParam(institution.type.toString(),binding.userPinEt.text.toString(),binding.userPasswordEt.text.toString())
-            institutionViewModel.connectInstitution(InstitutionParamBody(institution.aggregator,institutionParam))
+            val bundle = Bundle()
+            bundle.putString("institutionType",institution.type)
+            bundle.putSerializable("institutionCredentialsParam",InstitutionParamBody(institution.aggregator,institutionParam))
+            findNavController().navigate(R.id.connectBankInstitutionLoadFragment,bundle)
         }
 
         institutionViewModel.onConnectivityError().observe(viewLifecycleOwner){
@@ -107,13 +111,5 @@ class ConnectBankInstitutionFragment : Fragment() {
         institutionViewModel.onError().observe(viewLifecycleOwner){ error ->
             UIUtils.networkCallAlert(requireContext(), error)
         }
-
-        institutionViewModel.onLoad().observe(viewLifecycleOwner){ loading ->
-                if(loading){
-                    binding.progressBar.visibility = View.VISIBLE
-                }else{
-                    binding.progressBar.visibility = View.GONE
-                }
-            }
     }
 }

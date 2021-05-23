@@ -13,7 +13,7 @@ import androidx.lifecycle.MutableLiveData
 
 class InstitutionViewModel(private val institutionUseCase: InstitutionUseCase) : BaseViewModel() {
 
-    val connectInstitutionLiveData = MediatorLiveData<Boolean>()
+    private val connectInstitutionLiveData = MediatorLiveData<Boolean>()
     fun getAllInstitutions():ArrayList<Institution>{
         return institutionUseCase.getAllInstitutions()
     }

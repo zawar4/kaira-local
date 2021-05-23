@@ -31,8 +31,6 @@ class BankInstitutionListFragment : Fragment(),InstitutionsRecyclerViewAdapter.O
 
     lateinit var binding : FragmentBankInstitutionListBinding
 
-    lateinit var adapter : InstitutionsRecyclerViewAdapter
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         institutionViewModel = ViewModelProvider(this, viewModelFactory).get(InstitutionViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_bank_institution_list, container, false)
@@ -68,13 +66,12 @@ class BankInstitutionListFragment : Fragment(),InstitutionsRecyclerViewAdapter.O
         institutions.sortWith(
             compareBy(String.CASE_INSENSITIVE_ORDER, { it.name.toString() })
         )
-        adapter = InstitutionsRecyclerViewAdapter(defaultInstitutions,this,R.layout.institution_view)
-        binding.institutionsRecyclerView.adapter = adapter
+
+        binding.institutionsRecyclerView.adapter = InstitutionsRecyclerViewAdapter(defaultInstitutions,this,R.layout.institution_view)
         binding.institutionsRecyclerView.layoutManager = GridLayoutManager(context,2)
         binding.institutionEt.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                adapter = InstitutionsRecyclerViewAdapter(institutions,this,R.layout.institution_view_linear)
-                binding.institutionsRecyclerView.adapter = adapter
+                binding.institutionsRecyclerView.adapter = InstitutionsRecyclerViewAdapter(institutions,this,R.layout.institution_view_linear)
                 binding.institutionsRecyclerView.layoutManager = LinearLayoutManager(context)
                 binding.cancelButton.visibility = View.VISIBLE
                 binding.resultNumTv.visibility = View.VISIBLE
@@ -85,7 +82,8 @@ class BankInstitutionListFragment : Fragment(),InstitutionsRecyclerViewAdapter.O
                 binding.cancelButton.visibility = View.GONE
             }
         }
-        binding.institutionEt.addTextChangedListener(object : TextWatcher {
+        binding.institutionEt.addTextChangedListener(object : TextWatcher,
+            InstitutionsRecyclerViewAdapter.OnInstitutionClickListener {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
@@ -95,7 +93,8 @@ class BankInstitutionListFragment : Fragment(),InstitutionsRecyclerViewAdapter.O
 
                 } else {
                     val list = institutions.filter { it.name.toString().toLowerCase().contains(s.toString().toLowerCase()) }
-                    adapter.addInstitutions(list as ArrayList<Institution>)
+                    binding.institutionsRecyclerView.adapter = InstitutionsRecyclerViewAdapter(list as ArrayList<Institution>,this,R.layout.institution_view_linear)
+                    binding.institutionsRecyclerView.layoutManager = LinearLayoutManager(context)
                     binding.cancelButton.visibility = View.VISIBLE
                     binding.resultNumTv.visibility = View.VISIBLE
                     binding.resultView.visibility = View.VISIBLE
@@ -105,6 +104,12 @@ class BankInstitutionListFragment : Fragment(),InstitutionsRecyclerViewAdapter.O
 
             override fun afterTextChanged(s: Editable?) {
 
+            }
+
+            override fun onInstitutionClick(institution: Institution) {
+                val bundle = Bundle()
+                bundle.putSerializable("institution",institution)
+                findNavController().navigate(R.id.loginToBankInstitutionFragment,bundle)
             }
         })
         binding.cancelButton.setOnClickListener {

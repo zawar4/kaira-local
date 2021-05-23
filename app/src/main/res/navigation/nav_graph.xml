@@ -20,5 +20,12 @@
         <action
             android:id="@+id/action_loginToBankInstitutionFragment_to_bankInstitutionListFragment"
             app:popUpTo="@id/bankInstitutionListFragment" />
+        <action
+            android:id="@+id/action_loginToBankInstitutionFragment_to_connectBankInstitutionLoadFragment"
+            app:destination="@id/connectBankInstitutionLoadFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/connectBankInstitutionLoadFragment"
+        android:name="ai.kaira.app.banking.institution.fragments.ConnectBankInstitutionLoadFragment"
+        android:label="ConnectBankInstitutionLoadFragment" />
 </navigation>
