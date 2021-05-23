@@ -28,10 +28,12 @@ class InstitutionViewModel(private val institutionUseCase: InstitutionUseCase) :
             when(it.status){
                 ResultState.SUCCESS ->{
                     connectInstitutionLiveData.removeSource(liveDataSource)
+                    connectInstitutionLiveData.value = true
                     showLoading(false)
                 }
                 ResultState.ERROR ->{
                     connectInstitutionLiveData.removeSource(liveDataSource)
+                    connectInstitutionLiveData.value = false
                     showLoading(false)
                     it.message?.let{ message ->
                         showError(message)
@@ -42,6 +44,7 @@ class InstitutionViewModel(private val institutionUseCase: InstitutionUseCase) :
                         showConnectivityError()
                         showLoading(false)
                     }
+                    connectInstitutionLiveData.value = false
                     connectInstitutionLiveData.removeSource(liveDataSource)
                 }
                 ResultState.LOADING->{

@@ -15,6 +15,7 @@ import ai.kaira.domain.banking.institution.model.Institution
 import ai.kaira.domain.banking.institution.model.InstitutionParamBody
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -62,7 +63,11 @@ class ConnectBankInstitutionLoadFragment : Fragment() {
         }
 
         institutionViewModel.onInstitutionConnected().observe(viewLifecycleOwner){
-
+            if(it){
+                val bundle = Bundle()
+                bundle.putString("institutionType",institutionType)
+                findNavController().navigate(R.id.bankInstitutionConnectedFragment,bundle)
+            }
         }
 
         institutionViewModel.connectInstitution(institutionCredentialsParam)
