@@ -1,6 +1,7 @@
 package ai.kaira.app.banking.institution.fragments.viewmodel
 
 import ai.kaira.app.application.BaseViewModel
+import ai.kaira.domain.ErrorAction
 import ai.kaira.domain.KairaResult
 import ai.kaira.domain.ResultState
 import ai.kaira.domain.banking.institution.model.ConnectedInstitution
@@ -32,11 +33,18 @@ class InstitutionViewModel(private val institutionUseCase: InstitutionUseCase) :
                     showLoading(false)
                 }
                 ResultState.ERROR ->{
+                    //TODO clear token
                     connectInstitutionLiveData.removeSource(liveDataSource)
                     connectInstitutionLiveData.value = false
                     showLoading(false)
-                    it.message?.let{ message ->
-                        showError(message)
+                    if(it.kairaAction != null){
+                        it.kairaAction?.let{ it2 ->
+                            errorAction(ErrorAction(it.message.toString(),it2))
+                        }
+                    }else {
+                        it.message?.let{ error ->
+                            showError(error)
+                        }
                     }
                 }
                 ResultState.EXCEPTION ->{

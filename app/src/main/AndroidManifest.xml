@@ -11,7 +11,8 @@
         android:label="${appName}"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaira">
-        <activity android:name=".banking.institution.BankInstitutionsHostActivity"></activity>
+        <activity android:name=".banking.institution.BankInstitutionsHostActivity"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="io.sentry.dsn"

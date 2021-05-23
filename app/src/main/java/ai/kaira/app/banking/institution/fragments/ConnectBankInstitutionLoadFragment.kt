@@ -6,13 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ai.kaira.app.R
+import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.banking.institution.fragments.viewmodel.InstitutionViewModel
 import ai.kaira.app.databinding.FragmentBankInstitutionListBinding
 import ai.kaira.app.databinding.FragmentConnectBankInstitutionLoadBinding
+import ai.kaira.app.introduction.IntroductionActivity
+import ai.kaira.app.utils.Extensions.Companion.clearCache
 import ai.kaira.app.utils.UIUtils
+import ai.kaira.domain.KairaAction
 import ai.kaira.domain.banking.institution.model.Institution
 import ai.kaira.domain.banking.institution.model.InstitutionParamBody
+import android.content.Intent
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -47,11 +52,39 @@ class ConnectBankInstitutionLoadFragment : Fragment() {
         Glide.with(binding.institutionIm.context).load(url).into(binding.institutionIm);
 
         institutionViewModel.onConnectivityError().observe(viewLifecycleOwner){
-            UIUtils.networkConnectivityAlert(requireContext())
+            UIUtils.networkConnectivityAlert(requireContext()) {
+                findNavController().popBackStack(R.id.loginToBankInstitutionFragment,false)
+            }
         }
 
         institutionViewModel.onError().observe(viewLifecycleOwner){ error ->
             UIUtils.networkCallAlert(requireContext(), error)
+        }
+
+
+        institutionViewModel.onErrorAction().observe(viewLifecycleOwner){ error ->
+            error.kairaAction?.let{ action ->
+                when(action){
+                    KairaAction.UNKOWN_REDIRECT -> {
+                        UIUtils.networkCallAlert(requireContext(), error.message) {
+                            findNavController().popBackStack(R.id.loginToBankInstitutionFragment,false)
+                        }
+                    }
+                    KairaAction.UNAUTHORIZED_REDIRECT ->{
+                        UIUtils.networkCallAlert(requireContext(), error.message) {
+                            requireContext().clearCache();
+                            requireActivity().finish()
+                            var intent = Intent(requireContext(), LoginActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            startActivity(intent)
+
+                        }
+
+                    }
+                }
+
+            }
+
         }
 
         institutionViewModel.onLoad().observe(viewLifecycleOwner){ loading ->

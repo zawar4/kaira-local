@@ -20,7 +20,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import io.sentry.util.StringUtils
 import javax.inject.Inject
 
 
@@ -67,6 +66,7 @@ class BankInstitutionListFragment : Fragment(),InstitutionsRecyclerViewAdapter.O
         defaultInstitutions.add(SB)
         defaultInstitutions.add(Tangerine)
         defaultInstitutions.add(TDB)
+
         institutions.sortWith(
             compareBy(String.CASE_INSENSITIVE_ORDER, { it.name.toString().unaccent() })
         )

@@ -35,10 +35,15 @@ class InstitutionNetworkDataSourceImp @Inject constructor(private val prefs: Sha
                             error?.let{
                                 connectedInstitutionLiveData.value = KairaResult.error(message = error,kairaAction = KairaAction.UNVERIFIED_REDIRECT)
                             }
-                        }else {
+                        }else if(response.code() == 401){
                             val error: String? = response.errorBody()?.string()
                             error?.let{
-                                connectedInstitutionLiveData.value = KairaResult.error(message = error)
+                                connectedInstitutionLiveData.value = KairaResult.error(message = error,kairaAction = KairaAction.UNAUTHORIZED_REDIRECT)
+                            }
+                        } else {
+                            val error: String? = response.errorBody()?.string()
+                            error?.let{
+                                connectedInstitutionLiveData.value = KairaResult.error(message = error,kairaAction = KairaAction.UNKOWN_REDIRECT)
                             }
                         }
                     }

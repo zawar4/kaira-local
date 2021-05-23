@@ -10,6 +10,7 @@ import ai.kaira.domain.banking.institution.model.InstitutionParam
 import ai.kaira.domain.banking.institution.model.InstitutionParamBody
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
@@ -41,7 +42,6 @@ class ConnectBankInstitutionFragment : Fragment() {
         }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            // TODO
             binding.loginBtn.isEnabled = binding.userPasswordEt.text.length > 1 && binding.userPinEt.text.length > 1
         }
 
@@ -66,6 +66,13 @@ class ConnectBankInstitutionFragment : Fragment() {
 
         institution.usernameInformations?.let { usernameInformation ->
             binding.userPinHeadingEt.text = usernameInformation.label
+            if(usernameInformation.type != null){
+                if(usernameInformation.type == "0"){
+                    binding.userPinEt.inputType = InputType.TYPE_CLASS_NUMBER
+                }else if(usernameInformation.type == "1"){
+                    binding.userPinEt.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                }
+            }
         }
 
         institution.instructions?.let { instructions ->
@@ -77,6 +84,13 @@ class ConnectBankInstitutionFragment : Fragment() {
 
         institution.passwordInformations?.let{ passwordInformations ->
             binding.userPasswordHeadingEt.text = passwordInformations.label
+            if(passwordInformations.type != null){
+                if(passwordInformations.type == "0"){
+                    binding.userPasswordEt.inputType = InputType.TYPE_CLASS_NUMBER
+                }else if(passwordInformations.type == "1"){
+                    binding.userPinEt.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                }
+            }
         }
 
         binding.passwordVisibilityBtn.setOnClickListener {
