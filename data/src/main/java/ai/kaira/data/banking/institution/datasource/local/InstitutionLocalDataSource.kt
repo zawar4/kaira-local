@@ -4,5 +4,5 @@ import ai.kaira.domain.banking.institution.model.Institution
 
 interface InstitutionLocalDataSource {
 
-    fun getAllInstitutions():ArrayList<Institution>
+    fun getAllInstitutions(locale:String):ArrayList<Institution>
 }

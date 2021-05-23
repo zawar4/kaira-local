@@ -12,8 +12,8 @@ import javax.inject.Inject
 
 class InstitutionRepositoryImp @Inject constructor(private val institutionLocalDataSource: InstitutionLocalDataSource, private val institutionNetworkDataSource: InstitutionNetworkDataSource): InstitutionRepository {
 
-    override fun getAllInstitutions(): ArrayList<Institution> {
-        return institutionLocalDataSource.getAllInstitutions()
+    override fun getAllInstitutions(locale:String): ArrayList<Institution> {
+        return institutionLocalDataSource.getAllInstitutions(locale)
     }
 
     override fun connectInstitution(institutionParamBody: InstitutionParamBody): MutableLiveData<KairaResult<ConnectedInstitution>> {

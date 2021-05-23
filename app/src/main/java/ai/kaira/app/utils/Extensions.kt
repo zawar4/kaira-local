@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import java.net.HttpURLConnection
 import java.net.URL
+import java.text.Normalizer
 
 class Extensions {
 
@@ -72,6 +73,14 @@ class Extensions {
                 (this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(v.windowToken, 0)
             }
         }
+
+        private val REGEX_UNACCENT = "\\p{InCombiningDiacriticalMarks}+".toRegex()
+
+        fun CharSequence.unaccent(): String {
+            val temp = Normalizer.normalize(this, Normalizer.Form.NFD)
+            return REGEX_UNACCENT.replace(temp, "")
+        }
+
 
     }
 

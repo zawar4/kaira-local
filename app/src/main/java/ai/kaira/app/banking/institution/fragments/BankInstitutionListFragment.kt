@@ -4,6 +4,8 @@ import ai.kaira.app.R
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.banking.institution.fragments.viewmodel.InstitutionViewModel
 import ai.kaira.app.databinding.FragmentBankInstitutionListBinding
+import ai.kaira.app.utils.Extensions.Companion.unaccent
+import ai.kaira.app.utils.LanguageConfig
 import ai.kaira.domain.banking.institution.model.Institution
 import android.os.Bundle
 import android.text.Editable
@@ -18,6 +20,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import io.sentry.util.StringUtils
 import javax.inject.Inject
 
 
@@ -39,18 +42,19 @@ class BankInstitutionListFragment : Fragment(),InstitutionsRecyclerViewAdapter.O
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val institutions = institutionViewModel.getAllInstitutions()
-        val BMO  :Institution = institutions.find { it.name.equals("BMO") }!!
-        val CIBC :Institution = institutions.find { it.name.equals("CIBC") }!!
-        val DW :Institution = institutions.find { it.name.equals("Demo Wealthica") }!!
-        val Desjardins :Institution = institutions.find { it.name.equals("Desjardins") }!!
-        val HSBC :Institution = institutions.find { it.name.equals("HSBC Canada") }!!
-        val LB :Institution = institutions.find { it.name.equals("Laurentian Bank") }!!
-        val NB :Institution = institutions.find { it.name.equals("National Bank") }!!
-        val RBC :Institution = institutions.find { it.name.equals("RBC") }!!
-        val SB :Institution = institutions.find { it.name.equals("Scotia Bank") }!!
-        val Tangerine :Institution = institutions.find { it.name.equals("Tangerine") }!!
-        val TDB :Institution = institutions.find { it.name.equals("TD Bank") }!!
+        val languageLocale = LanguageConfig.getLanguageLocale(requireContext())
+        val institutions = institutionViewModel.getAllInstitutions(languageLocale)
+        val BMO  :Institution = institutions.find { it.name.toString().unaccent().equals("BMO") }!!
+        val CIBC :Institution = institutions.find { it.name.toString().unaccent().equals("CIBC") }!!
+        val DW :Institution = institutions.find { it.name.toString().unaccent().equals("Demo Wealthica") }!!
+        val Desjardins :Institution = institutions.find { it.name.toString().unaccent().equals("Desjardins") }!!
+        val HSBC :Institution = institutions.find { it.name.toString().unaccent().equals("HSBC Canada") }!!
+        val LB :Institution = institutions.find { it.name.toString().unaccent().equals("Laurentian Bank") || it.name.toString().equals("Banque Laurentienne") }!!
+        val NB :Institution = institutions.find { it.name.toString().unaccent().equals("National Bank") || it.name.toString().equals("Banque Nationale Réseau Indépendant (my-portfolio.ca)") }!!
+        val RBC :Institution = institutions.find { it.name.toString().unaccent().equals("RBC") }!!
+        val SB :Institution = institutions.find { it.name.toString().unaccent().equals("Scotia Bank") }!!
+        val Tangerine :Institution = institutions.find { it.name.toString().unaccent().equals("Tangerine") }!!
+        val TDB :Institution = institutions.find { it.name.toString().unaccent().equals("TD Bank") }!!
         val defaultInstitutions = ArrayList<Institution>()
         defaultInstitutions.add(BMO)
         defaultInstitutions.add(CIBC)
@@ -64,7 +68,7 @@ class BankInstitutionListFragment : Fragment(),InstitutionsRecyclerViewAdapter.O
         defaultInstitutions.add(Tangerine)
         defaultInstitutions.add(TDB)
         institutions.sortWith(
-            compareBy(String.CASE_INSENSITIVE_ORDER, { it.name.toString() })
+            compareBy(String.CASE_INSENSITIVE_ORDER, { it.name.toString().unaccent() })
         )
 
         binding.institutionsRecyclerView.adapter = InstitutionsRecyclerViewAdapter(defaultInstitutions,this,R.layout.institution_view)
@@ -92,7 +96,7 @@ class BankInstitutionListFragment : Fragment(),InstitutionsRecyclerViewAdapter.O
                 if(s.toString().isBlank() && s.toString().length ==  before){
 
                 } else {
-                    val list = institutions.filter { it.name.toString().toLowerCase().contains(s.toString().toLowerCase()) }
+                    val list = institutions.filter { it.name.toString().unaccent().toLowerCase().contains(s.toString().toLowerCase()) }
                     binding.institutionsRecyclerView.adapter = InstitutionsRecyclerViewAdapter(list as ArrayList<Institution>,this,R.layout.institution_view_linear)
                     binding.institutionsRecyclerView.layoutManager = LinearLayoutManager(context)
                     binding.cancelButton.visibility = View.VISIBLE

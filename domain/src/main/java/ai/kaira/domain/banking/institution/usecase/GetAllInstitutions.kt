@@ -6,11 +6,11 @@ import javax.inject.Inject
 
 class GetAllInstitutions @Inject constructor(private val institutionRepository: InstitutionRepository) {
 
-    operator fun invoke():ArrayList<Institution>{
-        return getAllInstitutions()
+    operator fun invoke(locale:String):ArrayList<Institution>{
+        return getAllInstitutions(locale)
     }
 
-    fun getAllInstitutions():ArrayList<Institution>{
-        return institutionRepository.getAllInstitutions()
+    fun getAllInstitutions(locale:String):ArrayList<Institution>{
+        return institutionRepository.getAllInstitutions(locale)
     }
 }

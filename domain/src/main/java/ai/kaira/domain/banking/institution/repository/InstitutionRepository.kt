@@ -7,6 +7,6 @@ import ai.kaira.domain.banking.institution.model.InstitutionParamBody
 import androidx.lifecycle.MutableLiveData
 
 interface InstitutionRepository {
-    fun getAllInstitutions():ArrayList<Institution>
+    fun getAllInstitutions(locale:String):ArrayList<Institution>
     fun connectInstitution(institutionParamBody: InstitutionParamBody) :MutableLiveData<KairaResult<ConnectedInstitution>>
 }
