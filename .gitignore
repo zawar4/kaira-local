@@ -46,7 +46,5 @@ captures/
 /captures
 .externalNativeBuild
 .cxx
-gradlew.bat
-gradlew
 
 *.hprof
