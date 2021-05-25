@@ -43,17 +43,17 @@ class BankInstitutionListFragment : Fragment(),InstitutionsRecyclerViewAdapter.O
         super.onViewCreated(view, savedInstanceState)
         val languageLocale = LanguageConfig.getLanguageLocale(requireContext())
         val institutions = institutionViewModel.getAllInstitutions(languageLocale)
-        val BMO  :Institution = institutions.find { it.name.toString().unaccent().equals("BMO") }!!
-        val CIBC :Institution = institutions.find { it.name.toString().unaccent().equals("CIBC") }!!
-        val DW :Institution = institutions.find { it.name.toString().unaccent().equals("Demo Wealthica") }!!
-        val Desjardins :Institution = institutions.find { it.name.toString().unaccent().equals("Desjardins") }!!
-        val HSBC :Institution = institutions.find { it.name.toString().unaccent().equals("HSBC Canada") }!!
-        val LB :Institution = institutions.find { it.name.toString().unaccent().equals("Laurentian Bank") || it.name.toString().equals("Banque Laurentienne") }!!
-        val NB :Institution = institutions.find { it.name.toString().unaccent().equals("National Bank") || it.name.toString().equals("Banque Nationale Réseau Indépendant (my-portfolio.ca)") }!!
-        val RBC :Institution = institutions.find { it.name.toString().unaccent().equals("RBC") }!!
-        val SB :Institution = institutions.find { it.name.toString().unaccent().equals("Scotia Bank") }!!
-        val Tangerine :Institution = institutions.find { it.name.toString().unaccent().equals("Tangerine") }!!
-        val TDB :Institution = institutions.find { it.name.toString().unaccent().equals("TD Bank") }!!
+        val BMO  :Institution = institutions.find { it.name.toString().unaccent() == "BMO" }!!
+        val CIBC :Institution = institutions.find { it.name.toString().unaccent() == "CIBC" }!!
+        val DW :Institution = institutions.find { it.name.toString().unaccent() == "Demo Wealthica" }!!
+        val Desjardins :Institution = institutions.find { it.name.toString().unaccent() == "Desjardins" }!!
+        val HSBC :Institution = institutions.find { it.name.toString().unaccent() == "HSBC Canada" }!!
+        val LB :Institution = institutions.find { it.name.toString().unaccent() == "Laurentian Bank" || it.name.toString() == "Banque Laurentienne" }!!
+        val NB :Institution = institutions.find { it.name.toString().unaccent() == "National Bank" || it.name.toString() == "Banque Nationale du Canada" }!!
+        val RBC :Institution = institutions.find { it.name.toString().unaccent() == "RBC" }!!
+        val SB :Institution = institutions.find { it.name.toString().unaccent() == "Scotia Bank" }!!
+        val Tangerine :Institution = institutions.find { it.name.toString().unaccent() == "Tangerine" }!!
+        val TDB :Institution = institutions.find { it.name.toString().unaccent() == "TD Bank" }!!
         val defaultInstitutions = ArrayList<Institution>()
         defaultInstitutions.add(BMO)
         defaultInstitutions.add(CIBC)
@@ -67,6 +67,9 @@ class BankInstitutionListFragment : Fragment(),InstitutionsRecyclerViewAdapter.O
         defaultInstitutions.add(Tangerine)
         defaultInstitutions.add(TDB)
 
+        defaultInstitutions.sortWith(
+            compareBy(String.CASE_INSENSITIVE_ORDER, { it.name.toString().unaccent() })
+        )
         institutions.sortWith(
             compareBy(String.CASE_INSENSITIVE_ORDER, { it.name.toString().unaccent() })
         )
@@ -80,7 +83,7 @@ class BankInstitutionListFragment : Fragment(),InstitutionsRecyclerViewAdapter.O
                 binding.cancelButton.visibility = View.VISIBLE
                 binding.resultNumTv.visibility = View.VISIBLE
                 binding.resultView.visibility = View.VISIBLE
-                binding.resultNumTv.text = institutions.size.toString()+" results"
+                binding.resultNumTv.text = institutions.size.toString()+" "+getString(R.string.results)
             }
             else{
                 binding.cancelButton.visibility = View.GONE
