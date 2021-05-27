@@ -12,8 +12,7 @@
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
             android:paddingBottom="24dp"
-            tools:context=".introduction.IntroductionActivity"
-            android:alpha="0.1">
+            tools:context=".introduction.IntroductionActivity">
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_top"
@@ -69,8 +68,8 @@
             <EditText
                 android:id="@+id/first_name_et"
                 style="@style/Text03_EntryField"
-                android:layout_width="250dp"
-                android:layout_height="45dp"
+                android:layout_width="350dp"
+                android:layout_height="55dp"
                 android:layout_marginTop="36dp"
                 android:background="@drawable/blue_filled_button_border"
                 android:imeOptions="actionDone"
@@ -81,9 +80,9 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/submit_button"
                 style="@style/Text02_button"
-                android:layout_width="200dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="12dp"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/blue_button_border"
                 android:gravity="center"
                 android:text="@string/introduction_welcome_next"
@@ -95,7 +94,7 @@
             <LinearLayout
                 android:id="@+id/psychological_assessment_layout"
                 android:layout_width="0dp"
-                android:layout_height="130dp"
+                android:layout_height="120dp"
                 android:layout_marginTop="36dp"
                 android:background="@drawable/karia_third_filled_a_semi_round_rectangle"
                 android:gravity="center|start"
@@ -107,8 +106,8 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/psychological_assessment_num_tv"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="18dp"
                     android:layout_marginTop="18dp"
                     android:layout_marginBottom="18dp"
@@ -117,7 +116,7 @@
                     android:gravity="center"
                     android:text="@string/_1"
                     android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    android:textSize="22sp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/psychological_assessment_tv"
@@ -128,6 +127,7 @@
                     android:paddingTop="18dp"
                     android:paddingRight="18dp"
                     android:paddingBottom="18dp"
+                    android:textSize="18sp"
                     android:text="@string/assessment_psychological_title" />
 
             </LinearLayout>
@@ -135,7 +135,7 @@
             <LinearLayout
                 android:id="@+id/financial_assessment_layout"
                 android:layout_width="0dp"
-                android:layout_height="130dp"
+                android:layout_height="120dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/light_gray_round_rectangle"
                 android:gravity="center|start"
@@ -147,8 +147,8 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/financial_assessment_num_tv"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_marginStart="18dp"
                     android:layout_marginTop="18dp"
                     android:layout_marginBottom="18dp"
@@ -157,7 +157,7 @@
                     android:gravity="center"
                     android:text="@string/_2"
                     android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    android:textSize="22sp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/financial_assessment_tv"
@@ -166,7 +166,9 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="18dp"
                     android:paddingTop="18dp"
+                    android:paddingRight="18dp"
                     android:paddingBottom="18dp"
+                    android:textSize="18sp"
                     android:text="@string/assessment_financial_title"
                     android:textColor="@color/medium_gray" />
 
@@ -176,7 +178,7 @@
                 android:id="@+id/next_btn"
                 style="@style/Text03_button"
                 android:layout_width="200dp"
-                android:layout_height="55dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="12dp"
                 android:text="@string/action_next"
                 android:textColor="@android:color/white"

@@ -1,13 +1,17 @@
 package ai.kaira.app.splash
 
-import ai.kaira.app.onboarding.OnboardActivity
 import ai.kaira.app.R
 import ai.kaira.app.banking.onboard.BankAccountInvitationActivity
+import ai.kaira.app.onboarding.OnboardActivity
+import ai.kaira.app.utils.Configuration
 import ai.kaira.app.utils.Extensions.Companion.clearCache
 import ai.kaira.app.utils.Extensions.Companion.isLoggedIn
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -16,6 +20,9 @@ class SplashActivity : AppCompatActivity() {
     private val SPLASH_TIME_OUT:Long = 3000 // 1 sec
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        AppCenter.start(application, Configuration.getAppCenterKey(), Analytics::class.java, Crashes::class.java)
+
         setContentView(R.layout.activity_splash)
         Timer().schedule(SPLASH_TIME_OUT){
             //do something

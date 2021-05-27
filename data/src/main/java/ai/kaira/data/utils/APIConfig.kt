@@ -1,6 +1,7 @@
 package ai.kaira.data.utils
 
 import ai.kaira.data.BuildConfig.FLAVOR
+
 class APIConfig {
 
    companion object{
@@ -61,5 +62,4 @@ class APIConfig {
            }
        }
    }
-
 }

@@ -13,7 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.3" />
+            app:layout_constraintGuide_percent="0.20" />
 
 
 
@@ -58,11 +58,12 @@
             android:id="@+id/terms_of_use_btn"
             style="@style/Text02_button"
             android:layout_width="250dp"
-            android:layout_height="45dp"
+            android:layout_height="55dp"
             android:layout_marginTop="48dp"
             android:background="@drawable/blue_button_border"
             android:gravity="center"
             android:text="@string/terms_use"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/guideline_left"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -70,10 +71,11 @@
             android:id="@+id/privacy_policy_btn"
             style="@style/Text02_button"
             android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_height="55dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/blue_button_border"
             android:gravity="center"
+            android:textSize="16sp"
             android:text="@string/terms_privacy"
             app:layout_constraintStart_toStartOf="@+id/guideline_left"
             app:layout_constraintTop_toBottomOf="@+id/terms_of_use_btn" />
@@ -93,12 +95,13 @@
             android:id="@+id/confirm_btn"
             style="@style/Text03_button"
             android:layout_width="200dp"
-            android:layout_height="55dp"
+            android:layout_height="60dp"
             android:layout_marginTop="12dp"
             android:enabled="false"
             android:text="@string/action_confirm"
             android:textColor="@android:color/white"
             app:cornerRadius="8dp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/guideline_left"
             app:layout_constraintTop_toBottomOf="@+id/policy_checkbox" />
 
