@@ -8,5 +8,12 @@ enum class BankingAggregator(val value:Int) {
 
     companion object {
         operator fun invoke(type: Int) = BankingAggregator.values().firstOrNull { it.value == type }
+        fun getCurrency (bankingAggregator: BankingAggregator):String{
+            return when (bankingAggregator){
+                wealthica -> "cad"
+                bi -> "eur"
+            }
+        }
     }
+
 }
