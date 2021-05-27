@@ -164,6 +164,7 @@
     <string name="banking_onboarding_title">Je t’invite maintenant à synchroniser tes comptes bancaires</string>
     <string name="banking_onboarding_description">Ta confiance et ta tranquilité d’esprit sont une priorité pour moi. Kaira est une application confidentielle et sécuritaire.</string>
     <string name="banking_onboarding_decline_button">Je ne souhaite pas synchroniser mes comptes bancaires</string>
+    <string name="banking_onboarding_later_button">Je connecterai mes données financières plus tard.</string>
 
     <string name="banking_onboarding_detail_title">Ta sécurité, c’est sérieux</string>
     <string name="banking_onboarding_detail_description">Kaira utilise un double cryptage 256 bits et une sécurité de niveau bancaire pour la protection de tes données.\n\nNous ne vendons pas tes données personnelles et nous les protégeons et utilisons un cryptage pour assurer l’anonymat.\n\nL’infrastructure de notre sécurité est régulièrement testée et des audits robustes sont effectués par des experts en cybersécurité.</string>
@@ -171,7 +172,7 @@
     <string name="banking_onboarding_declined_title">Ça ne t’intéresse pas?</string>
     <string name="banking_onboarding_declined_warning">La synchronisation de tes comptes bancaires est requise pour vivre la pleine expérience Kaira. Suite à l’étude de tes données, je pourrai te proposer la meilleure stratégie adaptée à tes besoins.</string>
     <string name="banking_onboarding_declined_sync_button">Synchroniser mes comptes</string>
-    <string name="banking_onboarding_declined_survey">Tu ne veux pas poursuivre? D’accord ! Tu veux bien répondre à un court sondage qui m’expliquera pourquoi ? Je serai ici si tu reviens. Bonne continuation.</string>
+    <string name="banking_onboarding_declined_survey">Tu ne veux pas poursuivre? SVP réponds au court sondage pour me dire pourquoi. \n\nPuisque ton compte Kaira est créé, tu peux revenir quand tu veux. Ensemble, nous reprendrons la route vers ton bien-être financier. \n\nMerci et bonne continuation.</string>
 
     <string name="banking_institutions_title">Choisir une institution</string>
     <string name="banking_institutions_others_placeholder">Autre institution</string>

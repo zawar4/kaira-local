@@ -1,6 +1,7 @@
 package ai.kaira.app.banking.onboard
 
 import ai.kaira.app.R
+import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.banking.institution.BankInstitutionsHostActivity
 import ai.kaira.app.databinding.ActivityBankAccountConnectLastChanceBinding
 import ai.kaira.app.survey.SurveyActivity
@@ -24,8 +25,19 @@ class BankAccountConnectLastChanceActivity : AppCompatActivity() {
             startActivity(Intent(this, BankInstitutionsHostActivity::class.java))
         }
 
+        binding.moreInfoButton.setOnClickListener {
+            startActivity(Intent(this, SecurityInfoActivity::class.java))
+        }
+
         binding.backBtn.setOnClickListener {
             finish()
+        }
+
+        binding.laterButton.setOnClickListener {
+            finish()
+            var intent = Intent(this, BankAccountInvitationActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
         }
     }
 }
