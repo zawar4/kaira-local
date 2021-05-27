@@ -5,6 +5,9 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 
 android {
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
@@ -13,7 +16,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
