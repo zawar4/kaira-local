@@ -1,7 +1,7 @@
-package ai.kaira.app.banking
+package ai.kaira.app.banking.onboard
 
 import ai.kaira.app.R
-import ai.kaira.app.assessment.LastChanceActivity
+import ai.kaira.app.banking.institution.BankInstitutionsHostActivity
 import ai.kaira.app.databinding.ActivityBankAccountInvitationBinding
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -20,15 +20,15 @@ class BankAccountInvitationActivity : AppCompatActivity() {
         }
 
         binding.moreInfoButton.setOnClickListener {
-            startActivity(Intent(this,SecurityInfoActivity::class.java))
+            startActivity(Intent(this, SecurityInfoActivity::class.java))
         }
 
         binding.continueButton.setOnClickListener {
-            //TODO connect bank account activity
+            startActivity(Intent(this,BankInstitutionsHostActivity::class.java))
         }
 
         binding.noButton.setOnClickListener {
-            startActivity(Intent(this,BankAccountConnectLastChanceActivity::class.java))
+            startActivity(Intent(this, BankAccountConnectLastChanceActivity::class.java))
         }
     }
 }

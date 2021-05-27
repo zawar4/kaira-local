@@ -2,26 +2,21 @@ package ai.kaira.app.account.login
 
 import ai.kaira.app.R
 import ai.kaira.app.account.create.AccountVerificationActivity
-import ai.kaira.app.account.create.InfoCreateAccountActivity
-import ai.kaira.app.account.create.viewmodel.AccountCreateViewModel
 import ai.kaira.app.account.forgotpassword.ForgotPasswordActivity
 import ai.kaira.app.account.login.viewmodel.LoginViewModel
 import ai.kaira.app.application.ViewModelFactory
-import ai.kaira.app.banking.BankAccountInvitationActivity
+import ai.kaira.app.banking.onboard.BankAccountInvitationActivity
 import ai.kaira.app.databinding.ActivityLoginBinding
 import ai.kaira.app.utils.Extensions.Companion.dismissKeyboard
 import ai.kaira.app.utils.UIUtils
 import ai.kaira.domain.KairaAction
-import ai.kaira.domain.account.login.usecase.ForgotPassword
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint

@@ -11,16 +11,16 @@ import javax.inject.Inject
 class FetchUserCreateAccount @Inject constructor(val createAccount:CreateAccount,val fetchUser: FetchUser) {
 
     private val createAccountLiveData = MediatorLiveData<KairaResult<User>>()
-    operator fun invoke(firstName:String,lastName:String,language:String,email:String,password:String,groupCode:String): MediatorLiveData<KairaResult<User>> {
-        return fetchUserCreateAccount(firstName, lastName, language, email, password, groupCode)
+    operator fun invoke(firstName:String,lastName:String,language:String,email:String,password:String,groupCode:String,bankingAggregator:Int): MediatorLiveData<KairaResult<User>> {
+        return fetchUserCreateAccount(firstName, lastName, language, email, password, groupCode,bankingAggregator = bankingAggregator)
     }
 
-    fun fetchUserCreateAccount(firstName:String,lastName:String,language:String,email:String,password:String,groupCode:String): MediatorLiveData<KairaResult<User>> {
+    fun fetchUserCreateAccount(firstName:String,lastName:String,language:String,email:String,password:String,groupCode:String,bankingAggregator:Int): MediatorLiveData<KairaResult<User>> {
         val liveDataSource = fetchUser.fetchUserAsync()
         createAccountLiveData.addSource(liveDataSource){ user ->
             createAccountLiveData.removeSource(liveDataSource)
             val userId = user?.id ?: ""
-            var accountDetails = Account(firstName = firstName,lastName = lastName,language = language,email = email, password = password, groupCode = groupCode,id = userId)
+            var accountDetails = Account(firstName = firstName,lastName = lastName,language = language,email = email, password = password, groupCode = groupCode,id = userId, bankingAggregator = bankingAggregator)
             val createAccountLiveDataSource = createAccount(accountDetails)
             createAccountLiveData.addSource(createAccountLiveDataSource){ result ->
                 when(result.status){

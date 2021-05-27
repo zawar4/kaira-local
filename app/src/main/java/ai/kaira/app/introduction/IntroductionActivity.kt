@@ -5,12 +5,11 @@ import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.assessment.AssessmentActivity
 import ai.kaira.app.assessment.EvaluationCompletedActivity
 import ai.kaira.app.databinding.ActivityIntroductionBinding
+import ai.kaira.app.utils.Consts.Companion.ASSESSMENT_TYPE
+import ai.kaira.app.utils.Extensions.Companion.dismissKeyboard
 import ai.kaira.app.utils.LanguageConfig.Companion.getLanguageLocale
 import ai.kaira.app.utils.UIUtils.Companion.networkCallAlert
 import ai.kaira.app.utils.UIUtils.Companion.networkConnectivityAlert
-import ai.kaira.app.utils.Consts.Companion.ASSESSMENT_TYPE
-import ai.kaira.app.utils.Extensions.Companion.dismissKeyboard
-import ai.kaira.app.utils.Extensions.Companion.isConnectedToInternet
 import ai.kaira.domain.assessment.model.AssessmentType
 import ai.kaira.domain.introduction.model.User
 import android.content.Intent

@@ -1,12 +1,11 @@
 package ai.kaira.app.splash
 
 import ai.kaira.app.R
-import ai.kaira.app.banking.BankAccountInvitationActivity
+import ai.kaira.app.banking.onboard.BankAccountInvitationActivity
 import ai.kaira.app.onboarding.OnboardActivity
 import ai.kaira.app.utils.Configuration
 import ai.kaira.app.utils.Extensions.Companion.clearCache
 import ai.kaira.app.utils.Extensions.Companion.isLoggedIn
-import ai.kaira.data.utils.APIConfig
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -31,7 +30,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(Intent(applicationContext, BankAccountInvitationActivity::class.java))
                 finish()
             }else{
-                clearCache();
+                clearCache() ;
                 startActivity(Intent(applicationContext,OnboardActivity::class.java))
                 // close this activity
                 finish()
