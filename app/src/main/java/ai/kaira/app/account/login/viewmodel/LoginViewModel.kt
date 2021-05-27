@@ -106,7 +106,9 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseV
                 ResultState.SUCCESS ->{
                     showLoading(false)
                     sendForgotPasswordVerificationEmailLiveData.removeSource(liveDataSource)
-                    sendForgotPasswordVerificationEmailLiveData.value = result.data
+                    result.data?.let{
+                        sendForgotPasswordVerificationEmailLiveData.value = it
+                    }
                 }
                 ResultState.ERROR ->{
                     result.message?.let{ it->
@@ -140,7 +142,10 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseV
                 ResultState.SUCCESS ->{
                     showLoading(false)
                     forgotPasswordLiveData.removeSource(liveDataSource)
-                    forgotPasswordLiveData.value = result.data
+                    result.data?.let{
+                        forgotPasswordLiveData.value = it
+                    }
+
                 }
                 ResultState.LOADING ->{
                     showLoading(true)

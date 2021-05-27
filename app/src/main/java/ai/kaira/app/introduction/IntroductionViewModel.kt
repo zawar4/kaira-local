@@ -85,7 +85,9 @@ class IntroductionViewModel(private val introductionUsecase: IntroductionUsecase
                 ResultState.SUCCESS -> {
                     result.data?.let { it ->
                         user = it
-                        userResultLiveData.value = result.data
+                        result.data?.let{
+                            userResultLiveData.value = it
+                        }
                         introductionUsecase.saveUser(it)
                         userResultLiveData.removeSource(createUserLiveData)
                     }

@@ -34,7 +34,9 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
             when(result.status){
                 ResultState.SUCCESS -> {
                     showLoading(false)
-                    groupCodeExistsLiveData.value = result.data
+                    result.data?.let{
+                        groupCodeExistsLiveData.value = it
+                    }
                     groupCodeExistsLiveData.removeSource(liveDataSource)
                 }
                 ResultState.LOADING -> {
@@ -67,7 +69,7 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
             when(result.status){
                 ResultState.SUCCESS -> {
                     showLoading(false)
-                    emailExistsLiveData.value = result.data
+                    emailExistsLiveData.value = result.data!!
                     emailExistsLiveData.removeSource(liveDataSource)
                 }
                 ResultState.LOADING -> {
@@ -99,7 +101,7 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
                 ResultState.SUCCESS ->{
                     showLoading(false)
                     createAccountLiveData.removeSource(liveDataSource)
-                    createAccountLiveData.value = result.data
+                    createAccountLiveData.value = result.data!!
                 }
                 ResultState.ERROR ->{
                     result.message?.let{ it->
