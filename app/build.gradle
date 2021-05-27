@@ -51,6 +51,7 @@ android {
             manifestPlaceholders = [
                     appName: "@string/app_name_development"
             ]
+            applicationIdSuffix  ".development"
         }
         staging {
             dimension "branding"
