@@ -12,12 +12,16 @@ class UIUtils {
             MaterialAlertDialogBuilder(context).setTitle(title).setMessage(message).setPositiveButton(context.getText(R.string.ok),null).show()
         }
 
+        private fun alert(context: Context, title:String, message:String,runnable: ()->Unit){
+            MaterialAlertDialogBuilder(context).setTitle(title).setMessage(message).setCancelable(false).setPositiveButton(context.getText(R.string.ok)) { dialog, which -> runnable() }.show()
+        }
+
         fun networkCallAlert(context: Context,message: String){
             MaterialAlertDialogBuilder(context).setTitle(context.getString(R.string.attention)).setMessage(message).setPositiveButton(context.getText(R.string.ok),null).show()
         }
 
         fun networkCallAlert(context: Context,message: String,runnable: ()->Unit){
-            MaterialAlertDialogBuilder(context).setTitle(context.getString(R.string.attention)).setMessage(message).setPositiveButton(context.getText(R.string.ok),{ dialog, which -> runnable() }).show()
+            MaterialAlertDialogBuilder(context).setTitle(context.getString(R.string.attention)).setMessage(message).setCancelable(false).setPositiveButton(context.getText(R.string.ok),{ dialog, which -> runnable() }).show()
         }
 
         fun networkCallAlert(context: Context,message: String,positive:String, negative:String, runnable: ()->Unit){
@@ -28,6 +32,10 @@ class UIUtils {
         }
         fun networkConnectivityAlert(context: Context){
             alert(context,context.getString(R.string.attention),context.getString(R.string.error_network))
+        }
+
+        fun networkConnectivityAlert(context: Context, runnable: ()->Unit){
+            alert(context,context.getString(R.string.attention),context.getString(R.string.error_network),runnable)
         }
     }
 }

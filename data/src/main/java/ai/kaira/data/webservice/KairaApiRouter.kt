@@ -4,16 +4,22 @@ import ai.kaira.domain.account.create.EmailBody
 import ai.kaira.domain.account.create.TokenBody
 import ai.kaira.domain.account.login.LoginBody
 import ai.kaira.data.assessment.model.*
+import ai.kaira.domain.banking.institution.model.InstitutionParamBody
 import ai.kaira.domain.KairaResult
 import ai.kaira.data.introduction.model.UserResponse
 import ai.kaira.domain.account.create.model.Account
 import ai.kaira.domain.account.login.ResetPasswordBody
+import ai.kaira.domain.banking.institution.model.ConnectedInstitution
 import ai.kaira.domain.introduction.model.User
 import retrofit2.Call
 import retrofit2.http.*
 
 
 interface KairaApiRouter {
+
+
+    @POST ("banking/institutions")
+    fun connectInstitution(@Header("Authorization") authorization:String,@Body institutionParam: InstitutionParamBody) : Call<ConnectedInstitution>
 
     @POST("users/login")
     fun login(@Body loginBody: LoginBody): Call<UserResponse>

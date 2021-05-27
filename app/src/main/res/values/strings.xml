@@ -179,6 +179,7 @@
     <string name="banking_onboarding_title">I invite you now to synchronize your bank accounts</string>
     <string name="banking_onboarding_description">Your confidence and peace of mind are a priority for me. Kaira is a confidential and secure application.</string>
     <string name="banking_onboarding_decline_button">I don\'t want to synchronize my bank accounts</string>
+    <string name="banking_onboarding_later_button">I will connect my financial data later.</string>
 
     <string name="banking_onboarding_detail_title">Your safety is serious</string>
     <string name="banking_onboarding_detail_description">Kaira uses 256-bit double encryption and bank-grade security to protect your data.\n\nWe do not sell your personal data and we protect it and use encryption to ensure anonymity.\n\nThe infrastructure of our security is regularly tested and robust audits are carried out by cybersecurity experts.</string>
@@ -186,26 +187,25 @@
     <string name="banking_onboarding_declined_title">It does not interest you?</string>
     <string name="banking_onboarding_declined_warning">Syncing your bank accounts is required for the full Kaira experience. Following the study of your data, I can offer you the best strategy adapted to your needs.</string>
     <string name="banking_onboarding_declined_sync_button">Synchronize my accounts</string>
-    <string name="banking_onboarding_declined_survey">Don\'t you want to continue? Okay ! Will you take a short survey that will explain why? I\'ll be here if you come back. Good continuation.</string>
+    <string name="banking_onboarding_declined_survey">Don\’t want to continue? Please fill out the short survey to tell me why.\n\nSince you created a Kaira account, you can come back anytime. Together, we can get you back on the road to financial well-being.\n\nThank you and best wishes.</string>
 
     <string name="banking_institutions_title">Choose your institution</string>
-    <string name="banking_institutions_others_placeholder">Others institutions</string>
+    <string name="banking_institutions_others_placeholder">Another institutions</string>
 
     <string name="banking_institutions_account_credential_title">Connect your account</string>
     <string name="banking_institutions_account_credential_username">Username</string>
-    <string name="banking_institutions_account_credential_security">We protect your information by encrypting it when it’s stored in our systems.</string>
+    <string name="banking_institutions_account_credential_security">The information is encrypted to protect it in our systems.</string>
 
-    <string name="banking_institutions_connecting_title">Data connection</string>
-    <string name="banking_institutions_connecting_subtitle">Synchronization takes some time. Thank you for your patience!</string>
-    <string name="banking_institutions_connection_success">Data connection is complete!</string>
-    <string name="banking_institutions_connection_success_add_other">Connection to another institution</string>
+    <string name="banking_institutions_connecting_title">Connecting to data</string>
+    <string name="banking_institutions_connecting_subtitle">Synchronization takes a little while.\n\n Thanks for your patience!</string>
+    <string name="banking_institutions_connection_success">The process is underway!</string>
+    <string name="banking_institutions_connection_success_add_other">Do you want to synchronize another account?</string>
 
     <string name="banking_institutions_security_title">Security Question</string>
-
+    <string name="results">results</string>
 
     <string name="_2" translatable="false">2</string>
     <string name="_1" translatable="false">1</string>
-
 
     <string name="clock" translatable="false">\u23F0</string>
     <string name="question" translatable="false">\u2753</string>

@@ -9,6 +9,7 @@ import ai.kaira.app.utils.Extensions.Companion.dismissKeyboard
 import ai.kaira.app.utils.LanguageConfig
 import ai.kaira.app.utils.UIUtils
 import ai.kaira.app.utils.UIUtils.Companion.networkConnectivityAlert
+import ai.kaira.data.account.create.BankingAggregator
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -121,7 +122,7 @@ class UserCredentialsCreateAccountActivity : AppCompatActivity() {
                 } else{
                     val email = binding.emailTv.text.toString()
                     val password = binding.passwordEt.text.toString()
-                    accountCreateViewModel.createAccount(firstName,lastName,currentLanguageLocale,email,password,groupCode)
+                    accountCreateViewModel.createAccount(firstName,lastName,currentLanguageLocale,email,password,groupCode,bankingAggregator = BankingAggregator.wealthica.value)
 
                 }
             }

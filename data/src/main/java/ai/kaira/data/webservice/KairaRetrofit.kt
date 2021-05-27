@@ -8,6 +8,7 @@ import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 class KairaRetrofit {
 
@@ -19,7 +20,7 @@ class KairaRetrofit {
             val url = "$baseUrl$version/"
             var interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
-            val client = OkHttpClient.Builder().addInterceptor(interceptor).addInterceptor(AuthorizationInterceptor()).build()
+            val client = OkHttpClient.Builder().readTimeout(5, TimeUnit.MINUTES).connectTimeout(5, TimeUnit.MINUTES).addInterceptor(interceptor).addInterceptor(AuthorizationInterceptor()).build()
             retrofit = Retrofit.Builder().client(client)
                 .addConverterFactory(
                     GsonConverterFactory.create())

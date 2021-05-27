@@ -1,0 +1,1095 @@
+[
+	{
+		"aggregator":0,
+		"type":"wfg",
+		"group":null,
+		"name":"World Financial Group Canada (WFG)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"wellingtonaltus",
+		"group":null,
+		"name":"Wellington-Altus Private Wealth (MyPortfolio+)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"wattcarmichael",
+		"group":null,
+		"name":"Watt Carmichael (MyPortfolio+)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"walmart",
+		"group":null,
+		"name":"Récompenses Walmart MasterCard",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"vb",
+		"group":null,
+		"name":"Virtual Brokers",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"sunlife",
+		"group":null,
+		"name":"Sun Life Financial",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":"Prend en charge Sun Life GRS et Clarica. Ne prend pas en charge FlexPlus Direct."
+	},
+	{
+		"aggregator":0,
+		"type":"steadyhand",
+		"group":null,
+		"name":"Steadyhand",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"ssq",
+		"group":null,
+		"name":"SSQ Assurance",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"solium",
+		"group":null,
+		"name":"Solium Shareworks",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"simplii",
+		"group":null,
+		"name":"Simplii Financial",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"gmp",
+		"group":null,
+		"name":"Richardson Wealth (GMP)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"raymondjames",
+		"group":null,
+		"name":"Raymond James",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"questwealth",
+		"group":null,
+		"name":"Questwealth Portfolios (Questrade)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"quadruscloud",
+		"group":"Quadrus",
+		"name":"Quadrus (Univeris)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"quadrus",
+		"group":"Quadrus",
+		"name":"Quadrus",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"qtrade",
+		"group":null,
+		"name":"Qtrade Investor",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"pwl",
+		"group":null,
+		"name":"PWL Capital",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"portfoliostrategies",
+		"group":null,
+		"name":"Portfolio Strategies",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"paypal",
+		"group":null,
+		"name":"PayPal",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"olympiatrust",
+		"group":null,
+		"name":"Olympia Trust",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"nslsc",
+		"group":null,
+		"name":"Centre de service national de prêts aux étudiants (CSNPE)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"nbin",
+		"group":"National Bank",
+		"name":"Banque Nationale Réseau Indépendant (MyPortfolio+)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"nbcn",
+		"group":"National Bank",
+		"name":"Banque Nationale Réseau Indépendant (my-portfolio.ca)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"milestonewm",
+		"group":null,
+		"name":"Milestone Wealth Management",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"mdm",
+		"group":"MD Financial",
+		"name":"MD Financial Management",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":"Ne prend pas en charge MD Direct Trade ou MD ExO Direct."
+	},
+	{
+		"aggregator":0,
+		"type":"mcap",
+		"group":null,
+		"name":"MCAP",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"mackenzie",
+		"group":null,
+		"name":"Mackenzie Placements",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"stockplanconnect",
+		"group":null,
+		"name":"Morgan Stanley StockPlan Connect",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"rogersbank",
+		"group":null,
+		"name":"Banque Rogers",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"motusbank",
+		"group":null,
+		"name":"Motus Bank",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"motive",
+		"group":null,
+		"name":"Motive Financial",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"mbna",
+		"group":null,
+		"name":"MBNA Canada",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"standard_life",
+		"group":"Manulife",
+		"name":"Manuvie VIP Room (anciennement Standard Life)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"lendingloop",
+		"group":null,
+		"name":"Lending Loop",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"lawton",
+		"group":null,
+		"name":"Lawton Partners",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"b2bbank",
+		"group":null,
+		"name":"B2B Bank",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"ipcinvestment",
+		"group":"Investment Planning Counsel",
+		"name":"IPC gestion du patrimoine",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"ipcsecurities",
+		"group":"Investment Planning Counsel",
+		"name":"IPC valeurs mobilières",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"investors_group",
+		"group":null,
+		"name":"IG Gestion de patrimoine (Investors Group)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"invesco",
+		"group":null,
+		"name":"Invesco Canada",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"icicibank",
+		"group":null,
+		"name":"ICICI Bank",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"ia",
+		"group":"Industrial Alliance",
+		"name":"IA Groupe financier",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":"Réponse à la question de sécurité stockée en toute sécurité. Contactez-nous pour plus de détails."
+	},
+	{
+		"aggregator":0,
+		"type":"investia",
+		"group":"Industrial Alliance",
+		"name":"IA Investia, Services financiers",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"iasecurities",
+		"group":"Industrial Alliance",
+		"name":"IA Gestion privée de patrimoine (MonPortefeuille+)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"holliswealth",
+		"group":null,
+		"name":"Patrimoine Hollis (MonPortefeuille+)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"harbourfront",
+		"group":null,
+		"name":"Harbourfront Wealth Management",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"hamptonsecu",
+		"group":null,
+		"name":"Hampton Securities",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"greatwest",
+		"group":null,
+		"name":"Canada Life GRS (anciennement Great-West Group Retirement)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"fondaction",
+		"group":null,
+		"name":"Fondaction CSN",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"firstnational",
+		"group":null,
+		"name":"First National (Mon hypothèque)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"fidelityclearing",
+		"group":"Fidelity",
+		"name":"Fidelity Service de compensation Canada",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"fidelity",
+		"group":"Fidelity",
+		"name":"Fidelity Investments Canada",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"ferique",
+		"group":null,
+		"name":"Investissement FÉRIQUE",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"eqbank",
+		"group":null,
+		"name":"EQ Bank",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"placement_quebec",
+		"group":null,
+		"name":"Épargne Placements Québec",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"edwardjones",
+		"group":null,
+		"name":"Edward Jones",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"edgepoint",
+		"group":null,
+		"name":"EdgePoint Wealth Management",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"echelon",
+		"group":null,
+		"name":"Echelon Wealth Partners",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"dfsinvest",
+		"group":"Desjardins",
+		"name":"Desjardins Sécurité financière (Investissements)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"dfsgrs",
+		"group":"Desjardins",
+		"name":"Desjardins Épargne-retraite collective",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"sfl",
+		"group":"Desjardins",
+		"name":"SFL Placements (Desjardins)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"cumberland",
+		"group":null,
+		"name":"Cumberland Private Wealth",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"cua",
+		"group":null,
+		"name":"Credit Union Atlantic (CUA)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"credentialsecu",
+		"group":"Credential",
+		"name":"Credential Securities",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"credentialam",
+		"group":"Credential",
+		"name":"Credential Asset Management",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"cidel",
+		"group":null,
+		"name":"Cidel",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"canaccord",
+		"group":null,
+		"name":"Canaccord Genuity",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":"Réponse à la question de sécurité stockée en toute sécurité. Contactez-nous pour plus de détails."
+	},
+	{
+		"aggregator":0,
+		"type":"blueshore",
+		"group":null,
+		"name":"BlueShore Financial",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"assante",
+		"group":null,
+		"name":"Assante (InfoClientèle)",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":"Réponse à la question de sécurité stockée en toute sécurité. Contactez-nous pour plus de détails."
+	},
+	{
+		"aggregator":0,
+		"type":"aligned",
+		"group":null,
+		"name":"Aligned Capital Partners",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"agf",
+		"group":null,
+		"name":"AGF",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"achieva",
+		"group":null,
+		"name":"Achieva Financial",
+		"main":false,
+		"instructions":null,
+		"usernameInformations":null,
+		"note":null
+	},
+	{
+		"aggregator":0,
+		"type":"easyweb",
+		"group":"TD",
+		"name":"TD Bank",
+		"main":true,
+		"instructions":"En saisissant vos informations d'identification ci-dessous, vous autorisez Kaira à se connecter à la TD, en votre nom, et à récupérer le solde de votre compte, vos avoirs et vos transactions."
+	},
+	{
+		"aggregator":0,
+		"type":"bmobank",
+		"group":"BMO",
+		"name":"BMO",
+		"main":true,
+		"usernameInformations":{
+			"label":"Numéro de carte",
+			"type":0
+		}
+	},
+	{
+		"aggregator":0,
+		"type":"cibcbank",
+		"group":"CIBC",
+		"name":"CIBC",
+		"main":true,
+		"usernameInformations":{
+			"label":"Numéro de carte",
+			"type":0
+		}
+	},
+	{
+		"aggregator":0,
+		"type":"desjardinsnew",
+		"group":"Desjardins",
+		"name":"Desjardins",
+		"main":true
+	},
+	{
+		"aggregator":0,
+		"type":"nationalbank",
+		"group":"National Bank",
+		"name":"Banque Nationale du Canada",
+		"main":true,
+		"usernameInformations":{
+			"label":"Adresse courriel",
+			"type":1
+		}
+	},
+	{
+		"aggregator":0,
+		"type":"rbcbank",
+		"group":"RBC",
+		"name":"RBC",
+		"main":true
+	},
+	{
+		"aggregator":0,
+		"type":"scotiabank",
+		"group":"Scotia",
+		"name":"Scotia Bank",
+		"main":true
+	},
+	{
+		"aggregator":0,
+		"type":"tangerine",
+		"name":"Tangerine",
+		"main":true,
+		"usernameInformations":{
+			"label":"Numéro d'Identification Personnel (PIN)",
+			"type":0
+		}
+	},
+	{
+		"aggregator":0,
+		"type":"hsbc",
+		"group":"HSBC",
+		"name":"HSBC Canada",
+		"main":true,
+		"note":"Réponse à la question de sécurité stockée en toute sécurité. Contactez-nous pour plus de détails."
+	},
+	{
+		"aggregator":0,
+		"type":"laurentian",
+		"group":"Laurentian Bank",
+		"name":"Banque Laurentienne",
+		"main":true
+	},
+	{
+		"aggregator":0,
+		"type":"demo",
+		"name":"Demo Wealthica",
+		"main":true
+	},
+	{
+		"aggregator":0,
+		"type":"affinitycu",
+		"name":"Affinity Credit Union",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"alternabank",
+		"name":"Alterna Bank",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"amex",
+		"name":"American Express Canada (AMEX)",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"atbonline",
+		"name":"ATB Financial",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"bmopbi",
+		"group":"BMO",
+		"name":"BMO Banque privée",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"investorline",
+		"group":"BMO",
+		"name":"BMO Ligne d'action",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"advicedirect",
+		"group":"BMO",
+		"name":"BMO ConseilDirect",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"nesbitt",
+		"group":"BMO",
+		"name":"BMO Nesbitt Burns",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"smartfolio",
+		"group":"BMO",
+		"name":"BMO Portefeuille futé",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"canadiantire",
+		"name":"Banque Canadian Tire (Triangle)",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"capitalone",
+		"name":"Capital One et Costco",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"cibc",
+		"group":"CIBC",
+		"name":"CIBC (Wood Gundy, Pro-Investisseur)",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"coastcapital",
+		"name":"Coast Capital Savings",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"conexus",
+		"name":"Conexus Credit Union",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"disnat",
+		"name":"Desjardins Courtage en ligne (Disnat)",
+		"group":"Desjardins",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"vmd",
+		"name":"Desjardins Gestion de patrimoine (VMD)",
+		"group":"Desjardins",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"gpd",
+		"name":"Desjardins Gestion de patrimoine (Gestion privée)",
+		"group":"Desjardins",
+		"main":false,
+		"note":"Actuellement, prend uniquement en charge la connexion avec l'ID client GPxxxxxxx comme nom d'utilisateur."
+	},
+	{
+		"aggregator":0,
+		"type":"duca",
+		"name":"DUCA Credit Union",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"ftq",
+		"name":"Fonds de solidarité FTQ",
+		"main":false,
+		"note":"Ne prend pas en charge les comptes FlexiFonds."
+	},
+	{
+		"aggregator":0,
+		"type":"investdirect",
+		"name":"HSBC InvestDirect",
+		"group":"HSBC",
+		"main":false,
+		"note":"Réponse à la question de sécurité stockée en toute sécurité. Contactez-nous pour plus de détails."
+	},
+	{
+		"aggregator":0,
+		"type":"lbdb",
+		"name":"Banque Laurentienne Coutage à escompte (CEBL)",
+		"group":"Laurentian Bank",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"vmbl",
+		"name":"Banque Laurentienne Valeurs mobilières",
+		"group":"Laurentian Bank",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"libro",
+		"name":"Libro Credit Union",
+		"main":false,
+		"usernameInformations":{
+			"label":"Numéro de compte"
+		},
+		"passwordInformations":{
+			"label":"Code d'accès personnel"
+		}
+	},
+	{
+		"aggregator":0,
+		"type":"manulifebank",
+		"name":"Banque Manuvie",
+		"group":"Manulife",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"manulife",
+		"name":"Manuvie Solutions de retraire collectives (GRS)",
+		"group":"Manulife",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"manulifeinvest",
+		"name":"Manuvie Gestion de placements",
+		"group":"Manulife",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"manulifesecu",
+		"name":"Manuvie Placements",
+		"group":"Manulife",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"meridiancu",
+		"name":"Meridian Credit Union",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"nbdb",
+		"name":"Banque Nationale Courtage Direct",
+		"group":"National Bank",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"nbf",
+		"name":"Financière Banque Nationale",
+		"group":"National Bank",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"nb1859",
+		"name":"Gestion Privée 1859 Banque Nationale",
+		"group":"National Bank",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"nbt",
+		"name":"Banque Nationale Trust (Garde de titres)",
+		"group":"National Bank",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"pcfinancial",
+		"name":"PC Financial",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"rbc",
+		"name":"RBC Placements en Direct",
+		"group":"RBC",
+		"main":false,
+		"note":"Exige que toutes les «conventions d'échange» soient acceptées sur le portail client RBC."
+	},
+	{
+		"aggregator":0,
+		"type":"rbcds",
+		"name":"RBC Dominion Valeurs mobilières",
+		"group":"RBC",
+		"main":false,
+		"note":"Exige que toutes les «conventions d'échange» soient acceptées sur le portail client RBC."
+	},
+	{
+		"aggregator":0,
+		"type":"rbcwm",
+		"name":"RBC Gestion de patrimoine",
+		"group":"RBC",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"scotia",
+		"name":"Scotia iTRADE",
+		"group":"Scotia",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"servus",
+		"name":"Servus Credit Union",
+		"main":false
+	},
+	{
+		"aggregator":0,
+		"type":"webbroker",
+		"name":"TD CourtierWeb",
+		"group":"TD",
+		"main":false,
+		"instructions":"En saisissant vos informations d'identification ci-dessous, vous autorisez Kaira à se connecter à la TD, en votre nom, et à récupérer le solde de votre compte, vos avoirs et vos transactions.",
+		"note": "Prend également en charge TD Waterhouse. Ne prend pas en charge TD Private Investment Counsel. L'actualisation nécessite que TD 2FA soit défini sur \" Uniquement lorsque TD souhaite confirmer mon identité \"."
+	},
+	{
+		"aggregator":0,
+		"type":"vancity",
+		"name":"Vancity",
+		"main":false
+	}
+]
+ 
+

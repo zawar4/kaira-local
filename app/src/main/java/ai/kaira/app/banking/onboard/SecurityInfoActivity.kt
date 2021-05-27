@@ -1,4 +1,4 @@
-package ai.kaira.app.banking
+package ai.kaira.app.banking.onboard
 
 import ai.kaira.app.R
 import ai.kaira.app.databinding.ActivitySecurityInfoBinding
