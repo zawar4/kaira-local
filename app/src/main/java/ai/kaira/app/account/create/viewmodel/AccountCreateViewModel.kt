@@ -69,7 +69,9 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
             when(result.status){
                 ResultState.SUCCESS -> {
                     showLoading(false)
-                    emailExistsLiveData.value = result.data!!
+                    result.data?.let{
+                        emailExistsLiveData.value = it
+                    }
                     emailExistsLiveData.removeSource(liveDataSource)
                 }
                 ResultState.LOADING -> {
@@ -101,7 +103,9 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
                 ResultState.SUCCESS ->{
                     showLoading(false)
                     createAccountLiveData.removeSource(liveDataSource)
-                    createAccountLiveData.value = result.data!!
+                    result.data?.let{
+                        createAccountLiveData.value = it
+                    }
                 }
                 ResultState.ERROR ->{
                     result.message?.let{ it->
