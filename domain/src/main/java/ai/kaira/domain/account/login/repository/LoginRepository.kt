@@ -14,5 +14,6 @@ interface LoginRepository {
     fun resetPassword(resetPasswordBody: ResetPasswordBody): MutableLiveData<KairaResult<Unit>>
     fun saveToken(user:User)
     fun isLoggedIn():Boolean
+    fun deleteToken()
     fun logout()
 }

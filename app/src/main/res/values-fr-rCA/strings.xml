@@ -189,6 +189,11 @@
     <string name="banking_institutions_security_title">Question de sécurité</string>
     <string name="results">résultats</string>
 
+    <string name="title_dashboard">Mon espace</string>
+    <string name="title_coach">Mon coach</string>
+    <string name="title_finance">Mes finances</string>
+    <string name="title_profile">Mon profil</string>
+
     <string name = "mint" >mint</string>
 
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_graph"
+    app:startDestination="@+id/navigation_my_space">
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="ai.kaira.app.home.MyProfileFragment"
+        android:label="fragment_my_profile"
+        tools:layout="@layout/fragment_my_profile" />
+    <fragment
+        android:id="@+id/navigation_finance"
+        android:name="ai.kaira.app.home.MyFinanceFragment"
+        android:label="fragment_my_finance"
+        tools:layout="@layout/fragment_my_finance" />
+    <fragment
+        android:id="@+id/navigation_coach"
+        android:name="ai.kaira.app.home.MyCoachFragment"
+        android:label="fragment_my_coach"
+        tools:layout="@layout/fragment_my_coach" />
+    <fragment
+        android:id="@+id/navigation_my_space"
+        android:name="ai.kaira.app.home.MySpaceFragment"
+        android:label="fragment_my_space"
+        tools:layout="@layout/fragment_my_space" />
+</navigation>

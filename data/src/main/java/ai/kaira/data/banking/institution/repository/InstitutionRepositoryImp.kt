@@ -19,4 +19,8 @@ class InstitutionRepositoryImp @Inject constructor(private val institutionLocalD
     override fun connectInstitution(institutionParamBody: InstitutionParamBody): MutableLiveData<KairaResult<ConnectedInstitution>> {
         return institutionNetworkDataSource.connectInstitution(institutionParamBody)
     }
+
+    override fun getMyInstitutions(): MutableLiveData<KairaResult<ArrayList<Institution>>> {
+        return institutionNetworkDataSource.getMyInstitutions()
+    }
 }

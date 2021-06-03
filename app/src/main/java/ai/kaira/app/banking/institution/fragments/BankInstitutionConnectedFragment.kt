@@ -6,11 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ai.kaira.app.R
+import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.banking.institution.fragments.viewmodel.InstitutionViewModel
 import ai.kaira.app.databinding.FragmentBankInstitutionConnectedBinding
 import ai.kaira.app.databinding.FragmentConnectBankInstitutionLoadBinding
+import ai.kaira.app.home.MainActivity
+import ai.kaira.app.utils.Extensions.Companion.ignoreInstitutionAddition
 import ai.kaira.domain.banking.institution.model.InstitutionParamBody
+import android.content.Intent
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -37,12 +41,16 @@ class BankInstitutionConnectedFragment : Fragment() {
         val url = "https://app.wealthica.com/images/institutions/$institutionType.png"
         Glide.with(binding.institutionIm.context).load(url).into(binding.institutionIm);
 
+        requireContext().ignoreInstitutionAddition()
         binding.yesBtn.setOnClickListener {
             findNavController().popBackStack(R.id.bankInstitutionListFragment,false)
         }
 
         binding.noBtn.setOnClickListener {
             requireActivity().finish()
+            var intent = Intent(requireContext(), MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
         }
     }
 }

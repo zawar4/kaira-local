@@ -5,6 +5,7 @@ import ai.kaira.domain.introduction.model.User
 interface LoginLocalDataSource {
 
     fun saveToken(user:User)
+    fun deleteToken()
     fun isLoggedIn():Boolean
     fun logout()
 }

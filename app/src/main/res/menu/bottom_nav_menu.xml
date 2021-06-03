@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_my_space"
+        android:title="@string/title_dashboard"
+        android:icon="@drawable/my_space_selector"/>
+
+    <item
+        android:id="@+id/navigation_coach"
+        android:title="@string/title_coach"
+        android:icon="@drawable/coach_selector"/>
+
+    <item
+        android:id="@+id/navigation_finance"
+        android:title="@string/title_finance"
+        android:icon="@drawable/my_finance_selector"/>
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:title="@string/title_profile"
+        android:icon="@drawable/my_profile_selector"/>
+
+</menu>
