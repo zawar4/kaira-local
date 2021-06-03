@@ -6,4 +6,8 @@ import dagger.hilt.android.HiltAndroidApp
 @HiltAndroidApp
 class KairaApplication : Application() {
 
+    companion object{
+        var creatingAccountFirstTime = false
+    }
+
 }

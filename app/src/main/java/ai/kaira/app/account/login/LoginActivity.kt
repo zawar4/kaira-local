@@ -4,6 +4,7 @@ import ai.kaira.app.R
 import ai.kaira.app.account.create.AccountVerificationActivity
 import ai.kaira.app.account.forgotpassword.ForgotPasswordActivity
 import ai.kaira.app.account.login.viewmodel.LoginViewModel
+import ai.kaira.app.application.KairaApplication.Companion.creatingAccountFirstTime
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.banking.onboard.BankAccountInvitationActivity
 import ai.kaira.app.databinding.ActivityLoginBinding
@@ -82,21 +83,18 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginViewModel.onUserLoggedIn().observe(this){
-            loginViewModel.onInstitutionFetched().observe(this){ exists ->
-                if(exists){
-                    ignoreInstitutionAddition()
-                    finish()
-                    var intent = Intent(this, MainActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    startActivity(intent)
-                }else{
-                    finish()
-                    var intent = Intent(this, BankAccountInvitationActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    startActivity(intent)
-                }
+            if(creatingAccountFirstTime){
+                creatingAccountFirstTime = false
+                finish()
+                var intent = Intent(this, BankAccountInvitationActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
+            }else{
+                finish()
+                var intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
             }
-            loginViewModel.getMyInstitutions()
         }
 
         loginViewModel.onLoad().observe(this){ loading ->

@@ -3,6 +3,7 @@ package ai.kaira.app.account.create
 import ai.kaira.app.R
 import ai.kaira.app.account.create.viewmodel.AccountCreateViewModel
 import ai.kaira.app.account.login.LoginActivity
+import ai.kaira.app.application.KairaApplication.Companion.creatingAccountFirstTime
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.ActivityUserCredentialsCreateAccountBinding
 import ai.kaira.app.utils.Extensions.Companion.dismissKeyboard
@@ -153,6 +154,7 @@ class UserCredentialsCreateAccountActivity : AppCompatActivity() {
             }
 
             accountCreateViewModel.onAccountCreated().observe(this){
+                creatingAccountFirstTime = true
                 val email = binding.emailTv.text.toString()
                 val intent = Intent(this,AccountVerificationActivity::class.java)
                 intent.putExtra("email",email)

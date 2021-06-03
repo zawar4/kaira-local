@@ -37,28 +37,8 @@ class SplashActivity : AppCompatActivity() {
         splashViewModel = ViewModelProvider(this, viewModelFactory).get(SplashViewModel::class.java)
 
         if(splashViewModel.isLoggedIn()){
-            splashViewModel.onInstitutionFetched().observe(this){ exists ->
-                if(exists){
-                    ignoreInstitutionAddition()
-                    startActivity(Intent(applicationContext, MainActivity::class.java))
-                    finish()
-                }else{
-                    startActivity(Intent(applicationContext, BankAccountInvitationActivity::class.java))
-                    finish()
-                }
-            }
-            splashViewModel.getMyInstitutions()
-            splashViewModel.onErrorAction().observe(this) { error ->
-                error.kairaAction?.let { action ->
-                    when (action) {
-                        KairaAction.UNAUTHORIZED_REDIRECT -> {
-                            finish()
-                            var intent = Intent(this, LoginActivity::class.java)
-                            startActivity(intent)
-                        }
-                    }
-                }
-            }
+            startActivity(Intent(applicationContext, MainActivity::class.java))
+            finish()
         }else{
             Timer().schedule(SPLASH_TIME_OUT){
                 clearCache();
