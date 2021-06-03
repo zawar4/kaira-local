@@ -7,7 +7,9 @@ import ai.kaira.app.account.login.viewmodel.LoginViewModel
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.banking.onboard.BankAccountInvitationActivity
 import ai.kaira.app.databinding.ActivityLoginBinding
+import ai.kaira.app.home.MainActivity
 import ai.kaira.app.utils.Extensions.Companion.dismissKeyboard
+import ai.kaira.app.utils.Extensions.Companion.ignoreInstitutionAddition
 import ai.kaira.app.utils.UIUtils
 import ai.kaira.domain.KairaAction
 import android.content.Intent
@@ -80,7 +82,21 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginViewModel.onUserLoggedIn().observe(this){
-            startActivity(Intent(this, BankAccountInvitationActivity::class.java))
+            loginViewModel.onInstitutionFetched().observe(this){ exists ->
+                if(exists){
+                    ignoreInstitutionAddition()
+                    finish()
+                    var intent = Intent(this, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                }else{
+                    finish()
+                    var intent = Intent(this, BankAccountInvitationActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                }
+            }
+            loginViewModel.getMyInstitutions()
         }
 
         loginViewModel.onLoad().observe(this){ loading ->
