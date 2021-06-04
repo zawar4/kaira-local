@@ -10,6 +10,7 @@ import ai.kaira.data.introduction.model.UserResponse
 import ai.kaira.domain.account.create.model.Account
 import ai.kaira.domain.account.login.ResetPasswordBody
 import ai.kaira.domain.banking.institution.model.ConnectedInstitution
+import ai.kaira.domain.banking.institution.model.Institution
 import ai.kaira.domain.introduction.model.User
 import retrofit2.Call
 import retrofit2.http.*
@@ -18,6 +19,8 @@ import retrofit2.http.*
 interface KairaApiRouter {
 
 
+    @GET("banking/institutions")
+    fun getMyInstitutions(@Header("Authorization") authorization:String):Call<ArrayList<Institution>>
     @POST ("banking/institutions")
     fun connectInstitution(@Header("Authorization") authorization:String,@Body institutionParam: InstitutionParamBody) : Call<ConnectedInstitution>
 

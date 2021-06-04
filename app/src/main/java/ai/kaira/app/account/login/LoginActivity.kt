@@ -1,22 +1,24 @@
 package ai.kaira.app.account.login
 
 import ai.kaira.app.R
+import ai.kaira.app.RedirectHelper.Companion.redirectExists
 import ai.kaira.app.account.create.AccountVerificationActivity
 import ai.kaira.app.account.forgotpassword.ForgotPasswordActivity
 import ai.kaira.app.account.login.viewmodel.LoginViewModel
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.banking.onboard.BankAccountInvitationActivity
 import ai.kaira.app.databinding.ActivityLoginBinding
+import ai.kaira.app.home.MainActivity
 import ai.kaira.app.utils.Extensions.Companion.dismissKeyboard
 import ai.kaira.app.utils.UIUtils
 import ai.kaira.domain.KairaAction
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
@@ -80,7 +82,17 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginViewModel.onUserLoggedIn().observe(this){
-            startActivity(Intent(this, BankAccountInvitationActivity::class.java))
+            if(redirectExists(this::class.java.simpleName,BankAccountInvitationActivity::class.java.simpleName)){
+                finish()
+                var intent = Intent(this, BankAccountInvitationActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
+            }else{
+                finish()
+                var intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
+            }
         }
 
         loginViewModel.onLoad().observe(this){ loading ->

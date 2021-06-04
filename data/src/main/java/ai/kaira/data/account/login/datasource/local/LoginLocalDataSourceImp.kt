@@ -14,6 +14,10 @@ class LoginLocalDataSourceImp @Inject constructor(private val prefs: SharedPrefe
         }
     }
 
+    override fun deleteToken() {
+        prefs.edit().remove("token").apply()
+    }
+
     override fun isLoggedIn(): Boolean {
         return prefs.contains("token")
     }

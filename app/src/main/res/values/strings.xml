@@ -204,12 +204,21 @@
     <string name="banking_institutions_security_title">Security Question</string>
     <string name="results">results</string>
 
+    <string name="title_dashboard">My Space</string>
+    <string name="title_coach">My Coach</string>
+    <string name="title_finance">My Finances</string>
+    <string name="title_profile">My Profile</string>
+
+
     <string name="_2" translatable="false">2</string>
     <string name="_1" translatable="false">1</string>
+
 
     <string name="clock" translatable="false">\u23F0</string>
     <string name="question" translatable="false">\u2753</string>
     <string name="tick" translatable="false">\u2713</string>
     <string name="mint">mint</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -2,6 +2,7 @@ package ai.kaira.app.account.login.viewmodel
 
 import ai.kaira.app.application.BaseViewModel
 import ai.kaira.domain.ErrorAction
+import ai.kaira.domain.KairaAction
 import ai.kaira.domain.KairaResult
 import ai.kaira.domain.ResultState
 import ai.kaira.domain.account.create.EmailBody
@@ -20,7 +21,7 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseV
     private val sendForgotPasswordVerificationEmailLiveData = MediatorLiveData<EmailBody>()
     private val sendVerificationEmailLiveData = MediatorLiveData<Unit>()
     private val resetPasswordLiveData = MediatorLiveData<Unit>()
-
+    private val institutionFetchedLiveData = MediatorLiveData<Boolean>()
 
     fun sendVerificationEmail(email:String){
         val liveDataSource = loginUseCase.sendVerificationEmail(email)
@@ -202,6 +203,53 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseV
                     showConnectivityError()
                     showLoading(false)
                     loginLiveData.removeSource(liveDataSource)
+                }
+            }
+        }
+    }
+
+    fun onInstitutionFetched():MediatorLiveData<Boolean>{
+        return institutionFetchedLiveData
+    }
+
+    fun getMyInstitutions(){
+        val liveDataSource = loginUseCase.getMyInstitutions()
+        institutionFetchedLiveData.addSource(liveDataSource) {
+            when (it.status) {
+                ResultState.SUCCESS -> {
+                    if(it.data != null){
+                        institutionFetchedLiveData.value =  it.data!!.isNotEmpty()
+                    }
+                    institutionFetchedLiveData.removeSource(liveDataSource)
+                    showLoading(false)
+                }
+                ResultState.ERROR -> {
+                    institutionFetchedLiveData.removeSource(liveDataSource)
+                    institutionFetchedLiveData.value = false
+                    showLoading(false)
+                    if (it.kairaAction != null) {
+                        if(it.kairaAction == KairaAction.UNAUTHORIZED_REDIRECT){
+                            loginUseCase.deleteToken()
+                        }
+                        it.kairaAction?.let { it2 ->
+                            errorAction(ErrorAction(it.message.toString(), it2))
+                        }
+                    } else {
+                        it.message?.let { error ->
+                            showError(error)
+                        }
+                    }
+                }
+                ResultState.EXCEPTION -> {
+                    it.message?.let { it2 ->
+                        showConnectivityError()
+                        showLoading(false)
+                    }
+                    institutionFetchedLiveData.value = false
+                    institutionFetchedLiveData.removeSource(liveDataSource)
+                }
+                ResultState.LOADING -> {
+                    showLoading(true)
                 }
             }
         }

@@ -33,6 +33,10 @@ class LoginRepositoryImp @Inject constructor(private val loginNetworkDataSource:
         return loginLocalDataSource.isLoggedIn()
     }
 
+    override fun deleteToken() {
+        loginLocalDataSource.deleteToken()
+    }
+
     override fun logout() {
         loginLocalDataSource.logout()
     }

@@ -1,24 +1,20 @@
 package ai.kaira.app.banking.institution.fragments
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import ai.kaira.app.R
 import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.banking.institution.fragments.viewmodel.InstitutionViewModel
-import ai.kaira.app.databinding.FragmentBankInstitutionListBinding
 import ai.kaira.app.databinding.FragmentConnectBankInstitutionLoadBinding
-import ai.kaira.app.introduction.IntroductionActivity
-import ai.kaira.app.utils.Extensions.Companion.clearCache
 import ai.kaira.app.utils.UIUtils
 import ai.kaira.domain.KairaAction
-import ai.kaira.domain.banking.institution.model.Institution
 import ai.kaira.domain.banking.institution.model.InstitutionParamBody
 import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -72,17 +68,14 @@ class ConnectBankInstitutionLoadFragment : Fragment() {
                     }
                     KairaAction.UNAUTHORIZED_REDIRECT ->{
                         UIUtils.networkCallAlert(requireContext(), error.message) {
-                            requireContext().clearCache();
                             requireActivity().finish()
                             var intent = Intent(requireContext(), LoginActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                             startActivity(intent)
 
                         }
-
                     }
                 }
-
             }
 
         }

@@ -1,9 +1,11 @@
 package ai.kaira.app.account.create
 
 import ai.kaira.app.R
+import ai.kaira.app.RedirectHelper.Companion.enableRedirect
 import ai.kaira.app.account.create.viewmodel.AccountCreateViewModel
 import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.application.ViewModelFactory
+import ai.kaira.app.banking.onboard.BankAccountInvitationActivity
 import ai.kaira.app.databinding.ActivityUserCredentialsCreateAccountBinding
 import ai.kaira.app.utils.Extensions.Companion.dismissKeyboard
 import ai.kaira.app.utils.LanguageConfig
@@ -50,7 +52,6 @@ class UserCredentialsCreateAccountActivity : AppCompatActivity() {
                     accountCreateViewModel.arePasswordsSame(password,confirmPassword)
 
             if(accountCreateViewModel.isValidEmail(email)){
-                //binding.emailTv.setTextColor(ContextCompat.getColor(applicationContext,R.color.kairaSecLabel))
                 binding.emailInvalidErrorTv.visibility = INVISIBLE
             }else{
                 //binding.emailTv.setTextColor(Color.RED)
@@ -153,6 +154,7 @@ class UserCredentialsCreateAccountActivity : AppCompatActivity() {
             }
 
             accountCreateViewModel.onAccountCreated().observe(this){
+                enableRedirect(LoginActivity::class.java.simpleName, BankAccountInvitationActivity::class.java.simpleName)
                 val email = binding.emailTv.text.toString()
                 val intent = Intent(this,AccountVerificationActivity::class.java)
                 intent.putExtra("email",email)

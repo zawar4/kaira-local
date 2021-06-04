@@ -4,7 +4,9 @@ import ai.kaira.app.R
 import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.banking.institution.BankInstitutionsHostActivity
 import ai.kaira.app.databinding.ActivityBankAccountConnectLastChanceBinding
+import ai.kaira.app.home.MainActivity
 import ai.kaira.app.survey.SurveyActivity
+import ai.kaira.app.utils.Extensions.Companion.ignoreInstitutionAddition
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -35,7 +37,8 @@ class BankAccountConnectLastChanceActivity : AppCompatActivity() {
 
         binding.laterButton.setOnClickListener {
             finish()
-            var intent = Intent(this, BankAccountInvitationActivity::class.java)
+            ignoreInstitutionAddition()
+            var intent = Intent(this, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
         }

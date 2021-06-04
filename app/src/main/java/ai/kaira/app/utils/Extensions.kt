@@ -33,8 +33,20 @@ class Extensions {
             getSharedPreferences("kaira", Context.MODE_PRIVATE).edit().clear().apply()
         }
 
+        fun Context.clearToken(){
+            getSharedPreferences("kaira", Context.MODE_PRIVATE).edit().remove("token").apply()
+        }
+
         fun Context.isLoggedIn():Boolean{
             return getSharedPreferences("kaira", Context.MODE_PRIVATE).contains("token")
+        }
+
+        fun Context.ignoreInstitutionAddition(){
+            getSharedPreferences("kaira", Context.MODE_PRIVATE).edit().putBoolean("ignore_institution_addition",true).apply()
+        }
+
+        fun Context.institutionAdditionIgnored():Boolean{
+            return getSharedPreferences("kaira", Context.MODE_PRIVATE).contains("ignore_institution_addition")
         }
 
         fun View.increaseViewSize(duration: Long, maxHeight: Int, minHeight: Int) {
