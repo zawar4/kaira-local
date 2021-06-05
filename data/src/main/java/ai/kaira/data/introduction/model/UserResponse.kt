@@ -3,6 +3,8 @@ package ai.kaira.data.introduction.model
 import ai.kaira.domain.account.Token
 import ai.kaira.domain.introduction.model.User
 
+import androidx.annotation.Keep
+@Keep
 data class UserResponse(private val id:String = "",
                         private val firstName:String = "",
                         private val lastName:String ="",

@@ -4,6 +4,8 @@ import ai.kaira.domain.assessment.model.FinancialProfile
 import ai.kaira.domain.assessment.model.FinancialProfileValue
 import ai.kaira.domain.assessment.model.ProfileQuestionAnswer
 
+import androidx.annotation.Keep
+@Keep
 data class FinancialProfileResponse(
         var average: Double,
         var types: List<FinancialProfileValue>,

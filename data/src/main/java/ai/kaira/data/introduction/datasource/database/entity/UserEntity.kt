@@ -1,10 +1,12 @@
 package ai.kaira.data.introduction.datasource.database.entity
 
 import ai.kaira.domain.introduction.model.User
+import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+@Keep
 @Entity
 data class UserEntity(
         @ColumnInfo(name = "id") val id:String,

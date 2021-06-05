@@ -1,5 +1,7 @@
 package ai.kaira.data.assessment.model
 
+import androidx.annotation.Keep
+@Keep
 data class AssessmentAnswerRequestParam (val userId: String,
                                          val assessmentId:Int,
                                          val assessmentVersion:Int,

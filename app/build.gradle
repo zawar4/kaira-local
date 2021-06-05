@@ -5,6 +5,14 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/Users/southvillesol-4/Desktop/kaira.jks')
+            storePassword 'kaira123'
+            keyAlias 'kaira'
+            keyPassword 'kaira123'
+        }
+    }
     dexOptions {
         javaMaxHeapSize "4g"
     }
@@ -32,7 +40,7 @@ android {
 
         debug {
             debuggable true
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
