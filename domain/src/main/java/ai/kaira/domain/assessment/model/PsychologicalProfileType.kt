@@ -1,7 +1,9 @@
 package ai.kaira.domain.assessment.model
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 enum class PsychologicalProfileType (val rawValue: Int) {
     @SerializedName("0")
     SOCIAL_STATUS(0),

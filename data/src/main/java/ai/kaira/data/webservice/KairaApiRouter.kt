@@ -12,10 +12,11 @@ import ai.kaira.domain.account.login.ResetPasswordBody
 import ai.kaira.domain.banking.institution.model.ConnectedInstitution
 import ai.kaira.domain.banking.institution.model.Institution
 import ai.kaira.domain.introduction.model.User
+import androidx.annotation.Keep
 import retrofit2.Call
 import retrofit2.http.*
 
-
+@Keep
 interface KairaApiRouter {
 
 

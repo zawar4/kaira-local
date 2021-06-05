@@ -1,8 +1,10 @@
 package ai.kaira.data.utils
 
 import android.content.Context
+import androidx.annotation.Keep
 import androidx.core.os.ConfigurationCompat
 
+@Keep
 class LanguageConfig {
     companion object{
 

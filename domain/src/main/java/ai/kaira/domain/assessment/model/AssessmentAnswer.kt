@@ -1,6 +1,9 @@
 package ai.kaira.domain.assessment.model
 
-class AssessmentAnswer(var id: Int,
+import androidx.annotation.Keep
+
+@Keep
+data class AssessmentAnswer(var id: Int,
                        var title: String,
                        var value: Int,
                        var duration: Double,

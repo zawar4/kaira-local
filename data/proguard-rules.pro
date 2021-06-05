@@ -103,3 +103,24 @@
 -keep @androidx.room.Entity class *
 
 -keep public class * extends java.lang.Exception
+
+-keep class **.R$* {<fields>;}
+
+
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+-keep public class * extends android.app.backup.BackupAgentHelper
+-keep public class * extends android.preference.Preference
+
+
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+-keep public class * {
+    public <methods>;
+    public <fields>;
+}

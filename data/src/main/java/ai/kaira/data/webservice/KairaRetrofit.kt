@@ -1,6 +1,7 @@
 package ai.kaira.data.webservice
 
 import ai.kaira.data.utils.APIConfig
+import androidx.annotation.Keep
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -10,6 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+@Keep
 class KairaRetrofit {
 
     companion object {

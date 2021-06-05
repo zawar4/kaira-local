@@ -1,7 +1,9 @@
 package ai.kaira.data.utils
 
 import ai.kaira.data.BuildConfig.FLAVOR
+import androidx.annotation.Keep
 
+@Keep
 class APIConfig {
 
    companion object{
