@@ -1,7 +1,9 @@
 package ai.kaira.domain.assessment.model
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 enum class AssessmentType (val value: Int) {
 
     @SerializedName("1")

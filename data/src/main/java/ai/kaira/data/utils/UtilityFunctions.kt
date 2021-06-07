@@ -1,8 +1,10 @@
 package ai.kaira.data.utils
 
+import androidx.annotation.Keep
 import java.text.SimpleDateFormat
 import java.util.*
 
+@Keep
 class UtilityFunctions {
 
     companion object{

@@ -1,6 +1,8 @@
 package ai.kaira.domain
 
 
+import androidx.annotation.Keep
+@Keep
 data class KairaResult<T>(val data: T?,val status: ResultState, val kairaAction: KairaAction?, val message: String?) {
     companion object {
         fun <T> success(data: T? = null): KairaResult<T> = KairaResult(status = ResultState.SUCCESS, data = data, message = null,kairaAction = null)

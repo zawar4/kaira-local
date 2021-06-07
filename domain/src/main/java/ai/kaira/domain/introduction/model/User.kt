@@ -1,7 +1,9 @@
 package ai.kaira.domain.introduction.model
 
 import ai.kaira.domain.account.Token
+import androidx.annotation.Keep
 
+@Keep
 class User (var id:String = "",
             var firstName:String = "",
             var lastName:String = "",

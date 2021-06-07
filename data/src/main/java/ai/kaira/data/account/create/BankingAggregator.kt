@@ -1,7 +1,9 @@
 package ai.kaira.data.account.create
 
 import ai.kaira.domain.assessment.model.AssessmentType
+import androidx.annotation.Keep
 
+@Keep
 enum class BankingAggregator(val value:Int) {
     wealthica(0),
     bi(1);

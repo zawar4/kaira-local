@@ -3,6 +3,7 @@ package ai.kaira.app.home
 import ai.kaira.app.R
 import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.databinding.FragmentMyProfileBinding
+import ai.kaira.app.onboarding.OnboardActivity
 import ai.kaira.app.utils.Extensions.Companion.clearToken
 import android.content.Intent
 import android.os.Bundle
@@ -24,7 +25,7 @@ class MyProfileFragment : Fragment() {
         binding.logoutBtn.setOnClickListener {
             requireContext().clearToken();
             requireActivity().finish()
-            var intent = Intent(requireContext(), LoginActivity::class.java)
+            var intent = Intent(requireContext(), OnboardActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
         }
