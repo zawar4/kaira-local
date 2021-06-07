@@ -5,14 +5,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 
 android {
-    signingConfigs {
-        debug {
-            storeFile file('/Users/southvillesol-4/Desktop/kaira.jks')
-            storePassword 'kaira123'
-            keyAlias 'kaira'
-            keyPassword 'kaira123'
-        }
-    }
+
     dexOptions {
         javaMaxHeapSize "4g"
     }
