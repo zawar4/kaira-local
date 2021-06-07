@@ -29,9 +29,16 @@ class ForgotPasswordEmailVerificationActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_forgot_password_email_verification)
         loginViewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
         var email = ""
+        var token = ""
         intent?.let{
-            if(intent.hasExtra("email")){
-                email = intent.getStringExtra("email").toString()
+            if(intent.hasExtra("email") || intent.hasExtra("token")){
+                if(intent.getStringExtra("email") != null){
+                    email = intent.getStringExtra("email").toString()
+                }
+
+                if(intent.getStringExtra("token") != null) {
+                    token = intent.getStringExtra("token").toString()
+                }
 
                 loginViewModel.onForgotPasswordVerificationEmailSent().observe(this){ sent ->
                     sent.let{
@@ -59,7 +66,7 @@ class ForgotPasswordEmailVerificationActivity : AppCompatActivity() {
                 }
 
                 binding.sendAnotherEmailBtn.setOnClickListener {
-                    loginViewModel.sendForgotPasswordVerificationEmail(email)
+                    loginViewModel.sendForgotPasswordVerificationEmail(email,token)
                 }
 
                 loginViewModel.onLoad().observe(this) { loading ->
@@ -76,6 +83,10 @@ class ForgotPasswordEmailVerificationActivity : AppCompatActivity() {
 
                 loginViewModel.onError().observe(this) { error ->
                     UIUtils.networkCallAlert(this, error)
+                }
+
+                if(token.isNotEmpty()){
+                    binding.sendAnotherEmailBtn.performClick()
                 }
             }
         }?: run {

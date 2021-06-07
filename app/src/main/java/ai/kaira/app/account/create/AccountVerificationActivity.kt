@@ -23,15 +23,23 @@ class AccountVerificationActivity : AppCompatActivity() {
     private lateinit var binding:ActivityAccountVerificationBinding
     @Inject
     lateinit var viewModelFactory : ViewModelFactory
-    lateinit var accountCreateViewModel: AccountCreateViewModel
+    private lateinit var accountCreateViewModel: AccountCreateViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_account_verification)
         var email = ""
+        var token = ""
         intent?.let{
-            if(intent.hasExtra("email")){
-                email = intent.getStringExtra("email").toString()
+            if(intent.hasExtra("email") || intent.hasExtra("token")){
+                if(intent.getStringExtra("email") != null){
+                    email = intent.getStringExtra("email").toString()
+                }
+
+                if(intent.getStringExtra("token") != null) {
+                    token = intent.getStringExtra("token").toString()
+                }
+
                 accountCreateViewModel = ViewModelProvider(this, viewModelFactory).get(AccountCreateViewModel::class.java)
 
                 accountCreateViewModel.onVerificationEmailSent().observe(this){ sent ->
@@ -60,7 +68,7 @@ class AccountVerificationActivity : AppCompatActivity() {
                 }
 
                 binding.sendAnotherEmailBtn.setOnClickListener {
-                    accountCreateViewModel.sendVerificationEmail(email)
+                    accountCreateViewModel.sendVerificationEmail(email,token)
                 }
 
                 accountCreateViewModel.onLoad().observe(this) { loading ->
@@ -77,6 +85,10 @@ class AccountVerificationActivity : AppCompatActivity() {
 
                 accountCreateViewModel.onError().observe(this) { error ->
                     UIUtils.networkCallAlert(this, error)
+                }
+
+                if(token.isNotEmpty()){
+                    binding.sendAnotherEmailBtn.performClick()
                 }
             }
         }?: run {

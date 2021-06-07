@@ -8,11 +8,11 @@ import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 
 class SendVerificationEmail @Inject constructor(private val accountCreateRepository: AccountCreateRepository, viewModelCoroutineScope: CoroutineScope): BaseUseCase(viewModelCoroutineScope) {
-    operator fun invoke(email:String):MutableLiveData<KairaResult<Void>>{
-        return sendVerificationEmail(email)
+    operator fun invoke(email:String,token:String):MutableLiveData<KairaResult<Void>>{
+        return sendVerificationEmail(email,token)
     }
 
-    private fun sendVerificationEmail(email:String): MutableLiveData<ai.kaira.domain.KairaResult<Void>> {
-        return accountCreateRepository.sendVerificationEmail(email)
+    private fun sendVerificationEmail(email:String,token:String): MutableLiveData<KairaResult<Void>> {
+        return accountCreateRepository.sendVerificationEmail(email,token)
     }
 }

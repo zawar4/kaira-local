@@ -8,11 +8,11 @@ import javax.inject.Inject
 
 class ForgotPassword @Inject constructor(private val loginRepository: LoginRepository) {
 
-    operator fun invoke(emailBody: EmailBody):MutableLiveData<KairaResult<EmailBody>>{
-        return forgotPassword(emailBody)
+    operator fun invoke(email: String,token:String):MutableLiveData<KairaResult<EmailBody>>{
+        return forgotPassword(email,token)
     }
 
-    fun forgotPassword(emailBody: EmailBody):MutableLiveData<KairaResult<EmailBody>>{
-        return loginRepository.forgotPassword(emailBody)
+    fun forgotPassword(email: String,token:String):MutableLiveData<KairaResult<EmailBody>>{
+        return loginRepository.forgotPassword(email,token)
     }
 }

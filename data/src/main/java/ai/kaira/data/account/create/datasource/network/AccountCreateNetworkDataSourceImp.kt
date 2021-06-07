@@ -3,6 +3,7 @@ package ai.kaira.data.account.create.datasource.network
 import ai.kaira.domain.account.create.EmailBody
 import ai.kaira.domain.account.create.TokenBody
 import ai.kaira.data.webservice.KairaApiRouter
+import ai.kaira.domain.KairaAction
 import ai.kaira.domain.KairaResult
 import ai.kaira.domain.account.create.model.Account
 import ai.kaira.domain.introduction.model.User
@@ -12,6 +13,7 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.Response
 import javax.inject.Inject
 
 class AccountCreateNetworkDataSourceImp @Inject constructor(private val kairaApiRouter: KairaApiRouter,private val viewModelCoroutineScope: CoroutineScope) :
@@ -118,7 +120,7 @@ class AccountCreateNetworkDataSourceImp @Inject constructor(private val kairaApi
         return createAccountLiveData
     }
 
-    override fun sendVerificationEmail(email: String): MutableLiveData<KairaResult<Void>> {
+    override fun sendVerificationEmail(email: String,token:String): MutableLiveData<KairaResult<Void>> {
         val sendVerificationEmailLiveData = MutableLiveData<KairaResult<Void>>()
         viewModelCoroutineScope.launch(IO) {
             withContext(Main){
@@ -126,7 +128,11 @@ class AccountCreateNetworkDataSourceImp @Inject constructor(private val kairaApi
             }
             try
             {
-                val response = kairaApiRouter.sendVerificationEmail(EmailBody(email)).execute()
+                var response : Response<Void> = if(token != null && token.isNotBlank()){
+                    kairaApiRouter.sendVerificationEmail(TokenBody(token)).execute()
+                }else{
+                    kairaApiRouter.sendVerificationEmail(EmailBody(email)).execute()
+                }
                 withContext(Main){
                     if(response.isSuccessful){
                         sendVerificationEmailLiveData.value = KairaResult.success()
@@ -164,9 +170,16 @@ class AccountCreateNetworkDataSourceImp @Inject constructor(private val kairaApi
                     if (response.isSuccessful) {
                         verifyAccountLiveData.value = KairaResult.success()
                     } else {
-                        val error: String? = response.errorBody()?.string()
-                        error?.let {
-                            verifyAccountLiveData.value = KairaResult.error(message = error)
+                        if(response.code() == 403){
+                            val error: String? = response.errorBody()?.string()
+                            error?.let{
+                                verifyAccountLiveData.value = KairaResult.error(message = error,kairaAction = KairaAction.TOKEN_EXPIRED_RESEND)
+                            }
+                        }else{
+                            val error : String? = response.errorBody()?.string()
+                            error?.let{
+                                verifyAccountLiveData.value = KairaResult.error(message = error)
+                            }
                         }
                     }
                 }

@@ -6,5 +6,7 @@ import androidx.annotation.Keep
 enum class KairaAction {
     UNVERIFIED_REDIRECT,
     UNKOWN_REDIRECT,
-    UNAUTHORIZED_REDIRECT
+    UNAUTHORIZED_REDIRECT,
+    TOKEN_EXPIRED_RESEND,
+    TOKEN_EXPIRED_REDIRECT
 }

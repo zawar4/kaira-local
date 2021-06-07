@@ -6,6 +6,7 @@ import ai.kaira.domain.account.login.LoginBody
 import ai.kaira.data.webservice.KairaApiRouter
 import ai.kaira.domain.KairaAction
 import ai.kaira.domain.KairaResult
+import ai.kaira.domain.account.create.TokenBody
 import ai.kaira.domain.account.login.ResetPasswordBody
 import ai.kaira.domain.introduction.model.User
 import android.content.SharedPreferences
@@ -16,6 +17,7 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.Response
 import javax.inject.Inject
 
 class LoginNetworkDataSourceImp @Inject constructor(private val kairaApiRouter: KairaApiRouter, private val viewModelCoroutineScope: CoroutineScope) :
@@ -60,17 +62,22 @@ class LoginNetworkDataSourceImp @Inject constructor(private val kairaApiRouter: 
         return loginLiveData
     }
 
-    override fun forgotPassword(emailBody: EmailBody):MutableLiveData<KairaResult<EmailBody>>{
+    override fun forgotPassword(email: String,token:String):MutableLiveData<KairaResult<EmailBody>>{
         val forgotPasswordLiveData = MutableLiveData<KairaResult<EmailBody>>()
         viewModelCoroutineScope.launch(IO) {
             withContext(Main){
                 forgotPasswordLiveData.value = KairaResult.loading()
             }
             try{
-                val response = kairaApiRouter.forgotPassword(emailBody).execute()
+                var response : Response<EmailBody> = if(token != null && token.isNotBlank()){
+                    kairaApiRouter.forgotPassword(TokenBody(token)).execute()
+                }else{
+                    kairaApiRouter.forgotPassword(EmailBody(email)).execute()
+                }
                 withContext(Main){
                     if(response.isSuccessful){
-                        forgotPasswordLiveData.value = KairaResult.success()
+                        val emailBody = response.body()
+                        forgotPasswordLiveData.value = KairaResult.success(emailBody)
                     }else{
                         val error: String? = response.errorBody()?.string()
                         error?.let{
@@ -106,7 +113,7 @@ class LoginNetworkDataSourceImp @Inject constructor(private val kairaApiRouter: 
                         if(response.code() == 403){
                             val error: String? = response.errorBody()?.string()
                             error?.let{
-                                resetPasswordLiveData.value = KairaResult.error(message = error,kairaAction = KairaAction.UNVERIFIED_REDIRECT)
+                                resetPasswordLiveData.value = KairaResult.error(message = error,kairaAction = KairaAction.TOKEN_EXPIRED_REDIRECT)
                             }
                         }else {
                             val error: String? = response.errorBody()?.string()
