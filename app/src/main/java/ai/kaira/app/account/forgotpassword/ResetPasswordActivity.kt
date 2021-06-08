@@ -93,8 +93,8 @@ class ResetPasswordActivity : AppCompatActivity() {
             loginViewModel.onErrorAction().observe(this){ action ->
                 if(action.kairaAction == KairaAction.TOKEN_EXPIRED_REDIRECT){
                     val runnable : () -> Unit = {
-                        val intent = Intent(this,ForgotPasswordEmailVerificationActivity::class.java)
-                        intent.putExtra("token",token)
+                        val intent = Intent(this,ForgotPasswordActivity::class.java)
+                        //intent.putExtra("token",token)
                         startActivity(intent)
                         finish()
                     }
