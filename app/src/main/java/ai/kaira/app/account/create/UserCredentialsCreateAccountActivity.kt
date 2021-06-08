@@ -95,7 +95,7 @@ class UserCredentialsCreateAccountActivity : AppCompatActivity() {
         if(savedInstanceState?.getString("groupCode") != null){
             lastName =  savedInstanceState.getString("groupCode").toString()
         }
-        IntroductionActivity
+
         binding = DataBindingUtil.setContentView(this,R.layout.activity_user_credentials_create_account)
         binding.parent.setOnClickListener {
             dismissKeyboard()

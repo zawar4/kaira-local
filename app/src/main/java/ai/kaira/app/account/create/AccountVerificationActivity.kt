@@ -37,6 +37,7 @@ class AccountVerificationActivity : AppCompatActivity() {
         }
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_account_verification)
+
         if(intent.hasExtra("email")){
             email =  intent.getStringExtra("email").toString()
         }
