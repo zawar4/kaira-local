@@ -14,7 +14,7 @@
         <activity android:name=".home.MainActivity"></activity>
         <activity
             android:name=".banking.institution.BankInstitutionsHostActivity"
-            android:screenOrientation="portrait" />
+             />
 
         <meta-data
             android:name="io.sentry.dsn"
@@ -22,28 +22,28 @@
 
         <activity
             android:name=".banking.onboard.SecurityInfoActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".banking.onboard.BankAccountConnectLastChanceActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".banking.onboard.BankAccountInvitationActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".account.forgotpassword.ResetPasswordActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".account.forgotpassword.ForgotPasswordEmailVerificationActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".account.forgotpassword.ForgotPasswordActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".account.login.LoginActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".account.create.AccountVerificationDeepLinkingActivity"
-            android:screenOrientation="portrait">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -58,7 +58,7 @@
         </activity>
         <activity
             android:name=".account.forgotpassword.ForgotPasswordVerificationDeepLinkingActivity"
-            android:screenOrientation="portrait">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -73,71 +73,71 @@
         </activity>
         <activity
             android:name=".account.create.AccountVerifiedActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".account.create.AccountVerificationActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".account.create.UserCredentialsCreateAccountActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".account.create.UserIdentityCreateAccountActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".account.create.InfoCreateAccountActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".account.onboard.AccountCreationOnboardingActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".survey.SurveyActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".assessment.LastChanceActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".assessment.StrategyActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".assessment.EvaluationCompletedActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".assessment.FinancialProfilesActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".assessment.FinancialAssessmentResultActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".assessment.PsychologicalProfilesActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".assessment.PsychologicalAssessmentResultActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".assessment.AssessmentProfileComputationActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".assessment.AssessmentQuestionActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity android:name=".assessment.AssessmentActivity" />
         <activity
             android:name=".introduction.IntroductionActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".termsconditions.PrivacyPolicyActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".termsconditions.TermsConditionActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".termsconditions.TermsOfUseActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".onboarding.OnboardActivity"
-            android:screenOrientation="portrait" />
+             />
         <activity
             android:name=".splash.SplashActivity"
-            android:screenOrientation="portrait">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

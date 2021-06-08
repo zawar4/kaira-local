@@ -28,28 +28,33 @@ class AssessmentQuestionActivity : AppCompatActivity() {
     lateinit var activityAssessmentQuestionBinding : ActivityAssessmentQuestionBinding
     lateinit var assessmentViewModel: AssessmentViewModel
     var answerClickCallback: MutableLiveData<AssessmentAnswerClick> = MutableLiveData()
-
+    lateinit var assessmentType : AssessmentType
     @Inject
     lateinit var viewModelFactory : ViewModelFactory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if(savedInstanceState?.getSerializable(ASSESSMENT_TYPE) != null){
+            assessmentType = savedInstanceState.getSerializable(ASSESSMENT_TYPE) as AssessmentType
+        }
+
         activityAssessmentQuestionBinding = DataBindingUtil.setContentView(this,R.layout.activity_assessment_question)
+
+        if(intent.hasExtra(ASSESSMENT_TYPE)){
+            assessmentType = intent.getSerializableExtra(ASSESSMENT_TYPE) as AssessmentType
+        }
 
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
         assessmentViewModel  = ViewModelProvider(this, viewModelFactory).get(AssessmentViewModel::class.java)
-        lateinit var assessmentType : AssessmentType
-        val languageLocale = LanguageConfig.getLanguageLocale(applicationContext)
-        if(intent != null && intent.hasExtra(ASSESSMENT_TYPE)){
-            assessmentType = intent.getSerializableExtra(ASSESSMENT_TYPE) as AssessmentType
 
-            assessmentViewModel.fetchAssessments(assessmentType,languageLocale).observe(this){
-                setAssessmentQuestionsView(assessmentType)
-                setAssessmentQuestionsData((it))
-            }
-        }else{
-            finish()
+        val languageLocale = LanguageConfig.getLanguageLocale(applicationContext)
+
+        assessmentViewModel.fetchAssessments(assessmentType,languageLocale).observe(this){
+            setAssessmentQuestionsView(assessmentType)
+            setAssessmentQuestionsData((it))
         }
+
     }
 
     private fun setAssessmentQuestionsView(assessmentType: AssessmentType){
@@ -129,7 +134,7 @@ class AssessmentQuestionActivity : AppCompatActivity() {
         }
 
         assessmentViewModel.onStartComputeAssessmentProfileActivity().observe(this){
-            var intent = Intent(this,AssessmentProfileComputationActivity::class.java)
+            val intent = Intent(this,AssessmentProfileComputationActivity::class.java)
             intent.putExtra(ASSESSMENT_TYPE,it)
             startActivity(intent)
         }
@@ -145,5 +150,12 @@ class AssessmentQuestionActivity : AppCompatActivity() {
         }else{
             super.onBackPressed();
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.run {
+            putSerializable(ASSESSMENT_TYPE, assessmentType)
+        }
+        super.onSaveInstanceState(outState)
     }
 }

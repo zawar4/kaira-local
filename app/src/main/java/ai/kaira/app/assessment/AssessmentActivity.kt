@@ -28,30 +28,36 @@ class AssessmentActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if(savedInstanceState?.getSerializable(ASSESSMENT_TYPE) != null){
+            assessmentType = savedInstanceState.getSerializable(ASSESSMENT_TYPE) as AssessmentType
+        }
+
         activityAssessmentBinding = DataBindingUtil.setContentView(this,R.layout.activity_assessment)
+
+        if(intent.hasExtra(ASSESSMENT_TYPE)){
+            assessmentType = intent.getSerializableExtra(ASSESSMENT_TYPE) as AssessmentType
+        }
+
         assessmentViewModel  = ViewModelProvider(this, viewModelFactory).get(AssessmentViewModel::class.java)
 
         val languageLocale = LanguageConfig.getLanguageLocale(applicationContext)
-        if(intent != null && intent.hasExtra(ASSESSMENT_TYPE)){
-            assessmentType = intent.getSerializableExtra(ASSESSMENT_TYPE) as AssessmentType
-            if(assessmentType ==AssessmentType.FINANCIAL) {
-                assessmentViewModel.getFinancialAssessment(languageLocale).observe(this,{
-                    setView(assessmentType)
-                    setData((it))
-                })
-            }
-            else if(assessmentType ==AssessmentType.PSYCHOLOGICAL){
-                assessmentViewModel.getPsychologicalAssessment(languageLocale).observe(this,{
-                    setView(assessmentType)
-                    setData((it))
-                })
-            }else{
-                finish()
-            }
+
+
+        if(assessmentType ==AssessmentType.FINANCIAL) {
+            assessmentViewModel.getFinancialAssessment(languageLocale).observe(this,{
+                setView(assessmentType)
+                setData((it))
+            })
+        }
+        else if(assessmentType ==AssessmentType.PSYCHOLOGICAL){
+            assessmentViewModel.getPsychologicalAssessment(languageLocale).observe(this,{
+                setView(assessmentType)
+                setData((it))
+            })
         }else{
             finish()
         }
-
     }
 
 
@@ -91,6 +97,13 @@ class AssessmentActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.run {
+            putSerializable(ASSESSMENT_TYPE, assessmentType)
+        }
+        super.onSaveInstanceState(outState)
     }
 
 
