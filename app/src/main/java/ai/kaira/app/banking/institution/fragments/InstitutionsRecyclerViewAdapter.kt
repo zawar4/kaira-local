@@ -35,7 +35,7 @@ class InstitutionsRecyclerViewAdapter(var institutions : ArrayList<Institution>,
     override fun onBindViewHolder(holder: InstitutionViewHolder, position: Int) {
         val institution : Institution = institutions[position]
         holder.textView.text = institution.name
-        val url = "https://app.wealthica.com/images/institutions/"+institution.type+".png"
+        val url = institution
         Glide.with(holder.imageView.context).load(url).apply(RequestOptions.bitmapTransform(RoundedCorners(15))).into(holder.imageView);
         holder.parent.setOnClickListener {
             institutionClickCallback.onInstitutionClick(institution)

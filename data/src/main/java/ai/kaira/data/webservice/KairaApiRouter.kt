@@ -11,6 +11,7 @@ import ai.kaira.domain.account.create.model.Account
 import ai.kaira.domain.account.login.ResetPasswordBody
 import ai.kaira.domain.banking.institution.model.ConnectedInstitution
 import ai.kaira.domain.banking.institution.model.Institution
+import ai.kaira.domain.financial.model.MyFinancials
 import ai.kaira.domain.introduction.model.User
 import androidx.annotation.Keep
 import retrofit2.Call
@@ -19,9 +20,12 @@ import retrofit2.http.*
 @Keep
 interface KairaApiRouter {
 
+    @GET("banking/dashboard")
+    fun getMyFinancials(@Header("Authorization") authorization: String) : Call<MyFinancials>
 
     @GET("banking/institutions")
     fun getMyInstitutions(@Header("Authorization") authorization:String):Call<ArrayList<Institution>>
+
     @POST ("banking/institutions")
     fun connectInstitution(@Header("Authorization") authorization:String,@Body institutionParam: InstitutionParamBody) : Call<ConnectedInstitution>
 

@@ -60,7 +60,7 @@ class ConnectBankInstitutionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val institution : Institution = arguments?.get("institution") as Institution
-        val url = "https://app.wealthica.com/images/institutions/"+institution.type+".png"
+        val url = institution.getLogoUrl()
         Glide.with(binding.institutionIm.context).load(url).into(binding.institutionIm);
 
 

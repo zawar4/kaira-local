@@ -49,8 +49,7 @@ class AssessmentNetworkDataSourceImp @Inject constructor(private val kairaApiRou
         viewModelCoroutineScope.launch(IO) {
             try {
                 val response =
-                    kairaApiRouter.computeFinancialAssessmentProfile(assessmentType, userId)
-                        .execute()
+                    kairaApiRouter.computeFinancialAssessmentProfile(assessmentType, userId).execute()
                 withContext(Main) {
                     if (response.isSuccessful) {
                         val financialProfileResponse = response.body()
