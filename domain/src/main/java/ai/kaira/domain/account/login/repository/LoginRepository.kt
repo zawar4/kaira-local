@@ -10,7 +10,7 @@ import androidx.lifecycle.MutableLiveData
 interface LoginRepository {
 
     fun login(loginBody:LoginBody) : MutableLiveData<KairaResult<User>>
-    fun forgotPassword(emailBody: EmailBody):MutableLiveData<KairaResult<EmailBody>>
+    fun forgotPassword(email: String,token:String):MutableLiveData<KairaResult<EmailBody>>
     fun resetPassword(resetPasswordBody: ResetPasswordBody): MutableLiveData<KairaResult<Unit>>
     fun saveToken(user:User)
     fun isLoggedIn():Boolean

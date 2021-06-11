@@ -22,8 +22,8 @@ class AccountCreateRepositoryImp @Inject constructor(private val accountCreateNe
         return accountCreateNetworkDataSource.createAccount(accountDetails)
     }
 
-    override fun sendVerificationEmail(email: String): MutableLiveData<KairaResult<Void>> {
-        return accountCreateNetworkDataSource.sendVerificationEmail(email)
+    override fun sendVerificationEmail(email: String,token:String): MutableLiveData<KairaResult<Void>> {
+        return accountCreateNetworkDataSource.sendVerificationEmail(email,token)
     }
 
     override fun verifyAccount(token: String): MutableLiveData<KairaResult<Void>> {

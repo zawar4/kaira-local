@@ -1,6 +1,8 @@
 package ai.kaira.app.account.create.viewmodel
 
 import ai.kaira.app.application.BaseViewModel
+import ai.kaira.domain.ErrorAction
+import ai.kaira.domain.KairaAction
 import ai.kaira.domain.ResultState
 import ai.kaira.domain.account.create.usecase.AccountCreateUseCase
 import ai.kaira.domain.introduction.model.User
@@ -145,11 +147,17 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
                     verifyAccountLiveData.value = Unit
                 }
                 ResultState.ERROR ->{
-                    result.message?.let{ it->
-                        showError(it)
-                    }
-                    verifyAccountLiveData.removeSource(liveDataSource)
                     showLoading(false)
+                    verifyAccountLiveData.removeSource(liveDataSource)
+                    if (result.kairaAction != null) {
+                        result.kairaAction?.let { it2 ->
+                            errorAction(ErrorAction(result.message.toString(), it2))
+                        }
+                    } else {
+                        result.message?.let { error ->
+                            showError(error)
+                        }
+                    }
                 }
                 ResultState.EXCEPTION ->{
                     /*result.message?.let{ it->
@@ -166,8 +174,8 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
         }
     }
 
-    fun sendVerificationEmail(email:String){
-        val liveDataSource = accountCreateUseCase.sendVerificationEmail(email)
+    fun sendVerificationEmail(email:String,token:String){
+        val liveDataSource = accountCreateUseCase.sendVerificationEmail(email,token)
         sendVerificationEmailLiveData.addSource(liveDataSource){ result ->
             when(result.status){
                 ResultState.SUCCESS ->{
@@ -176,16 +184,19 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
                     sendVerificationEmailLiveData.value = Unit
                 }
                 ResultState.ERROR ->{
-                    result.message?.let{ it->
-                        showError(it)
-                    }
                     sendVerificationEmailLiveData.removeSource(liveDataSource)
                     showLoading(false)
+                    if (result.kairaAction != null) {
+                        result.kairaAction?.let { it2 ->
+                            errorAction(ErrorAction(result.message.toString(), it2))
+                        }
+                    } else {
+                        result.message?.let { error ->
+                            showError(error)
+                        }
+                    }
                 }
                 ResultState.EXCEPTION ->{
-                    /*result.message?.let{ it->
-                        showError(it)
-                    }*/
                     showConnectivityError()
                     sendVerificationEmailLiveData.removeSource(liveDataSource)
                     showLoading(false)

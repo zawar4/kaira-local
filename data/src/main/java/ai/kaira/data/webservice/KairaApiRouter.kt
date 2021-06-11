@@ -31,6 +31,9 @@ interface KairaApiRouter {
     @POST("users/password/forgot")
     fun forgotPassword(@Body emailBody: EmailBody) : Call<EmailBody>
 
+    @POST("users/password/forgot")
+    fun forgotPassword(@Body tokenBody: TokenBody) : Call<EmailBody>
+
     @POST("users/password/reset")
     fun resetPassword(@Body resetPasswordBody: ResetPasswordBody) : Call<Unit>
     @FormUrlEncoded
@@ -62,4 +65,7 @@ interface KairaApiRouter {
 
     @POST("users/verify/new")
     fun sendVerificationEmail(@Body emailBody: EmailBody):Call<Void>
+
+    @POST("users/verify/new")
+    fun sendVerificationEmail(@Body tokenBody: TokenBody):Call<Void>
 }

@@ -5,6 +5,7 @@ import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.assessment.viewmodel.AssessmentViewModel
 import ai.kaira.app.databinding.ActivityAssessmentProfileComputationBinding
 import ai.kaira.app.utils.Consts
+import ai.kaira.app.utils.Consts.Companion.ASSESSMENT_TYPE
 import ai.kaira.app.utils.Extensions.Companion.decreaseViewSize
 import ai.kaira.app.utils.Extensions.Companion.increaseViewSize
 import ai.kaira.app.utils.UIUtils
@@ -38,69 +39,71 @@ class AssessmentProfileComputationActivity : AppCompatActivity() {
 
 
     lateinit var postDelayedRunnable : Runnable
-
+    lateinit var assessmentType : AssessmentType
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if(savedInstanceState?.getSerializable(ASSESSMENT_TYPE) != null){
+            assessmentType = savedInstanceState?.getSerializable(ASSESSMENT_TYPE) as AssessmentType
+        }
         activityAssessmentComputationBinding = DataBindingUtil.setContentView(this, R.layout.activity_assessment_profile_computation)
 
+
+        if(intent.hasExtra(Consts.ASSESSMENT_TYPE)) {
+            assessmentType = intent.getSerializableExtra(Consts.ASSESSMENT_TYPE) as AssessmentType
+        }
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
         assessmentViewModel  = ViewModelProvider(this, viewModelFactory).get(AssessmentViewModel::class.java)
-        lateinit var assessmentType : AssessmentType
+
         val maxHeight = activityAssessmentComputationBinding.dotOneIm.layoutParams.height
         val minHeight = activityAssessmentComputationBinding.dotOneIm.layoutParams.height/2
-        if(intent != null && intent.hasExtra(Consts.ASSESSMENT_TYPE)) {
 
-            var handler = Handler(Looper.getMainLooper())
-            postDelayedRunnable = Runnable{
-                stopLoadingAnimation()
-                resetLoadingAnimation(minHeight)
-                assessmentViewModel.finishActivity()
-            }
+        var handler = Handler(Looper.getMainLooper())
+        postDelayedRunnable = Runnable{
+            stopLoadingAnimation()
+            resetLoadingAnimation(minHeight)
+            assessmentViewModel.finishActivity()
+        }
+        if(assessmentType == AssessmentType.FINANCIAL){
+            assessmentViewModel.computeFinancialAssessmentProfile(assessmentType.value)
+        }else if(assessmentType == AssessmentType.PSYCHOLOGICAL){
+            assessmentViewModel.computePsychologicalAssessmentProfile(assessmentType.value)
+        }
 
-            assessmentType = intent.getSerializableExtra(Consts.ASSESSMENT_TYPE) as AssessmentType
-            if(assessmentType == AssessmentType.FINANCIAL){
-                assessmentViewModel.computeFinancialAssessmentProfile(assessmentType.value)
-            }else if(assessmentType == AssessmentType.PSYCHOLOGICAL){
-                assessmentViewModel.computePsychologicalAssessmentProfile(assessmentType.value)
-            }
-
-            assessmentViewModel.onFinancialAssessmentProfileComputed().observe(this){
-            }
-            assessmentViewModel.onPsychologicalAssessmentProfileComputed().observe(this){
-
-            }
-
-            assessmentViewModel.onActivityFinish().observe(this){
-                if(assessmentType == AssessmentType.PSYCHOLOGICAL){
-                    startActivity(Intent(this,PsychologicalAssessmentResultActivity::class.java))
-                }
-                else if(assessmentType == AssessmentType.FINANCIAL){
-                    startActivity(Intent(this,FinancialAssessmentResultActivity::class.java))
-                }
-                finish()
-            }
-
-            assessmentViewModel.onError().observe(this){
-                handler.removeCallbacks(postDelayedRunnable)
-                UIUtils.networkCallAlert(this, it)
-                stopLoadingAnimation()
-                resetLoadingAnimation(minHeight)
-            }
-
-            assessmentViewModel.onConnectivityError().observe(this){
-                handler.removeCallbacks(postDelayedRunnable)
-                UIUtils.networkConnectivityAlert(this)
-                stopLoadingAnimation()
-                resetLoadingAnimation(minHeight)
-
-            }
-
-            startLoadingAnimation(maxHeight, minHeight)
-            handler.postDelayed(postDelayedRunnable, 3000)
+        assessmentViewModel.onFinancialAssessmentProfileComputed().observe(this){
+        }
+        assessmentViewModel.onPsychologicalAssessmentProfileComputed().observe(this){
 
         }
 
+        assessmentViewModel.onActivityFinish().observe(this){
+            if(assessmentType == AssessmentType.PSYCHOLOGICAL){
+                startActivity(Intent(this,PsychologicalAssessmentResultActivity::class.java))
+            }
+            else if(assessmentType == AssessmentType.FINANCIAL){
+                startActivity(Intent(this,FinancialAssessmentResultActivity::class.java))
+            }
+            finish()
+        }
+
+        assessmentViewModel.onError().observe(this){
+            handler.removeCallbacks(postDelayedRunnable)
+            UIUtils.networkCallAlert(this, it)
+            stopLoadingAnimation()
+            resetLoadingAnimation(minHeight)
+        }
+
+        assessmentViewModel.onConnectivityError().observe(this){
+            handler.removeCallbacks(postDelayedRunnable)
+            UIUtils.networkConnectivityAlert(this)
+            stopLoadingAnimation()
+            resetLoadingAnimation(minHeight)
+
+        }
+
+        startLoadingAnimation(maxHeight, minHeight)
+        handler.postDelayed(postDelayedRunnable, 3000)
     }
 
 

@@ -52,7 +52,7 @@
 
                 <data
                     android:host="@string/base_url"
-                    android:pathPrefix="/users"
+                    android:pathPrefix="/users/verify"
                     android:scheme="https" />
             </intent-filter>
         </activity>
@@ -67,7 +67,7 @@
 
                 <data
                     android:host="@string/base_url"
-                    android:pathPrefix="/users/password"
+                    android:pathPrefix="/users/password/reset"
                     android:scheme="https" />
             </intent-filter>
         </activity>

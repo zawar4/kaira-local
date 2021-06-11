@@ -17,8 +17,8 @@ class LoginRepositoryImp @Inject constructor(private val loginNetworkDataSource:
         return loginNetworkDataSource.login(loginBody)
     }
 
-    override fun forgotPassword(emailBody: EmailBody):MutableLiveData<KairaResult<EmailBody>>{
-        return loginNetworkDataSource.forgotPassword(emailBody)
+    override fun forgotPassword(email: String,token:String):MutableLiveData<KairaResult<EmailBody>>{
+        return loginNetworkDataSource.forgotPassword(email,token)
     }
 
     override fun resetPassword(resetPasswordBody: ResetPasswordBody): MutableLiveData<KairaResult<Unit>> {

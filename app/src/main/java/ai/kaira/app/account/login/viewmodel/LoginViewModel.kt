@@ -24,7 +24,7 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseV
     private val institutionFetchedLiveData = MediatorLiveData<Boolean>()
 
     fun sendVerificationEmail(email:String){
-        val liveDataSource = loginUseCase.sendVerificationEmail(email)
+        val liveDataSource = loginUseCase.sendVerificationEmail(email,token = "")
         sendVerificationEmailLiveData.addSource(liveDataSource){ result ->
             when(result.status){
                 ResultState.SUCCESS ->{
@@ -100,8 +100,8 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseV
     }
 
 
-    fun sendForgotPasswordVerificationEmail(email:String){
-        val liveDataSource = loginUseCase.forgotPassword(EmailBody(email))
+    fun sendForgotPasswordVerificationEmail(email:String,token:String){
+        val liveDataSource = loginUseCase.forgotPassword(email,token)
         sendForgotPasswordVerificationEmailLiveData.addSource(liveDataSource){ result ->
             when(result.status){
                 ResultState.SUCCESS ->{
@@ -137,7 +137,7 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase) : BaseV
         return sendForgotPasswordVerificationEmailLiveData
     }
     fun forgotPassword(email: String){
-        val liveDataSource = loginUseCase.forgotPassword(EmailBody(email))
+        val liveDataSource = loginUseCase.forgotPassword(email,token="")
         forgotPasswordLiveData.addSource(liveDataSource){ result ->
             when(result.status){
                 ResultState.SUCCESS ->{

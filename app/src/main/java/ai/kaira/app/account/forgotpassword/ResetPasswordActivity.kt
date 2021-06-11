@@ -91,9 +91,11 @@ class ResetPasswordActivity : AppCompatActivity() {
             }
 
             loginViewModel.onErrorAction().observe(this){ action ->
-                if(action.kairaAction == KairaAction.UNVERIFIED_REDIRECT){
+                if(action.kairaAction == KairaAction.TOKEN_EXPIRED_REDIRECT){
                     val runnable : () -> Unit = {
-                        startActivity(Intent(this,ForgotPasswordActivity::class.java))
+                        val intent = Intent(this,ForgotPasswordActivity::class.java)
+                        //intent.putExtra("token",token)
+                        startActivity(intent)
                         finish()
                     }
                     UIUtils.networkCallAlert(this, action.message,runnable)
