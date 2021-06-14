@@ -220,6 +220,7 @@
     <string name="mint">mint</string>
 
     <string name="error">Error</string>
+    <string name="edit">Edit</string>
     <string name="banking_institutions_status_syncing">Syncing</string>
 
     <string name="finance_dashboard_revenues_title">Income</string>

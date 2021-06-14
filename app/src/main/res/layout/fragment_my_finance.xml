@@ -154,12 +154,19 @@
                             android:text="@string/finance_dashboard_institutions_title"
                             app:drawableLeftCompat="@drawable/financial_dashboard_balance_sheet" />
 
-                        <ImageView
+                        <TextView
+                            android:minWidth="100dp"
                             android:layout_marginRight="16dp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/icon_modify"
-                            android:layout_gravity="right|center"/>
+                            android:layout_height="30dp"
+                            android:text="@string/edit"
+                            android:textColor="@android:color/white"
+                            android:background="@drawable/edit_round"
+                            app:drawableLeftCompat="@drawable/icon_modify"
+                            android:layout_gravity="right|center"
+                            android:gravity="center"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"/>
                     </FrameLayout>
                     <LinearLayout
                         android:id="@+id/insitutions_parent"

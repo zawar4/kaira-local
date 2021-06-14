@@ -197,6 +197,8 @@
     <string name = "mint" >mint</string>
 
     <string name="error">Erreur</string>
+    <string name="edit">Modifier</string>
+
     <string name="banking_institutions_status_syncing">Synchronisation</string>
 
     <string name="finance_dashboard_revenues_title">Revenu</string>
