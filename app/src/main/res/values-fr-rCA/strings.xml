@@ -196,5 +196,19 @@
 
     <string name = "mint" >mint</string>
 
+    <string name="error">Erreur</string>
+    <string name="banking_institutions_status_syncing">Synchronisation</string>
+
+    <string name="finance_dashboard_revenues_title">Revenu</string>
+    <string name="finance_dashboard_spendings_title">Dépense</string>
+    <string name="finance_dashboard_leeways_title">Marge de manoeuvre</string>
+    <string name="finance_dashboard_balances_title">Portrait financier actuel</string>
+    <string name="finance_dashboard_institutions_title">Institutions financières</string>
+    <string name="finance_dashboard_institutions_add">Modifier</string>
+    <string name="finance_current_month">Actuel</string>
+
+    <string name="finance_asset_title">Asset</string>
+    <string name="finance_liability_title">Debt</string>
+    <string name="finance_total_assets_title">Net value</string>
 
 </resources>

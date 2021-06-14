@@ -218,7 +218,21 @@
     <string name="question" translatable="false">\u2753</string>
     <string name="tick" translatable="false">\u2713</string>
     <string name="mint">mint</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="error">Error</string>
+    <string name="banking_institutions_status_syncing">Syncing</string>
+
+    <string name="finance_dashboard_revenues_title">Income</string>
+    <string name="finance_dashboard_spendings_title">Expenses</string>
+    <string name="finance_dashboard_leeways_title">Wiggle room</string>
+    <string name="finance_dashboard_balances_title">Current financial picture</string>
+    <string name="finance_dashboard_institutions_title">Financial institution</string>
+    <string name="finance_dashboard_institutions_add">Edit</string>
+    <string name="finance_current_month">Current</string>
+
+    <string name="finance_asset_title">Asset</string>
+    <string name="finance_liability_title">Debt</string>
+    <string name="finance_total_assets_title">Net value</string>
+
 
 </resources>

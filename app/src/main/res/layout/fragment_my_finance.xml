@@ -1,23 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".home.MyFinanceFragment">
+        android:orientation="vertical">
 
-        <TextView
-            style="@style/Text01"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:background="@color/heading_color"
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Coming Soon..."
-            android:textSize="40sp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView28"
+                style="@style/Heading01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@string/title_finance" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center"
+                android:padding="16dp"
+                app:srcCompat="@drawable/icon_plus" />
+
+            <View
+                android:id="@+id/view7"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/heading_color"
+                android:layout_gravity="bottom"/>
+
+        </FrameLayout>
+
+        <ScrollView
+            android:visibility="invisible"
+            android:id="@+id/view_parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:id="@+id/revenue_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:background="@color/heading_color"
+                        style="@style/Text02"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:padding="16dp"
+                        android:drawablePadding="10dp"
+                        android:gravity="center|left"
+                        android:text="@string/finance_dashboard_revenues_title"
+                        app:drawableLeftCompat="@drawable/financial_dashboard_revenus" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/spending_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:background="@color/heading_color"
+                        style="@style/Text02"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:gravity="center|left"
+                        android:padding="16dp"
+                        android:drawablePadding="10dp"
+                        android:text="@string/finance_dashboard_spendings_title"
+                        app:drawableLeftCompat="@drawable/financial_dashboard_spendings" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/leeway_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:background="@color/heading_color"
+                        style="@style/Text02"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:padding="16dp"
+                        android:drawablePadding="10dp"
+                        android:gravity="center|left"
+                        android:text="@string/finance_dashboard_leeways_title"
+                        app:drawableLeftCompat="@drawable/financial_dashboard_leeways" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/balance_sheet_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:background="@color/heading_color"
+                        style="@style/Text02"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:padding="16dp"
+                        android:drawablePadding="10dp"
+                        android:gravity="center|left"
+                        android:text="@string/finance_dashboard_balances_title"
+                        app:drawableLeftCompat="@drawable/financial_dashboard_balance_sheet" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:background="@color/heading_color"
+                            style="@style/Text02"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:padding="16dp"
+                            android:drawablePadding="10dp"
+                            android:gravity="center|left"
+                            android:text="@string/finance_dashboard_institutions_title"
+                            app:drawableLeftCompat="@drawable/financial_dashboard_balance_sheet" />
+
+                        <ImageView
+                            android:layout_marginRight="16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_modify"
+                            android:layout_gravity="right|center"/>
+                    </FrameLayout>
+                    <LinearLayout
+                        android:id="@+id/insitutions_parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </layout>

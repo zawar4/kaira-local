@@ -4,8 +4,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:minHeight="100dp"
         android:layout_height="wrap_content"
-        android:minHeight="70dp"
         android:id="@+id/parent">
 
         <ImageView
@@ -16,9 +16,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@drawable/investdirect"
-            android:scaleType="fitCenter"/>
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="16dp"/>
 
         <TextView
+            android:layout_marginRight="16dp"
             android:id="@+id/institution_name_tv"
             style="@style/Text01"
             android:layout_width="0dp"
@@ -43,5 +45,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="120dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/status_syncing"
+            android:gravity="center"
+            android:text="@string/banking_institutions_status_syncing"
+            android:textColor="@android:color/white"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/institution_name_tv" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

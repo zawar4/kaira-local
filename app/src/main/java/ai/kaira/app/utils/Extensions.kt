@@ -94,6 +94,11 @@ class Extensions {
         }
 
 
+        fun Double.getFormattedAmount():String{
+            return String.format("%.2f", this)
+        }
+
+
     }
 
 }

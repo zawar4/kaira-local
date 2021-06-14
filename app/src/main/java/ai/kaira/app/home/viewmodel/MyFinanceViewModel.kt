@@ -7,47 +7,61 @@ import ai.kaira.domain.KairaResult
 import ai.kaira.domain.ResultState
 import ai.kaira.domain.financial.model.MyFinancials
 import ai.kaira.domain.financial.usecase.MyFinancialUseCase
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.cancellable
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MyFinanceViewModel (private val myFinancialUseCase: MyFinancialUseCase) : BaseViewModel() {
 
-    private val myFinancialsLiveData = MediatorLiveData<MyFinancials>()
+    private val myFinancialsLiveData = MutableLiveData<MyFinancials>()
 
+    private lateinit var flow : Flow<KairaResult<MyFinancials>>
     fun fetchMyFinancials(){
-        val liveDataSource = myFinancialUseCase.GetMyFinancials()
-        myFinancialsLiveData.addSource(liveDataSource){ result ->
-            when(result.status){
-                ResultState.SUCCESS ->{
-                    showLoading(false)
-                    myFinancialsLiveData.removeSource(liveDataSource)
-                }
-                ResultState.ERROR ->{
-                    showLoading(false)
-                    myFinancialsLiveData.removeSource(liveDataSource)
-                    if(result.kairaAction != null){
-                        if(result.kairaAction == KairaAction.UNAUTHORIZED_REDIRECT){
-                            myFinancialUseCase.deleteToken()
+        flow = myFinancialUseCase.GetMyFinancials()
+        viewModelScope.launch(IO){
+            flow.collect { result ->
+                withContext(Main){
+                    when(result.status){
+                        ResultState.SUCCESS ->{
+                            result.data?.let{
+                                myFinancialsLiveData.value = it
+                            }
+
+                            showLoading(false)
                         }
-                        errorAction(ErrorAction(result.message.toString(),result.kairaAction))
-                    }else{
-                        result.message?.let{
-                            showError(it)
+                        ResultState.ERROR ->{
+                            showLoading(false)
+                            if(result.kairaAction != null){
+                                if(result.kairaAction == KairaAction.UNAUTHORIZED_REDIRECT){
+                                    myFinancialUseCase.deleteToken()
+                                }
+                                errorAction(ErrorAction(result.message.toString(),result.kairaAction))
+                            }else{
+                                result.message?.let{
+                                    showError(it)
+                                }
+                            }
+                        }
+                        ResultState.EXCEPTION->{
+                            showLoading(false)
+                            showConnectivityError()
+                        }
+                        ResultState.LOADING->{
+                            showLoading(true)
                         }
                     }
-                }
-                ResultState.EXCEPTION->{
-                    showLoading(false)
-                    myFinancialsLiveData.removeSource(liveDataSource)
-                }
-                ResultState.LOADING->{
-                    showLoading(true)
                 }
             }
         }
     }
 
-    fun onMyFinancialsFetched() : MediatorLiveData<MyFinancials>{
+    fun onMyFinancialsFetched() : MutableLiveData<MyFinancials>{
         return myFinancialsLiveData
     }
 }

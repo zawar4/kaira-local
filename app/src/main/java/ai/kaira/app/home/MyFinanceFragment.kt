@@ -1,23 +1,32 @@
 package ai.kaira.app.home
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import ai.kaira.app.R
 import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.application.ViewModelFactory
+import ai.kaira.app.databinding.FinanceItemLayoutBinding
 import ai.kaira.app.databinding.FragmentMyFinanceBinding
-import ai.kaira.app.databinding.FragmentMyProfileBinding
+import ai.kaira.app.databinding.InstitutionViewLinearBinding
 import ai.kaira.app.home.viewmodel.MyFinanceViewModel
+import ai.kaira.app.utils.Extensions.Companion.getFormattedAmount
 import ai.kaira.app.utils.UIUtils
 import ai.kaira.domain.KairaAction
+import ai.kaira.domain.banking.institution.model.BankingAggregator.Companion.formattedCurrency
+import ai.kaira.domain.banking.institution.model.BankingInstitutionSyncStatus
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.View.*
+import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class MyFinanceFragment : Fragment() {
@@ -40,10 +49,132 @@ class MyFinanceFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        myFinanceViewModel.onMyFinancialsFetched().observe(viewLifecycleOwner){
+        myFinanceViewModel.onMyFinancialsFetched().observe(viewLifecycleOwner){ myFinancies ->
+            myFinancies?.let{
+                binding.viewParent.visibility = VISIBLE
+                val revenues = myFinancies.revenue
+                val spending = myFinancies.spending
+                val leeways = myFinancies.leeway
+                val balanceSheet = myFinancies.balanceSheet
+                val institutions = myFinancies.institutions
+                val inflater : LayoutInflater = requireActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+
+                revenues.forEachIndexed { index, revenue ->
+                    val itembinding : FinanceItemLayoutBinding = DataBindingUtil.inflate(inflater,R.layout.finance_item_layout,binding.revenueParent,false)
+                    if(revenue.amount < 0){
+                        itembinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaSecFill))
+                    }else {
+                        itembinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaGreen))
+                    }
+                    itembinding.amount.text = formattedCurrency()+" "+revenue.amount.getFormattedAmount()
+                    itembinding.name.text = revenue.getFormattedDate()
+                    binding.revenueParent.addView(itembinding.root)
+                }
+
+                spending.forEachIndexed { index, spending ->
+                    val itembinding : FinanceItemLayoutBinding = DataBindingUtil.inflate(inflater,R.layout.finance_item_layout,binding.spendingParent,false)
+                    if(spending.amount < 0){
+                        itembinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaSecFill))
+                    }else {
+                        itembinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaGreen))
+                    }
+                    itembinding.amount.text = formattedCurrency()+" "+spending.amount.getFormattedAmount()
+                    itembinding.name.text = spending.getFormattedDate()
+                    binding.spendingParent.addView(itembinding.root)
+                }
+
+                leeways.forEachIndexed { index, leeways ->
+                    val itembinding : FinanceItemLayoutBinding = DataBindingUtil.inflate(inflater,R.layout.finance_item_layout,binding.leewayParent,false)
+                    if(leeways.amount < 0){
+                        itembinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaSecFill))
+                    }else {
+                        itembinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaGreen))
+                    }
+                    itembinding.amount.text = formattedCurrency()+" "+leeways.amount.getFormattedAmount()
+                    itembinding.name.text = leeways.getFormattedDate()
+                    binding.leewayParent.addView(itembinding.root)
+                }
+
+                val assetBinding : FinanceItemLayoutBinding = DataBindingUtil.inflate(inflater,R.layout.finance_item_layout,binding.balanceSheetParent,false)
+                if(balanceSheet.assets.amount < 0){
+                    assetBinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaSecFill))
+                }else {
+                    assetBinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaGreen))
+                }
+                assetBinding.name.text = getString(R.string.finance_asset_title)
+                assetBinding.amount.text = formattedCurrency()+" "+balanceSheet.assets.amount.getFormattedAmount()
+                binding.balanceSheetParent.addView(assetBinding.root)
+
+                val liabilityBinding : FinanceItemLayoutBinding = DataBindingUtil.inflate(inflater,R.layout.finance_item_layout,binding.balanceSheetParent,false)
+                if(balanceSheet.liabilities.amount < 0){
+                    liabilityBinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaSecFill))
+                }else {
+                    liabilityBinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaGreen))
+                }
+                liabilityBinding.name.text = getString(R.string.finance_liability_title)
+                liabilityBinding.amount.text = formattedCurrency()+" "+balanceSheet.liabilities.amount.getFormattedAmount()
+                binding.balanceSheetParent.addView(liabilityBinding.root)
+
+                val totalAssetsBinding : FinanceItemLayoutBinding = DataBindingUtil.inflate(inflater,R.layout.finance_item_layout,binding.balanceSheetParent,false)
+                if(balanceSheet.amount < 0){
+                    totalAssetsBinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaSecFill))
+                }else {
+                    totalAssetsBinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaGreen))
+                }
+                totalAssetsBinding.name.text = getString(R.string.finance_total_assets_title)
+                totalAssetsBinding.amount.text = formattedCurrency()+" "+balanceSheet.amount.getFormattedAmount()
+                totalAssetsBinding.exploreBtn.visibility = INVISIBLE
+                binding.balanceSheetParent.addView(totalAssetsBinding.root)
+
+                institutions.forEachIndexed { index, institution ->
+                    val itembinding : ai.kaira.app.databinding.InstitutionViewLinearDashboardBinding = DataBindingUtil.inflate(inflater,R.layout.institution_view_linear_dashboard,binding.insitutionsParent,false)
+                    Glide.with(requireContext()).load(institution.getLogoUrl()).into(itembinding.institutionIm)
+                    institution.name?.let {
+                        itembinding.institutionNameTv.text = institution.name
+                    }
+                    institution.syncError?.let {
+                        itembinding.status.visibility = VISIBLE
+                        itembinding.status.background = requireContext().getDrawable(R.drawable.status_error)
+                        itembinding.status.text = getString(R.string.error)
+                    }
+                    institution.syncStatus?.let{ it ->
+                        when(it){
+                            BankingInstitutionSyncStatus.ERROR -> {
+                                itembinding.status.visibility = VISIBLE
+                                itembinding.status.background = requireContext().getDrawable(R.drawable.status_error)
+                                itembinding.status.text = getString(R.string.error)
+                            }
+                            BankingInstitutionSyncStatus.OK -> {
+                                itembinding.status.visibility = GONE
+                                itembinding.status.background = null
+                            }
+                            BankingInstitutionSyncStatus.SYNCING -> {
+                                itembinding.status.visibility = VISIBLE
+                                itembinding.status.background = requireContext().getDrawable(R.drawable.status_syncing)
+                                itembinding.status.text = getString(R.string.banking_institutions_status_syncing)
+                            }
+                        }
+                    }
+                    binding.insitutionsParent.addView(itembinding.root)
+                }
+
+            }
+            binding.root.requestLayout()
 
         }
         myFinanceViewModel.fetchMyFinancials()
+
+        myFinanceViewModel.onLoad().observe(viewLifecycleOwner){ loading ->
+            if(loading){
+                binding.progressBar.visibility = View.VISIBLE
+            }else{
+                binding.progressBar.visibility = View.GONE
+            }
+        }
+
+        myFinanceViewModel.onConnectivityError().observe(viewLifecycleOwner) {
+            UIUtils.networkConnectivityAlert(requireActivity())
+        }
 
         myFinanceViewModel.onErrorAction().observe(viewLifecycleOwner){
                when(it.kairaAction){

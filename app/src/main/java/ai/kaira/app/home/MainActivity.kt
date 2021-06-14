@@ -19,9 +19,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
-        supportActionBar?.hide()
         val bottomNavView: BottomNavigationView = binding.navView
 
+        bottomNavView.setOnNavigationItemReselectedListener {
+
+        }
         bottomNavView.itemIconTintList = null
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         bottomNavView.setupWithNavController(navController)
