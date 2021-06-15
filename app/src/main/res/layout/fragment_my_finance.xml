@@ -45,7 +45,7 @@
         </FrameLayout>
 
         <ScrollView
-            android:visibility="invisible"
+            android:visibility="visible"
             android:id="@+id/view_parent"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -61,7 +61,6 @@
 
 
                 <LinearLayout
-                    android:id="@+id/revenue_parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -77,10 +76,18 @@
                         android:text="@string/finance_dashboard_revenues_title"
                         app:drawableLeftCompat="@drawable/financial_dashboard_revenus" />
 
+
+                    <LinearLayout
+                        android:id="@+id/revenue_parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/spending_parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -96,10 +103,16 @@
                         android:text="@string/finance_dashboard_spendings_title"
                         app:drawableLeftCompat="@drawable/financial_dashboard_spendings" />
 
+                    <LinearLayout
+                        android:id="@+id/spending_parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"></LinearLayout>
+
+
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/leeway_parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -115,10 +128,17 @@
                         android:text="@string/finance_dashboard_leeways_title"
                         app:drawableLeftCompat="@drawable/financial_dashboard_leeways" />
 
+
+                    <LinearLayout
+                        android:id="@+id/leeway_parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/balance_sheet_parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -133,6 +153,13 @@
                         android:gravity="center|left"
                         android:text="@string/finance_dashboard_balances_title"
                         app:drawableLeftCompat="@drawable/financial_dashboard_balance_sheet" />
+
+                    <LinearLayout
+                        android:id="@+id/balance_sheet_parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"></LinearLayout>
+
 
                 </LinearLayout>
 
@@ -152,7 +179,7 @@
                             android:drawablePadding="10dp"
                             android:gravity="center|left"
                             android:text="@string/finance_dashboard_institutions_title"
-                            app:drawableLeftCompat="@drawable/financial_dashboard_balance_sheet" />
+                            app:drawableLeftCompat="@drawable/icon_financial_dashboard_institutions"/>
 
                         <TextView
                             android:minWidth="100dp"

@@ -50,6 +50,11 @@ class MyFinanceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         myFinanceViewModel.onMyFinancialsFetched().observe(viewLifecycleOwner){ myFinancies ->
+            binding.revenueParent.removeAllViews()
+            binding.spendingParent.removeAllViews()
+            binding.leewayParent.removeAllViews()
+            binding.balanceSheetParent.removeAllViews()
+            binding.insitutionsParent.removeAllViews()
             myFinancies?.let{
                 binding.viewParent.visibility = VISIBLE
                 val revenues = myFinancies.revenue
@@ -62,7 +67,7 @@ class MyFinanceFragment : Fragment() {
                 revenues.forEachIndexed { index, revenue ->
                     val itembinding : FinanceItemLayoutBinding = DataBindingUtil.inflate(inflater,R.layout.finance_item_layout,binding.revenueParent,false)
                     if(revenue.amount < 0){
-                        itembinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaSecFill))
+                        itembinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaSecLabel))
                     }else {
                         itembinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaGreen))
                     }
@@ -74,7 +79,7 @@ class MyFinanceFragment : Fragment() {
                 spending.forEachIndexed { index, spending ->
                     val itembinding : FinanceItemLayoutBinding = DataBindingUtil.inflate(inflater,R.layout.finance_item_layout,binding.spendingParent,false)
                     if(spending.amount < 0){
-                        itembinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaSecFill))
+                        itembinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaSecLabel))
                     }else {
                         itembinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaGreen))
                     }
@@ -86,7 +91,7 @@ class MyFinanceFragment : Fragment() {
                 leeways.forEachIndexed { index, leeways ->
                     val itembinding : FinanceItemLayoutBinding = DataBindingUtil.inflate(inflater,R.layout.finance_item_layout,binding.leewayParent,false)
                     if(leeways.amount < 0){
-                        itembinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaSecFill))
+                        itembinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaSecLabel))
                     }else {
                         itembinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaGreen))
                     }
@@ -97,7 +102,7 @@ class MyFinanceFragment : Fragment() {
 
                 val assetBinding : FinanceItemLayoutBinding = DataBindingUtil.inflate(inflater,R.layout.finance_item_layout,binding.balanceSheetParent,false)
                 if(balanceSheet.assets.amount < 0){
-                    assetBinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaSecFill))
+                    assetBinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaSecLabel))
                 }else {
                     assetBinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaGreen))
                 }
@@ -107,7 +112,7 @@ class MyFinanceFragment : Fragment() {
 
                 val liabilityBinding : FinanceItemLayoutBinding = DataBindingUtil.inflate(inflater,R.layout.finance_item_layout,binding.balanceSheetParent,false)
                 if(balanceSheet.liabilities.amount < 0){
-                    liabilityBinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaSecFill))
+                    liabilityBinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaSecLabel))
                 }else {
                     liabilityBinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaGreen))
                 }
@@ -117,7 +122,7 @@ class MyFinanceFragment : Fragment() {
 
                 val totalAssetsBinding : FinanceItemLayoutBinding = DataBindingUtil.inflate(inflater,R.layout.finance_item_layout,binding.balanceSheetParent,false)
                 if(balanceSheet.amount < 0){
-                    totalAssetsBinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaSecFill))
+                    totalAssetsBinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaSecLabel))
                 }else {
                     totalAssetsBinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaGreen))
                 }
