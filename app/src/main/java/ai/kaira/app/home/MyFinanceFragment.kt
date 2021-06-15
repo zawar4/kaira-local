@@ -5,12 +5,12 @@ import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.databinding.FinanceItemLayoutBinding
 import ai.kaira.app.databinding.FragmentMyFinanceBinding
-import ai.kaira.app.databinding.InstitutionViewLinearBinding
 import ai.kaira.app.home.viewmodel.MyFinanceViewModel
 import ai.kaira.app.utils.Extensions.Companion.getFormattedAmount
+import ai.kaira.app.utils.Extensions.Companion.getFormattedDate
+import ai.kaira.app.utils.LanguageConfig
 import ai.kaira.app.utils.UIUtils
 import ai.kaira.domain.KairaAction
-import ai.kaira.domain.banking.institution.model.BankingAggregator.Companion.formattedCurrency
 import ai.kaira.domain.banking.institution.model.BankingInstitutionSyncStatus
 import android.content.Context
 import android.content.Intent
@@ -62,6 +62,7 @@ class MyFinanceFragment : Fragment() {
                 val leeways = myFinancies.leeway
                 val balanceSheet = myFinancies.balanceSheet
                 val institutions = myFinancies.institutions
+                val languageLocale = LanguageConfig.getLanguage(requireContext())
                 val inflater : LayoutInflater = requireActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
                 revenues.forEachIndexed { index, revenue ->
@@ -71,8 +72,8 @@ class MyFinanceFragment : Fragment() {
                     }else {
                         itembinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaGreen))
                     }
-                    itembinding.amount.text = formattedCurrency()+" "+revenue.amount.getFormattedAmount()
-                    itembinding.name.text = revenue.getFormattedDate()
+                    itembinding.amount.text = revenue.amount.getFormattedAmount()
+                    itembinding.name.text = revenue.date.getFormattedDate(languageLocale)
                     binding.revenueParent.addView(itembinding.root)
                 }
 
@@ -83,8 +84,8 @@ class MyFinanceFragment : Fragment() {
                     }else {
                         itembinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaGreen))
                     }
-                    itembinding.amount.text = formattedCurrency()+" "+spending.amount.getFormattedAmount()
-                    itembinding.name.text = spending.getFormattedDate()
+                    itembinding.amount.text = spending.amount.getFormattedAmount()
+                    itembinding.name.text = spending.date.getFormattedDate(languageLocale)
                     binding.spendingParent.addView(itembinding.root)
                 }
 
@@ -95,8 +96,8 @@ class MyFinanceFragment : Fragment() {
                     }else {
                         itembinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaGreen))
                     }
-                    itembinding.amount.text = formattedCurrency()+" "+leeways.amount.getFormattedAmount()
-                    itembinding.name.text = leeways.getFormattedDate()
+                    itembinding.amount.text = leeways.amount.getFormattedAmount()
+                    itembinding.name.text = leeways.date.getFormattedDate(languageLocale)
                     binding.leewayParent.addView(itembinding.root)
                 }
 
@@ -107,7 +108,7 @@ class MyFinanceFragment : Fragment() {
                     assetBinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaGreen))
                 }
                 assetBinding.name.text = getString(R.string.finance_asset_title)
-                assetBinding.amount.text = formattedCurrency()+" "+balanceSheet.assets.amount.getFormattedAmount()
+                assetBinding.amount.text = balanceSheet.assets.amount.getFormattedAmount()
                 binding.balanceSheetParent.addView(assetBinding.root)
 
                 val liabilityBinding : FinanceItemLayoutBinding = DataBindingUtil.inflate(inflater,R.layout.finance_item_layout,binding.balanceSheetParent,false)
@@ -117,7 +118,7 @@ class MyFinanceFragment : Fragment() {
                     liabilityBinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaGreen))
                 }
                 liabilityBinding.name.text = getString(R.string.finance_liability_title)
-                liabilityBinding.amount.text = formattedCurrency()+" "+balanceSheet.liabilities.amount.getFormattedAmount()
+                liabilityBinding.amount.text = balanceSheet.liabilities.amount.getFormattedAmount()
                 binding.balanceSheetParent.addView(liabilityBinding.root)
 
                 val totalAssetsBinding : FinanceItemLayoutBinding = DataBindingUtil.inflate(inflater,R.layout.finance_item_layout,binding.balanceSheetParent,false)
@@ -127,7 +128,7 @@ class MyFinanceFragment : Fragment() {
                     totalAssetsBinding.amount.setTextColor(ContextCompat.getColor(requireContext(),R.color.kairaGreen))
                 }
                 totalAssetsBinding.name.text = getString(R.string.finance_total_assets_title)
-                totalAssetsBinding.amount.text = formattedCurrency()+" "+balanceSheet.amount.getFormattedAmount()
+                totalAssetsBinding.amount.text = balanceSheet.amount.getFormattedAmount()
                 totalAssetsBinding.exploreBtn.visibility = INVISIBLE
                 binding.balanceSheetParent.addView(totalAssetsBinding.root)
 

@@ -14,13 +14,9 @@ enum class BankingAggregator(val value:Int) {
     companion object {
         fun getCurrency (bankingAggregator: BankingAggregator):String{
             return when (bankingAggregator){
-                wealthica -> "CA"
-                bi -> "eur"
+                wealthica -> "CAD"
+                bi -> "EUR"
             }
-        }
-
-        fun formattedCurrency():String {
-            return getCurrency(wealthica).toUpperCase()+"$"
         }
     }
 

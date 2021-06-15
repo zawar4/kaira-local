@@ -1,5 +1,6 @@
 package ai.kaira.app.utils
 
+import ai.kaira.domain.banking.institution.model.BankingAggregator
 import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Context
@@ -10,6 +11,9 @@ import androidx.core.text.HtmlCompat
 import java.net.HttpURLConnection
 import java.net.URL
 import java.text.Normalizer
+import java.text.NumberFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class Extensions {
 
@@ -93,9 +97,18 @@ class Extensions {
             return REGEX_UNACCENT.replace(temp, "")
         }
 
+        fun String.getFormattedDate(locale: Locale) : String{
+            val sdf = SimpleDateFormat("yyyy-MM-dd")
+            val monthDateFormat = SimpleDateFormat("MMM yyyy", locale)
+            val convertedCurrentDate: Date = sdf.parse(this)
+            return monthDateFormat.format(convertedCurrentDate)
+        }
 
         fun Double.getFormattedAmount():String{
-            return String.format("%.2f", this)
+            val format: NumberFormat = NumberFormat.getCurrencyInstance()
+            format.maximumFractionDigits = 0
+            format.currency = Currency.getInstance(BankingAggregator.getCurrency(BankingAggregator.wealthica))
+            return format.format(this)
         }
 
 
