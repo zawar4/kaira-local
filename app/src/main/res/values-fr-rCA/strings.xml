@@ -187,6 +187,7 @@
     <string name="banking_institutions_connecting_subtitle">La synchronisation prend un certain temps. Merci de ta patience!</string>
     <string name="banking_institutions_connection_success">La connexion aux données est complétée!</string>
     <string name="banking_institutions_connection_success_add_other">Connexion à une autre institution</string>
+    <string name="banking_institutions_verification_code">Entrer le code de vérification</string>
 
     <string name="banking_institutions_security_title">Question de sécurité</string>
     <string name="results">résultats</string>

@@ -20,6 +20,10 @@ import retrofit2.http.*
 @Keep
 interface KairaApiRouter {
 
+
+    @PUT("banking/{type}/institutions/{id}")
+    fun submitSecurityAnswer(@Header("Authorization") authorization: String,@Path("type") type : Int,@Path("id") id : String) : Call<Institution>
+
     @GET("banking/dashboard")
     fun getMyFinancials(@Header("Authorization") authorization: String) : Call<MyFinancials>
 

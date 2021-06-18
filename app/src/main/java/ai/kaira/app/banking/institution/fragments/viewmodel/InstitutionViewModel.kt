@@ -8,14 +8,66 @@ import ai.kaira.domain.ResultState
 import ai.kaira.domain.banking.institution.model.ConnectedInstitution
 import ai.kaira.domain.banking.institution.model.Institution
 import ai.kaira.domain.banking.institution.model.InstitutionParamBody
+import ai.kaira.domain.banking.institution.model.SecurityAnswer
 import ai.kaira.domain.banking.institution.usecase.ConnectInstitution
 import ai.kaira.domain.banking.institution.usecase.InstitutionUseCase
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class InstitutionViewModel(private val institutionUseCase: InstitutionUseCase) : BaseViewModel() {
 
     private val connectInstitutionLiveData = MediatorLiveData<Boolean>()
+    private val institutionAccountVerificationCodeLiveData = MutableLiveData<Boolean>()
+
+    fun onInstitutionAccountVerified() : MutableLiveData<Boolean> {
+        return institutionAccountVerificationCodeLiveData
+    }
+
+    fun submitAccountVerificationCode(aggregator : Int, securityAnswer: SecurityAnswer, institutionId : String) {
+        viewModelCoroutineScope.launch(IO) {
+            institutionUseCase.submitAccountVerificationCode(aggregator,securityAnswer,institutionId).collect {
+                withContext(Main) {
+                    when(it.status){
+                        ResultState.SUCCESS -> {
+                            showLoading(false)
+                            institutionAccountVerificationCodeLiveData.value = true
+                        }
+                        ResultState.ERROR -> {
+                            showLoading(false)
+                            if(it.kairaAction != null){
+                                if(it.kairaAction == KairaAction.UNAUTHORIZED_REDIRECT){
+                                    institutionUseCase.deleteToken()
+                                }
+                                it.kairaAction?.let{ it2 ->
+                                    errorAction(ErrorAction(it.message.toString(),it2))
+                                }
+                            }else {
+                                it.message?.let{ error ->
+                                    showError(error)
+                                }
+                            }
+                        }
+                        ResultState.LOADING -> {
+                            showLoading(true)
+                        }
+                        ResultState.EXCEPTION -> {
+                            showLoading(false)
+                            it.message?.let { it2 ->
+                                showConnectivityError()
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+    }
     fun getAllInstitutions(locale:String):ArrayList<Institution>{
         return institutionUseCase.getAllInstitutions(locale)
     }

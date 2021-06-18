@@ -5,6 +5,7 @@ import ai.kaira.app.SharedMainViewModel
 import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.banking.institution.BankInstitutionLoginHostActivity
+import ai.kaira.app.banking.institution.InstitutionSecurityAnswerActivity
 import ai.kaira.app.databinding.FinanceItemLayoutBinding
 import ai.kaira.app.databinding.FragmentMyFinanceBinding
 import ai.kaira.app.home.viewmodel.MyFinanceViewModel
@@ -160,6 +161,10 @@ class MyFinanceFragment : Fragment() {
                                                     requireContext(),
                                                     getString(R.string.warning),
                                                     getString(R.string.banking_institutions_status_security_question)) {
+
+                                                    val intent = Intent(requireActivity() as MainActivity, InstitutionSecurityAnswerActivity::class.java)
+                                                    intent.putExtra("institution",institution)
+                                                    requireActivity().startActivityForResult(intent,100)
                                                     // we display the security question page
                                                 }
                                             }

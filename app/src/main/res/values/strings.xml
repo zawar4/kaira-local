@@ -202,7 +202,7 @@
     <string name="banking_institutions_connecting_subtitle">Synchronization takes a little while.\n\n Thanks for your patience!</string>
     <string name="banking_institutions_connection_success">The process is underway!</string>
     <string name="banking_institutions_connection_success_add_other">Do you want to synchronize another account?</string>
-
+    <string name="banking_institutions_verification_code">Enter the verification code</string>
     <string name="banking_institutions_security_title">Security Question</string>
     <string name="results">results</string>
 
