@@ -11,6 +11,7 @@ import ai.kaira.domain.account.create.model.Account
 import ai.kaira.domain.account.login.ResetPasswordBody
 import ai.kaira.domain.banking.institution.model.ConnectedInstitution
 import ai.kaira.domain.banking.institution.model.Institution
+import ai.kaira.domain.banking.institution.model.SecurityAnswer
 import ai.kaira.domain.financial.model.MyFinancials
 import ai.kaira.domain.introduction.model.User
 import androidx.annotation.Keep
@@ -22,7 +23,7 @@ interface KairaApiRouter {
 
 
     @PUT("banking/{type}/institutions/{id}")
-    fun submitSecurityAnswer(@Header("Authorization") authorization: String,@Path("type") type : Int,@Path("id") id : String) : Call<Institution>
+    fun submitSecurityAnswer(@Header("Authorization") authorization: String,@Path("type") type : Int,@Path("id") id : String,@Body securtiyAnswer : SecurityAnswer) : Call<Institution>
 
     @GET("banking/dashboard")
     fun getMyFinancials(@Header("Authorization") authorization: String) : Call<MyFinancials>

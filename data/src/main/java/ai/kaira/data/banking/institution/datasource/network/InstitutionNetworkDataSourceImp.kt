@@ -22,7 +22,7 @@ class InstitutionNetworkDataSourceImp @Inject constructor(private val prefs: Sha
     override fun verifyInstitutionCode(aggregator: Int, securityAnswer: SecurityAnswer, institutionId: String) = flow<KairaResult<Institution>> {
         emit(KairaResult.loading())
         try {
-            val response = kairaApiRouter.submitSecurityAnswer(prefs.getString("token","")!!,aggregator,institutionId).execute()
+            val response = kairaApiRouter.submitSecurityAnswer(prefs.getString("token","")!!,aggregator,institutionId,securityAnswer).execute()
             if(response.isSuccessful) {
                 val body = response.body()
                 emit(KairaResult.success(body))
@@ -36,7 +36,7 @@ class InstitutionNetworkDataSourceImp @Inject constructor(private val prefs: Sha
                 else {
                     val error: String? = response.errorBody()?.string()
                     error?.let{
-                        emit(KairaResult.error(message = error,kairaAction = KairaAction.UNKOWN_REDIRECT))
+                        emit(KairaResult.error(message = error))
                     }
                 }
             }
