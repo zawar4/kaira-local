@@ -25,4 +25,6 @@
         android:name="ai.kaira.app.home.MySpaceFragment"
         android:label="fragment_my_space"
         tools:layout="@layout/fragment_my_space" />
+
+
 </navigation>

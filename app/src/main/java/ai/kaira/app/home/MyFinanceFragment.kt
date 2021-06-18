@@ -1,8 +1,10 @@
 package ai.kaira.app.home
 
 import ai.kaira.app.R
+import ai.kaira.app.SharedMainViewModel
 import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.application.ViewModelFactory
+import ai.kaira.app.banking.institution.BankInstitutionLoginHostActivity
 import ai.kaira.app.databinding.FinanceItemLayoutBinding
 import ai.kaira.app.databinding.FragmentMyFinanceBinding
 import ai.kaira.app.home.viewmodel.MyFinanceViewModel
@@ -11,6 +13,7 @@ import ai.kaira.app.utils.Extensions.Companion.getFormattedDate
 import ai.kaira.app.utils.LanguageConfig
 import ai.kaira.app.utils.UIUtils
 import ai.kaira.domain.KairaAction
+import ai.kaira.domain.banking.institution.model.BankingInstitutionSyncErrorType
 import ai.kaira.domain.banking.institution.model.BankingInstitutionSyncStatus
 import android.content.Context
 import android.content.Intent
@@ -23,6 +26,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -38,17 +42,24 @@ class MyFinanceFragment : Fragment() {
 
     lateinit var myFinanceViewModel: MyFinanceViewModel
 
+    lateinit var sharedMainViewModel : SharedMainViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         myFinanceViewModel = ViewModelProvider(this,viewModelFactory).get(MyFinanceViewModel::class.java)
+        sharedMainViewModel = ViewModelProvider(requireActivity()).get(SharedMainViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_my_finance, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        sharedMainViewModel.onMyFinancialFragmentRefresh().observe(viewLifecycleOwner) {
+            myFinanceViewModel.fetchMyFinancials()
+        }
         myFinanceViewModel.onMyFinancialsFetched().observe(viewLifecycleOwner){ myFinancies ->
             binding.revenueParent.removeAllViews()
             binding.spendingParent.removeAllViews()
@@ -138,26 +149,73 @@ class MyFinanceFragment : Fragment() {
                     institution.name?.let {
                         itembinding.institutionNameTv.text = institution.name
                     }
-                    institution.syncError?.let {
-                        itembinding.status.visibility = VISIBLE
-                        itembinding.status.background = requireContext().getDrawable(R.drawable.status_error)
-                        itembinding.status.text = getString(R.string.error)
-                    }
                     institution.syncStatus?.let{ it ->
-                        when(it){
+                        when(it) {
                             BankingInstitutionSyncStatus.ERROR -> {
-                                itembinding.status.visibility = VISIBLE
-                                itembinding.status.background = requireContext().getDrawable(R.drawable.status_error)
-                                itembinding.status.text = getString(R.string.error)
+                                institution.syncError?.let {
+                                    when(it.name) {
+                                        BankingInstitutionSyncErrorType.SECURITY_QUESTION_ERROR -> {
+                                            itembinding.root.setOnClickListener {
+                                                UIUtils.alert(
+                                                    requireContext(),
+                                                    getString(R.string.warning),
+                                                    getString(R.string.banking_institutions_status_security_question)) {
+                                                    // we display the security question page
+                                                }
+                                            }
+                                            itembinding.status.visibility = VISIBLE
+                                            itembinding.status.background = requireContext().getDrawable(R.drawable.status_verification_required)
+                                            itembinding.status.text = getString(R.string.banking_institutions_status_security_question)
+                                        }
+                                        BankingInstitutionSyncErrorType.LOGIN_FAILED_ERROR -> {
+                                            itembinding.root.setOnClickListener {
+                                                val intent = Intent(requireActivity() as MainActivity, BankInstitutionLoginHostActivity::class.java)
+                                                intent.putExtra("institution_type",institution.type)
+                                                requireActivity().startActivityForResult(intent,100)
+                                                // we display the banking login page
+                                            }
+                                            itembinding.status.visibility = VISIBLE
+                                            itembinding.status.background = requireContext().getDrawable(R.drawable.status_error)
+                                            itembinding.status.text = getString(R.string.error)
+                                        }
+                                        else -> {
+                                            val intent = Intent(requireActivity() as MainActivity,BankInstitutionLoginHostActivity::class.java)
+                                            intent.putExtra("institution_type",institution.type)
+                                            requireActivity().startActivityForResult(intent,100)
+                                            // we display the bank login page
+                                            itembinding.status.visibility = VISIBLE
+                                            itembinding.status.background = requireContext().getDrawable(R.drawable.status_error)
+                                            itembinding.status.text = getString(R.string.error)
+                                        }
+                                    }
+
+                                }
                             }
                             BankingInstitutionSyncStatus.OK -> {
                                 itembinding.status.visibility = GONE
                                 itembinding.status.background = null
                             }
                             BankingInstitutionSyncStatus.SYNCING -> {
+                                itembinding.root.setOnClickListener {
+                                    UIUtils.alert(
+                                        requireContext(),
+                                        getString(R.string.warning),
+                                        getString(R.string.banking_institutions_status_syncing_alert)) {
+                                        myFinanceViewModel.fetchMyFinancials()
+                                    }
+                                }
                                 itembinding.status.visibility = VISIBLE
                                 itembinding.status.background = requireContext().getDrawable(R.drawable.status_syncing)
                                 itembinding.status.text = getString(R.string.banking_institutions_status_syncing)
+                            }
+                            BankingInstitutionSyncStatus.RETRY -> {
+                                val intent = Intent(requireActivity() as MainActivity,BankInstitutionLoginHostActivity::class.java)
+                                intent.putExtra("institution_type",institution.type)
+                                requireActivity().startActivityForResult(intent,100)
+                                // we display the bank login page
+                                itembinding.status.visibility = VISIBLE
+                                itembinding.status.background = requireContext().getDrawable(R.drawable.status_error)
+                                itembinding.status.text = getString(R.string.action_retry)
                             }
                         }
                     }

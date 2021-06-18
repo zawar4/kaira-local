@@ -1,9 +1,12 @@
 package ai.kaira.app.banking.institution.fragments
 
 import ai.kaira.app.R
+import ai.kaira.app.RedirectHelper
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.banking.institution.fragments.viewmodel.InstitutionViewModel
 import ai.kaira.app.databinding.FragmentConnectBankInstitutionBinding
+import ai.kaira.app.home.MyFinanceFragment
+import ai.kaira.app.utils.LanguageConfig
 import ai.kaira.app.utils.UIUtils
 import ai.kaira.domain.banking.institution.model.Institution
 import ai.kaira.domain.banking.institution.model.InstitutionParam
@@ -59,11 +62,27 @@ class ConnectBankInstitutionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val institution : Institution = arguments?.get("institution") as Institution
+        arguments?.let{ bundle ->
+            if(bundle.containsKey("institution")){
+                val institution : Institution = arguments?.get("institution") as Institution
+                populateInstitution(institution)
+            }
+            if(bundle.containsKey("institution_type")){
+                RedirectHelper.enableRedirect(ConnectBankInstitutionLoadFragment::class.java.simpleName,MyFinanceFragment::class.java.simpleName)
+                val type = bundle.get("institution_type") as String
+                val languageLocale = LanguageConfig.getLanguageLocale(requireContext())
+                val institutions = institutionViewModel.getAllInstitutions(languageLocale)
+                val institution = institutions.filter{ it.type == type}
+                populateInstitution(institution[0])
+            }
+        }
+
+
+    }
+
+    private fun populateInstitution(institution: Institution){
         val url = institution.getLogoUrl()
         Glide.with(binding.institutionIm.context).load(url).into(binding.institutionIm);
-
-
         institution.usernameInformations?.let { usernameInformation ->
             binding.userPinHeadingEt.text = usernameInformation.label
             if(usernameInformation.type != null){
@@ -114,7 +133,7 @@ class ConnectBankInstitutionFragment : Fragment() {
             val institutionParam = InstitutionParam(institution.type.toString(),binding.userPinEt.text.toString(),binding.userPasswordEt.text.toString())
             val bundle = Bundle()
             bundle.putString("institutionType",institution.type)
-            bundle.putSerializable("institutionCredentialsParam",InstitutionParamBody(institution.aggregator,institutionParam))
+            bundle.putSerializable("institutionCredentialsParam",InstitutionParamBody(institution.aggregator.value,institutionParam))
             findNavController().navigate(R.id.connectBankInstitutionLoadFragment,bundle)
         }
 

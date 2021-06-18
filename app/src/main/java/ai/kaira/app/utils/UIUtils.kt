@@ -8,11 +8,11 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 class UIUtils {
 
     companion object {
-        private fun alert(context: Context, title:String, message:String){
+        fun alert(context: Context, title:String, message:String){
             MaterialAlertDialogBuilder(context).setTitle(title).setMessage(message).setPositiveButton(context.getText(R.string.ok),null).show()
         }
 
-        private fun alert(context: Context, title:String, message:String,runnable: ()->Unit){
+        fun alert(context: Context, title:String, message:String,runnable: ()->Unit){
             MaterialAlertDialogBuilder(context).setTitle(title).setMessage(message).setCancelable(false).setPositiveButton(context.getText(R.string.ok)) { dialog, which -> runnable() }.show()
         }
 

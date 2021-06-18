@@ -11,6 +11,8 @@
     <color name="kairaThirdFillASemiA">#fab0b1</color>
     <color name="kairaThirdFillASemiB">#f8888a</color>
 
+    <color name="error">#fe3a2f</color>
+    <color name="error_verification_required">#ff9402</color>
 
     <color name="kairaThirdFillB">#ffe3e3</color>
     <color name="kairaFourthFillA">#ffa652</color>

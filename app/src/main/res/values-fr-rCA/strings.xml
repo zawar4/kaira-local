@@ -26,6 +26,8 @@
     <string name="action_retry">Retry</string>
     <string name="action_erase">Effacer</string>
 
+    <string name="warning">Attention</string>
+
     <string name="no_email_application_installed">Aucun client de messagerie n\'est installé.</string>
 
     <!-- Onboarding-->
@@ -212,5 +214,8 @@
     <string name="finance_asset_title">Actif</string>
     <string name="finance_liability_title">Dette</string>
     <string name="finance_total_assets_title">Valeur nette</string>
+
+    <string name="banking_institutions_status_syncing_alert">Ce compte est en cours de synchronisation. Ça peut prendre un moment</string>
+    <string name="banking_institutions_status_security_question">Vérification requise</string>
 
 </resources>

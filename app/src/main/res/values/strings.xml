@@ -37,6 +37,8 @@
     <string name="action_retry">Retry</string>
     <string name="action_erase">Erase</string>
 
+    <string name="warning">Warning</string>
+
 
     <string name="no_email_application_installed">There is no email client installed.</string>
     <!-- Onboarding-->
@@ -235,5 +237,7 @@
     <string name="finance_liability_title">Debt</string>
     <string name="finance_total_assets_title">Net value</string>
 
+    <string name="banking_institutions_status_syncing_alert">This account is currently syncing. It might take a while</string>
+    <string name="banking_institutions_status_security_question">Verification required</string>
 
 </resources>

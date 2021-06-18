@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".banking.institution.BankInstitutionsHostActivity">
+    tools:context=".banking.institution.BankInstitutionLoginHostActivity">
+
     <fragment
-        android:id="@+id/institutions_host_fragment"
+        android:id="@+id/login_institutions_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:navGraph="@navigation/connect_institution_nav_graph"/>
+        app:navGraph="@navigation/connect_institution_login_nav_graph"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

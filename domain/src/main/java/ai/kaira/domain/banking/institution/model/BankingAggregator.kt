@@ -11,6 +11,7 @@ enum class BankingAggregator(val value:Int) {
     bi(1);
 
     operator fun invoke(type: Int) = BankingAggregator.values().firstOrNull { it.value == type }
+
     companion object {
         fun getCurrency (bankingAggregator: BankingAggregator):String{
             return when (bankingAggregator){

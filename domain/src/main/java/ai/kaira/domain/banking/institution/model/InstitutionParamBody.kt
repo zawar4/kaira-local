@@ -4,4 +4,4 @@ import java.io.Serializable
 
 import androidx.annotation.Keep
 @Keep
-data class InstitutionParamBody(val type:BankingAggregator,val institution: InstitutionParam) : Serializable
+data class InstitutionParamBody(val type:Int,val institution: InstitutionParam) : Serializable

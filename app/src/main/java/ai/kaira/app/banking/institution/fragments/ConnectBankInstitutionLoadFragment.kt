@@ -1,13 +1,16 @@
 package ai.kaira.app.banking.institution.fragments
 
 import ai.kaira.app.R
+import ai.kaira.app.RedirectHelper
 import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.banking.institution.fragments.viewmodel.InstitutionViewModel
 import ai.kaira.app.databinding.FragmentConnectBankInstitutionLoadBinding
+import ai.kaira.app.home.MyFinanceFragment
 import ai.kaira.app.utils.UIUtils
 import ai.kaira.domain.KairaAction
 import ai.kaira.domain.banking.institution.model.InstitutionParamBody
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -90,9 +93,17 @@ class ConnectBankInstitutionLoadFragment : Fragment() {
 
         institutionViewModel.onInstitutionConnected().observe(viewLifecycleOwner){
             if(it){
-                val bundle = Bundle()
-                bundle.putString("institutionType",institutionType)
-                findNavController().navigate(R.id.bankInstitutionConnectedFragment,bundle)
+                if(RedirectHelper.redirectExists(ConnectBankInstitutionLoadFragment::class.java.simpleName,MyFinanceFragment::class.java.simpleName)) {
+                    val intent = Intent()
+                    intent.putExtra("refresh_my_financial",true)
+                    requireActivity().setResult(RESULT_OK,intent)
+                    requireActivity().finish()
+                } else {
+                    val bundle = Bundle()
+                    bundle.putString("institutionType",institutionType)
+                    findNavController().navigate(R.id.bankInstitutionConnectedFragment,bundle)
+                }
+
             }
         }
 
