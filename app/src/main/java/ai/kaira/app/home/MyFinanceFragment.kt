@@ -157,16 +157,10 @@ class MyFinanceFragment : Fragment() {
                                     when(it.name) {
                                         BankingInstitutionSyncErrorType.SECURITY_QUESTION_ERROR -> {
                                             itembinding.root.setOnClickListener {
-                                                UIUtils.alert(
-                                                    requireContext(),
-                                                    getString(R.string.warning),
-                                                    getString(R.string.banking_institutions_status_security_question)) {
-
-                                                    val intent = Intent(requireActivity() as MainActivity, InstitutionSecurityAnswerActivity::class.java)
-                                                    intent.putExtra("institution",institution)
-                                                    requireActivity().startActivityForResult(intent,100)
-                                                    // we display the security question page
-                                                }
+                                                val intent = Intent(requireActivity() as MainActivity, InstitutionSecurityAnswerActivity::class.java)
+                                                intent.putExtra("institution",institution)
+                                                requireActivity().startActivityForResult(intent,100)
+                                                // we display the security question page
                                             }
                                             itembinding.status.visibility = VISIBLE
                                             itembinding.status.background = requireContext().getDrawable(R.drawable.status_verification_required)

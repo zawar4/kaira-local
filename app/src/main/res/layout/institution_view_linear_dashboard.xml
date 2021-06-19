@@ -47,12 +47,13 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
+            android:layout_width="wrap_content"
             android:id="@+id/status"
-            android:layout_width="120dp"
-            android:layout_height="20dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_height="22dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/status_syncing"
-            android:gravity="center"
             android:text="@string/banking_institutions_status_syncing"
             android:textColor="@android:color/white"
             android:visibility="visible"
