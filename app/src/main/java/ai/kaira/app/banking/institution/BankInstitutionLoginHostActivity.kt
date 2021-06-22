@@ -1,6 +1,9 @@
 package ai.kaira.app.banking.institution
 
 import ai.kaira.app.R
+import ai.kaira.app.RedirectHelper
+import ai.kaira.app.banking.institution.fragments.FinancialInstitutionActivity
+import ai.kaira.app.home.MyFinanceFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.Navigation.findNavController
@@ -15,6 +18,13 @@ class BankInstitutionLoginHostActivity : AppCompatActivity() {
         setContentView(R.layout.activity_bank_institution_login_host)
 
         if(intent.hasExtra("institution_type")){
+            if(intent.hasExtra("from")){
+                if(intent.getStringExtra("from").equals(FinancialInstitutionActivity::class.java.simpleName)) {
+                    RedirectHelper.enableRedirect(BankInstitutionLoginHostActivity::class.java.simpleName, FinancialInstitutionActivity::class.java.simpleName)
+                } else if(intent.getStringExtra("from").equals(MyFinanceFragment::class.java.simpleName)) {
+                    RedirectHelper.enableRedirect(BankInstitutionLoginHostActivity::class.java.simpleName, MyFinanceFragment::class.java.simpleName)
+                }
+            }
             val institutionType : String? = intent.getStringExtra("institution_type")
             institutionType?.let {
                 val bundle = Bundle()

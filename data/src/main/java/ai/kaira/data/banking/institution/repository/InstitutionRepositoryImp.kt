@@ -22,7 +22,7 @@ class InstitutionRepositoryImp @Inject constructor(private val institutionLocalD
         return institutionNetworkDataSource.connectInstitution(institutionParamBody)
     }
 
-    override fun getMyInstitutions(): MutableLiveData<KairaResult<ArrayList<Institution>>> {
+    override fun getMyInstitutions(): Flow<KairaResult<ArrayList<Institution>>> {
         return institutionNetworkDataSource.getMyInstitutions()
     }
 
@@ -32,5 +32,12 @@ class InstitutionRepositoryImp @Inject constructor(private val institutionLocalD
         institutionId: String
     ): Flow<KairaResult<Institution>> {
         return institutionNetworkDataSource.verifyInstitutionCode(aggregator,securityAnswer,institutionId)
+    }
+
+    override fun removeInstitution(
+        aggregator: Int,
+        institutionId: String
+    ): Flow<KairaResult<Void>> {
+        return institutionNetworkDataSource.removeInstitution(aggregator,institutionId)
     }
 }

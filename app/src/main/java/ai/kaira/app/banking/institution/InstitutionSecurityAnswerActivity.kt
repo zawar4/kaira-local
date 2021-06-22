@@ -66,7 +66,6 @@ class InstitutionSecurityAnswerActivity : AppCompatActivity() {
 
         institutionViewModel.onInstitutionAccountVerified().observe(this) {
             val intent = Intent()
-            intent.putExtra("refresh_my_financial",true)
             setResult(RESULT_OK,intent)
             finish()
         }

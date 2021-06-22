@@ -22,6 +22,7 @@ class MyFinanceViewModel (private val myFinancialUseCase: MyFinancialUseCase) : 
     private val myFinancialsLiveData = MutableLiveData<MyFinancials>()
 
     private lateinit var flow : Flow<KairaResult<MyFinancials>>
+
     fun fetchMyFinancials(){
         flow = myFinancialUseCase.GetMyFinancials()
         viewModelScope.launch(IO){

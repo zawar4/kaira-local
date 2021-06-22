@@ -5,7 +5,9 @@ import ai.kaira.app.SharedMainViewModel
 import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.banking.institution.BankInstitutionLoginHostActivity
+import ai.kaira.app.banking.institution.BankInstitutionsHostActivity
 import ai.kaira.app.banking.institution.InstitutionSecurityAnswerActivity
+import ai.kaira.app.banking.institution.fragments.FinancialInstitutionActivity
 import ai.kaira.app.databinding.FinanceItemLayoutBinding
 import ai.kaira.app.databinding.FragmentMyFinanceBinding
 import ai.kaira.app.home.viewmodel.MyFinanceViewModel
@@ -58,6 +60,12 @@ class MyFinanceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        binding.addFinancialInstitutions.setOnClickListener {
+            val intent = Intent(requireActivity() as MainActivity, BankInstitutionsHostActivity::class.java)
+            intent.putExtra("from", FinancialInstitutionActivity::class.java.simpleName)
+            requireActivity().startActivityForResult(intent, 100)
+        }
         sharedMainViewModel.onMyFinancialFragmentRefresh().observe(viewLifecycleOwner) {
             myFinanceViewModel.fetchMyFinancials()
         }
@@ -66,7 +74,7 @@ class MyFinanceFragment : Fragment() {
             binding.spendingParent.removeAllViews()
             binding.leewayParent.removeAllViews()
             binding.balanceSheetParent.removeAllViews()
-            binding.insitutionsParent.removeAllViews()
+            binding.institutionsParent.removeAllViews()
             myFinancies?.let{
                 binding.viewParent.visibility = VISIBLE
                 val revenues = myFinancies.revenue
@@ -144,8 +152,12 @@ class MyFinanceFragment : Fragment() {
                 totalAssetsBinding.exploreBtn.visibility = INVISIBLE
                 binding.balanceSheetParent.addView(totalAssetsBinding.root)
 
+                binding.editFinancialInstitution.setOnClickListener {
+                    val intent = Intent(requireActivity(),FinancialInstitutionActivity::class.java)
+                    startActivity(intent)
+                }
                 institutions.forEachIndexed { index, institution ->
-                    val itembinding : ai.kaira.app.databinding.InstitutionViewLinearDashboardBinding = DataBindingUtil.inflate(inflater,R.layout.institution_view_linear_dashboard,binding.insitutionsParent,false)
+                    val itembinding : ai.kaira.app.databinding.InstitutionViewLinearDashboardBinding = DataBindingUtil.inflate(inflater,R.layout.institution_view_linear_dashboard,binding.institutionsParent,false)
                     Glide.with(requireContext()).load(institution.getLogoUrl()).into(itembinding.institutionIm)
                     institution.name?.let {
                         itembinding.institutionNameTv.text = institution.name
@@ -159,6 +171,7 @@ class MyFinanceFragment : Fragment() {
                                             itembinding.root.setOnClickListener {
                                                 val intent = Intent(requireActivity() as MainActivity, InstitutionSecurityAnswerActivity::class.java)
                                                 intent.putExtra("institution",institution)
+                                                intent.putExtra("from", MyFinanceFragment::class.java.simpleName)
                                                 requireActivity().startActivityForResult(intent,100)
                                                 // we display the security question page
                                             }
@@ -170,6 +183,7 @@ class MyFinanceFragment : Fragment() {
                                             itembinding.root.setOnClickListener {
                                                 val intent = Intent(requireActivity() as MainActivity, BankInstitutionLoginHostActivity::class.java)
                                                 intent.putExtra("institution_type",institution.type)
+                                                intent.putExtra("from", MyFinanceFragment::class.java.simpleName)
                                                 requireActivity().startActivityForResult(intent,100)
                                                 // we display the banking login page
                                             }
@@ -180,6 +194,7 @@ class MyFinanceFragment : Fragment() {
                                         else -> {
                                             val intent = Intent(requireActivity() as MainActivity,BankInstitutionLoginHostActivity::class.java)
                                             intent.putExtra("institution_type",institution.type)
+                                            intent.putExtra("from", MyFinanceFragment::class.java.simpleName)
                                             requireActivity().startActivityForResult(intent,100)
                                             // we display the bank login page
                                             itembinding.status.visibility = VISIBLE
@@ -210,6 +225,7 @@ class MyFinanceFragment : Fragment() {
                             BankingInstitutionSyncStatus.RETRY -> {
                                 val intent = Intent(requireActivity() as MainActivity,BankInstitutionLoginHostActivity::class.java)
                                 intent.putExtra("institution_type",institution.type)
+                                intent.putExtra("from", MyFinanceFragment::class.java.simpleName)
                                 requireActivity().startActivityForResult(intent,100)
                                 // we display the bank login page
                                 itembinding.status.visibility = VISIBLE
@@ -218,13 +234,12 @@ class MyFinanceFragment : Fragment() {
                             }
                         }
                     }
-                    binding.insitutionsParent.addView(itembinding.root)
+                    binding.institutionsParent.addView(itembinding.root)
                 }
-
             }
             binding.root.requestLayout()
-
         }
+
         myFinanceViewModel.fetchMyFinancials()
 
         myFinanceViewModel.onLoad().observe(viewLifecycleOwner){ loading ->
@@ -239,6 +254,9 @@ class MyFinanceFragment : Fragment() {
             UIUtils.networkConnectivityAlert(requireActivity())
         }
 
+        binding.editFinancialInstitution.setOnClickListener {
+
+        }
         myFinanceViewModel.onErrorAction().observe(viewLifecycleOwner){
                when(it.kairaAction){
                    KairaAction.UNAUTHORIZED_REDIRECT ->{

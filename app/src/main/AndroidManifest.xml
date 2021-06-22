@@ -18,6 +18,10 @@
         <activity
             android:name=".home.MainActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".banking.institution.fragments.FinancialInstitutionActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".banking.institution.BankInstitutionsHostActivity"
             android:screenOrientation="portrait" />

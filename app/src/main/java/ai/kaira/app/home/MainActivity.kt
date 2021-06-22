@@ -23,10 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 100 && resultCode == RESULT_OK) {
             data?.let { intnt ->
-                val refreshMyFinanceFragment : Boolean? = intnt.extras?.getBoolean("refresh_my_financial")
-                if(refreshMyFinanceFragment == true) {
-                    sharedMainViewModel.refreshMyFinancialFragment()
-                }
+                sharedMainViewModel.refreshMyFinancialFragment()
             }
         }
     }

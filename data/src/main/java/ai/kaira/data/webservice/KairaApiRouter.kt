@@ -22,6 +22,10 @@ import retrofit2.http.*
 interface KairaApiRouter {
 
 
+    @DELETE("banking/{type}/institutions/{id}")
+    fun removeInstitution(@Header("Authorization") authorization: String,@Path("type") type : Int,@Path("id") id : String) : Call<Void>
+
+
     @PUT("banking/{type}/institutions/{id}")
     fun submitSecurityAnswer(@Header("Authorization") authorization: String,@Path("type") type : Int,@Path("id") id : String,@Body securtiyAnswer : SecurityAnswer) : Call<Institution>
 

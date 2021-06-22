@@ -16,6 +16,11 @@ class UIUtils {
             MaterialAlertDialogBuilder(context).setTitle(title).setMessage(message).setCancelable(false).setPositiveButton(context.getText(R.string.ok)) { dialog, which -> runnable() }.show()
         }
 
+        fun alertYesNo(context: Context, title:String, message:String,runnable: ()->Unit){
+            MaterialAlertDialogBuilder(context).setTitle(title).setMessage(message).setCancelable(false).setNegativeButton(context.getText(R.string.action_no),null).setPositiveButton(context.getText(R.string.action_yes)) { dialog, which -> runnable() }.show()
+        }
+
+
         fun networkCallAlert(context: Context,message: String){
             MaterialAlertDialogBuilder(context).setTitle(context.getString(R.string.attention)).setMessage(message).setPositiveButton(context.getText(R.string.ok),null).show()
         }

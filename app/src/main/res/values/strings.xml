@@ -232,6 +232,7 @@
     <string name="finance_dashboard_institutions_title">Financial institution</string>
     <string name="finance_dashboard_institutions_add">Edit</string>
     <string name="finance_current_month">Current</string>
+    <string name="finance_institutions_remove_message">Are you sure you want to remove that institution?</string>
 
     <string name="finance_asset_title">Asset</string>
     <string name="finance_liability_title">Debt</string>
@@ -239,5 +240,6 @@
 
     <string name="banking_institutions_status_syncing_alert">This account is currently syncing. It might take a while</string>
     <string name="banking_institutions_status_security_question">Verification required</string>
+
 
 </resources>

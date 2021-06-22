@@ -12,7 +12,9 @@ interface InstitutionNetworkDataSource {
 
     fun connectInstitution(institutionParamBody: InstitutionParamBody):MutableLiveData<KairaResult<ConnectedInstitution>>
 
-    fun getMyInstitutions(): MutableLiveData<KairaResult<ArrayList<Institution>>>
+    fun getMyInstitutions(): Flow<KairaResult<ArrayList<Institution>>>
 
     fun verifyInstitutionCode(aggregator : Int, securityAnswer: SecurityAnswer, institutionId : String) : Flow<KairaResult<Institution>>
+
+    fun removeInstitution(aggregator : Int, institutionId : String) : Flow<KairaResult<Void>>
 }

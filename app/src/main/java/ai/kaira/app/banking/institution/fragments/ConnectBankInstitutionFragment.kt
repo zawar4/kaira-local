@@ -3,6 +3,7 @@ package ai.kaira.app.banking.institution.fragments
 import ai.kaira.app.R
 import ai.kaira.app.RedirectHelper
 import ai.kaira.app.application.ViewModelFactory
+import ai.kaira.app.banking.institution.BankInstitutionLoginHostActivity
 import ai.kaira.app.banking.institution.fragments.viewmodel.InstitutionViewModel
 import ai.kaira.app.databinding.FragmentConnectBankInstitutionBinding
 import ai.kaira.app.home.MyFinanceFragment
@@ -20,9 +21,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,17 +66,24 @@ class ConnectBankInstitutionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let{ bundle ->
-            if(bundle.containsKey("institution")){
+            if(bundle.containsKey("institution")) {
+
                 val institution : Institution = arguments?.get("institution") as Institution
                 populateInstitution(institution)
             }
-            if(bundle.containsKey("institution_type")){
-                RedirectHelper.enableRedirect(ConnectBankInstitutionLoadFragment::class.java.simpleName,MyFinanceFragment::class.java.simpleName)
+            if(bundle.containsKey("institution_type")) {
                 val type = bundle.get("institution_type") as String
                 val languageLocale = LanguageConfig.getLanguageLocale(requireContext())
                 val institutions = institutionViewModel.getAllInstitutions(languageLocale)
                 val institution = institutions.filter{ it.type == type}
                 populateInstitution(institution[0])
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            // handle back event
+            if(!NavHostFragment.findNavController(this@ConnectBankInstitutionFragment).popBackStack()) {
+
             }
         }
 
@@ -130,7 +140,7 @@ class ConnectBankInstitutionFragment : Fragment() {
 
         }
         binding.loginBtn.setOnClickListener {
-            val institutionParam = InstitutionParam(institution.type.toString(),binding.userPinEt.text.toString(),binding.userPasswordEt.text.toString())
+            val institutionParam = InstitutionParam(institution.type.toString(),binding.userPinEt.text.toString(),binding.userPasswordEt.text.toString(),institution.name.toString())
             val bundle = Bundle()
             bundle.putString("institutionType",institution.type)
             bundle.putSerializable("institutionCredentialsParam",InstitutionParamBody(institution.aggregator.value,institutionParam))

@@ -23,7 +23,97 @@ class InstitutionViewModel(private val institutionUseCase: InstitutionUseCase) :
 
     private val connectInstitutionLiveData = MediatorLiveData<Boolean>()
     private val institutionAccountVerificationCodeLiveData = MutableLiveData<Boolean>()
+    private val myInstitutionsLiveData = MutableLiveData<ArrayList<Institution>>()
+    private val institutionRemoveLiveData = MutableLiveData<Boolean>()
 
+
+    fun onInstitutionRemoved() : MutableLiveData<Boolean> {
+        return institutionRemoveLiveData
+    }
+    fun removeInstitution(aggregator: Int, institutionId: String) {
+        viewModelCoroutineScope.launch(IO) {
+            institutionUseCase.removeInstitution(aggregator,institutionId).collect {
+                withContext(Main) {
+                    when(it.status) {
+                        ResultState.SUCCESS -> {
+                            showLoading(false)
+                            institutionRemoveLiveData.value = true
+                        }
+                        ResultState.LOADING -> {
+                            showLoading(true)
+                        }
+                        ResultState.ERROR -> {
+                            showLoading(false)
+                            if(it.kairaAction != null){
+                                if(it.kairaAction == KairaAction.UNAUTHORIZED_REDIRECT){
+                                    institutionUseCase.deleteToken()
+                                }
+                                it.kairaAction?.let{ it2 ->
+                                    errorAction(ErrorAction(it.message.toString(),it2))
+                                }
+                            }else {
+                                it.message?.let{ error ->
+                                    showError(error)
+                                }
+                            }
+                        }
+                        ResultState.EXCEPTION -> {
+                            showLoading(false)
+                            it.message?.let { it2 ->
+                                showConnectivityError()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    fun onMyInstitutionsFetched() : MutableLiveData<ArrayList<Institution>> {
+        return myInstitutionsLiveData
+    }
+
+    fun getMyInstitutions() {
+        viewModelCoroutineScope.launch(IO) {
+            institutionUseCase.getMyInstitutions().collect {
+                withContext(Main) {
+                    when(it.status){
+                        ResultState.SUCCESS -> {
+                            showLoading(false)
+                            it.data?.let { institutions ->
+                                myInstitutionsLiveData.value = institutions
+                            }
+
+                        }
+                        ResultState.ERROR -> {
+                            showLoading(false)
+                            if(it.kairaAction != null){
+                                if(it.kairaAction == KairaAction.UNAUTHORIZED_REDIRECT){
+                                    institutionUseCase.deleteToken()
+                                }
+                                it.kairaAction?.let{ it2 ->
+                                    errorAction(ErrorAction(it.message.toString(),it2))
+                                }
+                            }else {
+                                it.message?.let{ error ->
+                                    showError(error)
+                                }
+                            }
+                        }
+                        ResultState.LOADING -> {
+                            showLoading(true)
+                        }
+                        ResultState.EXCEPTION -> {
+                            showLoading(false)
+                            it.message?.let { it2 ->
+                                showConnectivityError()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     fun onInstitutionAccountVerified() : MutableLiveData<Boolean> {
         return institutionAccountVerificationCodeLiveData
     }

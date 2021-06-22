@@ -11,6 +11,7 @@ import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -49,6 +50,38 @@ class InstitutionNetworkDataSourceImp @Inject constructor(private val prefs: Sha
         }
     }
 
+    override fun removeInstitution(
+        aggregator: Int,
+        institutionId: String
+    ) = flow<KairaResult<Void>> {
+        emit(KairaResult.loading())
+        try {
+            val response = kairaApiRouter.removeInstitution(prefs.getString("token","")!!,aggregator,institutionId).execute()
+            if(response.isSuccessful) {
+                val body = response.body()
+                emit(KairaResult.success(body))
+            } else {
+                if(response.code() == 401){
+                    val error: String? = response.errorBody()?.string()
+                    error?.let{
+                        emit(KairaResult.error(message = error,kairaAction = KairaAction.UNAUTHORIZED_REDIRECT))
+                    }
+                }
+                else {
+                    val error: String? = response.errorBody()?.string()
+                    error?.let{
+                        emit(KairaResult.error(message = error))
+                    }
+                }
+            }
+        }
+        catch (exception : Exception) {
+            exception.printStackTrace()
+            exception.message?.let { message ->
+                emit(KairaResult.exception(message = message))
+            }
+        }
+    }
 
 
     override fun connectInstitution(institutionParamBody: InstitutionParamBody): MutableLiveData<KairaResult<ConnectedInstitution>> {
@@ -96,48 +129,41 @@ class InstitutionNetworkDataSourceImp @Inject constructor(private val prefs: Sha
         return connectedInstitutionLiveData
     }
 
-    override fun getMyInstitutions(): MutableLiveData<KairaResult<ArrayList<Institution>>> {
-        val myInstitutionsLiveData = MutableLiveData<KairaResult<ArrayList<Institution>>>()
-        viewModelCoroutineScope.launch(Dispatchers.IO) {
-            withContext(Dispatchers.Main){
-                myInstitutionsLiveData.value = KairaResult.loading()
-            }
-            try{
-                val response = kairaApiRouter.getMyInstitutions(prefs.getString("token","")!!).execute()
-                withContext(Dispatchers.Main){
-                    if(response.isSuccessful){
-                        val body : ArrayList<Institution>? = response.body()
-                        myInstitutionsLiveData.value = KairaResult.success(data = body)
-                    }else{
-                        if(response.code() == 403){
-                            val error: String? = response.errorBody()?.string()
-                            error?.let{
-                                myInstitutionsLiveData.value = KairaResult.error(message = error,kairaAction = KairaAction.UNVERIFIED_REDIRECT)
-                            }
-                        }else if(response.code() == 401){
-                            val error: String? = response.errorBody()?.string()
-                            error?.let{
-                                myInstitutionsLiveData.value = KairaResult.error(message = error,kairaAction = KairaAction.UNAUTHORIZED_REDIRECT)
-                            }
-                        } else {
-                            val error: String? = response.errorBody()?.string()
-                            error?.let{
-                                myInstitutionsLiveData.value = KairaResult.error(message = error,kairaAction = KairaAction.UNKOWN_REDIRECT)
-                            }
+    override fun getMyInstitutions() = flow<KairaResult<ArrayList<Institution>>> {
+        emit(KairaResult.loading())
+        try{
+            val response = kairaApiRouter.getMyInstitutions(prefs.getString("token","")!!).execute()
+            if(response.isSuccessful){
+                val body : ArrayList<Institution>? = response.body()
+                emit(KairaResult.success(data = body))
+            }else{
+                when {
+                    response.code() == 403 -> {
+                        val error: String? = response.errorBody()?.string()
+                        error?.let{
+                            emit(KairaResult.error(message = error,kairaAction = KairaAction.UNVERIFIED_REDIRECT))
+                        }
+                    }
+                    response.code() == 401 -> {
+                        val error: String? = response.errorBody()?.string()
+                        error?.let{
+                            emit(KairaResult.error(message = error,kairaAction = KairaAction.UNAUTHORIZED_REDIRECT))
+                        }
+                    }
+                    else -> {
+                        val error: String? = response.errorBody()?.string()
+                        error?.let{
+                            emit(KairaResult.error(message = error,kairaAction = KairaAction.UNKOWN_REDIRECT))
                         }
                     }
                 }
             }
-            catch (exception:Exception){
-                withContext(Dispatchers.Main) {
-                    exception.message?.let { message ->
-                        myInstitutionsLiveData.value = KairaResult.exception(message = message)
-                    }
-                }
-                exception.printStackTrace()
-            }
-
         }
-        return myInstitutionsLiveData
+        catch (exception:Exception){
+            exception.message?.let { message ->
+                emit(KairaResult.exception(message = message))
+            }
+            exception.printStackTrace()
+        }
     }
 }

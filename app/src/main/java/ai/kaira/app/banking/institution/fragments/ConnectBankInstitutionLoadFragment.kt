@@ -4,6 +4,7 @@ import ai.kaira.app.R
 import ai.kaira.app.RedirectHelper
 import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.application.ViewModelFactory
+import ai.kaira.app.banking.institution.BankInstitutionLoginHostActivity
 import ai.kaira.app.banking.institution.fragments.viewmodel.InstitutionViewModel
 import ai.kaira.app.databinding.FragmentConnectBankInstitutionLoadBinding
 import ai.kaira.app.home.MyFinanceFragment
@@ -93,9 +94,9 @@ class ConnectBankInstitutionLoadFragment : Fragment() {
 
         institutionViewModel.onInstitutionConnected().observe(viewLifecycleOwner){
             if(it){
-                if(RedirectHelper.redirectExists(ConnectBankInstitutionLoadFragment::class.java.simpleName,MyFinanceFragment::class.java.simpleName)) {
+                if(RedirectHelper.redirectExists(BankInstitutionLoginHostActivity::class.java.simpleName,MyFinanceFragment::class.java.simpleName) ||
+                    RedirectHelper.redirectExists(BankInstitutionLoginHostActivity::class.java.simpleName,FinancialInstitutionActivity::class.java.simpleName)) {
                     val intent = Intent()
-                    intent.putExtra("refresh_my_financial",true)
                     requireActivity().setResult(RESULT_OK,intent)
                     requireActivity().finish()
                 } else {

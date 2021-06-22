@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <FrameLayout
             android:background="@color/heading_color"
@@ -28,7 +27,7 @@
                 android:text="@string/title_finance" />
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/add_financial_institutions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center"
@@ -182,6 +181,7 @@
                             app:drawableLeftCompat="@drawable/icon_financial_dashboard_institutions"/>
 
                         <TextView
+                            android:id="@+id/edit_financial_institution"
                             android:minWidth="100dp"
                             android:layout_marginRight="16dp"
                             android:layout_width="wrap_content"
@@ -196,7 +196,7 @@
                             android:paddingRight="10dp"/>
                     </FrameLayout>
                     <LinearLayout
-                        android:id="@+id/insitutions_parent"
+                        android:id="@+id/institutions_parent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
