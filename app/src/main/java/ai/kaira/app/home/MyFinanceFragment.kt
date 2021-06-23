@@ -154,7 +154,7 @@ class MyFinanceFragment : Fragment() {
 
                 binding.editFinancialInstitution.setOnClickListener {
                     val intent = Intent(requireActivity() as MainActivity,FinancialInstitutionActivity::class.java)
-                    startActivityForResult(intent,100)
+                    requireActivity().startActivityForResult(intent,100)
                 }
                 institutions.forEachIndexed { index, institution ->
                     val itembinding : ai.kaira.app.databinding.InstitutionViewLinearDashboardBinding = DataBindingUtil.inflate(inflater,R.layout.institution_view_linear_dashboard,binding.institutionsParent,false)
