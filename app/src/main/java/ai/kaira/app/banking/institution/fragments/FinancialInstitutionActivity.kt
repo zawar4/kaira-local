@@ -189,7 +189,12 @@ class FinancialInstitutionActivity : AppCompatActivity() {
                 }
             }
         }
+    }
 
+    override fun onBackPressed() {
+        val intent = Intent()
+        setResult(RESULT_OK,intent)
+        finish()
     }
 
 }

@@ -22,7 +22,5 @@ class BankInstitutionsHostActivity : AppCompatActivity() {
                 RedirectHelper.enableRedirect(BankInstitutionsHostActivity::class.java.simpleName, MyFinanceFragment::class.java.simpleName)
             }
         }
-        val navController = findNavController(R.id.institutions_host_fragment)
-        navController.navigate(R.id.bankInstitutionListFragment)
     }
 }

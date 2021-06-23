@@ -153,8 +153,8 @@ class MyFinanceFragment : Fragment() {
                 binding.balanceSheetParent.addView(totalAssetsBinding.root)
 
                 binding.editFinancialInstitution.setOnClickListener {
-                    val intent = Intent(requireActivity(),FinancialInstitutionActivity::class.java)
-                    startActivity(intent)
+                    val intent = Intent(requireActivity() as MainActivity,FinancialInstitutionActivity::class.java)
+                    startActivityForResult(intent,100)
                 }
                 institutions.forEachIndexed { index, institution ->
                     val itembinding : ai.kaira.app.databinding.InstitutionViewLinearDashboardBinding = DataBindingUtil.inflate(inflater,R.layout.institution_view_linear_dashboard,binding.institutionsParent,false)
@@ -254,9 +254,6 @@ class MyFinanceFragment : Fragment() {
             UIUtils.networkConnectivityAlert(requireActivity())
         }
 
-        binding.editFinancialInstitution.setOnClickListener {
-
-        }
         myFinanceViewModel.onErrorAction().observe(viewLifecycleOwner){
                when(it.kairaAction){
                    KairaAction.UNAUTHORIZED_REDIRECT ->{

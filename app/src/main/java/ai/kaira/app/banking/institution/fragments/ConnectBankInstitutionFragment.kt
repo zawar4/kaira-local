@@ -79,15 +79,6 @@ class ConnectBankInstitutionFragment : Fragment() {
                 populateInstitution(institution[0])
             }
         }
-
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            // handle back event
-            if(!NavHostFragment.findNavController(this@ConnectBankInstitutionFragment).popBackStack()) {
-
-            }
-        }
-
-
     }
 
     private fun populateInstitution(institution: Institution){

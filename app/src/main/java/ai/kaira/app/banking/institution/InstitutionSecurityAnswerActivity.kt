@@ -102,7 +102,6 @@ class InstitutionSecurityAnswerActivity : AppCompatActivity() {
                 }
             }
         }
-
         binding.userPinEt.addTextChangedListener(textWatcher)
     }
 }

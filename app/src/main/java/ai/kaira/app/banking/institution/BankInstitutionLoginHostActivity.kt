@@ -17,6 +17,7 @@ class BankInstitutionLoginHostActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bank_institution_login_host)
 
+        var bundle : Bundle ?= null
         if(intent.hasExtra("institution_type")){
             if(intent.hasExtra("from")){
                 if(intent.getStringExtra("from").equals(FinancialInstitutionActivity::class.java.simpleName)) {
@@ -27,11 +28,11 @@ class BankInstitutionLoginHostActivity : AppCompatActivity() {
             }
             val institutionType : String? = intent.getStringExtra("institution_type")
             institutionType?.let {
-                val bundle = Bundle()
-                bundle.putString("institution_type",institutionType)
-                val navController = findNavController(R.id.login_institutions_host_fragment)
-                navController.navigate(R.id.loginToBankInstitutionFragment,bundle)
+                bundle = Bundle()
+                bundle?.putString("institution_type",institutionType)
             }
         }
+        val navController = findNavController(R.id.login_institutions_host_fragment)
+        navController.setGraph(R.navigation.connect_institution_login_nav_graph,bundle)
     }
 }
