@@ -208,6 +208,11 @@ class MyFinanceFragment : Fragment() {
                             BankingInstitutionSyncStatus.OK -> {
                                 itembinding.status.visibility = GONE
                                 itembinding.status.background = null
+                                itembinding.root.setOnClickListener {
+                                    val bundle = Bundle()
+                                    bundle.putSerializable("institution",institution)
+                                    findNavController().navigate(R.id.navigation_account_overview,bundle)
+                                }
                             }
                             BankingInstitutionSyncStatus.SYNCING -> {
                                 itembinding.root.setOnClickListener {

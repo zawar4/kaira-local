@@ -1,5 +1,6 @@
 package ai.kaira.domain.banking.institution.model
 
+import ai.kaira.domain.R
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
@@ -27,14 +28,17 @@ enum class BankAccountType(val type:String) {
 
     operator fun invoke(type:String) = values().firstOrNull{ it.type == type }
 
-    companion object {
-        fun isInvestment(bankAccountType: BankAccountType) : Boolean {
-           if(bankAccountType == deposit || bankAccountType == creditCard || bankAccountType == saving || bankAccountType == other) {
-               return false
-           } else if(bankAccountType == mortgage || bankAccountType == loan || bankAccountType == investment || bankAccountType == otherRegisteredAccount || bankAccountType == retirement) {
-               return true
-           }
+
+    fun isInvestment() : Boolean {
+        if(this == deposit || this == creditCard || this == saving || this == other) {
             return false
+        } else if(this == mortgage || this == loan || this == investment || this == otherRegisteredAccount || this == retirement) {
+            return true
         }
+        return false
+    }
+
+    companion object {
+
     }
 }

@@ -15,7 +15,9 @@ data class Institution(val aggregator:BankingAggregator,
                        val note:String?,
                        val id: String?,
                        val syncStatus: BankingInstitutionSyncStatus?,
-                       val syncError: BankingInstitutionSyncError?):Serializable
+                       val syncError: BankingInstitutionSyncError?,
+                       val accounts : ArrayList<Account>,
+                       val amount : Double):Serializable
 {
 
     fun getLogoUrl():String{

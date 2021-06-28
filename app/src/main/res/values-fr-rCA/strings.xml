@@ -85,6 +85,16 @@
     <string name="psychological_profile_detail_title">Brève description des différents profils de motivation face à l’argent selon les réponses</string>
 
     <!-- Financial Profile !-->
+
+    <string name="financial_profile_type_deposit">Dépôt</string>
+    <string name="financial_profile_type_mortgage">Hypothèque</string>
+    <string name="financial_profile_type_retirement">Retraite</string>
+    <string name="financial_profile_type_creditcard">Carte de crédit</string>
+    <string name="financial_profile_type_loan">Prête</string>
+    <string name="financial_profile_type_investment">Investissement</string>
+    <string name="financial_profile_type_otherregisteredaccount">Autre Enregistré</string>
+    <string name="financial_profile_type_other">Autre</string>
+
     <string name ="financial_profile_type_spending">Dépenses</string>
     <string name ="financial_profile_type_saving">Épargne</string>
     <string name ="financial_profile_type_credit">Crédit</string>

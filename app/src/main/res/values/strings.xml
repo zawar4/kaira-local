@@ -101,7 +101,18 @@
 
     <!-- Financial Profile !-->
     <string name="financial_profile_type_spending">Spendings</string>
+
     <string name="financial_profile_type_saving">Savings</string>
+    <string name="financial_profile_type_deposit">Deposit</string>
+    <string name="financial_profile_type_mortgage">Mortgage</string>
+    <string name="financial_profile_type_retirement">Retirement</string>
+    <string name="financial_profile_type_creditcard">Credit Card</string>
+    <string name="financial_profile_type_loan">Loan</string>
+    <string name="financial_profile_type_investment">Investment</string>
+    <string name="financial_profile_type_otherregisteredaccount">Other Registered</string>
+    <string name="financial_profile_type_other">Other</string>
+
+
     <string name="financial_profile_type_credit">Borrowings</string>
     <string name="financial_profile_type_planning">Planning</string>
     <string name="financial_profile_result_title">Your results</string>

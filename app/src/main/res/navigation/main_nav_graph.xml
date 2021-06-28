@@ -25,6 +25,11 @@
         android:name="ai.kaira.app.home.MySpaceFragment"
         android:label="fragment_my_space"
         tools:layout="@layout/fragment_my_space" />
+    <fragment
+        android:id="@+id/navigation_account_overview"
+        android:name="ai.kaira.app.banking.account.fragment.AccountOverviewFragment"
+        android:label="AccountOverviewFragment"
+        tools:layout="@layout/fragment_account_overview"/>
 
 
 </navigation>
