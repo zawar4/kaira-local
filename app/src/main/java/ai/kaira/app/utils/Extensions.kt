@@ -106,14 +106,14 @@ class Extensions {
 
         fun Double.getFormattedAmount():String{
             val format: NumberFormat = NumberFormat.getCurrencyInstance()
-            format.maximumFractionDigits = 0
+            format.maximumFractionDigits = 2
             format.currency = Currency.getInstance(BankingAggregator.getCurrency(BankingAggregator.wealthica))
             return format.format(this)
         }
 
         fun Double.getFormattedAmount(currency : String):String{
             val format: NumberFormat = NumberFormat.getCurrencyInstance()
-            format.maximumFractionDigits = 0
+            format.maximumFractionDigits = 2
             format.currency = Currency.getInstance(currency)
             return format.format(this)
         }
