@@ -1,10 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/frameLayout"
+            app:srcCompat="@drawable/icon_coach"
+            android:visibility="gone"/>
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/textView31"
+            style="@style/Text03_EntryField"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="20sp"
+            android:text="@string/finance_dashboard_institutions_add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView4"
+            android:visibility="gone"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_institutions"
+            style="@style/Text03_button"
+            android:layout_width="250dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="36dp"
+            android:text="@string/action_add"
+            android:textColor="@android:color/white"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView31"
+            android:visibility="gone"/>
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -61,7 +101,9 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+            app:layout_constraintVertical_bias="1.0">
+
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

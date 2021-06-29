@@ -219,7 +219,8 @@
     <string name="finance_dashboard_leeways_title">Marge de manoeuvre</string>
     <string name="finance_dashboard_balances_title">Portrait financier actuel</string>
     <string name="finance_dashboard_institutions_title">Institutions financières</string>
-    <string name="finance_dashboard_institutions_add">Modifier</string>
+    <string name="finance_dashboard_institutions_edit">Modifier</string>
+    <string name="finance_dashboard_institutions_add">Ajouter une institution financière</string>
     <string name="finance_current_month">Actuel</string>
     <string name="finance_institutions_remove_message">Voulez-vous vraiment supprimer cette institution ?</string>
 

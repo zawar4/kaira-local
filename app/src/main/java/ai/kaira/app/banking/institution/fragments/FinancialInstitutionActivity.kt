@@ -25,6 +25,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -64,9 +65,23 @@ class FinancialInstitutionActivity : AppCompatActivity() {
             intent.putExtra("from",FinancialInstitutionActivity::class.java.simpleName)
             startActivityForResult(intent,100)
         }
+        binding.addInstitutions.setOnClickListener {
+            val intent = Intent(this,BankInstitutionsHostActivity::class.java)
+            intent.putExtra("from",FinancialInstitutionActivity::class.java.simpleName)
+            startActivityForResult(intent,100)
+        }
         institutionViewModel.onMyInstitutionsFetched().observe(this) { institutions ->
             binding.institutionsParent.removeAllViews()
             val inflater : LayoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            if(institutions.isEmpty()) {
+                binding.imageView4.visibility = VISIBLE
+                binding.textView31.visibility = VISIBLE
+                binding.addInstitutions.visibility = VISIBLE
+            } else {
+                binding.imageView4.visibility = GONE
+                binding.textView31.visibility = GONE
+                binding.addInstitutions.visibility = GONE
+            }
             institutions.forEachIndexed { index, institution ->
                 val itembinding : ai.kaira.app.databinding.InstitutionViewLinearDashboardBinding = DataBindingUtil.inflate(inflater,R.layout.institution_view_linear_dashboard,binding.institutionsParent,false)
                 itembinding.exploreBtn.visibility = VISIBLE

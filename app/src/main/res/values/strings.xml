@@ -241,7 +241,8 @@
     <string name="finance_dashboard_leeways_title">Wiggle room</string>
     <string name="finance_dashboard_balances_title">Current financial picture</string>
     <string name="finance_dashboard_institutions_title">Financial institution</string>
-    <string name="finance_dashboard_institutions_add">Edit</string>
+    <string name="finance_dashboard_institutions_edit">Edit</string>
+    <string name="finance_dashboard_institutions_add">Add a financial institution</string>
     <string name="finance_current_month">Current</string>
     <string name="finance_institutions_remove_message">Are you sure you want to remove that institution?</string>
 
