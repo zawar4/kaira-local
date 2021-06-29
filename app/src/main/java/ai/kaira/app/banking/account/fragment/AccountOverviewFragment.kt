@@ -65,7 +65,7 @@ class AccountOverviewFragment : Fragment() {
                     }
                 }
 
-                institutionViewModel.onInstitutionRemoved().observe(this){
+                institutionViewModel.onInstitutionRemoved().observe(viewLifecycleOwner){
                     findNavController().popBackStack()
                 }
 
