@@ -111,11 +111,15 @@ class Extensions {
             return format.format(this)
         }
 
-        fun Double.getFormattedAmount(currency : String):String{
-            val format: NumberFormat = NumberFormat.getCurrencyInstance()
-            format.maximumFractionDigits = 2
-            format.currency = Currency.getInstance(currency)
-            return format.format(this)
+        fun Double.getFormattedAmount(currency : String?) : String {
+            if(currency != null) {
+                val format: NumberFormat = NumberFormat.getCurrencyInstance()
+                format.maximumFractionDigits = 2
+                format.currency = Currency.getInstance(currency)
+                return format.format(this)
+            } else {
+                return getFormattedAmount()
+            }
         }
 
     }

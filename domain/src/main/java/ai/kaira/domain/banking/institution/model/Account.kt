@@ -8,7 +8,7 @@ data class Account(val id : String,
                    val number : String,
                    val balance : Double,
                    val amount : Double,
-                   val currency : String,
+                   val currency : String?,
                    val type :BankAccountType,
                    val aggregator: String,
                    val institution:String,
@@ -16,7 +16,8 @@ data class Account(val id : String,
                    val metadata:MetaData,
                    val accountingType:BankingAccountingType) : Serializable {
 
-    fun hideDetail() : Boolean{
-        return type == BankAccountType.investment || type == BankAccountType.retirement || type == BankAccountType.otherRegisteredAccount || type == BankAccountType.loan || type == BankAccountType.mortgage || id.contains("tfsa")
+    fun hideDetail() : Boolean {
+        return type == BankAccountType.retirement || type == BankAccountType.otherRegisteredAccount || type == BankAccountType.loan || type == BankAccountType.mortgage || id.contains("tfsa")
     }
+
 }

@@ -231,4 +231,10 @@
     <string name="banking_institutions_status_syncing_alert">Ce compte est en cours de synchronisation. Ça peut prendre un moment</string>
     <string name="banking_institutions_status_security_question">Vérification requise</string>
 
+    <string name="finance_account_item_category_title">Catégorie</string>
+    <string name="finance_account_item_transactions_title">Transactions</string>
+    <string name="finance_account_item_name_title">Account</string>
+    <string name="finance_account_item_institution_title">Institution bancaire</string>
+    <string name="finance_account_item_account_title">Compte</string>
+    <string name="finance_account_item_sharedRatio_title">Exclusion</string>
 </resources>

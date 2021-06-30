@@ -20,6 +20,7 @@
             android:layout_margin="16dp"
             android:id="@+id/amount"
             style="@style/Text03_EntryField"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="800043424224 $"

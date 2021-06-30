@@ -69,40 +69,45 @@ class AccountOverviewFragment : Fragment() {
                     findNavController().popBackStack()
                 }
 
-                institution.accounts.forEach {
+                institution.accounts.forEach { account ->
                     val transactionItemLayoutBinding : TransactionItemLayoutBinding = DataBindingUtil.inflate(inflater,R.layout.transaction_item_layout,binding.assetsAccountsParent,false)
 
                     var type : String = ""
-
-                    if(it.type == BankAccountType.deposit) {
+                    if(account.type == BankAccountType.deposit) {
                         type = getString(R.string.financial_profile_type_deposit)
-                    } else if(it.type == BankAccountType.investment) {
+                    } else if(account.type == BankAccountType.investment) {
                         type = getString(R.string.financial_profile_type_investment)
-                    } else if(it.type == BankAccountType.retirement) {
+                    } else if(account.type == BankAccountType.retirement) {
                         type = getString(R.string.financial_profile_type_retirement)
-                    } else if(it.type == BankAccountType.otherRegisteredAccount) {
+                    } else if(account.type == BankAccountType.otherRegisteredAccount) {
                         type = getString(R.string.financial_profile_type_otherregisteredaccount)
-                    } else if(it.type == BankAccountType.other) {
+                    } else if(account.type == BankAccountType.other) {
                         type = getString(R.string.financial_profile_type_other)
-                    } else if(it.type == BankAccountType.mortgage) {
+                    } else if(account.type == BankAccountType.mortgage) {
                         type = getString(R.string.financial_profile_type_mortgage)
-                    } else if(it.type == BankAccountType.saving) {
+                    } else if(account.type == BankAccountType.saving) {
                         type = getString(R.string.financial_profile_type_saving)
-                    } else if(it.type == BankAccountType.creditCard) {
+                    } else if(account.type == BankAccountType.creditCard) {
                         type = getString(R.string.financial_profile_type_creditcard)
-                    } else if(it.type == BankAccountType.loan) {
+                    } else if(account.type == BankAccountType.loan) {
                         type = getString(R.string.financial_profile_type_loan)
                     }
 
                     transactionItemLayoutBinding.name.text = type
-                    transactionItemLayoutBinding.amount.text = it.balance.getFormattedAmount(it.currency)
-                    if(it.hideDetail()) {
+                    transactionItemLayoutBinding.amount.text = account.balance.getFormattedAmount(account.currency)
+                    if(account.hideDetail()) {
                         transactionItemLayoutBinding.exploreBtn.visibility = INVISIBLE
                     } else {
                         transactionItemLayoutBinding.exploreBtn.visibility = VISIBLE
+                        transactionItemLayoutBinding.root.setOnClickListener {
+                            val bundle = Bundle()
+                            bundle.putSerializable("account", account)
+                            bundle.putString("institution_name", institution.name)
+                            findNavController().navigate(R.id.navigation_account_detail,bundle)
+                        }
                     }
 
-                    if(it.accountingType == BankingAccountingType.assest) {
+                    if(account.accountingType == BankingAccountingType.assest) {
                         binding.assetsAccountsParent.addView(transactionItemLayoutBinding.root)
                     } else {
                         binding.liabilityAccountsParent.addView(transactionItemLayoutBinding.root)

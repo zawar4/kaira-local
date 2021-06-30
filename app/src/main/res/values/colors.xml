@@ -35,6 +35,7 @@
     <color name="bankingLeeway">#ff7800</color>
     <color name="bankingSpending">#46d9e7</color>
     <color name="kairaGreen">#2ac261</color>
+    <color name="kairaDarkGreen">#61ae7b</color>
     <color name="financialProfileBad_Highlight">#ffe4c7</color>
     <color name="financialProfileOk_Highlight">#c09fc7</color>
     <color name="financialProfileGood_Highlight">#bacdff</color>

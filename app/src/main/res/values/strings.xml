@@ -253,5 +253,12 @@
     <string name="banking_institutions_status_syncing_alert">This account is currently syncing. It might take a while</string>
     <string name="banking_institutions_status_security_question">Verification required</string>
 
+    <string name="finance_account_item_category_title">Category</string>
+    <string name="finance_account_item_transactions_title">Transaction</string>
+    <string name="finance_account_item_name_title">Account</string>
+    <string name="finance_account_item_institution_title">Financial institution</string>
+    <string name="finance_account_item_account_title">Account</string>
+    <string name="finance_account_item_sharedRatio_title">Exclusion</string>
+
 
 </resources>
