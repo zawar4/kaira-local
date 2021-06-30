@@ -105,16 +105,16 @@ class UserIdentityCreateAccountActivity : AppCompatActivity() {
 
         accountCreateViewModel.onGroupCodeExists().observe(this) { exists ->
             if(exists){
-                    startActivity(Intent(this,UserCredentialsCreateAccountActivity::class.java))
-                    binding.groupCodeEt.setTextColor(ContextCompat.getColor(applicationContext,R.color.kairaSecLabel))
+                val intent = Intent(this,UserCredentialsCreateAccountActivity::class.java)
+                intent.putExtra("firstName",binding.firstNameEt.text.toString())
+                intent.putExtra("lastName",binding.lastNameEt.text.toString())
+                intent.putExtra("groupCode",binding.groupCodeEt.text.toString())
+                startActivity(intent)
             }else{
                 UIUtils.networkCallAlert(this,getString(R.string.authentication_creation_group_invalide),getString(R.string.action_yes),getString(R.string.action_no)) {
                     val intent = Intent(this,UserCredentialsCreateAccountActivity::class.java)
                     intent.putExtra("firstName",binding.firstNameEt.text.toString())
                     intent.putExtra("lastName",binding.lastNameEt.text.toString())
-                    if(binding.groupCodeEt.text.toString().length == 8) {
-                        intent.putExtra("groupCode",binding.groupCodeEt.text.toString())
-                    }
                     startActivity(intent)
                 }
                 binding.groupCodeEt.setTextColor(Color.RED)
