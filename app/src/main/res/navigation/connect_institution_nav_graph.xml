@@ -16,7 +16,8 @@
     <fragment
         android:id="@+id/loginToBankInstitutionFragment"
         android:name="ai.kaira.app.banking.institution.fragments.ConnectBankInstitutionFragment"
-        android:label="LoginToBankInstitutionFragment" >
+        android:label="LoginToBankInstitutionFragment"
+        tools:layout="@layout/fragment_connect_bank_institution">
         <action
             android:id="@+id/action_loginToBankInstitutionFragment_to_bankInstitutionListFragment"
             app:popUpTo="@id/bankInstitutionListFragment" />
@@ -27,7 +28,8 @@
     <fragment
         android:id="@+id/connectBankInstitutionLoadFragment"
         android:name="ai.kaira.app.banking.institution.fragments.ConnectBankInstitutionLoadFragment"
-        android:label="ConnectBankInstitutionLoadFragment" >
+        android:label="ConnectBankInstitutionLoadFragment"
+        tools:layout="@layout/fragment_connect_bank_institution_load">
         <action
             android:id="@+id/action_connectBankInstitutionLoadFragment_to_bankInstitutionConnectedFragment"
             app:destination="@id/bankInstitutionConnectedFragment" />
@@ -35,7 +37,8 @@
     <fragment
         android:id="@+id/bankInstitutionConnectedFragment"
         android:name="ai.kaira.app.banking.institution.fragments.BankInstitutionConnectedFragment"
-        android:label="BankInstitutionConnectedFragment" >
+        android:label="BankInstitutionConnectedFragment"
+        tools:layout="@layout/fragment_bank_institution_connected">
         <action
             android:id="@+id/action_bankInstitutionConnectedFragment_to_loginToBankInstitutionFragment"
             app:destination="@id/loginToBankInstitutionFragment" />

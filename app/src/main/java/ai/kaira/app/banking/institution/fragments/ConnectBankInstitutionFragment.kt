@@ -1,9 +1,13 @@
 package ai.kaira.app.banking.institution.fragments
 
 import ai.kaira.app.R
+import ai.kaira.app.RedirectHelper
 import ai.kaira.app.application.ViewModelFactory
+import ai.kaira.app.banking.institution.BankInstitutionLoginHostActivity
 import ai.kaira.app.banking.institution.fragments.viewmodel.InstitutionViewModel
 import ai.kaira.app.databinding.FragmentConnectBankInstitutionBinding
+import ai.kaira.app.home.MyFinanceFragment
+import ai.kaira.app.utils.LanguageConfig
 import ai.kaira.app.utils.UIUtils
 import ai.kaira.domain.banking.institution.model.Institution
 import ai.kaira.domain.banking.institution.model.InstitutionParam
@@ -17,9 +21,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,11 +65,25 @@ class ConnectBankInstitutionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val institution : Institution = arguments?.get("institution") as Institution
-        val url = "https://app.wealthica.com/images/institutions/"+institution.type+".png"
+        arguments?.let{ bundle ->
+            if(bundle.containsKey("institution")) {
+
+                val institution : Institution = arguments?.get("institution") as Institution
+                populateInstitution(institution)
+            }
+            if(bundle.containsKey("institution_type")) {
+                val type = bundle.get("institution_type") as String
+                val languageLocale = LanguageConfig.getLanguageLocale(requireContext())
+                val institutions = institutionViewModel.getAllInstitutions(languageLocale)
+                val institution = institutions.filter{ it.type == type}
+                populateInstitution(institution[0])
+            }
+        }
+    }
+
+    private fun populateInstitution(institution: Institution){
+        val url = institution.getLogoUrl()
         Glide.with(binding.institutionIm.context).load(url).into(binding.institutionIm);
-
-
         institution.usernameInformations?.let { usernameInformation ->
             binding.userPinHeadingEt.text = usernameInformation.label
             if(usernameInformation.type != null){
@@ -111,10 +131,10 @@ class ConnectBankInstitutionFragment : Fragment() {
 
         }
         binding.loginBtn.setOnClickListener {
-            val institutionParam = InstitutionParam(institution.type.toString(),binding.userPinEt.text.toString(),binding.userPasswordEt.text.toString())
+            val institutionParam = InstitutionParam(institution.type.toString(),binding.userPinEt.text.toString(),binding.userPasswordEt.text.toString(),institution.name.toString())
             val bundle = Bundle()
             bundle.putString("institutionType",institution.type)
-            bundle.putSerializable("institutionCredentialsParam",InstitutionParamBody(institution.aggregator,institutionParam))
+            bundle.putSerializable("institutionCredentialsParam",InstitutionParamBody(institution.aggregator.value,institutionParam))
             findNavController().navigate(R.id.connectBankInstitutionLoadFragment,bundle)
         }
 

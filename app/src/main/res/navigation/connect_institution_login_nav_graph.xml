@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bank_login_nav_graph"
+    app:startDestination="@id/loginToBankInstitutionFragment">
+    <fragment
+        android:id="@+id/loginToBankInstitutionFragment"
+        android:name="ai.kaira.app.banking.institution.fragments.ConnectBankInstitutionFragment"
+        android:label="LoginToBankInstitutionFragment"
+        tools:layout="@layout/fragment_connect_bank_institution">
+        <action
+            android:id="@+id/action_loginToBankInstitutionFragment_to_connectBankInstitutionLoadFragment"
+            app:destination="@id/connectBankInstitutionLoadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/connectBankInstitutionLoadFragment"
+        android:name="ai.kaira.app.banking.institution.fragments.ConnectBankInstitutionLoadFragment"
+        android:label="ConnectBankInstitutionLoadFragment"
+        tools:layout="@layout/fragment_connect_bank_institution_load">
+    </fragment>
+</navigation>

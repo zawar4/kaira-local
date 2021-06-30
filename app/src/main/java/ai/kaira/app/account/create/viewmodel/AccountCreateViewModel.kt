@@ -99,7 +99,7 @@ class AccountCreateViewModel (private val accountCreateUseCase: AccountCreateUse
     }
 
     fun createAccount(firstName:String,lastName:String,language:String,email:String,password:String,groupCode:String,bankingAggregator:Int){
-        val liveDataSource = accountCreateUseCase.fetchUserCreateAccount(firstName,lastName,language, email, password, groupCode,bankingAggregator =bankingAggregator)
+        val liveDataSource = accountCreateUseCase.fetchUserCreateAccount(firstName,lastName,language, email, password, groupCode,bankingAggregator = bankingAggregator)
         createAccountLiveData.addSource(liveDataSource){ result ->
             when(result.status){
                 ResultState.SUCCESS ->{

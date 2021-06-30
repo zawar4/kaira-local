@@ -4,4 +4,23 @@ import java.io.Serializable
 
 import androidx.annotation.Keep
 @Keep
-data class Institution(val aggregator:Int,val type:String?, val group :String?,val name:String?, val main:Boolean?,val instructions:String?,val usernameInformations:UserInformations?,val passwordInformations: PasswordInformations?,val note:String?):Serializable
+data class Institution(val aggregator:BankingAggregator,
+                       val type:String?,
+                       val group :String?,
+                       val name:String?,
+                       val main:Boolean?,
+                       val instructions:String?,
+                       val usernameInformations:UserInformations?,
+                       val passwordInformations: PasswordInformations?,
+                       val note:String?,
+                       val id: String?,
+                       val syncStatus: BankingInstitutionSyncStatus?,
+                       val syncError: BankingInstitutionSyncError?,
+                       val accounts : ArrayList<Account>,
+                       val amount : Double):Serializable
+{
+
+    fun getLogoUrl():String{
+        return "https://app.wealthica.com/images/institutions/$type.png"
+    }
+}

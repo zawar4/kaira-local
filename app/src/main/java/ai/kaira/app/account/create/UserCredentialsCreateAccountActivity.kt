@@ -11,7 +11,7 @@ import ai.kaira.app.utils.Extensions.Companion.dismissKeyboard
 import ai.kaira.app.utils.LanguageConfig
 import ai.kaira.app.utils.UIUtils
 import ai.kaira.app.utils.UIUtils.Companion.networkConnectivityAlert
-import ai.kaira.data.account.create.BankingAggregator
+import ai.kaira.domain.banking.institution.model.BankingAggregator
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle

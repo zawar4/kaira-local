@@ -28,6 +28,18 @@
         <item name="android:textColor">@color/kairaLabel</item>
     </style>
 
+    <style name="Amount_Text_Positive">
+        <!-- Font Bold -->
+        <!-- Line Height 28pt -->
+        <item name="android:fontFamily">@font/avenir_next_bold</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@color/kairaGreen</item>
+    </style>
+
+    <style name="Amount_Text_Negative" parent="Amount_Text_Positive">
+        <item name="android:textColor">@color/kairaSecLabel</item>
+    </style>
+
     <style name="Text01">
         <!-- Font Medium -->
         <!-- Line Height 24pt -->

@@ -26,6 +26,8 @@
     <string name="action_retry">Retry</string>
     <string name="action_erase">Effacer</string>
 
+    <string name="warning">Attention</string>
+
     <string name="no_email_application_installed">Aucun client de messagerie n\'est installé.</string>
 
     <!-- Onboarding-->
@@ -83,6 +85,16 @@
     <string name="psychological_profile_detail_title">Brève description des différents profils de motivation face à l’argent selon les réponses</string>
 
     <!-- Financial Profile !-->
+
+    <string name="financial_profile_type_deposit">Dépôt</string>
+    <string name="financial_profile_type_mortgage">Hypothèque</string>
+    <string name="financial_profile_type_retirement">Retraite</string>
+    <string name="financial_profile_type_creditcard">Carte de crédit</string>
+    <string name="financial_profile_type_loan">Prête</string>
+    <string name="financial_profile_type_investment">Investissement</string>
+    <string name="financial_profile_type_otherregisteredaccount">Autre Enregistré</string>
+    <string name="financial_profile_type_other">Autre</string>
+
     <string name ="financial_profile_type_spending">Dépenses</string>
     <string name ="financial_profile_type_saving">Épargne</string>
     <string name ="financial_profile_type_credit">Crédit</string>
@@ -185,6 +197,7 @@
     <string name="banking_institutions_connecting_subtitle">La synchronisation prend un certain temps. Merci de ta patience!</string>
     <string name="banking_institutions_connection_success">La connexion aux données est complétée!</string>
     <string name="banking_institutions_connection_success_add_other">Connexion à une autre institution</string>
+    <string name="banking_institutions_verification_code">Entrer le code de vérification</string>
 
     <string name="banking_institutions_security_title">Question de sécurité</string>
     <string name="results">résultats</string>
@@ -196,5 +209,33 @@
 
     <string name = "mint" >mint</string>
 
+    <string name="error">Erreur</string>
+    <string name="edit">Modifier</string>
 
+    <string name="banking_institutions_status_syncing">Synchronisation</string>
+
+    <string name="finance_dashboard_revenues_title">Revenu</string>
+    <string name="finance_dashboard_spendings_title">Dépense</string>
+    <string name="finance_dashboard_leeways_title">Marge de manoeuvre</string>
+    <string name="finance_dashboard_balances_title">Portrait financier actuel</string>
+    <string name="finance_dashboard_institutions_title">Institutions financières</string>
+    <string name="finance_dashboard_institutions_edit">Modifier</string>
+    <string name="finance_dashboard_institutions_add">Ajouter une institution financière</string>
+    <string name="finance_current_month">Actuel</string>
+    <string name="finance_institutions_remove_message">Voulez-vous vraiment supprimer cette institution ?</string>
+
+    <string name="finance_asset_title">Actif</string>
+    <string name="finance_liability_title">Dette</string>
+    <string name="finance_total_assets_title">Valeur nette</string>
+
+    <string name="banking_institutions_status_syncing_alert">Ce compte est en cours de synchronisation. Ça peut prendre un moment</string>
+    <string name="banking_institutions_status_security_question">Vérification requise</string>
+
+    <string name="finance_account_item_category_title">Catégorie</string>
+    <string name="finance_account_item_transactions_title">Transactions</string>
+    <string name="finance_account_item_name_title">Account</string>
+    <string name="finance_account_item_institution_title">Institution bancaire</string>
+    <string name="finance_account_item_account_title">Compte</string>
+    <string name="finance_account_item_sharedRatio_title">Exclusion</string>
+    <string name="banking_transactions_title">Transactions</string>
 </resources>

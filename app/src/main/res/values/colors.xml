@@ -11,6 +11,8 @@
     <color name="kairaThirdFillASemiA">#fab0b1</color>
     <color name="kairaThirdFillASemiB">#f8888a</color>
 
+    <color name="error">#fe3a2f</color>
+    <color name="error_verification_required">#ff9402</color>
 
     <color name="kairaThirdFillB">#ffe3e3</color>
     <color name="kairaFourthFillA">#ffa652</color>
@@ -18,9 +20,10 @@
     <color name="kairaFourthFillASemiB">#fbc593</color>
     <color name="kairaFourthFillB">#ffeddc</color>
 
+    <color name="heading_color">#f1f7f8</color>
 
     <color name="medium_gray">#9c9792</color>
-    <color name="medium_light_gray">#C0BBB5</color>
+    <color name="medium_light_gray">#80C0BBB5</color>
     <color name="light_gray">#f7f6f5</color>
     <color name="dark_gray">#d5cdc7</color>
     <color name="gray">#DCDCDC</color>
@@ -31,7 +34,8 @@
     <color name="financialProfileGood">#6b96ff</color>
     <color name="bankingLeeway">#ff7800</color>
     <color name="bankingSpending">#46d9e7</color>
-    <color name="bankingRevenue">#2ac261</color>
+    <color name="kairaGreen">#2ac261</color>
+    <color name="kairaDarkGreen">#61ae7b</color>
     <color name="financialProfileBad_Highlight">#ffe4c7</color>
     <color name="financialProfileOk_Highlight">#c09fc7</color>
     <color name="financialProfileGood_Highlight">#bacdff</color>

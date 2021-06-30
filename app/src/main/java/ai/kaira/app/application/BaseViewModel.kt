@@ -20,7 +20,7 @@ open class BaseViewModel @Inject constructor() : ViewModel() {
     private val errorActionLiveData : MutableLiveData<ErrorAction> = MutableLiveData()
     private val finishActivityLiveData : MutableLiveData<Unit> = MutableLiveData()
     private val connectivityError : MutableLiveData<Boolean> = MutableLiveData()
-    private val viewModelCoroutineScope : CoroutineScope = viewModelScope
+    public val viewModelCoroutineScope : CoroutineScope = viewModelScope
 
 
     fun onLoad() : LiveData<Boolean>{

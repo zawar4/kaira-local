@@ -37,6 +37,8 @@
     <string name="action_retry">Retry</string>
     <string name="action_erase">Erase</string>
 
+    <string name="warning">Warning</string>
+
 
     <string name="no_email_application_installed">There is no email client installed.</string>
     <!-- Onboarding-->
@@ -99,7 +101,18 @@
 
     <!-- Financial Profile !-->
     <string name="financial_profile_type_spending">Spendings</string>
+
     <string name="financial_profile_type_saving">Savings</string>
+    <string name="financial_profile_type_deposit">Deposit</string>
+    <string name="financial_profile_type_mortgage">Mortgage</string>
+    <string name="financial_profile_type_retirement">Retirement</string>
+    <string name="financial_profile_type_creditcard">Credit Card</string>
+    <string name="financial_profile_type_loan">Loan</string>
+    <string name="financial_profile_type_investment">Investment</string>
+    <string name="financial_profile_type_otherregisteredaccount">Other Registered</string>
+    <string name="financial_profile_type_other">Other</string>
+
+
     <string name="financial_profile_type_credit">Borrowings</string>
     <string name="financial_profile_type_planning">Planning</string>
     <string name="financial_profile_result_title">Your results</string>
@@ -200,7 +213,7 @@
     <string name="banking_institutions_connecting_subtitle">Synchronization takes a little while.\n\n Thanks for your patience!</string>
     <string name="banking_institutions_connection_success">The process is underway!</string>
     <string name="banking_institutions_connection_success_add_other">Do you want to synchronize another account?</string>
-
+    <string name="banking_institutions_verification_code">Enter the verification code</string>
     <string name="banking_institutions_security_title">Security Question</string>
     <string name="results">results</string>
 
@@ -218,7 +231,35 @@
     <string name="question" translatable="false">\u2753</string>
     <string name="tick" translatable="false">\u2713</string>
     <string name="mint">mint</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="error">Error</string>
+    <string name="edit">Edit</string>
+    <string name="banking_institutions_status_syncing">Syncing</string>
+
+    <string name="finance_dashboard_revenues_title">Income</string>
+    <string name="finance_dashboard_spendings_title">Expenses</string>
+    <string name="finance_dashboard_leeways_title">Wiggle room</string>
+    <string name="finance_dashboard_balances_title">Current financial picture</string>
+    <string name="finance_dashboard_institutions_title">Financial institution</string>
+    <string name="finance_dashboard_institutions_edit">Edit</string>
+    <string name="finance_dashboard_institutions_add">Add a financial institution</string>
+    <string name="finance_current_month">Current</string>
+    <string name="finance_institutions_remove_message">Are you sure you want to remove that institution?</string>
+
+    <string name="finance_asset_title">Asset</string>
+    <string name="finance_liability_title">Debt</string>
+    <string name="finance_total_assets_title">Net value</string>
+
+    <string name="banking_institutions_status_syncing_alert">This account is currently syncing. It might take a while</string>
+    <string name="banking_institutions_status_security_question">Verification required</string>
+
+    <string name="finance_account_item_category_title">Category</string>
+    <string name="finance_account_item_transactions_title">Transaction</string>
+    <string name="finance_account_item_name_title">Account</string>
+    <string name="finance_account_item_institution_title">Financial institution</string>
+    <string name="finance_account_item_account_title">Account</string>
+    <string name="finance_account_item_sharedRatio_title">Exclusion</string>
+    <string name="banking_transactions_title">Transactions</string>
+
 
 </resources>
