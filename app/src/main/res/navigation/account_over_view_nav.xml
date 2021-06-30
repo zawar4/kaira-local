@@ -8,5 +8,14 @@
     <fragment
         android:id="@+id/navigation_account_overview"
         android:name="ai.kaira.app.banking.account.fragment.AccountOverviewFragment"
-        android:label="AccountOverviewFragment" />
+        android:label="AccountOverviewFragment"
+        tools:layout="@layout/fragment_account_overview"/>
+
+    <fragment
+        android:id="@+id/navigation_account_detail"
+        android:name="ai.kaira.app.banking.account.fragment.AccountDetailFragment"
+        android:label="AccountDetailFragment"
+        tools:layout="@layout/fragment_account_detail"/>
+
+
 </navigation>
