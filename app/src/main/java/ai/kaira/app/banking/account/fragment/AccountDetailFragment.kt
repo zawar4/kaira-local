@@ -10,6 +10,7 @@ import ai.kaira.app.databinding.FragmentAccountDetailBinding
 import ai.kaira.app.utils.Extensions.Companion.getFormattedAmount
 import ai.kaira.domain.banking.institution.model.Account
 import ai.kaira.domain.banking.institution.model.BankAccountType
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 
@@ -51,6 +52,8 @@ class AccountDetailFragment : Fragment() {
                 } else if(account.type == BankAccountType.loan) {
                     type = getString(R.string.financial_profile_type_loan)
                 }
+
+                binding.transactionGroup.isVisible = !account.hideTransactions()
                 binding.accountName.text = type
                 binding.bankName.text = institutionName
             }

@@ -18,7 +18,9 @@ import ai.kaira.domain.banking.institution.model.BankingAccountingType
 import ai.kaira.domain.banking.institution.model.BankingAggregator
 import ai.kaira.domain.banking.institution.model.Institution
 import android.content.Context
+import android.content.Intent
 import android.view.View.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -66,7 +68,11 @@ class AccountOverviewFragment : Fragment() {
                 }
 
                 institutionViewModel.onInstitutionRemoved().observe(viewLifecycleOwner){
-                    findNavController().popBackStack()
+                    if(!findNavController().popBackStack()) {
+                        val intent = Intent()
+                        requireActivity().setResult(AppCompatActivity.RESULT_OK,intent)
+                        requireActivity().finish()
+                    }
                 }
 
                 institution.accounts.forEach { account ->
@@ -95,16 +101,11 @@ class AccountOverviewFragment : Fragment() {
 
                     transactionItemLayoutBinding.name.text = type
                     transactionItemLayoutBinding.amount.text = account.balance.getFormattedAmount(account.currency)
-                    if(account.hideDetail()) {
-                        transactionItemLayoutBinding.exploreBtn.visibility = INVISIBLE
-                    } else {
-                        transactionItemLayoutBinding.exploreBtn.visibility = VISIBLE
-                        transactionItemLayoutBinding.root.setOnClickListener {
-                            val bundle = Bundle()
-                            bundle.putSerializable("account", account)
-                            bundle.putString("institution_name", institution.name)
-                            findNavController().navigate(R.id.navigation_account_detail,bundle)
-                        }
+                    transactionItemLayoutBinding.root.setOnClickListener {
+                        val bundle = Bundle()
+                        bundle.putSerializable("account", account)
+                        bundle.putString("institution_name", institution.name)
+                        findNavController().navigate(R.id.navigation_account_detail, bundle)
                     }
 
                     if(account.accountingType == BankingAccountingType.assest) {
@@ -117,7 +118,11 @@ class AccountOverviewFragment : Fragment() {
 
             }
         } ?:run {
-            findNavController().popBackStack()
+            if(!findNavController().popBackStack()) {
+                val intent = Intent()
+                requireActivity().setResult(AppCompatActivity.RESULT_OK,intent)
+                requireActivity().finish()
+            }
         }
         institutionViewModel.onLoad().observe(viewLifecycleOwner){ loading ->
             if(loading){
@@ -128,7 +133,11 @@ class AccountOverviewFragment : Fragment() {
         }
 
         binding.backBtn.setOnClickListener {
-            findNavController().popBackStack()
+            if(!findNavController().popBackStack()) {
+                val intent = Intent()
+                requireActivity().setResult(AppCompatActivity.RESULT_OK,intent)
+                requireActivity().finish()
+            }
         }
     }
 

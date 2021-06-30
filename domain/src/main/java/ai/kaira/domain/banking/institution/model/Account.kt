@@ -16,8 +16,8 @@ data class Account(val id : String,
                    val metadata:MetaData,
                    val accountingType:BankingAccountingType) : Serializable {
 
-    fun hideDetail() : Boolean {
-        return type == BankAccountType.retirement || type == BankAccountType.otherRegisteredAccount || type == BankAccountType.loan || type == BankAccountType.mortgage || id.contains("tfsa")
+    fun hideTransactions() : Boolean {
+        return type == BankAccountType.investment || type == BankAccountType.retirement || type == BankAccountType.otherRegisteredAccount || type == BankAccountType.loan || type == BankAccountType.mortgage || id.contains("tfsa")
     }
 
 }

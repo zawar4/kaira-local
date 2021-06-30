@@ -237,4 +237,5 @@
     <string name="finance_account_item_institution_title">Institution bancaire</string>
     <string name="finance_account_item_account_title">Compte</string>
     <string name="finance_account_item_sharedRatio_title">Exclusion</string>
+    <string name="banking_transactions_title">Transactions</string>
 </resources>

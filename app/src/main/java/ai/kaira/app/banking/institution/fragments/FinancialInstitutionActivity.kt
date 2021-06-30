@@ -4,6 +4,7 @@ import android.os.Bundle
 import ai.kaira.app.R
 import ai.kaira.app.account.login.LoginActivity
 import ai.kaira.app.application.ViewModelFactory
+import ai.kaira.app.banking.account.activity.AccountOverViewHostActivity
 import ai.kaira.app.banking.institution.BankInstitutionLoginHostActivity
 import ai.kaira.app.banking.institution.BankInstitutionsHostActivity
 import ai.kaira.app.banking.institution.InstitutionSecurityAnswerActivity
@@ -89,6 +90,7 @@ class FinancialInstitutionActivity : AppCompatActivity() {
                 institution.name?.let {
                     itembinding.institutionNameTv.text = institution.name
                 }
+
                 institution.syncStatus?.let{ it ->
                     when(it) {
                         BankingInstitutionSyncStatus.ERROR -> {
@@ -134,6 +136,11 @@ class FinancialInstitutionActivity : AppCompatActivity() {
                         BankingInstitutionSyncStatus.OK -> {
                             itembinding.status.visibility = View.GONE
                             itembinding.status.background = null
+                            itembinding.root.setOnClickListener {
+                                val intent = Intent(this , AccountOverViewHostActivity::class.java)
+                                intent.putExtra("institution",institution)
+                                startActivityForResult(intent,100)
+                            }
                         }
                         BankingInstitutionSyncStatus.SYNCING -> {
                             itembinding.root.setOnClickListener {
