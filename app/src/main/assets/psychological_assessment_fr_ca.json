@@ -4,8 +4,8 @@
     "type":1,
     "duration":6,
     "number":1,
-    "title":"Pour toi, c'est quoi l'argent ?",
-    "description":"Tes réponses à ces 10 questions à choix multiples me permettront de déterminer le profil qui reflète le mieux ta motivation et personnaliser mon coaching.",
+    "title":"Pour toi, c'est quoi l'argent ?",
+    "description":"Tu vas découvrir des choses sur toi. À quel point es-tu en accord/désaccord avec les énoncés suivants ?",
     "mention":"Cette évaluation a été développée en partenariat avec l’Université de Sherbrooke.",
     "questions": [
         {
@@ -330,5 +330,3 @@
         }
     ]
 }
-
-

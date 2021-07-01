@@ -112,27 +112,27 @@
                 {
                     "id":41,
                     "value": 100,
-                    "title": "Tout à fait confiant"
+                    "title": "Tout à fait confiance"
                 },
                 {
                     "id":42,
                     "value": 75,
-                    "title": "Modérément confiant"
+                    "title": "Modérément confiance"
                 },
                 {
                     "id":43,
                     "value": 50,
-                    "title": "Plutôt confiant"
+                    "title": "Plutôt confiance"
                 },
                 {
                     "id":44,
                     "value": 25,
-                    "title": "Légèrement confiant"
+                    "title": "Légèrement confiance"
                 },
                 {
                     "id":45,
                     "value": 0,
-                    "title": "Pas du tout confiant"
+                    "title": "Pas du tout confiance"
                 }
             ]
         },
@@ -198,32 +198,32 @@
         {
             "id":7,
             "type":3,
-            "title": "Pense à toutes les assurances que toi et les autres personnes de ton ménage avez actuellement, y compris les couvertures de santé, décès, invalidité, voiture, habitation…\nDans quelle mesure as-tu confiance que ces assurances te procurent une protection suffisante en cas d'urgence?",
+            "title": "Pense à toutes les assurances que toi et les autres personnes de ton ménage avez actuellement, y compris les couvertures de santé, décès, invalidité, voiture, habitation…\nDans quelle mesure as-tu confiance que ces assurances te procurent une protection suffisante en cas d'urgence ?",
             "answers": [
                 {
                     "id":71,
                     "value": 100,
-                    "title": "Tout à fait confiant"
+                    "title": "Tout à fait confiance"
                 },
                 {
                     "id":72,
                     "value": 75,
-                    "title": "Modérément confiant"
+                    "title": "Modérément confiance"
                 },
                 {
                     "id":73,
                     "value": 50,
-                    "title": "Plutôt confiant"
+                    "title": "Plutôt confiance"
                 },
                 {
                     "id":74,
                     "value": 25,
-                    "title": "Légèrement confiant"
+                    "title": "Légèrement confiance"
                 },
                 {
                     "id":75,
                     "value": 10,
-                    "title": "Pas du tout confiant"
+                    "title": "Pas du tout confiance"
                 },
                 {
                     "id":76,

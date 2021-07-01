@@ -5,8 +5,8 @@
     "duration":10,
     "number":2,
     "title":"Your financial picture",
-    "description":"Yours answers will help assess your financiel health.",
-	"mention":"This assessment uses the <i>Financial Health Score®</i> of the <i>Financial Health Network</i>",
+    "description":"Your answers will help assess your financial health.",
+    "mention":"This assessment uses the <i>Financial Health Score®</i> of the <i>Financial Health Network</i>",
     "questions": [
         {
             "id":1,
@@ -107,7 +107,7 @@
         {
             "id":4,
             "type":1,
-            "title":"Thinking about your household’s longer term financial goals – saving for a vacation, starting a business, buying or paying off a home, saving up for education, putting money away for retirement…\nHow confident are you that you are currently doing what is needed to meet your longer term goals?",
+            "title":"Thinking about your household’s longer term financial goals – for example saving up for education, putting money away for retirement…\nHow confident are you that you are currently doing what is needed to meet your longer term goals?",
             "answers": [
                 {
                     "id":41,

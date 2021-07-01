@@ -4,327 +4,327 @@
     "type":1,
     "duration":6,
     "number":1,
-    "title":"Pour toi, c'est quoi l'argent ?",
-    "description":"Tes réponses à ces 10 questions à choix multiples me permettront de déterminer le profil qui reflète le mieux ta motivation et personnaliser mon coaching.",
-    "mention":"Cette évaluation a été développée en partenariat avec l’Université de Sherbrooke.",
+    "title":"What is money to you?",
+    "description":"You’re going to learn things about yourself. To what extent do you agree/disagree with the following?",
+    "mention":"This assessment was developed in partnership with the University of Sherbrooke.",
     "questions": [
         {
             "id":1,
             "type":0,
-            "title":"L'argent est important parce qu'il permet d'occuper une position sociale élevée.",
+            "title":"Money is important because it helps me achieve high social standing.",
             "answers": [
                 {
                     "id":1,
                     "value":5,
-                    "title":"Fortement d'accord"
+                    "title":"Strongly agree"
                 },
                 {
                     "id":2,
                     "value":4,
-                    "title":"Plutôt d'accord"
+                    "title":"Somewhat agree"
                 },
                 {
                     "id":3,
                     "value":3,
-                    "title":"Ni d’accord ni en désaccord"
+                    "title":"Neither agree nor disagree"
                 },
                 {
                     "id":4,
                     "value":2,
-                    "title":"Un peu en désaccord"
+                    "title":"Somewhat disagree"
                 },
                 {
                     "id":5,
                     "value":1,
-                    "title":"Fortement en désaccord"
+                    "title":"Strongly disagree"
                 }
             ]
         },
         {
             "id":8,
             "type":1,
-            "title":"Une meilleure situation financière me permettrait de ne pas me soucier de mes problèmes financiers.",
+            "title":"A better financial situation would help me stop worrying about my financial problems.",
             "answers": [
                 {
                     "id":71,
                     "value":5,
-                    "title":"Fortement d'accord"
+                    "title":"Strongly agree"
                 },
                 {
                     "id":72,
                     "value":4,
-                    "title":"Plutôt d'accord"
+                    "title":"Somewhat agree"
                 },
                 {
                     "id":73,
                     "value":3,
-                    "title":"Ni d’accord ni en désaccord"
+                    "title":"Neither agree nor disagree"
                 },
                 {
                     "id":74,
                     "value":2,
-                    "title":"Un peu en désaccord"
+                    "title":"Somewhat disagree"
                 },
                 {
                     "id":75,
                     "value":1,
-                    "title":"Fortement en désaccord"
+                    "title":"Strongly disagree"
                 }
             ]
         },
         {
             "id":13,
             "type":2,
-            "title":"L'argent est important pour moi, car il me permet de veiller au bien-être de mon entourage.",
+            "title":"Money is important to me because it helps me ensure the well-being of my loved ones.",
             "answers": [
                 {
                     "id":121,
                     "value":5,
-                    "title":"Fortement d'accord"
+                    "title":"Strongly agree"
                 },
                 {
                     "id":122,
                     "value":4,
-                    "title":"Plutôt d'accord"
+                    "title":"Somewhat agree"
                 },
                 {
                     "id":123,
                     "value":3,
-                    "title":"Ni d’accord ni en désaccord"
+                    "title":"Neither agree nor disagree"
                 },
                 {
                     "id":124,
                     "value":2,
-                    "title":"Un peu en désaccord"
+                    "title":"Somewhat disagree"
                 },
                 {
                     "id":125,
                     "value":1,
-                    "title":"Fortement en désaccord"
+                    "title":"Strongly disagree"
                 }
             ]
         },
         {
             "id":21,
             "type":3,
-            "title":"Avoir suffisamment d'argent pour m'amuser est primordial pour moi.",
+            "title":"Having enough money to have fun is vital to me.",
             "answers": [
                 {
                     "id":201,
                     "value":5,
-                    "title":"Fortement d'accord"
+                    "title":"Strongly agree"
                 },
                 {
                     "id":202,
                     "value":4,
-                    "title":"Plutôt d'accord"
+                    "title":"Somewhat agree"
                 },
                 {
                     "id":203,
                     "value":3,
-                    "title":"Ni d’accord ni en désaccord"
+                    "title":"Neither agree nor disagree"
                 },
                 {
                     "id":204,
                     "value":2,
-                    "title":"Un peu en désaccord"
+                    "title":"Somewhat disagree"
                 },
                 {
                     "id":205,
                     "value":1,
-                    "title":"Fortement en désaccord"
+                    "title":"Strongly disagree"
                 }
             ]
         },
         {
             "id":3,
             "type":0,
-            "title":"J'aimerais avoir un plus haut statut social grâce à l'argent.",
+            "title":"I want money to gain social status.",
             "answers": [
                 {
                     "id":21,
                     "value":5,
-                    "title":"Fortement d'accord"
+                    "title":"Strongly agree"
                 },
                 {
                     "id":22,
                     "value":4,
-                    "title":"Plutôt d'accord"
+                    "title":"Somewhat agree"
                 },
                 {
                     "id":23,
                     "value":3,
-                    "title":"Ni d’accord ni en désaccord"
+                    "title":"Neither agree nor disagree"
                 },
                 {
                     "id":24,
                     "value":2,
-                    "title":"Un peu en désaccord"
+                    "title":"Somewhat disagree"
                 },
                 {
                     "id":25,
                     "value":1,
-                    "title":"Fortement en désaccord"
+                    "title":"Strongly disagree"
                 }
             ]
         },
         {
             "id":12,
             "type":1,
-            "title":"Je désire plus d'autonomie financière.",
+            "title":"I’d like more financial independence.",
             "answers": [
                 {
                     "id":111,
                     "value":5,
-                    "title":"Fortement d'accord"
+                    "title":"Strongly agree"
                 },
                 {
                     "id":112,
                     "value":4,
-                    "title":"Plutôt d'accord"
+                    "title":"Somewhat agree"
                 },
                 {
                     "id":113,
                     "value":3,
-                    "title":"Ni d’accord ni en désaccord"
+                    "title":"Neither agree nor disagree"
                 },
                 {
                     "id":114,
                     "value":2,
-                    "title":"Un peu en désaccord"
+                    "title":"Somewhat disagree"
                 },
                 {
                     "id":115,
                     "value":1,
-                    "title":"Fortement en désaccord"
+                    "title":"Strongly disagree"
                 }
             ]
         },
         {
             "id":17,
             "type":2,
-            "title":"Mon but dans la vie est de veiller au bien-être de mes proches.",
+            "title":"My goal in life is to ensure my loved ones’ well-being.",
             "answers": [
                 {
                     "id":161,
                     "value":5,
-                    "title":"Fortement d'accord"
+                    "title":"Strongly agree"
                 },
                 {
                     "id":162,
                     "value":4,
-                    "title":"Plutôt d'accord"
+                    "title":"Somewhat agree"
                 },
                 {
                     "id":163,
                     "value":3,
-                    "title":"Ni d’accord ni en désaccord"
+                    "title":"Neither agree nor disagree"
                 },
                 {
                     "id":164,
                     "value":2,
-                    "title":"Un peu en désaccord"
+                    "title":"Somewhat disagree"
                 },
                 {
                     "id":165,
                     "value":1,
-                    "title":"Fortement en désaccord"
+                    "title":"Strongly disagree"
                 }
             ]
         },
         {
             "id":22,
             "type":3,
-            "title":"Avec l'argent, je veux d'abord et avant tout me faire plaisir.",
+            "title":"Above all, I want money to get and do the things I want.",
             "answers": [
                 {
                     "id":211,
                     "value":5,
-                    "title":"Fortement d'accord"
+                    "title":"Strongly agree"
                 },
                 {
                     "id":212,
                     "value":4,
-                    "title":"Plutôt d'accord"
+                    "title":"Somewhat agree"
                 },
                 {
                     "id":213,
                     "value":3,
-                    "title":"Ni d’accord ni en désaccord"
+                    "title":"Neither agree nor disagree"
                 },
                 {
                     "id":214,
                     "value":2,
-                    "title":"Un peu en désaccord"
+                    "title":"Somewhat disagree"
                 },
                 {
                     "id":215,
                     "value":1,
-                    "title":"Fortement en désaccord"
+                    "title":"Strongly disagree"
                 }
             ]
         },
         {
             "id":1000,
             "type":999,
-            "title":"Ma situation financière me stresse au quotidien.",
+            "title":"My financial situation is a daily stress.",
             "answers": [
                 {
                     "id":10001,
                     "value":5,
-                    "title":"Fortement d'accord"
+                    "title":"Strongly agree"
                 },
                 {
                     "id":10002,
                     "value":4,
-                    "title":"Plutôt d'accord"
+                    "title":"Somewhat agree"
                 },
                 {
                     "id":10003,
                     "value":3,
-                    "title":"Ni d’accord ni en désaccord"
+                    "title":"Neither agree nor disagree"
                 },
                 {
                     "id":10004,
                     "value":2,
-                    "title":"Un peu en désaccord"
+                    "title":"Somewhat disagree"
                 },
                 {
                     "id":10005,
                     "value":1,
-                    "title":"Fortement en désaccord"
+                    "title":"Strongly disagree"
                 }
             ]
         },
         {
             "id":1001,
             "type":999,
-            "title":"Je pense souvent à mes finances lorsque je suis au travail.",
+            "title":"I often think about my finances at work.",
             "answers": [
                 {
                     "id":10011,
                     "value":5,
-                    "title":"Fortement d'accord"
+                    "title":"Strongly agree"
                 },
                 {
                     "id":10012,
                     "value":4,
-                    "title":"Plutôt d'accord"
+                    "title":"Somewhat agree"
                 },
                 {
                     "id":10013,
                     "value":3,
-                    "title":"Ni d’accord ni en désaccord"
+                    "title":"Neither agree nor disagree"
                 },
                 {
                     "id":10014,
                     "value":2,
-                    "title":"Un peu en désaccord"
+                    "title":"Somewhat disagree"
                 },
                 {
                     "id":10015,
                     "value":1,
-                    "title":"Fortement en désaccord"
+                    "title":"Strongly disagree"
                 }
             ]
         }
