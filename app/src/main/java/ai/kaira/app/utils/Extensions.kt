@@ -104,6 +104,13 @@ class Extensions {
             return monthDateFormat.format(convertedCurrentDate)
         }
 
+        fun String.getFormattedZoneDate() : String {
+            val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+            val monthDateFormat = SimpleDateFormat("dd MMM yyyy")
+            val date = sdf.parse(this)
+            return monthDateFormat.format(date)
+        }
+
         fun Double.getFormattedAmount():String{
             val format: NumberFormat = NumberFormat.getCurrencyInstance()
             format.maximumFractionDigits = 2

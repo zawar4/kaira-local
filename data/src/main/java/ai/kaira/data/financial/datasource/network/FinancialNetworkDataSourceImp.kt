@@ -4,6 +4,7 @@ import ai.kaira.data.webservice.KairaApiRouter
 import ai.kaira.domain.KairaAction
 import ai.kaira.domain.KairaResult
 import ai.kaira.domain.financial.model.MyFinancials
+import ai.kaira.domain.financial.model.Transaction
 import android.content.SharedPreferences
 import androidx.annotation.Keep
 import kotlinx.coroutines.CoroutineScope
@@ -15,6 +16,33 @@ import javax.inject.Inject
 
 @Keep
 class FinancialNetworkDataSourceImp @Inject constructor(private val prefs: SharedPreferences, private val kairaApiRouter: KairaApiRouter, private val viewModelCoroutineScope: CoroutineScope) : FinancialNetworkDataSource {
+
+    override fun getMyTransactionList(accountId : String): Flow<KairaResult<ArrayList<Transaction>>> = flow {
+        emit(KairaResult.loading())
+        try {
+            val response = kairaApiRouter.getTransactionList(prefs.getString("token","").toString(),accountId).execute()
+            if(response.isSuccessful) {
+                emit(KairaResult.success(data = response.body()))
+            } else {
+                if(response.code() == 401) {
+                    val error : String? = response.errorBody()?.string()
+                    error?.let {
+                        emit(KairaResult.error<ArrayList<Transaction>>(message = error, kairaAction = KairaAction.UNAUTHORIZED_REDIRECT))
+                    }
+                } else {
+                    val error : String? = response.errorBody()?.string()
+                    error?.let {
+                        emit(KairaResult.error<ArrayList<Transaction>>(message = error))
+                    }
+                }
+            }
+        } catch (exception : Exception) {
+            exception.message?.let { message ->
+                emit(KairaResult.exception<ArrayList<Transaction>>(message = message))
+                exception.printStackTrace()
+            }
+        }
+    }
 
     override fun myFinancials(): Flow<KairaResult<MyFinancials>> = flow {
            emit(KairaResult.loading<MyFinancials>())

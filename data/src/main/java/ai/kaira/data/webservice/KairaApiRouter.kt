@@ -9,6 +9,7 @@ import ai.kaira.domain.KairaResult
 import ai.kaira.data.introduction.model.UserResponse
 import ai.kaira.domain.account.create.model.Account
 import ai.kaira.domain.account.login.ResetPasswordBody
+import ai.kaira.domain.financial.model.Transaction
 import ai.kaira.domain.banking.institution.model.ConnectedInstitution
 import ai.kaira.domain.banking.institution.model.Institution
 import ai.kaira.domain.banking.institution.model.SecurityAnswer
@@ -21,6 +22,8 @@ import retrofit2.http.*
 @Keep
 interface KairaApiRouter {
 
+    @GET("banking/account/{account_id}/transactions")
+    fun getTransactionList(@Header("Authorization") authorization: String,@Path("account_id") accountId : String) : Call<ArrayList<Transaction>>
 
     @DELETE("banking/{type}/institutions/{id}")
     fun removeInstitution(@Header("Authorization") authorization: String,@Path("type") type : Int,@Path("id") id : String) : Call<Void>

@@ -9,8 +9,7 @@ import ai.kaira.app.R
 import ai.kaira.app.application.ViewModelFactory
 import ai.kaira.app.banking.institution.fragments.viewmodel.InstitutionViewModel
 import ai.kaira.app.databinding.FragmentAccountOverviewBinding
-import ai.kaira.app.databinding.TransactionItemLayoutBinding
-import ai.kaira.app.home.viewmodel.MyFinanceViewModel
+import ai.kaira.app.databinding.AccountItemLayoutBinding
 import ai.kaira.app.utils.Extensions.Companion.getFormattedAmount
 import ai.kaira.app.utils.UIUtils
 import ai.kaira.domain.banking.institution.model.BankAccountType
@@ -76,7 +75,7 @@ class AccountOverviewFragment : Fragment() {
                 }
 
                 institution.accounts.forEach { account ->
-                    val transactionItemLayoutBinding : TransactionItemLayoutBinding = DataBindingUtil.inflate(inflater,R.layout.transaction_item_layout,binding.assetsAccountsParent,false)
+                    val accountItemLayoutBinding : AccountItemLayoutBinding = DataBindingUtil.inflate(inflater,R.layout.account_item_layout,binding.assetsAccountsParent,false)
 
                     var type : String = ""
                     if(account.type == BankAccountType.deposit) {
@@ -99,9 +98,9 @@ class AccountOverviewFragment : Fragment() {
                         type = getString(R.string.financial_profile_type_loan)
                     }
 
-                    transactionItemLayoutBinding.name.text = type
-                    transactionItemLayoutBinding.amount.text = account.balance.getFormattedAmount(account.currency)
-                    transactionItemLayoutBinding.root.setOnClickListener {
+                    accountItemLayoutBinding.name.text = type
+                    accountItemLayoutBinding.amount.text = account.balance.getFormattedAmount(account.currency)
+                    accountItemLayoutBinding.root.setOnClickListener {
                         val bundle = Bundle()
                         bundle.putSerializable("account", account)
                         bundle.putString("institution_name", institution.name)
@@ -109,9 +108,9 @@ class AccountOverviewFragment : Fragment() {
                     }
 
                     if(account.accountingType == BankingAccountingType.assest) {
-                        binding.assetsAccountsParent.addView(transactionItemLayoutBinding.root)
+                        binding.assetsAccountsParent.addView(accountItemLayoutBinding.root)
                     } else {
-                        binding.liabilityAccountsParent.addView(transactionItemLayoutBinding.root)
+                        binding.liabilityAccountsParent.addView(accountItemLayoutBinding.root)
                     }
                 }
                 binding.notifyChange()

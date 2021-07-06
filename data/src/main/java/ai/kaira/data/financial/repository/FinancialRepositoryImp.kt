@@ -3,6 +3,7 @@ package ai.kaira.data.financial.repository
 import ai.kaira.data.financial.datasource.network.FinancialNetworkDataSource
 import ai.kaira.domain.KairaResult
 import ai.kaira.domain.financial.model.MyFinancials
+import ai.kaira.domain.financial.model.Transaction
 import ai.kaira.domain.financial.repository.FinancialRepository
 import androidx.annotation.Keep
 import androidx.lifecycle.MutableLiveData
@@ -14,6 +15,10 @@ class FinancialRepositoryImp @Inject constructor(private val financialNetworkDat
 
     override fun myFinancials(): Flow<KairaResult<MyFinancials>> {
         return financialNetworkDataSource.myFinancials()
+    }
+
+    override fun getMyTransactionList(accountId: String): Flow<KairaResult<ArrayList<Transaction>>> {
+        return financialNetworkDataSource.getMyTransactionList(accountId)
     }
 
 }

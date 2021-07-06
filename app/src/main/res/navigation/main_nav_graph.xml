@@ -36,5 +36,11 @@
         android:label="AccountDetailFragment"
         tools:layout="@layout/fragment_account_detail"/>
 
+    <fragment
+        android:id="@+id/navigation_transaction_list"
+        android:name="ai.kaira.app.banking.account.fragment.TransactionListFragment"
+        android:label="Transaction List"
+        tools:layout="@layout/fragment_transaction_list"/>
+
 
 </navigation>

@@ -32,5 +32,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_back_button" />
 
+        <View
+            android:id="@+id/view7"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:background="@color/heading_color"
+            app:layout_constraintBottom_toBottomOf="@+id/title_name" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
