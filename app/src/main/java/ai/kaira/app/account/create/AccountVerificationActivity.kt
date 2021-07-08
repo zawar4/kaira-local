@@ -59,9 +59,8 @@ class AccountVerificationActivity : AppCompatActivity() {
 
         binding.openEmailBtn.setOnClickListener {
             try {
-                val intent = Intent(Intent.ACTION_MAIN)
+                val intent : Intent = Intent.makeMainSelectorActivity(Intent.ACTION_MAIN,Intent.CATEGORY_APP_EMAIL)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addCategory(Intent.CATEGORY_APP_EMAIL)
                 this.startActivity(intent)
             } catch (e: ActivityNotFoundException) {
                 Toast.makeText(

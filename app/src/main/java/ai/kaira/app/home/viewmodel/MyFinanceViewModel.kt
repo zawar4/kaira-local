@@ -2,6 +2,7 @@ package ai.kaira.app.home.viewmodel
 
 import ai.kaira.app.application.BaseViewModel
 import ai.kaira.app.utils.Extensions.Companion.getFormattedZoneDate
+import ai.kaira.app.utils.Extensions.Companion.unaccent
 import ai.kaira.domain.ErrorAction
 import ai.kaira.domain.KairaAction
 import ai.kaira.domain.KairaResult
@@ -26,21 +27,29 @@ class MyFinanceViewModel (private val myFinancialUseCase: MyFinancialUseCase) : 
     private var transactions = ArrayList<Transaction>()
     private lateinit var flow : Flow<KairaResult<MyFinancials>>
 
-
-
-    fun getTransactionsGroupByDate() : HashMap<String,ArrayList<Transaction>> {
-        val groupedTransactions = HashMap<String,ArrayList<Transaction>>()
-        for(transaction in transactions) {
-            if(groupedTransactions.containsKey(transaction.date.getFormattedZoneDate())) {
-                val list = groupedTransactions.get(transaction.date.getFormattedZoneDate())
-                list?.add(transaction)
-            } else {
-                val list = ArrayList<Transaction>()
-                list.add(transaction)
-                groupedTransactions.put(transaction.date.getFormattedZoneDate(),list)
-            }
+    fun filterTransactions(keyword : String) : List<Transaction> {
+        return transactions.filter {
+            it.name.unaccent().toLowerCase().contains(keyword) || it.displayCategory.unaccent().toLowerCase().contains(keyword)
         }
-        return groupedTransactions
+    }
+
+    fun transactionList () : ArrayList<Transaction> {
+        return transactions
+    }
+
+    fun getTransactionsListHeaders(transactions : ArrayList<Transaction>) : ArrayList<String> {
+        val headers = ArrayList<String>()
+        for(transaction in transactions) {
+            headers.add(transaction.date.getFormattedZoneDate())
+        }
+        return headers
+    }
+    fun getTransactionsListHeaders() : ArrayList<String> {
+        val headers = ArrayList<String>()
+        for(transaction in transactions) {
+            headers.add(transaction.date.getFormattedZoneDate())
+        }
+        return headers
     }
     fun onMyTransactionListFetched() : MutableLiveData<ArrayList<Transaction>> {
         return myTransactionListLiveData
@@ -51,9 +60,9 @@ class MyFinanceViewModel (private val myFinancialUseCase: MyFinancialUseCase) : 
                 withContext(Main) {
                     when(result.status) {
                         ResultState.SUCCESS -> {
+                            showLoading(false)
                             result.data?.let {
                                 transactions = it
-                                getTransactionsGroupByDate()
                                 myTransactionListLiveData.value = it
                             }
                         }
@@ -74,7 +83,8 @@ class MyFinanceViewModel (private val myFinancialUseCase: MyFinancialUseCase) : 
                             showLoading(true)
                         }
                         ResultState.EXCEPTION -> {
-
+                            showLoading(false)
+                            showConnectivityError()
                         }
                     }
                 }

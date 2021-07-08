@@ -89,8 +89,7 @@ class BankInstitutionListFragment : Fragment(),InstitutionsRecyclerViewAdapter.O
                 binding.cancelButton.visibility = View.GONE
             }
         }
-        binding.institutionEt.addTextChangedListener(object : TextWatcher,
-            InstitutionsRecyclerViewAdapter.OnInstitutionClickListener {
+        binding.institutionEt.addTextChangedListener(object : TextWatcher, InstitutionsRecyclerViewAdapter.OnInstitutionClickListener {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }

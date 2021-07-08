@@ -25,6 +25,7 @@
     <string name="action_modify">Modifier</string>
     <string name="action_retry">Retry</string>
     <string name="action_erase">Effacer</string>
+    <string name="action_search">Rechercher</string>
 
     <string name="warning">Attention</string>
 

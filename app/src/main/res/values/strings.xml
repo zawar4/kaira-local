@@ -36,6 +36,7 @@
     <string name="action_modify">Modify</string>
     <string name="action_retry">Retry</string>
     <string name="action_erase">Erase</string>
+    <string name="action_search">Search</string>
 
     <string name="warning">Warning</string>
 

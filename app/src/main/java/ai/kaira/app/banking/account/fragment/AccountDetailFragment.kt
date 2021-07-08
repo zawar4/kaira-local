@@ -54,7 +54,7 @@ class AccountDetailFragment : Fragment() {
                 }
 
                 binding.transactionGroup.isVisible = !account.hideTransactions()
-                binding.root.setOnClickListener {
+                binding.transactionExploreBtn.setOnClickListener {
                     val bundle = Bundle()
                     bundle.putString("account_id", account.id)
                     findNavController().navigate(R.id.navigation_transaction_list,bundle)

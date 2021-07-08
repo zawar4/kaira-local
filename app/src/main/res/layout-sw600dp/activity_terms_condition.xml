@@ -2,110 +2,115 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".termsconditions.TermsConditionActivity">
-
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.20" />
+            tools:context=".termsconditions.TermsConditionActivity">
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.20" />
 
 
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.15" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.15" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.85" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.85" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textView4"
-            style="@style/Heading01"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/terms_title"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-            app:layout_constraintStart_toStartOf="@+id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/guideline" />
-
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textView3"
-            style="@style/Text01"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:gravity="left"
-            android:text="@string/terms_message"
-            app:layout_constraintEnd_toStartOf="@id/guideline_right"
-            app:layout_constraintStart_toStartOf="@+id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/terms_of_use_btn"
-            style="@style/Text02_button"
-            android:layout_width="250dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="48dp"
-            android:background="@drawable/blue_button_border"
-            android:gravity="center"
-            android:text="@string/terms_use"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/privacy_policy_btn"
-            style="@style/Text02_button"
-            android:layout_width="250dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/blue_button_border"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:text="@string/terms_privacy"
-            app:layout_constraintStart_toStartOf="@+id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/terms_of_use_btn" />
-
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/policy_checkbox"
-            style="@style/Text04"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="112dp"
-            android:text="@string/terms_approve"
-            app:layout_constraintEnd_toStartOf="@id/guideline_right"
-            app:layout_constraintStart_toStartOf="@+id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/privacy_policy_btn" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/confirm_btn"
-            style="@style/Text03_button"
-            android:layout_width="200dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="12dp"
-            android:enabled="false"
-            android:text="@string/action_confirm"
-            android:textColor="@android:color/white"
-            app:cornerRadius="8dp"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/policy_checkbox" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView4"
+                style="@style/Heading01"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_title"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+                app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView3"
+                style="@style/Text01"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:gravity="left"
+                android:text="@string/terms_message"
+                app:layout_constraintEnd_toStartOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/terms_of_use_btn"
+                style="@style/Text02_button"
+                android:layout_width="250dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="48dp"
+                android:background="@drawable/blue_button_border"
+                android:gravity="center"
+                android:text="@string/terms_use"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/privacy_policy_btn"
+                style="@style/Text02_button"
+                android:layout_width="250dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/blue_button_border"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:text="@string/terms_privacy"
+                app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/terms_of_use_btn" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/policy_checkbox"
+                style="@style/Text04"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="112dp"
+                android:text="@string/terms_approve"
+                app:layout_constraintEnd_toStartOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/privacy_policy_btn" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/confirm_btn"
+                style="@style/Text03_button"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="12dp"
+                android:enabled="false"
+                android:text="@string/action_confirm"
+                android:textColor="@android:color/white"
+                app:cornerRadius="8dp"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/policy_checkbox" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 
 </layout>
